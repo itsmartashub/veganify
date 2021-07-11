@@ -1,0 +1,114 @@
+.navigation {
+    // --svg_size: 2.4rem;
+    --svg_size: 2.4rem;
+
+    grid-area: nav;
+    border-radius: 10rem;
+    padding: 4rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    @extend %text-center;
+    @extend %box-shadow;
+    // align-items: flex-start;
+
+    background: var(--clr_accent_gradient);
+    color: var(--clr_txt_light);
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    // height: 100%;
+    height: var(--sidebars_height);
+
+    svg {
+        overflow: visible;
+        @extend %cursor;
+        fill: var(--clr_txt_light);
+        width: var(--svg_size);
+    }
+
+    &__links {
+        font-size: 4rem;
+        flex: 2;
+        display: grid;
+        place-content: center;
+        grid-gap: 7vh;
+    }
+
+    &__link {
+        display: grid;
+        place-items: center;
+        transition: 0.3s;
+
+        &:nth-of-type(2) {
+            --svg_size: calc(var(--svg_size) + 10rem);
+        }
+
+        &:nth-of-type(1) {
+            --svg_size: calc(var(--svg_size) + 1px);
+            #home--roof {
+                transition: 0.3s;
+            }
+            &:hover {
+                transform: translateY(6px);
+                #home--roof {
+                    transform: translateY(-4px);
+                }
+            }
+        }
+        &:nth-of-type(2):hover {
+            transform: rotate(20deg);
+        }
+        &:nth-of-type(3):hover {
+            transform: translateY(5px);
+        }
+    }
+
+    &__logowrapper {
+        transition: 0.3s;
+        &:hover {
+            .logo__svg {
+                transform: rotate(90deg);
+            }
+            .logo__veganify {
+                transform: scale(0.95) translateY(0.5rem);
+                // font-weight: 300;
+
+                // span {
+                //     font-weight: 700;
+                // }
+            }
+        }
+    }
+
+    &__moon {
+        --svg_size: calc(var(--svg_size) + 0.2rem);
+        transition: 0.3s;
+        &:hover {
+            transform: rotate(300deg);
+        }
+    }
+
+    @include device(phone-land) {
+        --svg_size: 2rem;
+
+        margin: 0 auto;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 3%;
+        top: auto;
+        flex-direction: row;
+        width: 90%;
+        height: max-content;
+        z-index: 1000;
+        padding: 2rem 3rem;
+
+        &__links {
+            grid-auto-flow: column;
+            grid-gap: 10vw;
+        }
+    }
+}

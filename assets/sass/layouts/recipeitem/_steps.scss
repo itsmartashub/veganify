@@ -1,0 +1,44 @@
+.steps {
+    display: grid;
+    grid-gap: 3rem;
+    margin: 5rem 0;
+    padding: 0 2.5rem;
+
+    .step {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+        // align-items: center;
+        grid-gap: 3rem;
+
+        &__count {
+            flex: 1;
+            @extend .categories__icon;
+            // width: var(--icon-square-size);
+            // height: var(--icon-square-size);
+            // border-radius: var(--icon-radius);
+            // background: var(--clr_small_icon_bg);
+            // display: grid;
+            // place-items: center;
+
+            align-content: center;
+            line-height: 1;
+            color: var(--clr_accent);
+            font-size: 1.8rem;
+            font-weight: 600;
+
+            &::after {
+                content: "step";
+                font-size: 0.9rem;
+                display: inline-flex;
+                opacity: 0.9;
+                letter-spacing: 0.5px;
+            }
+        }
+        &__txt {
+            color: var(--clr_txt_black);
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+    }
+}

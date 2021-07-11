@@ -1,0 +1,99 @@
+.recipeitem {
+    background: var(--clr_accent_gradient);
+    width: 100vw;
+    min-height: 100vh;
+    padding: 6rem;
+    display: grid;
+    place-items: center;
+
+    &__content {
+        background: rgba(white, 0.1);
+        width: 100%;
+        border-radius: 10vw;
+        padding: 8rem;
+        display: grid;
+        grid-template-columns: repeat(2, 40vw);
+        justify-content: center;
+        grid-gap: 4vw;
+    }
+
+    &__left {
+        display: grid;
+        align-content: flex-start;
+        grid-gap: 10rem;
+        padding: 0 5rem;
+    }
+
+    &__title {
+        font-size: 3.5rem;
+        line-height: 1.6;
+        text-align: center;
+        font-weight: 500;
+        // -webkit-text-stroke: ;
+    }
+
+    &__right {
+        background: rgba(white, 0.1);
+        border-radius: 5vw;
+        padding: 5rem;
+        font-size: 1.4rem;
+    }
+    &__header {
+        background: var(--clr_accent_gradient_alpha);
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: space-between;
+        padding: 1.3rem;
+        margin-bottom: 3rem;
+        border-radius: 8vw;
+        text-align: center;
+        z-index: 10;
+
+        p {
+            // background: var(--clr_accent_gradient);
+            @extend %pos-rel;
+            padding: 2rem;
+            width: 22rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            z-index: 10 !important;
+            @extend %cursor;
+            transition: 0.5s;
+
+            &::after {
+                @extend %after;
+                background: var(--clr_accent_gradient);
+                border-radius: 8vw;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                opacity: 0;
+                transform: scale(0);
+                transform-origin: 10% 30%;
+                transition: 0.5s;
+            }
+            &:nth-of-type(2)::after {
+                transform-origin: 100% 100%;
+            }
+
+            &:hover {
+                color: var(--clr_txt_light);
+                font-weight: bold;
+
+                &::after {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+    &__is-active {
+        color: var(--clr_txt_light);
+        font-weight: bold !important;
+
+        &::after {
+            opacity: 1 !important;
+            transform: scale(1) !important;
+        }
+    }
+}

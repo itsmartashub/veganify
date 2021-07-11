@@ -1,0 +1,39 @@
+.sidebar {
+    --radius-sidebar: 8rem;
+    grid-area: side;
+    border-radius: var(--radius-sidebar);
+    @extend %box-shadow;
+    padding: 7vh 2vw;
+
+    background: var(--clr_accent_gradient);
+    color: var(--clr_txt_light);
+
+    // height: calc(100vh - 6vw);
+    height: var(--sidebars_height);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    display: grid;
+    grid-gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+
+    &__title {
+        @extend %text-center;
+        font-weight: 300;
+        font-size: 2.4rem;
+        span {
+            font-weight: 700;
+        }
+    }
+
+    @include device(tab-land) {
+        display: none;
+        position: relative;
+        bottom: 0;
+        top: none;
+        left: 0;
+        // height: max-content;
+    }
+}

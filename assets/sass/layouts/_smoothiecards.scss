@@ -1,0 +1,183 @@
+.smoothiecards {
+    @extend .maincards__wrapper;
+    // display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+    grid-gap: 20rem 3vw;
+    padding: 3rem 0;
+    // justify-content: center;
+    // place-items: center;
+
+    // @include device(tab-land) {
+    //     grid-gap: 30rem 5.8vw;
+    // }
+    // @include device(phone) {
+    //     grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+    //     grid-gap: 25rem 5vw;
+    // }
+
+    &__title {
+        // display: inline-block;
+        letter-spacing: 1px;
+        grid-column: 1/-1;
+        color: var(--clr_accent);
+        background: var(--clr_accent_alpha_2);
+        padding: 2rem 2.5rem;
+        border-radius: 1.5vw;
+    }
+}
+
+.smoothiecard {
+    --radius-card: 7rem;
+    // @extend %pos-rel;
+    @extend %box-shadow;
+    @extend %text-center;
+    @extend %cursor;
+    // @extend %overflow-hidden;
+
+    background: var(--clr_bg_card);
+    // width: 30rem;
+    max-width: 33rem;
+    border-radius: var(--radius-card);
+    padding: 2rem 1.8rem;
+    transition: 0.5s;
+
+    &:hover {
+        transform: translateY(-2%);
+
+        .smoothiecard__img {
+            transform: scale(1.2);
+        }
+        .smoothiecard__category {
+            transform: translateY(10%);
+            background: var(--clr_accent_alpha_2);
+        }
+        .smoothiecard__title {
+            transform: translateY(30%);
+        }
+        .smoothiecard__min {
+            svg,
+            p {
+                transform: translateX(1rem);
+            }
+
+            svg {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    &__figure {
+        @extend %overflow-hidden;
+        width: 100%;
+        // height: 100%;
+        z-index: 10;
+        height: 20rem;
+        transition: 0.5s;
+        border-radius: calc(var(--radius-card) - 1rem);
+        // transform: scale(0.88);
+    }
+    &__img {
+        @extend .maincard__img;
+        transition: 0.8s;
+        border-radius: calc(var(--radius-card) - 1rem);
+    }
+
+    &__category {
+        text-transform: uppercase;
+        color: var(--clr_accent);
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        // margin: 1.5rem 0 0.5rem 0;
+        margin: 0.6rem 0 0 0;
+        // margin: 1.5rem 0 0.5rem 0;
+        padding: 0.8rem 1rem;
+        display: inline-block;
+        border-radius: 1rem;
+        transition: 0.5s;
+        transition-delay: 0.2s;
+    }
+    &__title {
+        font-size: 1.85rem;
+        font-weight: 500;
+        margin-bottom: 4rem;
+        text-transform: capitalize;
+        word-break: break-all;
+        color: var(--clr_txt_black);
+        transition: 0.5s;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    &__min {
+        display: flex;
+        align-items: center;
+        transition: 0.5s;
+
+        svg {
+            // width: 1.5rem;
+            height: 1.8rem;
+            margin: 0.5rem;
+            vertical-align: middle;
+            fill: currentColor;
+            transition: 0.4s;
+            transition-delay: 0.15s;
+            opacity: 0.5;
+        }
+
+        p {
+            line-height: 1;
+            margin-left: 0.5rem;
+            transition: 0.5s;
+            opacity: 0.5;
+
+            span {
+                font-size: 1.8rem;
+            }
+        }
+    }
+    &__bookmark {
+        @extend %pos-rel;
+        @extend %overflow-hidden;
+        --size: 5rem;
+        width: var(--size);
+        height: var(--size);
+        display: grid;
+        place-items: center;
+        border-radius: 1.4rem;
+        z-index: 2;
+
+        &::after {
+            @extend %after;
+            background: var(--clr_accent_alpha_2);
+            transform: scale(0.4);
+            transition: 0.5s;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        svg {
+            height: 3rem;
+            transition: 0.3s;
+            fill: var(--clr_accent);
+        }
+
+        &:hover {
+            &::after {
+                transform: scale(1);
+                opacity: 1;
+            }
+            svg {
+                transform: scale(0.95);
+            }
+        }
+
+        &--saved {
+            @extend .smoothiecard__bookmark, :hover;
+        }
+    }
+}

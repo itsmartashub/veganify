@@ -1,0 +1,32 @@
+.home {
+    width: 100vw;
+    height: 100vh;
+    padding: var(--padding-home);
+    display: grid;
+    justify-content: space-between;
+    // align-content: center;
+    grid-template-columns: max-content repeat(6, 1fr);
+    grid-template-areas:
+        "nav mid mid mid mid side side"
+        "nav mid mid mid mid side side"
+        "nav mid mid mid mid side side";
+    grid-gap: 5vw;
+    // height: 100vh;
+    // background: cornsilk;
+    // background: var(--clr_bg);
+    overflow-y: scroll;
+
+    @include device(tab-land) {
+        grid-template-columns: max-content 1fr;
+        grid-template-rows: repeat(auto, 1fr);
+        grid-template-areas:
+            "nav mid"
+            ". side";
+    }
+    @include device(phone-land) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "mid"
+            "nav";
+    }
+}

@@ -1,0 +1,261 @@
+.recipecards {
+    padding-bottom: 8vh;
+    @extend %text-center;
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+        grid-gap: 20rem 3vw;
+        justify-content: center;
+        place-items: center;
+        text-align: left;
+
+        @include device(tab-land) {
+            grid-gap: 20rem 5.8vw;
+        }
+        @include device(phone) {
+            grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+            grid-gap: 20rem 5vw;
+        }
+    }
+
+    &__title {
+        @extend .categories__title;
+        display: inline-block;
+        letter-spacing: 1px;
+        grid-column: 1/-1;
+        color: var(--clr_accent);
+        background: var(--clr_accent_alpha_2);
+        padding: 2.5rem 5vw;
+        margin-bottom: 15rem;
+        border-radius: 3rem;
+    }
+}
+
+.recipecard {
+    --radius-card: 7rem;
+    // @extend %pos-rel;
+    @extend %box-shadow;
+    // @extend %text-center;
+    @extend %cursor;
+    // @extend %overflow-hidden;
+
+    background: var(--clr_bg_card);
+    // width: 30rem;
+    max-width: 38rem;
+    border-radius: var(--radius-card);
+    padding: 2rem;
+    display: grid;
+    grid-gap: 2vh;
+    transition: 0.5s;
+
+    &:hover {
+        transform: translateY(-2%);
+
+        .recipecard__img {
+            transform: scale(1.2);
+        }
+        .recipecard__category {
+            padding: 0.8rem 1rem;
+            transform: translateY(35%);
+
+            &::after {
+                transform: scale(1);
+            }
+            // background: var(--clr_accent_alpha_2);
+        }
+        .recipecard__title {
+            transform: translateY(30%);
+        }
+        .recipecard__min {
+            svg,
+            p {
+                transform: translateX(1rem);
+                opacity: 1;
+                span {
+                    opacity: 0.5;
+                }
+            }
+
+            svg {
+                opacity: 0.8;
+                fill: var(--clr_accent);
+            }
+        }
+        .recipecard__bookmark {
+            &::after {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    }
+
+    &__figure {
+        @extend %overflow-hidden;
+        // width: 100%;
+        // height: 100%;
+        height: 22rem;
+        border-radius: calc(var(--radius-card) - 1rem);
+        transition: 0.5s;
+        // z-index: 10;
+        // transform: scale(0.88);
+    }
+    &__img {
+        @extend %img-basic;
+        border-radius: calc(var(--radius-card) - 1rem);
+        transition: 1s;
+    }
+
+    &__body {
+        padding: 0 2vw;
+    }
+
+    &__category {
+        @extend %pos-rel;
+
+        color: var(--clr_accent);
+        text-transform: uppercase;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        padding: 0.8rem 0rem;
+        display: inline-block;
+        // display: grid;
+        // place-items: center;
+
+        transition: 0.5s;
+        transition-delay: 0.2s;
+
+        &::after {
+            @extend %after;
+            background: var(--clr_accent_alpha_2);
+            top: 0;
+            left: 0;
+            border-radius: 1rem;
+            transform-origin: 0 50%;
+            transform: scale(0);
+            transition: 0.5s;
+
+            // top: 0;
+        }
+    }
+    &__title {
+        font-size: 2.2rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        text-transform: capitalize;
+        word-break: break-all;
+        color: var(--clr_txt_black);
+        transition: 0.5s;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    &__min {
+        display: flex;
+        align-items: center;
+        transition: 0.5s;
+
+        svg {
+            width: 1.5rem;
+            margin-right: 1rem;
+            vertical-align: middle;
+            fill: currentColor;
+            // fill: var(--clr_accent);
+            transition: 0.4s;
+            transition-delay: 0.15s;
+            opacity: 0.5;
+        }
+
+        p {
+            line-height: 1;
+            transition: 0.5s;
+            font-weight: 600;
+            opacity: 0.5;
+
+            span {
+                // font-size: 1.8rem;
+                font-weight: normal;
+            }
+        }
+    }
+    &__bookmark {
+        @extend %pos-rel;
+        @extend %overflow-hidden;
+        --size: 5rem;
+        width: var(--size);
+        height: var(--size);
+        display: grid;
+        place-items: center;
+        border-radius: 1.4rem;
+        z-index: 2;
+
+        &::after {
+            @extend %after;
+            background: var(--clr_accent_alpha_2);
+            transform: scale(0.4);
+            transition: 0.5s;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        &-svgs {
+            @extend %pos-rel;
+            display: grid;
+            place-items: center;
+        }
+
+        &-svg {
+            @extend %pos-abs;
+            height: 3rem;
+            width: 3rem;
+            fill: var(--clr_accent);
+            transition: 0.3s;
+
+            &--outline {
+                z-index: 1;
+                // transform: scale(0);
+                // transition: 0.5s;
+            }
+            &--filled {
+                z-index: 1;
+                opacity: 0;
+                transform: scale(0.4);
+                transition: 0.5s;
+            }
+        }
+
+        &:hover {
+            &::after {
+                transform: scale(1);
+                opacity: 1;
+            }
+            // svg {
+            //     transform: scale(0.95);
+            // }
+            .recipecard__bookmark-svg--filled {
+                transform: scale(1);
+                opacity: 1;
+            }
+            .recipecard__bookmark-svg--outline {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        &--saved {
+            @extend .recipecard__bookmark, :hover;
+        }
+    }
+
+    @include device(phone-land) {
+        transform: scale(0.9);
+    }
+    @include device(phone) {
+        transform: scale(1);
+    }
+}

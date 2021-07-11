@@ -1,0 +1,7 @@
+.middle {
+    grid-area: mid;
+    display: grid;
+    align-content: flex-start;
+    grid-gap: 12vh;
+    min-height: 100vh;
+}

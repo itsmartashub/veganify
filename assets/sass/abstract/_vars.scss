@@ -1,0 +1,110 @@
+:root {
+    --default-radius: 8px;
+    --gradient_deg: 200deg;
+    --padding-home: 3vw;
+    --sidebars_height: calc(100vh - calc(2 * var(--padding-home)));
+    --icon-radius: 1.8rem;
+    --icon-square-size: 5.2rem;
+}
+
+// SHADOWS
+// $box_shadow: rgba(0, 0, 0, 0.08) 0px 3px 5px;
+// $box_shadow: rgba(0, 0, 0, 0.05) -4px 9px 25px -6px;
+$box_shadow: 0 12px 23px 0 rgb(62 73 84 / 4%);
+// rgba(0, 0, 0, 0.05) -4px 9px 25px -6px
+
+// COLORS
+html {
+    --clr_txt_dark: #445c54;
+    --clr_txt_black: #232323;
+    --clr_txt_light: #ffffff;
+    --clr_sidebarcard: var(--clr_txt_light);
+    --clr_small_icon_bg: var(--clr_txt_light);
+    --clr_accent: #0ed7b3;
+    --clr_accent_alpha: rgba(14, 215, 179, 0.25);
+    --clr_accent_alpha_2: rgba(14, 215, 179, 0.18);
+    --clr_bg: #f1f1f1;
+    --clr_bg_card: rgba(253, 253, 253, 0.85);
+    --clr_bg_alpha: rgba(253, 253, 253, 0.3);
+
+    --clr_bg_white_alpha: rgba(255, 255, 255, 0.2);
+
+    // --clr_bg_white_alpha: rgba(255, 255, 255, 0.2);
+    --clr_bg_card_firefox: var(--clr_txt_light);
+    --clr_gradient_1: rgba(0, 231, 171, 1);
+    --clr_gradient_2: rgba(1, 173, 190, 1);
+    --clr_gradient_svg_1: var(--clr_gradient_1);
+    --clr_gradient_svg_2: var(--clr_gradient_2);
+    --clr_accent_gradient: linear-gradient(
+        var(--gradient_deg),
+        var(--clr_gradient_1),
+        var(--clr_gradient_2)
+    );
+    --clr_accent_gradient_alpha: linear-gradient(
+        var(--gradient_deg),
+        rgba(0, 231, 171, 0.25),
+        rgba(1, 173, 190, 0.25)
+    );
+    --filter_img: none;
+
+    // --clr_accent: #30dc97;
+    // --clr_bg: rgba(61, 225, 144, 0.1);
+    // --clr_gradient_1: rgba(61, 225, 144, 1);
+    // --clr_gradient_2: rgba(48, 220, 207, 1);
+    // --clr_accent_gradient: linear-gradient(
+    //     var(--gradient_deg),
+    //     var(--clr_gradient_1),
+    //     var(--clr_gradient_2)
+    // );
+}
+
+html [data-theme="dark"] {
+    // --clr_txt_dark: #dbf6dd;
+    --clr_accent: #30dc97;
+    --clr_txt_dark: #ccf3cf;
+    --clr_txt_black: #53be94;
+    --clr_txt_light: var(--clr_accent);
+    --clr_bg: #1f1d2b;
+    --clr_small_icon_bg: #2a3f44;
+    --clr_gradient_1: #252836;
+    --clr_gradient_2: #2f3142;
+    --clr_accent_gradient: linear-gradient(
+        var(--gradient_deg),
+        var(--clr_gradient_1),
+        var(--clr_gradient_2)
+    );
+    --clr_bg_card: var(--clr_accent_gradient);
+    --clr_sidebarcard: var(--clr_bg);
+
+    --clr_gradient_svg_1: rgba(0, 231, 171, 1);
+    --clr_gradient_svg_2: rgba(1, 173, 190, 1);
+
+    --filter_img: brightness(82%);
+    --clr_bg_card_firefox: var(--clr_accent_gradient);
+}
+
+// CUBICS
+$inQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$inCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$inQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+$inQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$inExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+$inCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+$inBack: cubic-bezier(0.36, 0, 0.66, -0.56);
+
+$outSmooth: cubic-bezier(0.215, 0.61, 0.355, 1);
+$outQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$outCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$outQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+$outQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$outExpo: cubic-bezier(0.19, 1, 0.22, 1);
+$outCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+$outBack: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+$inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+$inOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+$inOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
+$inOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+$inOutExpo: cubic-bezier(1, 0, 0, 1);
+$inOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+$inOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
