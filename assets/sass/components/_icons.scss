@@ -1,0 +1,51 @@
+.icontainer {
+  --icontainer_size: 5.2rem;
+  --icontainer_radius: 1.6rem;
+  width: var(--icontainer_size);
+  height: var(--icontainer_size);
+  border-radius: var(--icontainer_radius);
+  display: grid;
+  place-items: center;
+  transition: transform 0.5s $outBack;
+
+  &__icon {
+    --icon_size: 2.4rem;
+    font-size: var(--icon_size);
+    color: var(--clr_accent);
+  }
+
+  svg {
+    --svg_size: 2.65rem;
+    width: var(--svg_size);
+    height: auto;
+    fill: var(--clr_accent);
+  }
+
+  &--bggreen {
+    @extend .icontainer;
+    background: var(--clr_backbtn_icontainer);
+  }
+  &--bgwhite {
+    @extend .icontainer;
+    background: var(--clr_white);
+  }
+}
+
+// .icon {
+//   --wrapper_size: 3rem;
+//   --wrapper_radius: 0.5vw;
+//   @extend %pos-rel;
+//   display: grid;
+//   place-items: center;
+
+//   &::before {
+//     @extend %after;
+//     top: 0;
+//     left: 0;
+//     width: var(--wrapper_size);
+//     height: var(--wrapper_size);
+//     border-radius: var(--wrapper_radius);
+//     background: var(--clr_accent_alpha_2);
+//     transition: 0.5s $outBack;
+//   }
+// }

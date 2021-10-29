@@ -1,39 +1,33 @@
 * {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	box-shadow: none;
-	box-sizing: inherit;
-	-webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: transparent;
 
-	&::after,
-	&::before {
-		box-sizing: border-box;
-	}
+  &::after,
+  &::before {
+    box-sizing: border-box;
+  }
 }
 
 input,
 button {
-	border: none;
-	box-shadow: none;
-	padding: 0;
-	border-radius: 0;
-}
-
-input[type=submit],
-input[type=reset],
-input[type=button],
-button {
-	user-select: none;
+  user-select: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  font: inherit;
 }
 
 // button
 button {
-	appearance: none;
-	background: none;
+  appearance: none;
+  background: none;
 }
-
 
 /* HTML5 display-role reset for older browsers */
 article,
@@ -46,38 +40,92 @@ header,
 hgroup,
 menu,
 nav,
-section {
-	display: block;
+section,
+img {
+  display: block;
 }
 
 ol,
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 li {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 img {
-	user-select: none;
-	background-color: transparent;
+  user-select: none;
+  background-color: transparent;
 }
 
 //form
 input {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	background-clip: border-box;
-	margin: 0;
-	outline: 0;
-	text-align: left;
-	vertical-align: top;
-	width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-clip: border-box;
+  margin: 0;
+  outline: 0;
+  text-align: left;
+  vertical-align: top;
+  width: 100%;
 }
 
 // remove search controls
 input[type='search']::-webkit-search-decoration {
-	display: none;
+  display: none;
+}
+
+//* RESET OD KP-a
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+// /* set up the body */
+// body {
+//   line-height: 1.5;
+//   min-height: 100vh;
+// }
+
+/* make images easier to work with */
+// img,
+// picture {
+//   max-width: 100%;
+//   display: block;
+// }
+
+/* make form elements easier to work with */
+// input,
+// button,
+// textarea,
+// select {
+//   font: inherit;
+// }
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

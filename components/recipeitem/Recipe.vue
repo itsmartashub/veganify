@@ -1,5 +1,5 @@
 <template>
-    <!-- <div>
+  <!-- <div>
             <h1>{{ recipe.id }}</h1>
             <h1>{{ this.$route.params.id }}</h1>
             <p>{{ recipe.title }}</p>
@@ -23,9 +23,9 @@
                 <p
                     v-if="
                         nesto.name == 'Calories' ||
-                            nesto.name == 'Fat' ||
-                            nesto.name == 'Cholesterol' ||
-                            nesto.name == 'Protein'
+                        nesto.name == 'Fat' ||
+                        nesto.name == 'Cholesterol' ||
+                        nesto.name == 'Protein'
                     "
                 >
                     {{ nesto.name }} {{ nesto.amount }} {{ nesto.unit }}
@@ -73,66 +73,90 @@
             </div>
         </div> -->
 
-    <div class="recipeitem__content">
-        <section class="recipeitem__left">
-            <RecipeitemTags />
+  <div class="recipeitem__content">
+    <section class="recipeitem__left">
+      <RecipeitemTags />
 
-            <h1 class="recipeitem__title">
-                Egg salad sandwiches with tarragon
-            </h1>
+      <h1 class="recipeitem__title">
+        {{ recipeItem.title }}
+      </h1>
 
-            <RecipeitemShowcase />
-        </section>
+      <RecipeitemShowcase />
+    </section>
 
-        <section class="recipeitem__right">
-            <header class="recipeitem__header">
-                <p
-                    :class="{ 'recipeitem__is-active': componentIndex === 0 }"
-                    @click="changeActiveComponent(0)"
-                >
-                    Ingredients
-                </p>
-                <p
-                    :class="{ 'recipeitem__is-active': componentIndex === 1 }"
-                    @click="changeActiveComponent(1)"
-                >
-                    Recipe steps
-                </p>
-            </header>
+    <section class="recipeitem__right">
+      <header class="recipeitem__header">
+        <p
+          class="recipeitem__breadcrumb"
+          :class="{ 'recipeitem--active': componentIndex === 0 }"
+          @click="changeActiveComponent(0)"
+          v-if="recipeItem.extendedIngredients"
+        >
+          Ingredients
+        </p>
+        <p
+          class="recipeitem__breadcrumb"
+          :class="{ 'recipeitem--active': componentIndex === 1 }"
+          @click="changeActiveComponent(1)"
+        >
+          Recipe steps
+        </p>
+        <p
+          class="recipeitem__breadcrumb"
+          :class="{ 'recipeitem--active': componentIndex === 2 }"
+          @click="changeActiveComponent(2)"
+          v-if="!recipeItem.extendedIngredients"
+        >
+          Summary
+        </p>
+      </header>
 
-            <!-- <keep-alive> -->
-            <component :is="activeComponent" />
-            <!-- </keep-alive> -->
-        </section>
-    </div>
+      <!-- <keep-alive> -->
+      <component :is="activeComponent" />
+      <!-- </keep-alive> -->
+    </section>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            components: ["RecipeitemIngredients", "RecipeitemSteps"],
-            componentIndex: 0
-        };
+  props: {
+    recipeItem: {
+      type: Object,
+      required: true,
     },
-    computed: {
-        // recipe() {
-        //     return this.$store.state.recipes.recipeItem;
-        // }
-        activeComponent() {
-            return this.components[this.componentIndex];
-        }
-    },
-    methods: {
-        changeActiveComponent(index) {
-            this.componentIndex = index;
-        }
+  },
+  data() {
+    return {
+      components: [
+        'RecipeitemIngredients',
+        'RecipeitemSteps',
+        'RecipeitemSummary',
+      ],
+      componentIndex: 0,
     }
-    // created() {
-    //     return this.$store.commit(
-    //         "recipes/setRecipeItem",
-    //         this.$route.params.id
-    //     );
-    // }
-};
+  },
+  computed: {
+    // recipeItem() {
+    //   return this.$store.state.recipes.recipeItem
+    // },
+    activeComponent() {
+      return this.components[this.componentIndex]
+    },
+  },
+  methods: {
+    changeActiveComponent(index) {
+      this.componentIndex = index
+    },
+  },
+  created() {
+    // return this.$store.commit(
+    //     "recipes/setRecipeItem",
+    //     this.$route.params.id
+    // );
+    if (!this.recipeItem.extendedIngredients) {
+      this.componentIndex = 1
+    }
+  },
+}
 </script>

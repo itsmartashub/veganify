@@ -1,83 +1,115 @@
 .sidebarcards {
-    display: grid;
-    place-content: center;
-    grid-gap: 5vh;
+  display: grid;
+  place-content: center;
+  align-content: space-around;
+  grid-gap: 1vmin;
 
-    @include device(tab-land) {
-        grid-auto-flow: row;
-        width: 50vw;
-    }
+  @include device(tab-land) {
+    grid-auto-flow: row;
+    width: 50vw;
+  }
 }
 
 .sidebarcard {
-    --radius-sidebarcard: 4rem;
-    @extend %overflow-hidden;
-    width: 100%;
-    border-radius: var(--radius-sidebarcard);
+  --radius-sidebarcard: 2.5vw;
+  @extend %overflow-hidden;
+  @extend %pos-rel;
+  width: 100%;
+  border-radius: var(--radius-sidebarcard);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: space-between;
+  grid-gap: 1.8rem;
+  transition: transform 0.5s;
+  background: var(--clr_sidecard_bg);
+  // background: currentColor;
+  @extend %cursor;
+
+  padding: 2.5vh 1.6vw;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-3%);
+
+    .sidebarcard__title {
+      color: currentColor;
+      font-weight: 600;
+    }
+    .sidebarcard__figure {
+      --radius-sidebarfigure: var(--radius-sidebarcard);
+      width: 100% !important;
+      height: 100% !important;
+      right: 0;
+
+      &::after {
+        // opacity: 0.7;
+        // background: var(--clr_black);
+        background: hsl(var(--clr-black) / 0.75);
+        // backdrop-filter: blur(3px);
+      }
+    }
+  }
+
+  &__left {
+    // --padding-left: 1.6vw;
+    // padding: var(--padding-left) 0 var(--padding-left) var(--padding-left);
+    z-index: 3;
+
+    // @include device(tab-land) {
+    //   --padding-left: 5vw;
+    // }
+  }
+
+  &__title {
+    color: var(--clr_black);
+    font-size: 1.5rem;
+    display: inline-block;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    transition: color 0.4s, font-weight 0.4s;
+  }
+
+  &__btns {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: space-between;
-    grid-gap: 1.8rem;
-    transition: 0.8s;
-    background: var(--clr_sidebarcard);
-    @extend %cursor;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1vw;
+    @extend %fw-600;
 
-    &:hover {
-        // @extend %pos-rel;
-
-        // .sidebarcard__figure {
-        //     width: 100%;
-        //     height: 100%;
-        //     @extend %pos-abs;
-        //     top: 0;
-        //     left: 0;
-        //     z-index: 100;
-        //     border-radius: 0;
-        // }
+    svg {
+      width: 1.5rem;
     }
+  }
 
-    &__left {
-        --padding-left: 1.6vw;
-        padding: var(--padding-left) 0 var(--padding-left) var(--padding-left);
+  &__figure {
+    --radius-sidebarfigure: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    // --radius-sidebarfigure: 30% 70% 70% 30% / 30% 52% 48% 70%;
+    --size: 7vw;
+    @extend %overflow-hidden;
+    @extend %pos-abs;
+    top: 50%;
+    right: -5%;
+    transform: translateY(-50%);
+    width: var(--size);
+    height: var(--size);
+    z-index: 2;
+    // border-radius: var(--radius-sidebarfigure) 0 0 var(--radius-sidebarfigure);
+    border-radius: var(--radius-sidebarfigure);
+    transition: 0.4s;
 
-        @include device(tab-land) {
-            --padding-left: 5vw;
-        }
+    &::after {
+      --gradient_deg: 90deg;
+      @extend %pos-abs;
+      @extend %after;
+      top: 0;
+      left: 0;
+      // background: var(--clr_black);
+      background: hsl(var(--clr-black) / 0.2);
+      // opacity: 0.2;
+      transition: 0.4s;
     }
-
-    &__title {
-        color: var(--clr_txt_dark);
-        font-size: 1.5rem;
-        display: inline-block;
-        font-weight: 500;
-        margin-bottom: 1.5rem;
-    }
-
-    &__btns {
-        display: grid;
-        grid-auto-flow: column;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 1vw;
-        svg {
-            width: 1.5rem;
-        }
-    }
-
-    &__figure {
-        --radius-sidebarfigure: 50%;
-        @extend %overflow-hidden;
-        justify-self: flex-end;
-        width: 12rem;
-        // width: 100%;
-        // height: 100%;
-        border-radius: var(--radius-sidebarfigure) 0 0
-            var(--radius-sidebarfigure);
-        box-shadow: -2px 0px 15px -5px var(--clr_gradient_1);
-        transition: 0.8s;
-    }
-    &__img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+  }
+  &__img {
+    @extend %img-basic;
+  }
 }

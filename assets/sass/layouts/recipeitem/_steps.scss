@@ -1,44 +1,95 @@
 .steps {
+  display: grid;
+  grid-gap: 3rem;
+  // margin: 5rem 0;
+  padding: 0 1.5vmin;
+
+  @include device(tab-mid) {
+    padding: 0 2.5vmin;
+  }
+  @include device(phone-land) {
+    grid-gap: 10vmin;
+  }
+  @include device(phone) {
+    padding: 0 8vmin;
+  }
+
+  .step {
     display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-start;
     grid-gap: 3rem;
-    margin: 5rem 0;
-    padding: 0 2.5rem;
 
-    .step {
-        display: grid;
-        grid-auto-flow: column;
-        justify-content: flex-start;
-        // align-items: center;
-        grid-gap: 3rem;
-
-        &__count {
-            flex: 1;
-            @extend .categories__icon;
-            // width: var(--icon-square-size);
-            // height: var(--icon-square-size);
-            // border-radius: var(--icon-radius);
-            // background: var(--clr_small_icon_bg);
-            // display: grid;
-            // place-items: center;
-
-            align-content: center;
-            line-height: 1;
-            color: var(--clr_accent);
-            font-size: 1.8rem;
-            font-weight: 600;
-
-            &::after {
-                content: "step";
-                font-size: 0.9rem;
-                display: inline-flex;
-                opacity: 0.9;
-                letter-spacing: 0.5px;
-            }
-        }
-        &__txt {
-            color: var(--clr_txt_black);
-            font-size: 1.4rem;
-            font-weight: 500;
-        }
+    @include device(phone-land) {
+      grid-auto-flow: row;
+      grid-gap: 2vmin;
     }
+
+    &__count {
+      // @extend .categories__icon;
+      --count_size: 5rem;
+      --count_radius: 12px;
+      width: var(--count_size);
+      height: var(--count_size);
+      border-radius: var(--count_radius);
+      background: var(--clr_white);
+      color: var(--clr_accent_to_dark);
+      font-size: 1.8rem;
+      @extend %fw-600;
+      line-height: 1;
+      @extend %flex-center;
+      flex-direction: column;
+      @extend %pos-rel;
+
+      @include device(tab) {
+        font-size: 2.5rem;
+      }
+      @include device(phone-land) {
+        --count_size: 5.5rem;
+        --count_radius: 10px;
+        flex-direction: row;
+        width: 10rem;
+      }
+
+      &::after {
+        content: 'step';
+        font-size: 0.4em;
+        display: inline-flex;
+        opacity: 0.9;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+
+        @include device(phone-land) {
+          margin-left: 1rem;
+        }
+      }
+
+      &::before {
+        content: '\2039';
+        content: '\00AB';
+        color: currentColor;
+        @extend %pos-abs;
+        bottom: 0%;
+        left: 5%;
+        font-size: 1.3em;
+        @extend %fw-400;
+        transform: rotate(-90deg);
+        display: none;
+
+        @include device(phone-land) {
+          display: block;
+        }
+      }
+    }
+    &__txt {
+      font-size: 1.5rem;
+      line-height: 1.35;
+      @extend %fw-500;
+      word-wrap: break-word;
+
+      @include device(tab) {
+        font-size: 1.8rem;
+      }
+    }
+  }
 }

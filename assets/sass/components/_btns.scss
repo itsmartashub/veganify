@@ -1,21 +1,36 @@
 .btn {
-    &__label {
-        --radius-btn: 1.4rem;
-        display: grid;
-        place-items: center;
-        place-content: center;
-        grid-auto-flow: column;
-        grid-gap: 0.5rem;
-        width: max-content;
-        padding: 0.9rem 1.2rem;
-        border-radius: var(--radius-btn);
-        background: var(--clr_accent_gradient);
-        font-size: 1.2rem;
+  --radius-btn: 1.5rem;
+  display: grid;
+  place-items: center;
+  place-content: center;
+  grid-auto-flow: column;
+  grid-gap: 1.5rem;
+  width: max-content;
+  padding: 1rem 1.8rem;
+  border-radius: var(--radius-btn);
+  background: var(--clr_card_bg);
+  color: currentColor;
+  @extend %fw-700;
+  @extend %cursor;
+  box-shadow: var(--box_shadow_accent);
 
-        &--outline {
-            @extend .btn__label;
-            background: var(--clr_accent_gradient_alpha);
-            color: var(--clr_accent) !important;
-        }
+  &__label {
+    --radius-btn: 1.4rem;
+    display: grid;
+    place-items: center;
+    place-content: center;
+    grid-auto-flow: column;
+    grid-gap: 0.5rem;
+    width: max-content;
+    padding: 0.9rem 1.2rem;
+    border-radius: var(--radius-btn);
+    background: var(--clr_grd_bg);
+    font-size: 1.2rem;
+
+    &--outline {
+      @extend .btn__label;
+      background: var(--clr_accent_light);
+      color: var(--clr_accent) !important;
     }
+  }
 }

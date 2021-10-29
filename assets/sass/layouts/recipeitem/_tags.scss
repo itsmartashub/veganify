@@ -1,47 +1,86 @@
 .tags {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+
+  @include device(phone) {
+    grid-gap: 5vmin;
+  }
+
+  .tag {
+    width: 100%;
+    padding: 2vmin;
+    // margin: 1rem;
+    line-height: 1;
+    @extend %fw-600;
+    background: var(--clr_white_grd_btns);
+    box-shadow: var(--box_shadow_accent);
+    border-radius: 15px;
     display: grid;
     grid-auto-flow: column;
-    justify-content: space-evenly;
-    grid-gap: 1vw;
+    grid-gap: 1.8vmin;
+    align-items: center;
+    justify-content: flex-start;
+    transition: transform 0.4s $inOutBack;
 
-    .tag {
-        line-height: 1.3;
-        display: grid;
-        grid-auto-flow: column;
-        align-items: center;
-        grid-gap: 1rem;
-        padding: 2.5rem;
-        background: var(--clr_txt_light);
-        border-radius: 1.5vw;
+    // & > * {
+    //   margin: 0.8rem;
+    // }
 
-        &__icon-wrapper {
-            --size: 4.2rem;
-            width: var(--size);
-            height: var(--size);
-            border-radius: 0.8vw;
-            background: var(--clr_accent_alpha_2);
-            display: grid;
-            place-items: center;
-        }
-        &__svg {
-            width: 2.3rem;
-            height: auto;
-            fill: var(--clr_accent);
-            // stroke: currentColor;
-        }
-        &__name {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: var(--clr_accent);
-            text-transform: uppercase;
-        }
-        &__amount {
-            font-size: 1.9rem;
-            font-weight: 600;
-            span {
-                font-weight: normal;
-                font-size: 1.6rem;
-            }
-        }
+    @include device(phone-land) {
+      grid-gap: 2vmin;
+      padding: 3vmin;
     }
+    @include device(phone) {
+      grid-auto-flow: row;
+      border-radius: 12px;
+    }
+
+    &:hover,
+    &:focus {
+      transform: translateY(-5%);
+    }
+
+    &__icon-wrapper {
+      --size: 4rem;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 1rem;
+      background: var(--clr_accent_light);
+      display: grid;
+      place-items: center;
+
+      @include device(phone) {
+        --size: 3.8rem;
+      }
+    }
+    &__svg {
+      width: 2rem;
+      height: auto;
+      fill: var(--clr_accent);
+
+      @include device(phone) {
+        width: 1.8rem;
+      }
+      // stroke: currentColor;
+    }
+
+    &__nameAmountWrapper {
+      flex: 1 1;
+    }
+    &__name {
+      font-size: 1.1rem;
+      color: var(--clr_accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      width: 100%;
+    }
+    &__amount {
+      font-size: 1.7rem;
+      span {
+        @extend %fw-400;
+        font-size: 1.5rem;
+      }
+    }
+  }
 }

@@ -1,15 +1,16 @@
 <template>
     <div class="steps">
-        <div class="step">
-            <span class="step__count">01</span>
+
+        <template v-for="step in recipeItem.analyzedInstructions[0].steps" >
+
+
+        <div class="step" :key="step.step">
+            <span class="step__count">{{ step.number }}</span>
             <span class="step__txt">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Corporis, esse! Voluptatum consectetur iusto ducimus quasi, ab,
-                molestiae id ratione dicta amet pariatur fugit commodi ipsa a
-                architecto fuga vitae esse!
+               {{ step.step }}
             </span>
         </div>
-        <div class="step">
+        <!-- <div class="step">
             <span class="step__count">02</span>
             <span class="step__txt">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -44,12 +45,21 @@
             <span class="step__txt">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
             </span>
-        </div>
+        </div> -->
+
+        </template>
+
     </div>
 </template>
 
 <script>
-export default {};
+export default {
+    computed: {
+        recipeItem() {
+            return this.$store.state.recipes.recipeItem 
+        }
+    },
+};
 </script>
 
 <style lang="scss" scoped></style>

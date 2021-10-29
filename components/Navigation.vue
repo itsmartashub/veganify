@@ -1,160 +1,239 @@
 <template>
-    <aside class="navigation">
-        <!-- <h1>NAVIGATION</h1> -->
-        <NuxtLink to="/" class="navigation__logowrapper">
-            <Logo />
-            <p class="logo__veganify">vegan<span>ify</span></p>
-        </NuxtLink>
+  <aside class="navigation">
+    <!-- <h1>NAVIGATION</h1> -->
+    <a href="/" class="navigation__logowrapper">
+      <Logo />
+      <p class="logo__veganify">
+        vegan
+        <span>ify</span>
+      </p>
+    </a>
 
-        <nav class="navigation__links">
-            <NuxtLink to="/" class="navigation__link">
-                <svg
-                    id="home"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="40.908"
-                    viewBox="0 0 41.362 40.908"
-                >
-                    <g
-                        id="home--roof"
-                        data-name="Group 63"
-                        transform="translate(0 0)"
-                    >
-                        <g
-                            id="Group_62"
-                            data-name="Group 62"
-                            transform="translate(0 0)"
-                        >
-                            <path
-                                id="Path_44"
-                                data-name="Path 44"
-                                d="M40.921,43.955,21.315,28.028a.99.99,0,0,0-1.27,0L.439,43.955a1.279,1.279,0,0,0-.232,1.667,1.008,1.008,0,0,0,1.5.258L20.68,30.468,39.652,45.879a1,1,0,0,0,.634.23,1.042,1.042,0,0,0,.868-.488A1.279,1.279,0,0,0,40.921,43.955Z"
-                                transform="translate(0.001 -27.798)"
-                            />
-                        </g>
-                    </g>
-                    <g
-                        id="Group_65"
-                        data-name="Group 65"
-                        transform="translate(4.561 18.352)"
-                    >
-                        <g
-                            id="Group_64"
-                            data-name="Group 64"
-                            transform="translate(0 0)"
-                        >
-                            <path
-                                id="Path_45"
-                                data-name="Path 45"
-                                d="M87.618,232.543a1.138,1.138,0,0,0-1.075,1.192v18.979h-8.6v-10.36c0-3.288-2.411-5.962-5.374-5.962s-5.374,2.675-5.374,5.962v10.36H58.6V233.735a1.08,1.08,0,1,0-2.149,0v20.172a1.138,1.138,0,0,0,1.075,1.192H68.273a1.127,1.127,0,0,0,1.07-1.1c0-.028,0-.058,0-.093V242.355a3.242,3.242,0,1,1,6.449,0v11.553c0,.034,0,.064,0,.092a1.127,1.127,0,0,0,1.07,1.1H87.618a1.138,1.138,0,0,0,1.075-1.192V233.735A1.138,1.138,0,0,0,87.618,232.543Z"
-                                transform="translate(-56.452 -232.543)"
-                            />
-                        </g>
-                    </g>
-                </svg>
-            </NuxtLink>
-            <NuxtLink to="/smoothies" class="navigation__link">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="30.487"
-                    height="51.614"
-                    viewBox="0 0 30.487 51.614"
-                >
-                    <g
-                        id="smoothie_5_"
-                        data-name="smoothie(5)"
-                        transform="translate(-94.962)"
-                    >
-                        <g
-                            id="Group_218"
-                            data-name="Group 218"
-                            transform="translate(94.962 0)"
-                        >
-                            <path
-                                id="Path_216"
-                                data-name="Path 216"
-                                d="M122.5,17.722h-.334A9.762,9.762,0,0,0,112.7,8.934l4.525-7.057h5.718a.939.939,0,0,0,0-1.878h-6.229a.934.934,0,0,0-.788.445l-5.437,8.476-2.563.013a9.762,9.762,0,0,0-9.677,8.788h-.334a2.952,2.952,0,0,0,0,5.9l.534,5.255a.954.954,0,0,0,0,.151l1.571,15.573.307,3.039A4.45,4.45,0,0,0,101.75,50.5a4.342,4.342,0,0,0,2.963,1.117h10.981a4.343,4.343,0,0,0,2.981-1.121A4.449,4.449,0,0,0,120.1,47.64l.3-2.963a.953.953,0,0,0,0-.147v-.125l1.562-15.462.538-5.317a2.952,2.952,0,0,0,0-5.9Zm-14.572-6.905h1.357l-.2.307a.934.934,0,0,0,1.58.983l.836-1.3h.979a7.884,7.884,0,0,1,7.8,6.914H100.13A7.884,7.884,0,0,1,107.925,10.817Zm10.287,36.645a2.576,2.576,0,0,1-.828,1.651,2.483,2.483,0,0,1-1.691.636H104.713a2.483,2.483,0,0,1-1.691-.636,2.572,2.572,0,0,1-.823-1.651l-.2-2.011h16.423ZM118.6,43.6H101.807l-1.393-13.793h19.577Zm1.58-15.684H100.237l-.445-4.294h20.832Zm2.323-6.167h-24.6a1.077,1.077,0,0,1,0-2.154h24.6a1.077,1.077,0,0,1,0,2.154Z"
-                                transform="translate(-94.962 0)"
-                            />
-                        </g>
-                    </g>
-                </svg>
-            </NuxtLink>
-            <NuxtLink to="/bookmarks" class="navigation__link"
-                ><svg
-                    id="bookmark"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="37.227"
-                    viewBox="0 0 28.21 37.227"
-                >
-                    <g id="Group_200" data-name="Group 200">
-                        <path
-                            id="Path_181"
-                            data-name="Path 181"
-                            d="M88.758,31.41A1.454,1.454,0,0,0,87.3,32.864a1.372,1.372,0,0,1-.408,1.014,1.578,1.578,0,0,1-1.1.44,1.336,1.336,0,0,1-.988-.415l-7.658-7.87a1.454,1.454,0,0,0-2.084,0L67.407,33.9a1.354,1.354,0,0,1-1,.415,1.552,1.552,0,0,1-1.1-.432,1.345,1.345,0,0,1-.4-1V5.817a2.912,2.912,0,0,1,2.908-2.908H84.4A2.912,2.912,0,0,1,87.3,5.817V25.666a1.454,1.454,0,1,0,2.908,0V5.817A5.823,5.823,0,0,0,84.4,0H67.819A5.823,5.823,0,0,0,62,5.817V32.889a4.266,4.266,0,0,0,1.27,3.072,4.464,4.464,0,0,0,3.113,1.266h.078a4.24,4.24,0,0,0,3.028-1.294l6.616-6.8,6.616,6.8a4.222,4.222,0,0,0,3.035,1.295,4.489,4.489,0,0,0,3.18-1.279,4.3,4.3,0,0,0,1.273-3.083A1.454,1.454,0,0,0,88.758,31.41Z"
-                            transform="translate(-62.002)"
-                        />
-                    </g>
-                </svg>
-            </NuxtLink>
-        </nav>
-
-        <svg
-            class="navigation__moon"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            height="52.335"
-            viewBox="0 0 46.04 52.335"
-            @click="darkToggle"
-        >
-            <defs>
-                <filter
-                    id="sidebar-theme"
-                    x="0"
-                    y="0"
-                    width="46.04"
-                    height="52.335"
-                    filterUnits="userSpaceOnUse"
-                >
-                    <feOffset dy="2" input="SourceAlpha" />
-                    <feGaussianBlur stdDeviation="3" result="blur" />
-                    <feComposite operator="in" in2="blur" />
-                    <feComposite in="SourceGraphic" />
-                </filter>
-            </defs>
-            <g
-                transform="matrix(1, 0, 0, 1, 0, 0)"
-                filter="url(#sidebar-theme)"
-            >
-                <path
-                    id="sidebar-theme-2"
-                    data-name="sidebar-theme"
-                    d="M15.543,34.335C6.973,34.335,0,26.613,0,17.121A18.25,18.25,0,0,1,4.029,5.558,15.038,15.038,0,0,1,13.926,0a18.322,18.322,0,0,0-3.045,10.235c0,9.492,6.973,17.215,15.543,17.215a14.27,14.27,0,0,0,1.617-.092,16.229,16.229,0,0,1-5.389,5.076A14.182,14.182,0,0,1,15.543,34.335Z"
-                    transform="translate(9 7)"
-                />
-            </g>
+    <nav class="navigation__links">
+      <NuxtLink
+        to="/"
+        class="navigation__link"
+        @click.prevent="$nuxt.refresh()"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.5 19.806">
+          <path
+            d="M13,3l9,7.412V21H16.375m0-4.235a3.085,3.085,0,0,0-.989-2.246,3.526,3.526,0,0,0-4.773,0,3.085,3.085,0,0,0-.989,2.246V21H4V10.412L8.5,6.706"
+            transform="translate(-3.25 -1.944)"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
         </svg>
-    </aside>
+      </NuxtLink>
+      <NuxtLink to="/smoothies" class="navigation__link">
+        <svg
+          id="blender-svgrepo-com_1_"
+          data-name="blender-svgrepo-com (1)"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 18.553 23.623"
+        >
+          <g id="Group_25" data-name="Group 25" transform="translate(0 2.238)">
+            <path
+              id="Path_36"
+              data-name="Path 36"
+              d="M346.137,137.128a.633.633,0,0,1-.633-.633v-3.409a.655.655,0,0,0-.654-.654h-1.512a.633.633,0,1,1,0-1.267h1.512a1.923,1.923,0,0,1,1.921,1.921v3.409A.633.633,0,0,1,346.137,137.128Z"
+              transform="translate(-328.217 -127.569)"
+            />
+            <path
+              id="Path_37"
+              data-name="Path 37"
+              d="M344.849,166.444h-1.512a.633.633,0,1,1,0-1.267h1.512a.655.655,0,0,0,.654-.654v-3.409a.633.633,0,1,1,1.267,0v3.409A1.923,1.923,0,0,1,344.849,166.444Z"
+              transform="translate(-328.217 -155.581)"
+            />
+            <path
+              id="Path_38"
+              data-name="Path 38"
+              d="M100.808,65.9a.631.631,0,0,1-.448-.186l-1.38-1.38a3.972,3.972,0,0,1-1.171-2.827V50.942a.633.633,0,1,1,1.267,0V61.511a2.713,2.713,0,0,0,.8,1.931l1.38,1.38a.633.633,0,0,1-.448,1.081Z"
+              transform="translate(-96.922 -50.309)"
+            />
+            <path
+              id="Path_39"
+              data-name="Path 39"
+              d="M290.145,143.154a.633.633,0,0,1-.448-1.081l1.38-1.38a2.713,2.713,0,0,0,.8-1.931v-6.973a.633.633,0,0,1,1.267,0v6.973a3.972,3.972,0,0,1-1.171,2.827l-1.38,1.38A.632.632,0,0,1,290.145,143.154Z"
+              transform="translate(-278.012 -127.559)"
+            />
+            <path
+              id="Path_40"
+              data-name="Path 40"
+              d="M93.755,51.576H78.627a.643.643,0,1,1,0-1.267H93.755a.643.643,0,1,1,0,1.267Z"
+              transform="translate(-77.871 -50.309)"
+            />
+          </g>
+          <path
+            id="Path_42"
+            data-name="Path 42"
+            d="M172.244,3.5h-4.75a.633.633,0,0,1-.633-.633V1.636A1.638,1.638,0,0,1,168.5,0h2.744a1.638,1.638,0,0,1,1.636,1.636V2.871A.633.633,0,0,1,172.244,3.5Zm-4.116-1.267h3.483v-.6a.37.37,0,0,0-.369-.369H168.5a.37.37,0,0,0-.369.369v.6h0Z"
+            transform="translate(-161.813)"
+          />
+          <path
+            id="Path_44"
+            data-name="Path 44"
+            d="M121.736,352.034H109.431a.739.739,0,0,1-.785-.682v-1.337c0-3.323,3.112-6.027,6.938-6.027s6.938,2.7,6.938,6.027v1.337A.739.739,0,0,1,121.736,352.034Zm-11.52-1.364h10.736v-.655c0-2.571-2.408-4.663-5.368-4.663s-5.368,2.092-5.368,4.663v.655Z"
+            transform="translate(-107.527 -328.41)"
+          />
+        </svg>
+      </NuxtLink>
+      <NuxtLink to="/bookmarks" class="navigation__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.206 19.5">
+          <path
+            id="bookmark-svgrepo-com_2_"
+            d="M18.706,12.471V22l-6.353-6.353L6,22V17.765M18.706,8.235V6.118A2.118,2.118,0,0,0,16.588,4H8.118A2.118,2.118,0,0,0,6,6.118v7.412"
+            transform="translate(-5.25 -3.25)"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          />
+        </svg>
+      </NuxtLink>
+    </nav>
+
+    <div
+      class="navigation__themes"
+      :class="{ 'navigation__themes--dark': darkTheme }"
+      @click="darkToggle"
+    >
+      <svg
+        class="navigation__svg--moon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20.18 20.174"
+      >
+        <path
+          d="M12.412,22.218h-.1a10.423,10.423,0,0,1-7.42-3.184A10.574,10.574,0,0,1,4.628,4.881a10.241,10.241,0,0,1,4.044-2.77A1,1,0,0,1,9.986,3.344a8.492,8.492,0,0,0,1.961,8.906,8.563,8.563,0,0,0,8.926,1.961,1.011,1.011,0,0,1,1.284,1.3,10.271,10.271,0,0,1-2.366,3.67,10.392,10.392,0,0,1-7.38,3.033Z"
+          transform="translate(-2.04 -2.043)"
+        />
+      </svg>
+
+      <svg
+        class="navigation__svg--sun"
+        data-name="sun-svgrepo-com (1)"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20.119 20.119"
+      >
+        <g id="Group_13" data-name="Group 13">
+          <g id="Group_12" data-name="Group 12">
+            <path
+              class="svgSunCircle"
+              d="M132.874,129.374a3.5,3.5,0,1,0,3.5,3.5A3.5,3.5,0,0,0,132.874,129.374Z"
+              transform="translate(-122.814 -122.814)"
+            />
+            <path
+              class="svgSunRay"
+              data-name="Path 15"
+              d="M237.225,3.755a.768.768,0,0,0,.768-.768V.768a.768.768,0,0,0-1.536,0V2.987A.768.768,0,0,0,237.225,3.755Z"
+              transform="translate(-227.165 0)"
+            />
+            <path
+              class="svgSunRay"
+              data-name="Path 16"
+              d="M364.5,72.361a.766.766,0,0,0,.543-.225l1.569-1.569a.768.768,0,0,0-1.086-1.086l-1.569,1.569a.768.768,0,0,0,.543,1.311Z"
+              transform="translate(-349.435 -66.535)"
+            />
+            <path
+              class="svgSunRay"
+              data-name="Path 17"
+              d="M419.434,236.457h-2.219a.768.768,0,0,0,0,1.536h2.219a.768.768,0,0,0,0-1.536Z"
+              transform="translate(-400.083 -227.165)"
+            />
+            <path
+              class="svgSunRay"
+              data-name="Path 18"
+              d="M365.04,363.954a.768.768,0,1,0-1.086,1.086l1.569,1.569a.768.768,0,0,0,1.086-1.086Z"
+              transform="translate(-349.436 -349.436)"
+            />
+            <path
+              class="svgSunRay"
+              data-name="Path 19"
+              d="M237.225,416.447a.768.768,0,0,0-.768.768v2.219a.768.768,0,0,0,1.536,0v-2.219A.768.768,0,0,0,237.225,416.447Z"
+              transform="translate(-227.165 -400.083)"
+            />
+            <path
+              class="svgSunRay"
+              data-name="Path 20"
+              d="M71.051,363.955l-1.569,1.569a.768.768,0,1,0,1.086,1.086l1.569-1.569a.768.768,0,0,0-1.086-1.086Z"
+              transform="translate(-66.536 -349.437)"
+            />
+            <path
+              class="svgSunRay"
+              data-name="Path 21"
+              d="M3.755,237.225a.768.768,0,0,0-.768-.768H.768a.768.768,0,0,0,0,1.536H2.987A.768.768,0,0,0,3.755,237.225Z"
+              transform="translate(0 -227.165)"
+            />
+            <path
+              class="svgSunRay"
+              data-name="Path 22"
+              d="M71.053,72.137a.768.768,0,1,0,1.086-1.086L70.57,69.482a.768.768,0,0,0-1.086,1.086Z"
+              transform="translate(-66.537 -66.536)"
+            />
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- <p>{{ darkTheme }}</p> -->
+  </aside>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            isDark: false
-        };
-    },
-    methods: {
-        darkToggle() {
-            this.isDark = !this.isDark;
-            if (this.isDark) {
-                // this.trans()
-                document.body.setAttribute("data-theme", "dark");
-            } else {
-                document.body.removeAttribute("data-theme");
-            }
-        }
+  data() {
+    return {
+      darkTheme: false,
     }
-};
+  },
+
+  methods: {
+    darkToggle() {
+      this.darkTheme = !this.darkTheme
+
+      if (this.darkTheme) {
+        this.setDarkAttributeToBody()
+      } else {
+        this.removeDarkAttributeFromBody()
+      }
+      this.setLStheme()
+    },
+
+    setLStheme() {
+      window.localStorage.setItem(
+        'veganify_isdark',
+        JSON.stringify(this.darkTheme),
+      )
+    },
+
+    setDarkAttributeToBody() {
+      return document.body.setAttribute('data-theme', 'dark')
+    },
+    removeDarkAttributeFromBody() {
+      return document.body.removeAttribute('data-theme')
+    },
+
+    setLSonLoad() {
+      const LStheme = window.localStorage.getItem('veganify_isdark')
+
+      if (LStheme) {
+        this.darkTheme = JSON.parse(LStheme)
+
+        this.darkTheme
+          ? this.setDarkAttributeToBody()
+          : this.removeDarkAttributeFromBody()
+      } else {
+        window.localStorage.setItem('veganify_isdark', JSON.stringify(false))
+      }
+    },
+  },
+
+  // mounted() {
+  beforeMount() {
+    this.setLSonLoad()
+  },
+}
 </script>
 
 <style></style>

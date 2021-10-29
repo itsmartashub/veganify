@@ -1,90 +1,101 @@
 .header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  color: var(--clr_accent);
+
+  &__form,
+  &__title {
+    margin: 3vw 2vw;
+
+    @include device(phone) {
+      margin: 6vw 2vw;
+    }
+  }
+
+  &__form {
+    flex: 1;
+    min-width: 40rem;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
+    @extend %pos-rel;
 
-    &__form {
-        width: 50%;
-        margin-right: 2vw;
-        display: flex;
-        align-items: center;
-        position: relative;
-
-        svg {
-            position: absolute;
-            left: 30px;
-            opacity: 0.35;
-            fill: var(--clr_txt_black);
-        }
-
-        @include device(tab) {
-            width: 90%;
-            margin-bottom: 8rem;
-        }
+    svg {
+      position: absolute;
+      left: 30px;
+      opacity: var(--opacity_search);
+      width: 3rem;
+      height: auto;
+      fill: var(--clr_accent);
+      transition: 0.4s;
     }
 
-    &__search {
-        padding: 2.5rem 2.5rem 2.5rem 8rem;
-        font-family: $font-family;
-        border-radius: 30px;
-        display: flex;
-        align-items: center;
-        background: var(--clr_bg_card);
-        color: currentColor;
-        font-size: inherit;
-        // @extend %pos-rel;
-        // box-shadow: rgba(0, 0, 0, 0.05) -4px 9px 25px -6px;
-        @extend %box-shadow;
+    @include device(tab) {
+      max-width: 85%;
+    }
+    @include device(phone) {
+      max-width: 95%;
+    }
+  }
 
-        // &::before {
-        //     content: "lupa";
-        //     @extend %pos-abs;
-        //     height: 100%;
-        //     width: 10rem;
-        //     top: 0;
-        //     left: 2px;
-        //     color: red;
-        //     z-index: 1;
-        // }
+  &__search {
+    padding: 2.5rem 2.5rem 2.5rem 8rem;
+    font-family: $font-family;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    background: var(--clr_card_bg);
+    color: var(--clr_black);
+    font-size: inherit;
+    @extend %box-shadow;
+    transition: 0.4s;
 
-        @include device(tab) {
-            padding: 2.5rem 2.5rem 2.5rem 11rem;
-        }
+    @include device(tab) {
+      padding: 2.5rem 2.5rem 2.5rem 9rem;
+    }
+  }
+
+  &__search::placeholder {
+    font-family: $font-family;
+    opacity: 0.4;
+    // color: currentColor;
+    color: currentColor;
+  }
+  &__search:focus {
+    color: var(--clr_accent);
+    opacity: 1;
+
+    & + svg {
+      transform: rotate(90deg);
+      opacity: 0.8;
+    }
+  }
+
+  &__title {
+    display: inline-flex;
+    @extend %text-center;
+    color: var(--clr_accent);
+    @extend %fw-600;
+    font-size: 3.5rem;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 2px hsla(210, 57%, 22%, 0.1);
+
+    @include device(tab) {
+      font-size: 5rem;
     }
 
-    // &__search::-webkit-input-placeholder,
-    // &__search::-moz-placeholder,
-    // &__search::-ms-input-placeholder
-    &__search::placeholder {
-        font-family: $font-family;
-        opacity: 0.4;
-        // font-size: 1.6rem;
-        color: var(--clr_txt_black);
-        // padding-left: 50px;
+    @include device(phone) {
+      font-size: 4rem;
     }
+  }
 
-    &__title {
-        display: inline-block;
-        text-align: center;
-        margin: 0 auto;
-        color: var(--clr_accent);
-        font-weight: 600;
-        font-size: 3.5rem;
-        letter-spacing: 1px;
-        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-
-        @include device(tab) {
-            font-size: 5rem;
-        }
-    }
-
-    &__ify {
-        font-weight: 400;
-        opacity: 0.6;
-    }
-    &__yourmeal {
-        color: var(--clr_txt_dark);
-        font-weight: 300;
-    }
+  &__ify {
+    @extend %fw-400;
+    opacity: 0.6;
+  }
+  &__yourmeal {
+    color: var(--clr_black);
+    @extend %fw-300;
+  }
 }

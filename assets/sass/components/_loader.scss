@@ -1,0 +1,29 @@
+.loader {
+  @extend %pos-fix;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  z-index: 100000;
+  background: var(--clr_grd_bg);
+  transition: transform 1s 0.4s, opacity 1s 0.4s, border-radius 1s 0.4s;
+  // transition-delay: 0.4s;
+  transform-origin: center bottom;
+
+  img {
+    border-radius: 100%;
+    transition: 1.2s;
+  }
+
+  &--leave {
+    backface-visibility: hidden;
+    transform: translateY(100%);
+    opacity: 0;
+    border-radius: 80% 80% 0 0;
+    img {
+      transform: scale(0.3) rotate(-270deg);
+    }
+  }
+}

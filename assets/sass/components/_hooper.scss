@@ -1,0 +1,156 @@
+.hooper {
+  &-track {
+    display: grid;
+    grid-auto-flow: column;
+    transition: transform 1s $outSmooth;
+  }
+}
+
+.categories .hooper {
+  display: grid;
+  min-height: 30rem;
+  align-content: center;
+  // transition: 1s;
+
+  &-track {
+    justify-content: flex-start;
+
+    // justify-content: center;
+    padding: 4rem 0;
+    grid-gap: 5rem;
+  }
+  &-slide {
+    max-width: 14rem;
+
+    @include device(phone-land) {
+      max-width: max-content;
+    }
+  }
+  &-pagination {
+    bottom: -1rem !important;
+  }
+  &-indicator {
+    background: var(--clr_white);
+    transition: background 0.3s;
+
+    &.is-active,
+    &:hover,
+    &:focus {
+      background: var(--clr_grd_bg);
+    }
+  }
+
+  &-prev,
+  &-next {
+    opacity: 0.4;
+    transition: opacity 0.5s;
+
+    svg {
+      fill: var(--clr_accent);
+      height: 4rem;
+      width: auto;
+      transition: transform 0.5s $outBack;
+    }
+  }
+
+  &-prev {
+    left: -6%;
+    &:hover,
+    &:focus {
+      opacity: 1;
+      svg {
+        transform: translate3d(-20%, 0, 0);
+      }
+    }
+  }
+  &-next {
+    right: -6%;
+    &:hover,
+    &:focus {
+      opacity: 1;
+      svg {
+        transform: translate3d(20%, 0, 0);
+      }
+    }
+  }
+
+  // @include device(tab-land) {
+  //     min-height: 25vh;
+  // }
+}
+
+.ingredients .hooper {
+  &-track {
+    // display: grid;
+    // grid-auto-flow: column;
+    justify-content: flex-start;
+    grid-gap: 2rem;
+    width: auto;
+    max-width: 40vw;
+    // min-width: 10vw;
+  }
+  &-slide {
+    max-width: 17rem;
+
+    @include device(phone-land) {
+      max-width: max-content;
+    }
+  }
+  &-pagination {
+    bottom: 1rem !important;
+  }
+  &-indicator {
+    background: var(--clr_white);
+    transition: background 0.3s, opacity 0.3s;
+
+    &:hover,
+    &:focus {
+      background: var(--clr_black);
+      opacity: 0.4;
+    }
+    &.is-active {
+      background: var(--clr_black);
+    }
+  }
+
+  &-prev,
+  &-next {
+    --btn_pos: -12%;
+    top: 32%;
+    opacity: 0.4;
+    transition: opacity 0.5s;
+
+    svg {
+      fill: var(--clr_accent);
+      height: 3rem;
+      width: auto;
+      transition: transform 0.5s $outBack;
+    }
+
+    @include device(phone) {
+      --btn_pos: -20%;
+      top: 25%;
+    }
+  }
+
+  &-prev {
+    left: var(--btn_pos);
+    &:hover,
+    &:focus {
+      opacity: 1;
+      svg {
+        transform: translate3d(-20%, 0, 0);
+      }
+    }
+  }
+  &-next {
+    right: var(--btn_pos);
+    &:hover,
+    &:focus {
+      opacity: 1;
+      svg {
+        transform: translate3d(20%, 0, 0);
+      }
+    }
+  }
+}

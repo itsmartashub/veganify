@@ -1,213 +1,181 @@
 export const state = () => ({
-    recipeItems: [
-        {
-            id: 1,
-            title: "Instant Pot Crack Chicken ChiliChiliChiliChiliChiliChili",
-            image: "/img/img-1.jpg",
-            glutenFree: true,
-            kcal: 120,
-            review: 4.8,
-            time: 20
-        },
-        {
-            id: 2,
-            title: "Instant Pot Crack Chicken Chili",
-            image: "/img/img-2.jpg",
-            glutenFree: false,
-            kcal: 320,
-            review: 4.1,
-            time: 60
-        },
-        {
-            id: 3,
-            title: "Instant Pot Crack Chicken Chili",
-            image: "/img/img-3.jpg",
-            glutenFree: true,
-            kcal: 120,
-            review: 4.5,
-            time: "15-30"
-        },
-        {
-            id: 4,
-            title: "Instant Pot Crack Chicken Chili",
-            image: "/img/img-4.jpg",
-            glutenFree: false,
-            kcal: 90,
-            review: 3.5,
-            time: 55
-        }
-    ],
-    popularRecipeItems: [],
-    recipeItem: {},
-    winePairingItems: [],
-    categoryName: ""
-    // bookmarkedItems: []
-});
+  recipeItems: [],
+  popularRecipeItems: [],
+  recipeItem: {},
+  searchedRecipeItems: [],
+  categoryName: 'ALL RECIPES',
+  recipeNotifySubtitle:
+    'There is no required item. Please, try something else.',
+  randomTriviaItem: '',
+  randomJokeItem: '',
+  // apik:
+  //   process.env.API_SECRET_RESERVE ||
+  //   process.env.API_SECRET_DEFAULT ||
+  //   this.$config.apiReserve ||
+  //   this.$config.apiDefault,
+  // // apik: '',
+})
 
 export const actions = {
-    fetchRecipes({ commit }, recipeNum) {
-        return this.$axios
-            .$get(
-                `recipes/complexSearch?apiKey=${process.env.AK}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${recipeNum}`
-            )
-            .then(data => {
-                let recipes = data.results;
+  async fetchRecipes({ commit, rootState }, { recipeNum }) {
+    return await this.$axios
+      .$get(
+        `recipes/complexSearch?apiKey=${rootState.apk.apik}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${recipeNum}`,
+      )
+      .then((data) => {
+        let recipes = data.results
 
-                commit("setRecipes", recipes);
-                return recipes;
-            })
-            .catch(err => Promise.reject(err));
-    },
+        commit('setRecipes', recipes)
+        return recipes
+      })
+      .catch((err) => Promise.reject(err))
+  },
 
-    fetchPopularRecipes({ commit }, recipeNum) {
-        return this.$axios
-            .$get(
-                `recipes/complexSearch?apiKey=${process.env.AK}&query=the most popular&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${recipeNum}`
-            )
-            .then(data => {
-                let popularRecipes = data.results;
+  findRecipeByID({ state, commit, rootState }, recipeID) {
+    let selectedRecipe = state.recipeItems.find(
+      (recipe) => recipe.id == recipeID,
+    )
 
-                commit("setPopularRecipes", popularRecipes);
-                return popularRecipes;
-            })
-            .catch(err => Promise.reject(err));
-    },
-
-    fetchRecipesByCategoryName({ commit }, categoryName) {
-        return this.$axios
-            .$get(
-                `recipes/complexSearch?apiKey=${process.env.AK}&query=${categoryName}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc`
-            )
-            .then(data => {
-                let recipes = data.results;
-
-                commit("setRecipes", recipes);
-                return recipes;
-            })
-            .catch(err => Promise.reject(err));
-    },
-
-    fetchWinePairingByCategoryName({ commit }, categoryName) {
-        return this.$axios
-            .$get(
-                `food/wine/pairing?apiKey=${process.env.AK}&food=${categoryName}`
-            )
-            .then(data => {
-                console.log(data);
-                // let winePairing = data.results;
-
-                // commit("setWinePairing", winePairing);
-                // return winePairing;
-            })
-            .catch(err => Promise.reject(err));
-    },
-
-    fetchRandomTrivia() {
-        return this.$axios
-            .$get(`apiKey=${process.env.AK}/food/trivia/random`)
-            .then(data => {
-                console.log(data);
-            });
-    },
-    fetchRandomJokes() {
-        return this.$axios
-            .$get(`apiKey=${process.env.AK}/food/jokes/random`)
-            .then(data => {
-                console.log(data);
-            })
-            .catch(err => Promise.reject(err));
-    },
-
-    fetchRecipeByID({ commit }, recipeID) {
-        const selectedRecipe = state.recipeItems.find(
-            recipe => recipe.id == recipeID
-        );
-
-        commit("setRecipeItem", selectedRecipe);
-        return selectedRecipe;
+    if (selectedRecipe) {
+      commit('setRecipeItem', selectedRecipe)
+      return selectedRecipe
+    } else {
+      selectedRecipe = rootState.smoothies.smoothieItems.find(
+        (smoothie) => smoothie.id == recipeID,
+      )
+      commit('setRecipeItem', selectedRecipe)
     }
+  },
 
-    // getBookmarkedItems({ commit }) {
-    //     const bookmarkedItems = localStorage.getItem("bookmarked_items");
+  async fetchPopularRecipes({ commit, rootState }, { recipeNum }) {
+    return await this.$axios
+      .$get(
+        `recipes/complexSearch?apiKey=${rootState.apk.apik}&query=the most popular&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${recipeNum}`,
+      )
+      .then((data) => {
+        let popularRecipes = data.results
 
-    //     if (bookmarkedItems) {
-    //         commit("setBookmarkedItems", JSON.parse(bookmarkedItems));
-    //         return bookmarkedItems;
-    //     } else {
-    //         localStorage.setItem("bookmarked_items", JSON.stringify([]));
-    //         return [];
-    //     }
-    // },
+        commit('setPopularRecipes', popularRecipes)
+        return popularRecipes
+      })
+      .catch((err) => {
+        console.log(err.response.data.code)
 
-    // toggleBookmark({ state, commit, dispatch }, recipeID) {
-    //     if (state.bookmarkedItems.includes(recipeID)) {
-    //         // remove post id
-    //         const index = state.bookmarkedItems.findIndex(
-    //             bid => bid === recipeID
-    //         );
-    //         commit("removeBookmarkedItem", index);
-    //         dispatch("LSpersistBookmarkedRecipes");
-    //         return recipeID;
-    //     } else {
-    //         // add recipeID
-    //         commit("addBookmarkedItem", recipeID);
-    //         dispatch("LSpersistBookmarkedRecipes");
+        Promise.reject(err)
+      })
+  },
 
-    //         return recipeID;
-    //     }
-    // },
+  findPopularRecipeByID({ state, commit }, recipeID) {
+    let selectedRecipe = state.popularRecipeItems.find(
+      (recipe) => recipe.id == recipeID,
+    )
 
-    // LSpersistBookmarkedRecipes({ state }) {
-    //     localStorage.setItem(
-    //         "bookmarked_items",
-    //         JSON.stringify(state.bookmarkedItems)
-    //     );
-    // }
-};
+    if (selectedRecipe) {
+      commit('setRecipeItem', selectedRecipe)
+      return selectedRecipe
+    }
+  },
+
+  async fetchSearchedRecipes({ commit, rootState }, { searchedTerm }) {
+    return await this.$axios
+      .$get(
+        `recipes/complexSearch?apiKey=${
+          rootState.apk.apik
+        }&query=${searchedTerm}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${30}`,
+      )
+      .then((data) => {
+        // commit('SET_SEARCHED_RECIPES', data.results)
+        console.log(data.results)
+        commit('setRecipes', data.results)
+        commit('setCategoryName', searchedTerm)
+        return data.results
+      })
+      .catch((err) => {
+        //TODO ako nema trazenog recepta da vidimo sta cemo
+        console.log(err.response.data.message)
+        Promise.reject(err)
+      })
+  },
+
+  async fetchRecipesByCategoryName({ commit, rootState }, { categoryName }) {
+    return await this.$axios
+      .$get(
+        `recipes/complexSearch?apiKey=${rootState.apk.apik}&query=${categoryName}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc`,
+      )
+      .then((data) => {
+        let recipes = data.results
+
+        commit('setRecipes', recipes)
+        commit('setCategoryName', categoryName)
+
+        return recipes
+      })
+      .catch((err) => Promise.reject(err))
+  },
+
+  async fetchRandomTrivia({ commit, rootState }) {
+    return await this.$axios
+      .$get(`food/trivia/random?apiKey=${rootState.apk.apik}`)
+      .then((data) => {
+        commit('setRandomTriviaItem', data.text)
+      })
+      .catch((err) => Promise.reject(err))
+  },
+
+  // setApik({ commit }) {
+  //   commit('SET_APIK')
+  // },
+  // fetchRandomJoke({ commit }) {
+  //   return (
+  //     this.$axios
+  //       // .$get(`apiKey=${$config.apiSecret}/food/trivia/random`)
+  //       // .$get(`food/jokes/random?apiKey=41c76521f84a4260bb233f8d2efc4144`)
+  //       // .$get(`food/jokes/random?apiKey=${process.env.API_SECRET_DEFAULT}`)
+  //       .$get(`food/jokes/random?apiKey=1a7ab25a8a41433e8ea459f37557ee3d`)
+  //       .then((data) => {
+  //         console.log(data)
+  //         commit('setRandomJokeItem', data.text)
+  //       })
+  //       .catch((err) => Promise.reject(err))
+  //   )
+  // },
+}
 
 export const mutations = {
-    setRecipes(state, recipes) {
-        // console.log("Title: " + recipes[0].title);
-        // console.log("Gluten free: " + recipes[0].glutenFree);
-        // console.log("Likes: " + recipes[0].likes);
-        // console.log("Image: " + recipes[0].image);
-        // console.log("Ready time: " + recipes[0].readyInMinutes);
-        // console.log("Spoonacular score: " + recipes[0].spoonacularScore);
-        // // console.log("Kcal: " + recipes[0].nutrition.nutrients);
+  // SET_APIK(state) {
+  //   state.apik =
+  //     process.env.API_SECRET_RESERVE ||
+  //     process.env.API_SECRET_DEFAULT ||
+  //     this.$config.apiReserve ||
+  //     this.$config.apiDefault
+  // },
 
-        // console.log("Kcal: " + recipes[0].nutrition.nutrients[0].amount);
-        // console.log("steps: " + recipes[0].analyzedInstructions.steps);
+  setRecipes(state, recipes) {
+    state.recipeItems = recipes
+  },
+  setPopularRecipes(state, popularRecipes) {
+    state.popularRecipeItems = popularRecipes
+  },
+  setRecipeItem(state, selectedRecipe) {
+    state.recipeItem = selectedRecipe
+  },
 
-        state.recipeItems = recipes;
-    },
-    setPopularRecipes(state, popularRecipes) {
-        state.popularRecipeItems = popularRecipes;
-    },
+  // SET_SEARCHED_RECIPES(state, searchedRecipes) {
+  //   state.searchedRecipeItems = searchedRecipes
+  // },
 
-    // setRecipeItem(state, selectedRecipe) {
-    setRecipeItem(state, recipeID) {
-        const selectedRecipe = state.recipeItems.find(
-            recipe => recipe.id == recipeID
-        );
-        state.recipeItem = selectedRecipe;
+  // setWinePairing(state, winePairing) {
+  //   state.winePairingItems = winePairing
+  // },
 
-        // console.log(state.recipeItem.analyzedInstructions[0].steps);
-    },
-    setWinePairing(state, winePairing) {
-        state.winePairingItems = winePairing;
-    },
+  setCategoryName(state, categoryName) {
+    state.categoryName = categoryName
+  },
 
-    setCategoryName(state, categoryName) {
-        state.categoryName = categoryName;
-    }
-
-    // setBookmarkedItems(state, bookmarkedItems) {
-    //     state.bookmarkedItems = bookmarkedItems;
-    // },
-    // addBookmarkedItem(state, recipeID) {
-    //     state.bookmarkedItems.push(recipeID);
-    // },
-    // removeBookmarkedItem(state, index) {
-    //     state.bookmarkedItems.splice(index, 1);
-    // }
-};
+  setRandomTriviaItem(state, randomTriviaText) {
+    state.randomTriviaItem = randomTriviaText
+  },
+  // setRandomJokeItem(state, randomJoke) {
+  //   state.randomJokeItem = randomJoke
+  // },
+}

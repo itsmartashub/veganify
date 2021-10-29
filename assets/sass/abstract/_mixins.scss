@@ -78,6 +78,11 @@
             @content;
         } // 900/16
     }
+    @if $breakpoint == tab-mid {
+        @media only screen and (max-width: 65.625em) {
+            @content;
+        } // 1050/16
+    }
     @if $breakpoint == tab-land {
         @media only screen and (max-width: 75em) {
             @content;
