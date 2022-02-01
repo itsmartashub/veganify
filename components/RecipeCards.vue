@@ -1,29 +1,29 @@
 <template>
-  <section class="recipecards">
-    <h2
-      class="recipecards__title"
-      v-if="!($route.name == 'bookmarks' || $route.name == 'smoothies')"
-    >
-      {{ categoryName }}
-    </h2>
-    <h2 class="recipecards__title" v-if="$route.name == 'bookmarks'">
-      BOOKMARKS
-    </h2>
-    <h2 class="recipecards__title" v-if="$route.name == 'smoothies'">
-      SMOOTHIES
-    </h2>
+    <section class="recipecards" id="recipecards">
+        <h2
+            class="recipecards__title"
+            v-if="!($route.name == 'bookmarks' || $route.name == 'smoothies')"
+        >
+            {{ categoryName }}
+        </h2>
+        <h2 class="recipecards__title" v-if="$route.name == 'bookmarks'">
+            BOOKMARKS
+        </h2>
+        <h2 class="recipecards__title" v-if="$route.name == 'smoothies'">
+            SMOOTHIES
+        </h2>
 
-    <section class="recipecards__wrapper">
-      <template v-for="recipe in recipes">
-        <!-- <nuxt-link :to="`/recipeitem/${recipe.id}`" :key="recipe.id">
+        <section class="recipecards__wrapper">
+            <template v-for="recipe in recipes">
+                <!-- <nuxt-link :to="`/recipeitem/${recipe.id}`" :key="recipe.id">
                     <RecipeCard :recipe="recipe" />
                 </nuxt-link> -->
-        <RecipeCard
-          :recipe="recipe"
-          :key="recipe.id"
-          :category="categoryName"
-        />
-        <!-- <RecipeCard
+                <RecipeCard
+                    :recipe="recipe"
+                    :key="recipe.id"
+                    :category="categoryName"
+                />
+                <!-- <RecipeCard
                     :recipe="recipe"
                     :key="recipe.id"
                     :category="categoryName"
@@ -35,45 +35,50 @@
                         stagger: 0.2
                     }"
                 /> -->
-      </template>
-    </section>
+            </template>
+        </section>
 
-    <p v-if="recipes.length == 0" class="recipecards__notifysubtitle">
-      {{ recipeNotifySubtitle }}
-    </p>
-  </section>
+        <!-- <p v-if="!recipes[0]" class="recipecards__notifysubtitle">
+            {{ recipeNotifySubtitle }}
+        </p> -->
+
+        <p
+            v-if="!recipes[0]"
+            class="recipecards__notifysubtitle"
+            v-html="recipeNotifySubtitle"
+        ></p>
+
+        <ScrollToTop />
+    </section>
 </template>
 
 <script>
 export default {
-  props: {
-    recipes: {
-      type: Array,
-      required: true,
+    props: {
+        recipes: {
+            type: Array,
+            required: true
+        }
+        // category: {
+        //     type: String,
+        //     required: false
+        // }
     },
-    // category: {
-    //     type: String,
-    //     required: false
-    // }
-  },
-  computed: {
-    // recipes() {
-    //     return this.$store.state.recipes.recipeItems;
-    // },
-    categoryName() {
-      return this.$store.state.recipes.categoryName
-    },
-    recipeNotifySubtitle() {
-      return this.$store.state.recipes.recipeSubtitle
-    },
-  },
-  // methods: {
-  //     navigateToRecipeItem(recipeID) {
-  //         this.$store.commit("recipes/setRecipeItem", recipeID);
-  //         this.$route.push(`/recipe/${recipeID}`);
-  //     }
-  // }
-}
+    computed: {
+        // recipes() {
+        //     return this.$store.state.recipes.recipeItems;
+        // },
+        categoryName() {
+            return this.$store.state.recipes.categoryName;
+        },
+        recipeNotifySubtitle() {
+            return this.$store.state.recipes.recipeNotifySubtitle;
+        }
+        // searchedRecipeItems() {
+        //     return this.$store.state.recipes.searchedRecipeItems;
+        // }
+    }
+};
 </script>
 
 <style></style>

@@ -1,62 +1,62 @@
 .middle {
-  grid-area: mid;
+    grid-area: mid;
 
-  min-height: 100vh;
-  padding: 0 5vw;
-  display: grid;
-  align-content: flex-start;
-  grid-gap: 5vw;
+    min-height: 100vh;
+    padding: 0 5vw;
+    display: grid;
+    align-content: flex-start;
+    grid-gap: 5vw;
 
-  @include device(phone-land) {
-    padding: 0;
-  }
+    @include device(phone-land) {
+        padding: 0;
+    }
 }
 
 .nobookmarks {
-  grid-area: mid;
-  align-content: center;
-  place-items: center;
-  grid-gap: 5vh;
-
-  &__svgwrapper {
-    --size: 13rem;
-    width: var(--size);
-    height: var(--size);
-    border-radius: 3.5rem;
-    display: grid;
+    grid-area: mid;
+    align-content: center;
     place-items: center;
-    background: var(--clr_accent_light);
-  }
+    grid-gap: 5vh;
 
-  svg {
-    width: 6rem;
-    fill: var(--clr_accent);
-  }
+    &__svgwrapper {
+        --size: 13rem;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 3.5rem;
+        display: grid;
+        place-items: center;
+        background: var(--clr_accent_light);
+    }
 
-  h1 {
-    text-transform: uppercase;
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-  }
-  h2 {
-    font-size: 5rem;
-    font-weight: 500;
-  }
-  // width: 100%;
-  h1,
-  h2 {
-    text-align: center;
-    letter-spacing: 1px;
-    background: var(--clr_grd_bg);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  // height: 100%;
+    svg {
+        width: 6rem;
+        fill: var(--clr_accent);
+    }
 
-  // h1 {
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-  // }
+    &__title {
+        text-transform: uppercase;
+        font-size: 3rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+    }
+    &__subtitle {
+        font-size: 5rem;
+        font-weight: 500;
+    }
+    // width: 100%;
+    &__title,
+    &__subtitle {
+        text-align: center;
+        letter-spacing: 1px;
+        background: var(--clr_grd_bg);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    // height: 100%;
+
+    // h1 {
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    // }
 }

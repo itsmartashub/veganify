@@ -1,68 +1,71 @@
 <template>
-  <div class="bookmarks">
-    <Navigation />
+    <div class="bookmarks">
+        <Navigation />
 
-    <main class="middle" v-if="bookmarks.length">
-      <Header />
-      <!-- <Categories /> -->
-      <RecipeCards :recipes="bookmarks" />
-    </main>
+        <main class="middle" v-if="bookmarks[0]">
+            <Header />
+            <!-- <Categories /> -->
+            <RecipeCards :recipes="bookmarks" />
+        </main>
 
-    <main v-else class="middle nobookmarks">
-      <div class="nobookmarks__svgwrapper">
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 212.045 212.045"
-          style="enable-background: new 0 0 212.045 212.045;"
-          xml:space="preserve"
-        >
-          <path
-            d="M167.871,0H44.84C34.82,0,26.022,8.243,26.022,18v182c0,3.266,0.909,5.988,2.374,8.091c1.752,2.514,4.573,3.955,7.598,3.954
+        <main v-else class="middle nobookmarks">
+            <div class="nobookmarks__svgwrapper">
+                <svg
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 212.045 212.045"
+                    style="enable-background: new 0 0 212.045 212.045;"
+                    xml:space="preserve"
+                >
+                    <path
+                        d="M167.871,0H44.84C34.82,0,26.022,8.243,26.022,18v182c0,3.266,0.909,5.988,2.374,8.091c1.752,2.514,4.573,3.955,7.598,3.954
 	c2.86,0,5.905-1.273,8.717-3.675l55.044-46.735c1.7-1.452,4.142-2.284,6.681-2.284c2.538,0,4.975,0.832,6.68,2.288l54.86,46.724
 	c2.822,2.409,5.657,3.683,8.512,3.683c4.828,0,9.534-3.724,9.534-12.045V18C186.022,8.243,177.891,0,167.871,0z"
-          />
-        </svg>
-      </div>
-      <div>
-        <h1>Such a empty!</h1>
-        <h2>There is no bookmarks yet</h2>
-      </div>
-    </main>
+                    />
+                </svg>
+            </div>
 
-    <Sidebar />
-  </div>
+            <div>
+                <h1 class="nobookmarks__title">
+                    Such a empty! <span class="plate">🍽️</span>
+                </h1>
+                <h2 class="nobookmarks__subtitle">There is no bookmarks yet</h2>
+            </div>
+        </main>
+
+        <Sidebar />
+    </div>
 </template>
 
 <script>
 export default {
-  head() {
-    return {
-      title: 'Veganify | Bookmarks',
-      meta: [
-        {
-          name: 'description',
-          content: 'This is a Veganify homepage BLABLA',
-          hid: 'description',
-        },
-      ],
-    }
-  },
-
-  computed: {
-    bookmarks() {
-      return this.$store.state.bookmarks.bookmarksRecipes
+    head() {
+        return {
+            title: "Veganify | Bookmarks",
+            meta: [
+                {
+                    name: "description",
+                    content: "This is a Veganify homepage BLABLA",
+                    hid: "description"
+                }
+            ]
+        };
     },
-    // bookmarkCategory() {
-    //     return this.$store.state.bookmarks.bookmarkCategory;
-    // }
-  },
 
-  mounted() {
-    this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
-  },
-}
+    computed: {
+        bookmarks() {
+            return this.$store.state.bookmarks.bookmarksRecipes;
+        }
+        // bookmarkCategory() {
+        //     return this.$store.state.bookmarks.bookmarkCategory;
+        // }
+    },
+
+    mounted() {
+        this.$store.dispatch("bookmarks/setBookmarkRecipesArray");
+    }
+};
 </script>

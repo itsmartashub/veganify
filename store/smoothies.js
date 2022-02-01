@@ -17,7 +17,7 @@ export const actions = {
       .then((data) => {
         let smoothies = data.results
 
-        commit('setSmoothies', smoothies)
+        commit('SET_SMOOTHIES', smoothies)
         return smoothies
       })
       .catch((err) => Promise.reject(err))
@@ -45,7 +45,7 @@ export const actions = {
         }&query=${searchedTerm} smoothie&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${30}`,
       )
       .then((data) => {
-        commit('setSmoothies', data.results)
+        commit('SET_SMOOTHIES', data.results)
         return data.results
       })
       .catch((err) => {
@@ -61,13 +61,13 @@ export const mutations = {
   //   state.apik = this.$config.apiDefault || process.env.API_SECRET_RESERVE
   // },
 
-  setSmoothies(state, smoothies) {
+  SET_SMOOTHIES(state, smoothies) {
     state.smoothieItems = smoothies
-  },
-  setBookmarks(state, bookmark) {
-    state.smoothieBookmarks.push(bookmark)
   },
   SET_POPULAR_SMOOTHIES(state, popularSmoothies) {
     state.popularSmoothieItems = popularSmoothies
   },
+  // SET_BOOKMARKS(state, bookmark) {
+  //   state.smoothieBookmarks.push(bookmark)
+  // },
 }

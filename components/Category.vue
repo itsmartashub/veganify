@@ -42,7 +42,7 @@ export default {
       this.isActive = !this.isActive
       // console.log(categoryName);
 
-      // this.$store.commit("recipes/setCategoryName", categoryName);
+      // this.$store.commit("recipes/SET_CATEGORY_NAME", categoryName);
 
       // await this.$store.dispatch('recipes/fetchRecipesByCategoryName', categoryName);
     },

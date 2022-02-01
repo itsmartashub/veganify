@@ -55,35 +55,36 @@
 //   await store.dispatch('smoothies/fetchPopularSmoothies', { recipeNum: 3 })
 // }
 export default async ({ store, $axios }) => {
-  await $axios
-    .$get(
-      `recipes/complexSearch?apiKey=${process.env.API_SECRET_DEFAULT}&query=the most popular&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=3`,
-    )
-    .then((data) => {
-      let popularRecipes = data.results
+    await $axios
+        .$get(
+            `recipes/complexSearch?apiKey=${process.env.API_SECRET_DEFAULT}&query=the most popular&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=3`
+        )
+        .then(data => {
+            let popularRecipes = data.results;
 
-      store.commit('recipes/setPopularRecipes', popularRecipes)
+            store.commit("recipes/SET_POPULAR_RECIPES", popularRecipes);
 
-      store.dispatch('apk/setApik', { apik: process.env.API_SECRET_DEFAULT })
+            store.dispatch("apk/setApik", process.env.API_SECRET_DEFAULT);
 
-      // store.dispatch('smoothies/fetchSmoothies', { recipeNum: 20 })
-      // store.dispatch('smoothies/fetchPopularSmoothies', { recipeNum: 3 })
-    })
-    .then((response) => {
-      store.dispatch('smoothies/fetchSmoothies', { recipeNum: 20 })
-      store.dispatch('smoothies/fetchPopularSmoothies', { recipeNum: 3 })
-    })
-    .catch((err) => {
-      console.log(err.response.data.code)
-
-      if (err.response.data.code == 402 || err.response.data.code == 401) {
-        store.dispatch('apk/setApik', {
-          apik: process.env.API_SECRET_RESERVE,
+            // store.dispatch('smoothies/fetchSmoothies', { recipeNum: 20 })
+            // store.dispatch('smoothies/fetchPopularSmoothies', { recipeNum: 3 })
         })
+        // .then((response) => {
+        //   store.dispatch('smoothies/fetchSmoothies', { recipeNum: 20 })
+        //   store.dispatch('smoothies/fetchPopularSmoothies', { recipeNum: 3 })
+        // })
+        .catch(err => {
+            console.log(err.response.data.code);
 
-        store.dispatch('recipes/fetchPopularRecipes', { recipeNum: 3 })
-        store.dispatch('smoothies/fetchSmoothies', { recipeNum: 20 })
-        store.dispatch('smoothies/fetchPopularSmoothies', { recipeNum: 3 })
-      }
-    })
-}
+            if (
+                err.response.data.code == 402 ||
+                err.response.data.code == 401
+            ) {
+                store.dispatch("apk/setApik", process.env.API_SECRET_RESERVE);
+
+                store.dispatch("recipes/fetchPopularRecipes", { recipeNum: 3 });
+                // store.dispatch('smoothies/fetchSmoothies', { recipeNum: 20 })
+                // store.dispatch('smoothies/fetchPopularSmoothies', { recipeNum: 3 })
+            }
+        });
+};

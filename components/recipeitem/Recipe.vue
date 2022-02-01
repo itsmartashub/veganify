@@ -151,7 +151,7 @@ export default {
   },
   created() {
     // return this.$store.commit(
-    //     "recipes/setRecipeItem",
+    //     "recipes/SET_RECIPE_ITEM",
     //     this.$route.params.id
     // );
     if (!this.recipeItem.extendedIngredients) {
