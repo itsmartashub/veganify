@@ -78,7 +78,7 @@
             x="0px"
             y="0px"
             viewBox="0 0 212.045 212.045"
-            style="enable-background: new 0 0 212.045 212.045;"
+            style="enable-background: new 0 0 212.045 212.045"
             xml:space="preserve"
             class="recipecard__bookmark-svg recipecard__bookmark-svg--filled"
           >
@@ -96,6 +96,7 @@
 
 <script>
 import randomLikes from '~/utils/randomLikes.js'
+// import altSeo from '~/utils/altSeo.js'
 // import shared from "~/mixins/shared";
 
 export default {
@@ -127,7 +128,8 @@ export default {
     randomLikes,
 
     navigateToRecipeItem(recipe) {
-      this.$store.dispatch('recipes/findRecipeByID', recipe.id)
+      if (!recipe) return console.log(recipe)
+
       this.$router.push(`/recipe/${recipe.id}`)
     },
 

@@ -1,0 +1,82 @@
+.recipecard-enter-active {
+  transition: transform 0.4s $outBack, opacity 0.4s linear;
+}
+.recipecard-enter,
+.recipecard-leave-to {
+  opacity: 0;
+  transform: scale(0.7) translate3d(0, 100%, 0);
+}
+
+.recipecard-enter-to {
+  opacity: 1;
+  transform: scale(1) translate3d(0, 0%, 0);
+}
+
+.recipecard-leave-active {
+  transition: transform 0.2s ease, opacity 0.2s linear;
+}
+
+// .recipecard-enter-active {
+//     transition: transform 0.5s ease-in;
+// }
+// .recipecard-enter {
+//     opacity: 0;
+//     transform: scale(0.5);
+// }
+
+// .recipecard-enter-to {
+//     opacity: 1;
+//     transform: scale(1);
+// }
+
+// .recipecard-leave-active {
+//     transition: transform 0.2s ease-out;
+// }
+
+.page-enter-active {
+  will-change: transform, opacity;
+  transition: transform 1s $outCirc, opacity 0.8s linear;
+  backface-visibility: hidden;
+}
+
+// .page-leave-active {
+//   transition: transform 0.5s $inCirc, opacity 0.5s linear;
+//   backface-visibility: hidden;
+// }
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+}
+.page-enter-to,
+.page-leave {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+//! KAD SU ANIMATION UKLJ ZA LOADER
+// .page-enter-active {
+//   transition: transform 1s $outSmooth, opacity 0.8s linear;
+//   backface-visibility: hidden;
+// }
+
+// .page-leave-active {
+//   transition: transform 0.5s $inCirc, opacity 0.5s linear;
+//   backface-visibility: hidden;
+// }
+
+// .page-enter {
+//   //   opacity: 0;
+//   transform: translate3d(0, 80%, 0);
+// }
+// .page-enter-to,
+// .page-leave {
+//   //   opacity: 1;
+//   transform: translate3d(0, 0, 0);
+// }
+
+// // .page-leave-to {
+// //   //   opacity: 0;
+// //   transform: translate3d(0, 100%, 0);
+// // }

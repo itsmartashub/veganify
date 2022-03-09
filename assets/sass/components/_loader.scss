@@ -1,29 +1,169 @@
 .loader {
+  will-change: background, transform;
   @extend %pos-fix;
   top: 0;
   left: 0;
   width: 100%;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
+  @extend %flex-center;
   z-index: 100000;
   background: var(--clr_grd_bg);
-  transition: transform 1s 0.4s, opacity 1s 0.4s, border-radius 1s 0.4s;
-  // transition-delay: 0.4s;
+  // transition: transform 1.5s $outSmooth, background 0.5s linear;
+  transition: background 0.5s linear;
   transform-origin: center bottom;
+  backface-visibility: hidden;
 
-  img {
-    border-radius: 100%;
-    transition: 1.2s;
+  &__content {
+    @extend %flex-center;
+    flex-direction: column;
+    @extend %pos-abs;
+    // transition: transform 1s;
+  }
+
+  &__logo {
+    // animation: rotating90 alternate 2s ease-in-out;
+    // animation-iteration-count: 4;
+
+    .logo__svg {
+      width: 10vw !important;
+      height: auto;
+      fill: var(--clr_white);
+      transition: fill 0.4s linear;
+    }
+  }
+
+  &__title {
+    @extend .header__title;
+    font-size: 4rem;
+    color: var(--clr_white) !important;
+    // transition: transform 1s ease, opacity 1s linear, color 0.4s linear;
+    transition: color 0.4s linear;
+    @extend %overflow-hidden;
+    perspective: 200px;
+
+    span {
+      display: inline-block;
+      transition: transform 1s ease, opacity 1s linear;
+    }
+  }
+  &__ify {
+    @extend .header__ify;
+  }
+  &__yourmeal {
+    @extend .header__yourmeal;
   }
 
   &--leave {
-    backface-visibility: hidden;
-    transform: translateY(100%);
-    opacity: 0;
-    border-radius: 80% 80% 0 0;
-    img {
-      transform: scale(0.3) rotate(-270deg);
+    animation: loaderAnim 1.5s $outSmooth;
+
+    .loader--content {
+      transition: transform 0.5s ease, opacity 0.5s linear;
+      opacity: 0;
+      transform: translate3d(0, -100%, 0);
     }
+
+    // animation: loaderAnim 1.5s $outSmooth alternate;
+    // transform: translate3d(0, -100%, 0);
+    // transform: scaleY(0);
+    // transition: transform 1.5s $outSmooth;
+    // transition-delay: 0.5s;
+
+    // .loader__content {
+    //     transform: translate3d(0, -50%, 0);
+    // }
+    // .loader__title {
+    //     span {
+    //         transform-style: preserve-3d;
+    //         transform: translate3d(0, -100%, 0) rotateX(45deg);
+    //         // opacity: 0;
+    //     }
+    //     span:nth-of-type(1) {
+    //         transition-delay: 0.3s;
+    //     }
+    //     span:nth-of-type(2) {
+    //         transition-delay: 0.2s;
+    //     }
+    //     span:nth-of-type(3) {
+    //         transition-delay: 0.1s;
+    //     }
+    // }
+  }
+  &--enter {
+    // transform: translate3d(0, 100%, 0);
+    // animation: loaderAnim 1.5s $outSmooth;
+    // transform: scaleY(1);
+
+    // .loader__title {
+    //   span {
+    //     transform: initial;
+    //   }
+    //   // span:nth-of-type(1) {
+    //   //     transition-delay: 0.3s;
+    //   // }
+    //   // span:nth-of-type(2) {
+    //   //     transition-delay: 0.2s;
+    //   // }
+    //   // span:nth-of-type(3) {
+    //   //     transition-delay: 0.1s;
+    //   // }
+    // }
+  }
+
+  // &--enter-active {
+  //   transition: transform 1.5s $outSmooth;
+  // }
+  // &--enter-to {
+  //   transform: translate3d(0, 0, 0);
+  // }
+}
+
+@keyframes rotating90 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
   }
 }
+@keyframes loaderAnim {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+  30% {
+    transform: translate3d(0, 0, 0);
+  }
+  60% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.loader-enter-active,
+.loader-leave-active {
+  transition: transform 1.5s $outCirc;
+}
+
+// .loader-enter {
+//   transform: translate3d(0, -100%, 0);
+// }
+.loader-enter-to {
+  transform: translate3d(0, 0%, 0);
+}
+.loader-leave-to {
+  transform: translate3d(0, 100%, 0);
+}
+
+//! ANIMATED
+// .loader-leave-active {
+//   animation: loaderAnim 1.5s $outSmooth backwards;
+// }
+// // .loader-enter-active {
+// //   animation: loaderAnim 1.5s $outSmooth reverse;
+// //   .loader--content {
+// //     transition: transform 0.5s ease, opacity 0.5s linear;
+// //     opacity: 0;
+// //     transform: translate3d(0, -100%, 0);
+// //   }
+// // }

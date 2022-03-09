@@ -4,6 +4,7 @@
     // background: var(--clr_grd_bg);
     width: 100vw;
     min-height: 100vh;
+    // visibility: hidden;
 
     &__btn {
         &-wrapper {
@@ -98,6 +99,24 @@
         line-height: 1.6;
         text-align: center;
         @extend %fw-600;
+        overflow: hidden;
+        // background-color: yellow;
+        // @extend %pos-rel;
+        // position: relative;
+        // display: block;
+
+        // width: max-content;
+
+        span {
+            // position: absolute;
+            // width: 100%;
+            // height: 100%;
+            // top: 0;
+            // left: 0;
+            // border: 1px solid red;
+            display: flex;
+            // z-index: 200;
+        }
 
         @include device(tab-mid) {
             width: 75%;
@@ -148,6 +167,7 @@
         justify-content: space-between;
         padding: 1rem;
         margin-bottom: 6rem;
+        // @extend %overflow-hidden;
 
         & > * + * {
             margin-left: 3vmax;

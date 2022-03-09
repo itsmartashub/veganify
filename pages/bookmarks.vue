@@ -1,11 +1,11 @@
 <template>
-    <div class="bookmarks">
+    <div class="bookmarks" ref="bookmarks">
         <Navigation />
 
         <main class="middle" v-if="bookmarks[0]">
             <Header />
             <!-- <Categories /> -->
-            <RecipeCards :recipes="bookmarks" />
+            <RecipeCards :activeRecipes="bookmarks" />
         </main>
 
         <main v-else class="middle nobookmarks">
@@ -37,11 +37,54 @@
         </main>
 
         <Sidebar />
+
+        <!-- <Preloader /> -->
     </div>
 </template>
 
 <script>
+// import { bookmarksPage } from "~/mixins/transitions.js";
+import { custom } from "~/utils/transitions.js";
+
 export default {
+    // mixins: [bookmarksPage],
+    // transition: custom,
+
+    // transition: {
+    //     name: "bookmarksAnimation",
+    //     css: false,
+    //     mode: "out-in",
+
+    //     beforeEnter(el) {
+    //         this.$gsap.set(el, { y: 150 });
+    //         this.$gsap.set(".loader", { transformOrigin: "center top" });
+    //     },
+
+    //     enter(el, done) {
+    //         const enterTL = this.$gsap.timeline({
+    //             defaults: { ease: "power1.inOut", duration: 0.8 },
+    //             onComplete: done
+    //         });
+
+    //         enterTL
+    //             .to(".loader", { yPercent: 100 }, 0)
+    //             .to(".loader__content", { yPercent: -80 }, 0)
+    //             .to(el, { y: 0 }, 0.2);
+    //     },
+
+    //     leave(el, done) {
+    //         const leaveTL = this.$gsap.timeline({
+    //             defaults: { ease: "power1.inOut", duration: 0.8 },
+    //             onComplete: done
+    //         });
+
+    //         leaveTL
+    //             .to(el, { y: 150 }, 0)
+    //             .to(".loader", { yPercent: 0 }, 0)
+    //             .to(".loader__content", { yPercent: 0 }, 0);
+    //     }
+    // },
+
     head() {
         return {
             title: "Veganify | Bookmarks",
@@ -52,6 +95,12 @@ export default {
                     hid: "description"
                 }
             ]
+        };
+    },
+
+    data() {
+        return {
+            animation: null
         };
     },
 
@@ -66,6 +115,50 @@ export default {
 
     mounted() {
         this.$store.dispatch("bookmarks/setBookmarkRecipesArray");
+
+        // this.$nextTick(() => {
+        //     if (process.client) {
+        //         this.animation = this.$gsap.timeline({
+        //             defaults: {
+        //                 opacity: 0,
+        //                 duration: 0.6,
+        //                 ease: "back"
+        //                 // clearProps: true
+        //             }
+        //         });
+
+        //         this.animation
+        //             .to(".bookmarks", {
+        //                 autoAlpha: 1,
+        //                 duration: 0,
+        //                 ease: "none"
+        //             })
+        //             .from(".navigation", {
+        //                 duration: 0.8,
+        //                 xPercent: -100
+        //             })
+        //             .from(".navigation .logo__svg", { y: 20 }, "<25%")
+        //             .from(".navigation .logo__veganify", { y: 20 }, "<25%")
+        //             .from(
+        //                 ".navigation__link svg",
+        //                 { y: 20, stagger: 0.2 },
+        //                 "<25%"
+        //             )
+        //             .from(
+        //                 ".navigation__themes",
+        //                 { yPercent: 100, rotate: 60 },
+        //                 "<25%"
+        //             );
+
+        //         return this.animation.play();
+        //     }
+        // });
+
+        // this.$nextTick(() => {
+        //     this.$gsap
+        //         .timeline()
+        //         .fromTo(".bookmarks", { y: 150, duration: 1 }, { y: 0 });
+        // });
     }
 };
 </script>

@@ -141,3 +141,14 @@
 %box-shadow {
     box-shadow: $box_shadow;
 }
+
+%optimizeProps {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+%optimizePropsForGsap {
+    @extend %pos-abs;
+    top: 0;
+    left: 0;
+}

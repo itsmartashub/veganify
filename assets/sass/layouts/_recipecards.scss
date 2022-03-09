@@ -16,14 +16,102 @@
         margin: 1rem 0 5rem 0;
         border-radius: 3rem;
         @extend %pos-rel;
+        @extend %overflow-hidden;
     }
 
     &__notifysubtitle {
-        font-size: 2.5rem;
-        color: var(--clr_accent);
-        @extend %flex-center;
+        font-size: 1.9rem;
+        background: var(--clr_grd_bg);
+        color: var(--clr_white);
+        @extend %flex;
         flex-direction: column;
-        // line-height: 1;
+        gap: 2vw;
+        padding: 7rem 6.5rem;
+        border-radius: 6rem;
+        width: 80%;
+        margin: 0 auto;
+        line-height: 1.5;
+        @extend %fw-500;
+        @extend %pos-rel;
+        transition: 0.4s transform $outBack;
+
+        @include device(tab) {
+            width: 90%;
+        }
+        @include device(phone) {
+            padding: 5rem;
+        }
+
+        &:hover {
+            transform: translate3d(0, -1rem, 0);
+
+            &::before {
+                transform: translate3d(0, 20%, 0) rotate(180deg);
+            }
+        }
+
+        &::before {
+            @extend %pos-abs;
+            content: "⚠️";
+            bottom: -15%;
+            right: 0%;
+            width: fit-content;
+            font-size: 10rem;
+            // color: currentColor;
+            z-index: 1;
+            transition: 0.4s transform $inOutBack;
+        }
+
+        p {
+            --bullet_size: 1rem;
+            text-align: left;
+            @extend %pos-rel;
+            margin-left: 3rem;
+
+            &::before {
+                @extend %after;
+                width: var(--bullet_size);
+                height: var(--bullet_size);
+                border-radius: 100%;
+                background: currentColor;
+                top: 50%;
+                left: 0;
+                z-index: 20;
+                transform: translate(-3rem, -50%);
+                opacity: 0.7;
+            }
+
+            @include device(phone) {
+                margin-left: 0;
+                &::before {
+                    display: none;
+                }
+            }
+        }
+
+        a {
+            @extend %pos-rel;
+            @extend %fw-700;
+            color: currentColor;
+
+            &::after {
+                @extend %after;
+                top: 110%;
+                left: 0;
+                background: currentColor;
+                height: 3px;
+                border-radius: 2rem;
+                opacity: 0.8;
+                transform-origin: 100% 50%;
+                transition: 0.3s transform $outSmooth;
+            }
+
+            &:hover::after {
+                transform: scaleX(0);
+            }
+        }
+        // width: 50vw;
+        // text-align: left;
     }
 }
 

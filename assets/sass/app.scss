@@ -3,6 +3,7 @@
 @import "abstract/vars";
 @import "abstract/mixins";
 @import "abstract/extends";
+@import "abstract/animations";
 @import "components/loader";
 
 @import "base/global";
@@ -31,3 +32,4 @@
 @import "pages/recipeitem";
 @import "pages/bookmarks";
 @import "pages/smoothies";
+@import "pages/error";

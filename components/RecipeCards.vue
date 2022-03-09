@@ -1,84 +1,148 @@
 <template>
-    <section class="recipecards" id="recipecards">
-        <h2
-            class="recipecards__title"
-            v-if="!($route.name == 'bookmarks' || $route.name == 'smoothies')"
-        >
-            {{ categoryName }}
-        </h2>
-        <h2 class="recipecards__title" v-if="$route.name == 'bookmarks'">
-            BOOKMARKS
-        </h2>
-        <h2 class="recipecards__title" v-if="$route.name == 'smoothies'">
-            SMOOTHIES
-        </h2>
+  <section class="recipecards" id="recipecards">
+    <p>{{ scrollTop }}</p>
+    <h2
+      class="recipecards__title"
+      v-if="!($route.name == 'bookmarks' || $route.name == 'smoothies')"
+    >
+      <span v-if="activeRecipes[0]"> {{ categoryName }}</span>
+      <span v-else> OH, NO 😶 </span>
+    </h2>
+    <h2 class="recipecards__title" v-if="$route.name == 'bookmarks'">
+      <span>BOOKMARKS</span>
+    </h2>
+    <h2 class="recipecards__title" v-if="$route.name == 'smoothies'">
+      <span>SMOOTHIES</span>
+    </h2>
 
-        <section class="recipecards__wrapper">
-            <template v-for="recipe in recipes">
-                <!-- <nuxt-link :to="`/recipeitem/${recipe.id}`" :key="recipe.id">
+    <TransitionGroup
+      appear
+      name="recipecard"
+      mode="out-in"
+      tag="section"
+      class="recipecards__wrapper"
+    >
+      <template v-for="activeRecipe in activeRecipes">
+        <!-- <nuxt-link :to="`/recipeitem/${recipe.id}`" :key="recipe.id">
                     <RecipeCard :recipe="recipe" />
                 </nuxt-link> -->
-                <RecipeCard
-                    :recipe="recipe"
-                    :key="recipe.id"
-                    :category="categoryName"
-                />
-                <!-- <RecipeCard
-                    :recipe="recipe"
-                    :key="recipe.id"
-                    :category="categoryName"
-                    v-gsap.from="{
-                        opacity: 0,
-                        rotation: -5,
-                        scale: 0.6,
-                        duration: 0.5,
-                        stagger: 0.2
-                    }"
-                /> -->
-            </template>
-        </section>
+        <RecipeCard
+          :recipe="activeRecipe"
+          :key="activeRecipe.id"
+          :category="categoryName"
+        />
+      </template>
+    </TransitionGroup>
 
-        <!-- <p v-if="!recipes[0]" class="recipecards__notifysubtitle">
-            {{ recipeNotifySubtitle }}
-        </p> -->
+    <!-- <div
+      v-if="!activeRecipes[0]"
+      class="recipecards__notifysubtitle"
+      v-html="recipeNotifyText"
+    ></div> -->
 
-        <p
-            v-if="!recipes[0]"
-            class="recipecards__notifysubtitle"
-            v-html="recipeNotifySubtitle"
-        ></p>
+    <Notify :recipeNotifyText="recipeNotifyText" v-if="!activeRecipes[0]" />
 
-        <ScrollToTop />
-    </section>
+    <transition name="recipecard">
+      <ScrollToTop v-if="scrollTop" />
+    </transition>
+  </section>
 </template>
 
 <script>
 export default {
-    props: {
-        recipes: {
-            type: Array,
-            required: true
-        }
-        // category: {
-        //     type: String,
-        //     required: false
-        // }
+  props: {
+    activeRecipes: {
+      type: Array,
+      required: true,
     },
-    computed: {
-        // recipes() {
-        //     return this.$store.state.recipes.recipeItems;
-        // },
-        categoryName() {
-            return this.$store.state.recipes.categoryName;
-        },
-        recipeNotifySubtitle() {
-            return this.$store.state.recipes.recipeNotifySubtitle;
-        }
-        // searchedRecipeItems() {
-        //     return this.$store.state.recipes.searchedRecipeItems;
-        // }
+  },
+
+  data() {
+    return {
+      scrollTop: false,
+      observeEl: false,
+      // showScrollTopClassName: "recipecards__notifysubtitle",
+      // hideScrollTopClassName: "header",
+      showScrollTopEl: null,
+      hideScrollTopEl: null,
+      toggleScrollTopEls: [],
     }
-};
+  },
+  computed: {
+    categoryName() {
+      return this.$store.state.recipes.categoryName
+    },
+    recipeNotifyText() {
+      return this.$store.state.recipes.recipeNotifyText
+    },
+  },
+  methods: {
+    toggleScrollInto() {
+      // this.showScrollTopEl = this.$el.querySelector(
+      //     ".recipecards__notifysubtitle p:nth-of-type(4)"
+      // );
+      this.showScrollTopEl = this.$el.querySelector(
+        '.recipecard:nth-of-type(10)'
+      )
+      this.hideScrollTopEl = this.$el.querySelector('.recipecards__title')
+
+      if (!this.showScrollTopEl || !this.hideScrollTopEl) return
+
+      this.toggleScrollTopEls = [this.showScrollTopEl, this.hideScrollTopEl]
+
+      let options = {
+        // root: document.querySelector(".home.recipecards"),
+        rootMargin: '0px',
+        threshold: 0,
+      }
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        // console.log(entries);
+
+        if (!entries[0]) return
+
+        entries.forEach((entry) => {
+          console.log(entry)
+          console.log(entry.target)
+          console.log(entry.isIntersecting)
+
+          if (entry.isIntersecting) this.scrollTop = true
+          else this.scrollTop = false
+
+          // if (entry.isIntersecting) {
+          // if (entry.target === this.showScrollTopEl)
+          //     this.scrollTop = true;
+          // if (entry.target === this.hideScrollTopEl)
+          //     this.scrollTop = false;
+          // }
+
+          // if (
+          //     entry.isIntersecting &&
+          //     entry.target === this.showScrollTopEl
+          // ) {
+          //     this.scrollTop = true;
+          //     console.log("TRUE");
+          // }
+          // if (entry.target === this.hideScrollTopEl) {
+          //     this.scrollTop = false;
+          //     console.log("FALSE");
+          // }
+        }, options)
+      })
+
+      this.toggleScrollTopEls.forEach((argument) => {
+        observer.observe(argument)
+      })
+    },
+  },
+
+  mounted() {
+    this.$nextTick(() => {
+      // this.toggleScrollInto()
+      // this.$store.commit('recipes/SET_MERGED_RECIPES')
+    })
+  },
+}
 </script>
 
 <style></style>

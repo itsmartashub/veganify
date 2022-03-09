@@ -2,11 +2,21 @@
   <div>
     <Nuxt />
     <p class="bp"></p>
+    <!-- <Loader /> -->
+    <!-- <Preloader /> -->
   </div>
 </template>
 
 <script>
 export default {
+  // head() {
+  //       return {
+  //           bodyAttrs: {
+  //               // "data-theme": this.IS_DARK ? "dark" : ""
+  //               "data-theme": this.$store.state.apk.isDark ? "dark" : ""
+  //           }
+  //       };
+  //   },
   // methods: {
   //     onloadHomeAnimation() {
   //         const tl = this.$gsap.timeline({
@@ -79,24 +89,28 @@ export default {
   //         tl.play(0);
   //     }
   // },
-  // mounted() {
-  //     setTimeout(() => {
-  //         this.onloadHomeAnimation();
-  //     }, 500);
-  // }
 }
 </script>
 
 <style>
-/* .page-enter-active,
+/* .page-enter-active {
+  transition: transform 0.8s $outCirc;
+  backface-visibility: hidden;
+}
+
 .page-leave-active {
-    transition: all 0.7s ease;
+  transition: transform 0.5s $outCirc;
+  backface-visibility: hidden;
 }
 
 .page-enter,
-.page-leave-active {
-    opacity: 0;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+.page-leave-to {
+  opacity: 0;
+  transform: translate3d(0, 80%, 0);
+}
+.page-enter-to,
+.page-leave {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 } */
 </style>

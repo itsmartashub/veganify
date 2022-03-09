@@ -17,6 +17,11 @@
             4fr
         );
 
+    // @extend %optimizeProps;
+    @extend %optimizePropsForGsap;
+
+    // visibility: hidden;
+
     @include device(tab-land) {
         grid-template-areas: "nav mid mid";
         // grid-template-columns: minmax(0, 1fr) minmax(0, 4fr);

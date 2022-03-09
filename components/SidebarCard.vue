@@ -54,6 +54,7 @@
 
 <script>
 import randomLikes from '~/utils/randomLikes.js'
+
 export default {
   props: {
     sidebarRecipe: {

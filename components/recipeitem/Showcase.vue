@@ -41,7 +41,7 @@
     </ul>
 
     <div class="showcase__trivia">
-      <p v-if="!randomTriviaItem == ''">
+      <p v-if="randomTriviaItem">
         {{ randomTriviaItem }}
       </p>
       <p v-else>
@@ -64,5 +64,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped></style>

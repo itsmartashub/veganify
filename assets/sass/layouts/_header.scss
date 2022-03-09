@@ -1,120 +1,125 @@
 .header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap-reverse;
-  color: var(--clr_accent);
-
-  &__form,
-  &__title {
-    margin: 3vw 2vw;
-
-    @include device(phone) {
-      margin: 6vw 2vw;
-    }
-  }
-
-  &__form {
-    flex: 1;
-    min-width: 40rem;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    @extend %pos-rel;
-
-    svg {
-      position: absolute;
-      left: 30px;
-      opacity: var(--opacity_search);
-      width: 3rem;
-      height: auto;
-      fill: var(--clr_accent);
-      transition: 0.4s;
-    }
-
-    @include device(tab) {
-      max-width: 85%;
-    }
-    @include device(phone) {
-      max-width: 95%;
-    }
-  }
-
-  &__search {
-    padding: 2.5rem 2.5rem 2.5rem 8rem;
-    font-family: $font-family;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    background: var(--clr_card_bg);
-    color: var(--clr_black);
-    font-size: inherit;
-    @extend %box-shadow;
-    transition: 0.4s;
-
-    @include device(tab) {
-      padding: 2.5rem 2.5rem 2.5rem 9rem;
-    }
-  }
-
-  &__search::placeholder {
-    font-family: $font-family;
-    opacity: 0.4;
-    // color: currentColor;
-    color: currentColor;
-  }
-  &__search:focus {
+    flex-wrap: wrap-reverse;
     color: var(--clr_accent);
-    opacity: 1;
 
-    & + svg {
-      transform: rotate(90deg);
-      opacity: 0.8;
-    }
-  }
+    &__form,
+    &__title {
+        margin: 3vw 2vw;
 
-  &__title {
-    display: inline-flex;
-    @extend %text-center;
-    color: var(--clr_accent);
-    @extend %fw-600;
-    font-size: 3.5rem;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 2px hsla(210, 57%, 22%, 0.1);
-
-    @include device(tab) {
-      font-size: 5rem;
+        @include device(phone) {
+            margin: 6vw 2vw;
+        }
     }
 
-    @include device(phone) {
-      font-size: 4rem;
-    }
-  }
+    &__form {
+        flex: 1;
+        min-width: 40rem;
+        display: flex;
+        align-items: center;
+        @extend %pos-rel;
 
-  &__ify {
-    @extend %fw-400;
-    opacity: 0.6;
-  }
-  &__yourmeal {
-    color: var(--clr_black);
-    @extend %fw-300;
-  }
+        svg {
+            position: absolute;
+            left: 30px;
+            opacity: var(--opacity_search);
+            width: 3rem;
+            height: auto;
+            fill: var(--clr_accent);
+            transition: 0.4s;
+        }
+
+        @include device(tab) {
+            max-width: 85%;
+        }
+        @include device(phone) {
+            max-width: 95%;
+        }
+    }
+
+    &__search {
+        padding: 2.5rem 2.5rem 2.5rem 8rem;
+        font-family: $font-family;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        background: var(--clr_card_bg);
+        color: var(--clr_black);
+        font-size: inherit;
+        @extend %box-shadow;
+        transform-origin: center bottom;
+        transition: 0.4s;
+
+        @include device(tab) {
+            padding: 2.5rem 2.5rem 2.5rem 9rem;
+        }
+    }
+
+    &__search::placeholder {
+        font-family: $font-family;
+        opacity: 0.4;
+        // color: currentColor;
+        color: currentColor;
+    }
+    &__search:focus {
+        color: var(--clr_accent);
+        opacity: 1;
+
+        & + svg {
+            transform: rotate(90deg);
+            opacity: 0.8;
+        }
+    }
+
+    &__title {
+        display: inline-flex;
+        @extend %text-center;
+        color: var(--clr_accent);
+        @extend %fw-600;
+        font-size: 3.5rem;
+        letter-spacing: 1px;
+        text-shadow: 2px 2px 2px hsla(210, 57%, 22%, 0.1);
+
+        span {
+            display: inline-block;
+        }
+
+        @include device(tab) {
+            font-size: 5rem;
+        }
+
+        @include device(phone) {
+            font-size: 4rem;
+        }
+    }
+
+    &__ify {
+        @extend %fw-400;
+        opacity: 0.6;
+    }
+    &__yourmeal {
+        color: var(--clr_black);
+        @extend %fw-300;
+    }
 }
 
 /* clears the ‘X’ from Internet Explorer */
-input[type='search']::-ms-clear {
-  display: none;
-  width: 0;
-  height: 0;
+input[type="search"]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
 }
-input[type='search']::-ms-reveal {
-  display: none;
-  width: 0;
-  height: 0;
+input[type="search"]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
 }
 /* clears the ‘X’ from Chrome */
-input[type='search']::-webkit-search-decoration,
-input[type='search']::-webkit-search-cancel-button,
-input[type='search']::-webkit-search-results-button,
-input[type='search']::-webkit-search-results-decoration {
-  display: none;
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
 }

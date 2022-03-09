@@ -29,24 +29,18 @@ export default {
     }
   },
 
-  computed: {
-    // isActiveClass() {
-    // return this.category.name == this.selectedCategory;
-    // }
-  },
+  // methods: {
+  //     //    async fetchRecipesByCategoryName(categoryName) {
+  //     fetchRecipesByCategoryName(categoryName) {
+  //         // this.selectedCategory = categoryName;
+  //         this.isActive = !this.isActive;
+  //         // console.log(categoryName);
 
-  methods: {
-    //    async fetchRecipesByCategoryName(categoryName) {
-    fetchRecipesByCategoryName(categoryName) {
-      // this.selectedCategory = categoryName;
-      this.isActive = !this.isActive
-      // console.log(categoryName);
+  //         // this.$store.commit("recipes/SET_CATEGORY_NAME", categoryName);
 
-      // this.$store.commit("recipes/SET_CATEGORY_NAME", categoryName);
-
-      // await this.$store.dispatch('recipes/fetchRecipesByCategoryName', categoryName);
-    },
-  },
+  //         // await this.$store.dispatch('recipes/fetchRecipesByCategoryName', categoryName);
+  //     }
+  // }
 }
 </script>
 
