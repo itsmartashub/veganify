@@ -1,11 +1,4 @@
 <template>
-  <!-- <transition
-    name="loader"
-    enter-class="loader--enter"
-    enter-active-class="loader--enter-active"
-    enter-to-class="loader--enter-to"
-    leave-active-class="loader--leave"
-  > -->
   <transition name="loader" :duration="2000">
     <section class="loader" v-if="loading">
       <div class="loader__content">
@@ -29,12 +22,6 @@ export default {
       loading: true,
     }
   },
-
-  //   computed: {
-  //       loading() {
-  //           return false
-  //       }
-  //   },
   methods: {
     start() {
       this.loading = true

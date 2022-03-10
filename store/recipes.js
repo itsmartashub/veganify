@@ -28,34 +28,9 @@ export const state = () => ({
 })
 
 export const actions = {
-  async fetchRecipes({ commit, rootState }, { recipeNum }) {
-    try {
-      //! sa this.$axios.$get se dohvate podaci (data), a sa this.$axios.get (bez dollar sign ovo get) se dohvati response
-      const response = await this.$axios.get(
-        `recipes/complexSearch?apiKey=${rootState.apk.apik}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${recipeNum}`
-      )
-
-      // console.log(response);
-
-      const { results } = response.data
-      commit('SET_RECIPES', results)
-
-      if (response.statusText !== 'OK') throw new Error(`${response.status}`)
-    } catch (error) {
-      console.error(`${error} 💥💥💥`)
-      throw error
-    }
-  },
-
   findRecipeByID({ state, commit }, recipeID) {
     console.log(recipeID)
-    // if (!state.recipeItems[0]) return console.log('NEMA RECIPEITEMS !!!!')
     if (!state.mergedRecipes[0]) return console.log('NEMA mergedRecipes !!!!')
-
-    // let selectedRecipe = state.recipeItems.find(
-    //     recipe => recipe.id == recipeID
-    // );
-    // console.log(recipeID)
 
     let mergedArr = state.mergedRecipes
     let mergedRecLength = mergedArr.length
@@ -75,60 +50,14 @@ export const actions = {
     if (!selectedRecipe) return new Error('NEMA SELEKTOVANOG RECEPTA')
 
     commit('SET_RECIPE_ITEM', selectedRecipe)
-
-    // console.log(state.recipeItem)
-
-    // if (selectedRecipe) {
-    //   commit('SET_RECIPE_ITEM', selectedRecipe)
-    //   // debugger
-    //   // return selectedRecipe
-    // } else {
-    //   console.log('NEMA ITEMA')
-    // }
-    // // else {
-    // //   // selectedRecipe = rootState.smoothies.smoothieItems.find(
-    // //   //     smoothie => smoothie.id == recipeID
-    // //   // );
-    // //   selectedRecipe = state.smoothieItems.find(
-    // //     (smoothie) => smoothie.id == recipeID
-    // //   )
-    // //   commit('SET_RECIPE_ITEM', selectedRecipe)
-    // // }
   },
 
-  async fetchPopularRecipes({ commit, rootState }, { recipeNum }) {
+  async fetchSearchedRecipes({ state, commit }, { searchedTerm, isSmoothie }) {
+    let query = isSmoothie ? `${searchedTerm} smoothie` : searchedTerm
+
     try {
       const response = await this.$axios.get(
-        `recipes/complexSearch?apiKey=${rootState.apk.apik}&query=the most popular&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${recipeNum}`
-      )
-
-      const { results } = response.data
-      commit('SET_POPULAR_RECIPES', results)
-
-      if (response.statusText !== 'OK') throw new Error(`${response.status}`)
-    } catch (error) {
-      // console.log(err.response.data.code);
-      // Promise.reject(err);
-      console.error(`${error} 💥💥💥`)
-      throw error
-    }
-  },
-
-  findPopularRecipeByID({ state, commit }, recipeID) {
-    let selectedRecipe = state.popularRecipeItems.find(
-      (recipe) => recipe.id == recipeID
-    )
-
-    if (selectedRecipe) {
-      commit('SET_RECIPE_ITEM', selectedRecipe)
-      return selectedRecipe
-    }
-  },
-
-  async fetchSearchedRecipes({ state, commit }, { searchedTerm }) {
-    try {
-      const response = await this.$axios.get(
-        `recipes/complexSearch?apiKey=${state.apik}&query=${searchedTerm}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`
+        `recipes/complexSearch?apiKey=${state.apik}&query=${query}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`
       )
 
       // commit("SET_RECIPES", response.data.results);
@@ -139,31 +68,8 @@ export const actions = {
       if (response.statusText !== 'OK') throw new Error(`${response.status}`)
     } catch (error) {
       //TODO ako nema trazenog recepta da vidimo sta cemo
-      // console.log(error.response.data.message);
-      // Promise.reject(error);
       console.error(`${error} 💥💥💥`)
       commit('SET_API_ERR_MSG', error.message)
-      throw error
-    }
-  },
-
-  async fetchRecipesByCategoryName({ commit, rootState }, { categoryName }) {
-    try {
-      const response = await this.$axios.get(
-        `recipes/complexSearch?apiKey=${rootState.apk.apik}&query=${categoryName}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc`
-      )
-
-      const { results } = response.data
-
-      commit('SET_RECIPES', results)
-      commit('SET_CATEGORY_NAME', categoryName)
-      commit('SET_SCROLL_INTO_VIEW', {
-        _selector: '.categories > .hooper',
-      })
-
-      if (response.statusText !== 'OK') throw new Error(`${response.status}`)
-    } catch (error) {
-      console.error(`${error} 💥💥💥`)
       throw error
     }
   },
@@ -188,7 +94,7 @@ export const actions = {
         `recipes/complexSearch?apiKey=${state.apik}&query=${cat.name}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`
       )
     })
-
+    //! sa this.$axios.$get se dohvate podaci (data), a sa this.$axios.get (bez dollar sign ovo get) se dohvati response
     await Promise.all(endpoints.map((endpoint) => this.$axios.get(endpoint)))
       .then((response) => {
         commit('SET_RECIPES', response[0].data.results)
@@ -321,22 +227,14 @@ export const mutations = {
     ]
 
     state.categories.forEach((cat) => {
-      // cat.items.concat(concatArrs);
       concatArrs = concatArrs.concat(...cat.items)
     })
-    // state.mergedRecipes = new Set(concatArrs);
     state.mergedRecipes = [...new Set(concatArrs)]
     // state.mergedRecipes = concatArrs
-
-    // console.log(state.mergedRecipes)
   },
 
   // SET_SEARCHED_RECIPES(state, searchedRecipes) {
   //   state.searchedRecipeItems = searchedRecipes
-  // },
-
-  // setWinePairing(state, winePairing) {
-  //   state.winePairingItems = winePairing
   // },
 
   SET_CATEGORY_NAME(state, categoryName) {

@@ -128,31 +128,21 @@ export default {
   },
 
   methods: {
-    // async fetchRecipesByCategoryName(categoryName) {
-    //     // fetchRecipesByCategoryName(categoryName) {
-    //     this.selectedCategory = categoryName;
-
-    //     if (categoryName === "ALL") {
-    //        this.$store.commit("recipes/SET_ACTIVE_RECIPES", this.recipes);
-
-    //         this.$store.commit("recipes/SET_CATEGORY_NAME", "ALL RECIPES");
-    //         return;
-    //     }
-
-    //     await this.$store.dispatch("recipes/fetchRecipesByCategoryName", {
-    //         categoryName
-    //     });
-    // },
-
     getRecipesByCategoryName(categoryName) {
       if (categoryName === 'ALL') {
         this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.recipes)
         this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL RECIPES')
+        this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
+          _selector: '.categories > .hooper',
+        })
         return
       }
 
       this.$store.commit('recipes/SET_RECIPES_BY_CATEGORY_NAME', categoryName)
       this.$store.commit('recipes/SET_CATEGORY_NAME', categoryName)
+      this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
+        _selector: '.categories > .hooper',
+      })
     },
   },
 }

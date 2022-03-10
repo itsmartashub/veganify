@@ -7,7 +7,6 @@
 
       <div class="sidebarcard__btns">
         <span class="sidebarcard__time btn__label">
-          <!-- {{ sidebarRecipe.time }} min -->
           {{ sidebarRecipe.readyInMinutes }} min
         </span>
         <span class="sidebarcard__review btn__label--outline" v-if="isReview">
@@ -45,7 +44,7 @@
     <figure class="sidebarcard__figure sidebarcard__right">
       <img
         :src="sidebarRecipe.image"
-        :alt="sidebarRecipe.title"
+        :alt="sidebarRecipe.title | altFormatting(sidebarRecipe.title)"
         class="sidebarcard__img"
       />
     </figure>

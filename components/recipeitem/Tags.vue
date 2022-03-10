@@ -78,12 +78,6 @@
 
 <script>
 export default {
-  // props: {
-  //     recipeItem: {
-  //         type: Object,
-  //         required: true
-  //     },
-  // },
   computed: {
     recipeItem() {
       return this.$store.state.recipes.recipeItem
@@ -91,5 +85,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped></style>

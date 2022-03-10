@@ -1,10 +1,9 @@
 <template>
   <article class="recipeitem__showcase showcase">
     <figure class="showcase__figure">
-      <!-- <img src="/img/img-1.jpg" alt="" class="showcase__img" /> -->
       <img
         :src="recipeItem.image"
-        :alt="recipeItem.title"
+        :alt="recipeItem.title | altFormatting(recipeItem.title)"
         class="showcase__img"
       />
     </figure>

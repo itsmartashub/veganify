@@ -50,7 +50,6 @@ export default {
   //       required: true,
   //     },
   //   },
-  transition: 'page',
   data() {
     return {
       components: [
@@ -77,6 +76,7 @@ export default {
     },
   },
   created() {
+    if (!this.recipeItem) return console.log('LLALALLALALLA')
     // this.$store.commit('recipes/SET_RECIPE_ITEM', this.$route.params.id)
 
     if (!this.recipeItem?.extendedIngredients[0]) {

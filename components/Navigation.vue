@@ -1,6 +1,5 @@
 <template>
   <aside class="navigation">
-    <!-- <h1>NAVIGATION</h1> -->
     <a href="/" class="navigation__logowrapper">
       <Logo />
       <p class="logo__veganify">
@@ -180,15 +179,6 @@
 
 <script>
 export default {
-  // head() {
-  //     return {
-  //         bodyAttrs: {
-  //             // "data-theme": this.IS_DARK ? "dark" : ""
-  //             "data-theme": this.$store.state.apk.isDark ? "dark" : ""
-  //         }
-  //     };
-  // },
-
   computed: {
     darkTheme() {
       return this.$store.state.apk.isDark

@@ -5,7 +5,11 @@
     tabindex="0"
   >
     <figure class="recipecard__figure">
-      <img :src="recipe.image" :alt="recipe.title" class="recipecard__img" />
+      <img
+        :src="recipe.image"
+        :alt="recipe.title | altFormatting(recipe.title)"
+        class="recipecard__img"
+      />
     </figure>
 
     <div class="recipecard__body">
@@ -96,8 +100,6 @@
 
 <script>
 import randomLikes from '~/utils/randomLikes.js'
-// import altSeo from '~/utils/altSeo.js'
-// import shared from "~/mixins/shared";
 
 export default {
   props: {
@@ -128,7 +130,7 @@ export default {
     randomLikes,
 
     navigateToRecipeItem(recipe) {
-      if (!recipe) return console.log(recipe)
+      if (!recipe) return console.log('THERE IS NO RECIPE', { recipe })
 
       this.$router.push(`/recipe/${recipe.id}`)
     },
