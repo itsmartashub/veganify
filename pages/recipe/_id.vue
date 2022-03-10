@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  layout: 'recipeitem',
+  // layout: 'recipeitem',
 
   computed: {
     // recipeItem() {

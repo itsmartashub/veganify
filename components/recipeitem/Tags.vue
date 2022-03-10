@@ -1,6 +1,6 @@
 <template>
   <ul class="recipeitem__tags tags">
-    <li class="tag">
+    <li class="tag" v-if="recipeItem.servings">
       <div class="tag__icon-wrapper">
         <svg
           class="tag__svg"
@@ -25,7 +25,7 @@
         </p>
       </div>
     </li>
-    <li class="tag">
+    <li class="tag" v-if="recipeItem.readyInMinutes">
       <div class="tag__icon-wrapper">
         <svg
           class="tag__svg"

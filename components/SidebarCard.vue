@@ -70,7 +70,7 @@ export default {
     randomLikes,
 
     navigateToRecipeItem(recipe) {
-      this.$store.dispatch('recipes/findPopularRecipeByID', recipe.id)
+      // this.$store.dispatch('recipes/findPopularRecipeByID', recipe.id)
       this.$router.push(`/recipe/${recipe.id}`)
     },
   },

@@ -74,7 +74,7 @@ export const actions = {
     }
   },
 
-  async promiseAllFn({ state, commit }, apik) {
+  async promiseAllFn({ state, commit, dispatch }, apik) {
     let endpoints = [
       // All Recipes
       `recipes/complexSearch?apiKey=${state.apik}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`,
@@ -111,7 +111,8 @@ export const actions = {
           { name: 'burger', items: response[8].data.results },
         ])
 
-        commit('SET_MERGED_RECIPES')
+        // commit('SET_MERGED_RECIPES')
+        dispatch('mergeRecipes')
       })
       .catch((errors) => {
         commit('SET_API_ERR_MSG', errors.message)
@@ -188,6 +189,40 @@ export const actions = {
       throw error
     }
   },
+
+  setActiveRecipesByCategoryName({ state, commit }, categoryName) {
+    let catArr = state.categories
+    let catArrLength = catArr.length
+    let newArr
+
+    for (let i = 0; i < catArrLength; i++) {
+      if (catArr[i].name == categoryName) {
+        newArr = catArr[i].items
+        commit('SET_ACTIVE_RECIPES', newArr)
+        // state.activeRecipes = catArr[i].items
+        break
+      }
+
+      commit('SET_CATEGORY_NAME', categoryName)
+      commit('SET_SCROLL_INTO_VIEW', { _selector: '.categories > .hooper' })
+    }
+  },
+
+  mergeRecipes({ state, commit }) {
+    let concatArrs = [
+      ...state.recipeItems,
+      ...state.activeRecipes,
+      ...state.smoothieItems,
+      ...state.popularRecipeItems,
+      ...state.popularSmoothieItems,
+    ]
+
+    state.categories.forEach((cat) => {
+      concatArrs = concatArrs.concat(...cat.items)
+    })
+    commit('SET_MERGED_RECIPES', [...new Set(concatArrs)])
+    // state.mergedRecipes = [...new Set(concatArrs)]
+  },
 }
 
 export const mutations = {
@@ -211,26 +246,26 @@ export const mutations = {
     state.popularSmoothieItems = popularSmoothies
   },
 
-  SET_MERGED_RECIPES(state) {
+  SET_MERGED_RECIPES(state, mergedRecipes) {
     // let concatArrs = state.recipeItems
     //     .concat(state.activeRecipes)
     //     .concat(state.smoothieItems)
     //     .concat(state.popularRecipeItems)
     //     .concat(state.popularSmoothieItems);
 
-    let concatArrs = [
-      ...state.recipeItems,
-      ...state.activeRecipes,
-      ...state.smoothieItems,
-      ...state.popularRecipeItems,
-      ...state.popularSmoothieItems,
-    ]
+    // let concatArrs = [
+    //   ...state.recipeItems,
+    //   ...state.activeRecipes,
+    //   ...state.smoothieItems,
+    //   ...state.popularRecipeItems,
+    //   ...state.popularSmoothieItems,
+    // ]
 
-    state.categories.forEach((cat) => {
-      concatArrs = concatArrs.concat(...cat.items)
-    })
-    state.mergedRecipes = [...new Set(concatArrs)]
-    // state.mergedRecipes = concatArrs
+    // state.categories.forEach((cat) => {
+    //   concatArrs = concatArrs.concat(...cat.items)
+    // })
+    // state.mergedRecipes = [...new Set(concatArrs)]
+    state.mergedRecipes = mergedRecipes
   },
 
   // SET_SEARCHED_RECIPES(state, searchedRecipes) {
@@ -240,19 +275,21 @@ export const mutations = {
   SET_CATEGORY_NAME(state, categoryName) {
     state.categoryName = categoryName
   },
-  SET_CATEGORIES(state, categoriesArr) {
-    state.categories = categoriesArr
-  },
+  SET_ACTIVE_RECIPES_BY_CATEGORY_NAME(state, categoryName) {
+    // state.categoryName = categoryName
 
-  SET_RECIPES_BY_CATEGORY_NAME(state, categoryName) {
     let catArr = state.categories
     let catArrLength = catArr.length
 
     for (let i = 0; i < catArrLength; i++) {
       if (catArr[i].name == categoryName) {
-        return (state.activeRecipes = catArr[i].items)
+        state.activeRecipes = catArr[i].items
+        break
       }
     }
+  },
+  SET_CATEGORIES(state, categoriesArr) {
+    state.categories = categoriesArr
   },
 
   SET_RANDOM_TRIVIA_ITEM(state, randomTriviaText) {

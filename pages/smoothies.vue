@@ -5,6 +5,7 @@
     <main class="middle">
       <Header />
       <RecipeCards :activeRecipes="smoothies" />
+      <!-- <RecipeCards /> -->
     </main>
 
     <Sidebar :popularRecipes="popularSmoothies" />
@@ -35,6 +36,10 @@ export default {
       // return this.$store.state.smoothies.popularSmoothieItems;
       return this.$store.state.recipes.popularSmoothieItems
     },
+  },
+
+  created() {
+    this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.smoothies)
   },
 }
 </script>

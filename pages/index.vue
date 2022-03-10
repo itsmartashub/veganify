@@ -37,12 +37,19 @@ export default {
     activeRecipes() {
       return this.$store.state.recipes.activeRecipes
     },
+    recipeItems() {
+      return this.$store.state.recipes.recipeItems
+    },
     categoryName() {
       return this.$store.state.recipes.categoryName
     },
     err402() {
       return this.$store.state.recipes.err402
     },
+  },
+
+  created() {
+    this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.recipeItems)
   },
 
   mounted() {

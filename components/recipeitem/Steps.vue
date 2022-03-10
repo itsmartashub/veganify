@@ -1,5 +1,5 @@
 <template>
-  <div class="steps">
+  <div class="steps" v-if="recipeItem.analyzedInstructions">
     <template v-for="step in recipeItem.analyzedInstructions[0].steps">
       <div class="step" :key="step.step">
         <span class="step__count">{{ step.number }}</span>

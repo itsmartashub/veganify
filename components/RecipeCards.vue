@@ -53,7 +53,9 @@ export default {
   props: {
     activeRecipes: {
       type: Array,
-      required: true,
+      default: function () {
+        return this.$store.state.recipes.activeRecipes
+      },
     },
   },
 
@@ -139,7 +141,6 @@ export default {
   mounted() {
     this.$nextTick(() => {
       // this.toggleScrollInto()
-      // this.$store.commit('recipes/SET_MERGED_RECIPES')
     })
   },
 }

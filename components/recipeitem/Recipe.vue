@@ -24,6 +24,7 @@
           class="recipeitem__breadcrumb"
           :class="{ 'recipeitem--active': componentIndex === 1 }"
           @click="changeActiveComponent(1)"
+          v-if="recipeItem.analyzedInstructions"
         >
           Recipe steps
         </p>
@@ -79,7 +80,7 @@ export default {
     if (!this.recipeItem) return console.log('LLALALLALALLA')
     // this.$store.commit('recipes/SET_RECIPE_ITEM', this.$route.params.id)
 
-    if (!this.recipeItem?.extendedIngredients[0]) {
+    if (!this.recipeItem?.extendedIngredients?.[0]) {
       this.componentIndex = 1
     }
     // console.log(this.recipeItem)

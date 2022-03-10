@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar">
-    <h3 class="sidebar__title" v-if="popularRecipes.length">
+    <h3 class="sidebar__title" v-if="popularRecipes[0]">
       <span>THE MOST</span>
       <span>POPULAR</span>
     </h3>
@@ -19,13 +19,13 @@
             </template> -->
       <template v-for="sidebarRecipe in popularRecipes">
         <SidebarCard
-          :key="sidebarRecipe.image"
+          :key="sidebarRecipe.title"
           :sidebarRecipe="sidebarRecipe"
         />
       </template>
 
       <!-- <p class="sidebar__norecipes" v-if="!popularRecipes.length">🕵🏻</p> -->
-      <div class="sidebar__norecipes" v-if="!popularRecipes.length">
+      <div class="sidebar__norecipes" v-if="!popularRecipes[0]">
         <p>The plate looks so empty right now. 😶</p>
         <p>🍽️</p>
       </div>

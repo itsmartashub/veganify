@@ -1,5 +1,5 @@
 <template>
-  <div class="ingredients">
+  <div class="ingredients" v-if="recipeItem.extendedIngredients">
     <div class="ingredients__pics">
       <Hooper :settings="hooperSettings">
         <template v-for="(ingredient, index) in recipeItem.extendedIngredients">
