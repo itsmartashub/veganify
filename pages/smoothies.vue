@@ -4,7 +4,8 @@
 
     <main class="middle">
       <Header />
-      <RecipeCards :activeRecipes="smoothies" />
+      <!-- <RecipeCards :activeRecipes="smoothies" /> -->
+      <RecipeCards :activeRecipes="activeRecipes" />
       <!-- <RecipeCards /> -->
     </main>
 
@@ -28,6 +29,10 @@ export default {
   },
 
   computed: {
+    activeRecipes() {
+      // return this.$store.state.smoothies.smoothieItems;
+      return this.$store.state.recipes.activeRecipes
+    },
     smoothies() {
       // return this.$store.state.smoothies.smoothieItems;
       return this.$store.state.recipes.smoothieItems

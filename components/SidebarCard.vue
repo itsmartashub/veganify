@@ -71,7 +71,8 @@ export default {
 
     navigateToRecipeItem(recipe) {
       // this.$store.dispatch('recipes/findPopularRecipeByID', recipe.id)
-      this.$router.push(`/recipe/${recipe.id}`)
+      // this.$router.push(`/recipe/${recipe.id}`)
+      this.$store.dispatch('recipes/navigateToRecipe', recipe)
     },
   },
 }

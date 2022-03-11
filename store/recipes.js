@@ -43,16 +43,15 @@ export const actions = {
       }
     }
 
-    // let selectedRecipe = state.mergedRecipes.find(
-    //   (recipe) => recipe.id == recipeID
-    // )
-
     if (!selectedRecipe) return new Error('NEMA SELEKTOVANOG RECEPTA')
 
     commit('SET_RECIPE_ITEM', selectedRecipe)
   },
 
-  async fetchSearchedRecipes({ state, commit }, { searchedTerm, isSmoothie }) {
+  async fetchSearchedRecipes(
+    { state, commit, dispatch },
+    { searchedTerm, isSmoothie = false }
+  ) {
     let query = isSmoothie ? `${searchedTerm} smoothie` : searchedTerm
 
     try {
@@ -60,17 +59,32 @@ export const actions = {
         `recipes/complexSearch?apiKey=${state.apik}&query=${query}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`
       )
 
-      // commit("SET_RECIPES", response.data.results);
+      if (!response.status === 200)
+        throw new Error(`Something's wrong. ${response.status}`)
+
+      if (!response.data.results[0])
+        commit(
+          'SET_NOTIFY',
+          `<p>There is no required item 😶 </p>
+          <p>Please, try something else 🍽️</p>`
+        )
+
       commit('SET_ACTIVE_RECIPES', response.data.results)
       commit('SET_CATEGORY_NAME', searchedTerm)
       commit('SET_SCROLL_INTO_VIEW', { _selector: '.recipecards' })
-
-      if (response.statusText !== 'OK') throw new Error(`${response.status}`)
+      dispatch('mergeRecipes')
     } catch (error) {
       //TODO ako nema trazenog recepta da vidimo sta cemo
       console.error(`${error} 💥💥💥`)
       commit('SET_API_ERR_MSG', error.message)
-      throw error
+
+      if (
+        state.apiErrMsg == 'Request failed with status code 402' ||
+        state.apiErrMsg == 'Request failed with status code 401'
+      ) {
+        await dispatch('ifErr402', process.env.API_SECRET_RESERVE_9_SISSY)
+      }
+      // throw error
     }
   },
 
@@ -119,8 +133,7 @@ export const actions = {
       })
   },
 
-  async fetchAllInOnce({ commit, dispatch, state, rootState }) {
-    // let apik = process.env.API_SECRET_DEFAULT;
+  async fetchAllInOnce({ commit, dispatch, state }) {
     commit('SET_APIK', process.env.API_SECRET_DEFAULT)
 
     await dispatch('promiseAllFn')
@@ -160,8 +173,8 @@ export const actions = {
     commit(
       'SET_NOTIFY',
       `
-            <p>Guess you won't be <b>VEGANIFEED</b> today 😡 </p>
-            <p>I'm so sorry, this is the free app and there're no more free <a href='https://spoonacular.com/food-api/' >Spoonacular API</a> calls 😭</p>
+            <p>Guess you won't be <b>VEGANIFEED</b> today 😡 But try to refresh the App. </p>
+            <p>I'm so sorry, this is the free app and there're no more free <a href='https://spoonacular.com/food-api/'>Spoonacular API</a> calls 😭</p>
             <p>Is it impossible to give me the chance again tomorrow? 👩🏼‍🍳</p>
             <p>All these recipes and much more can be found on the <a href='https://spoonacular.com/recipes'>Spoonacular website</a> 🥕</p>
             `
@@ -222,6 +235,13 @@ export const actions = {
     })
     commit('SET_MERGED_RECIPES', [...new Set(concatArrs)])
     // state.mergedRecipes = [...new Set(concatArrs)]
+  },
+
+  navigateToRecipe({ state }, recipe) {
+    let slug = recipe.title.trim().toLowerCase().replaceAll(' ', '-')
+
+    // this.$router.push(`/recipe/${recipe.id}`)
+    this.$router.push(`/recipe/${recipe.id}/${slug}`)
   },
 }
 

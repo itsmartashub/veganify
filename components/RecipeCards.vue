@@ -1,6 +1,7 @@
 <template>
   <section class="recipecards" id="recipecards">
     <p>{{ scrollTop }}</p>
+
     <h2
       class="recipecards__title"
       v-if="!($route.name == 'bookmarks' || $route.name == 'smoothies')"

@@ -52,8 +52,7 @@ export default {
     async submitSearch() {
       if (!this.searchInput || this.searchInput.trim() === '') return
 
-      // if(this.$route.name !== '')
-      console.log(this.$route.name)
+      this.searchInput = this.searchInput.replaceAll(/[$.]+/g, '')
 
       if (this.$route.name === 'smoothies') {
         await this.$store.dispatch('recipes/fetchSearchedRecipes', {
@@ -66,7 +65,6 @@ export default {
       //todo fetch searched term
       await this.$store.dispatch('recipes/fetchSearchedRecipes', {
         searchedTerm: this.searchInput,
-        isSmoothie: false,
       })
       //todo set searched array
     },

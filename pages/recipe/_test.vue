@@ -1,7 +1,7 @@
 <template>
   <main class="recipeitem" ref="recipeitem">
     <div class="recipeitem__btn-wrapper" ref="recipeitem_btnwrapper">
-      <button class="recipeitem__btn-back btn" @click="goBack()">
+      <!-- <button class="recipeitem__btn-back btn" @click="goBack()">
         <div class="icontainer--bggreen">
           <svg
             class="icon icon-arrowLeft icontainer__icon"
@@ -15,7 +15,10 @@
           </svg>
         </div>
         BACK
-      </button>
+      </button> -->
+      <transition name="slideLeft">
+        <BtnBack v-if="isMounted" />
+      </transition>
     </div>
 
     <!-- <RecipeitemRecipe :recipeItem="recipeItem" /> -->
@@ -27,26 +30,21 @@
 
 <script>
 export default {
-  // layout: 'recipeitem',
+  layout: 'recipeitem',
 
-  computed: {
-    // recipeItem() {
-    //   return this.$store.state.recipes.recipeItem
-    // },
-    // randomTriviaItem() {
-    //   return this.$store.state.recipes.randomTriviaItem
-    // },
-  },
-
-  methods: {
-    goBack() {
-      this.$router.back()
-    },
+  data() {
+    return {
+      isMounted: false,
+    }
   },
 
   created() {
     if (!this.$route.params.id) return
     this.$store.dispatch('recipes/findRecipeByID', this.$route.params.id)
+  },
+
+  mounted() {
+    this.$nextTick(() => (this.isMounted = true))
   },
 }
 </script>

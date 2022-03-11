@@ -130,9 +130,13 @@ export default {
     randomLikes,
 
     navigateToRecipeItem(recipe) {
-      if (!recipe) return console.log('THERE IS NO RECIPE', { recipe })
+      // if (!recipe) return console.log('THERE IS NO RECIPE', { recipe })
+      // let slug = recipe.title.trim().toLowerCase().replaceAll(' ', '-')
 
-      this.$router.push(`/recipe/${recipe.id}`)
+      // // this.$router.push(`/recipe/${recipe.id}`)
+      // this.$router.push(`/recipe/${slug}`)
+
+      this.$store.dispatch('recipes/navigateToRecipe', recipe)
     },
 
     toggleBookmark() {

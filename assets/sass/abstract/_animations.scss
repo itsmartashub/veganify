@@ -6,14 +6,27 @@
   opacity: 0;
   transform: scale(0.7) translate3d(0, 100%, 0);
 }
-
 .recipecard-enter-to {
   opacity: 1;
   transform: scale(1) translate3d(0, 0%, 0);
 }
-
 .recipecard-leave-active {
   transition: transform 0.2s ease, opacity 0.2s linear;
+}
+
+.title-enter-active {
+  transition: transform 0.6s $outBack, opacity 0.6s linear;
+}
+.title-leave {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+}
+.title-enter {
+  opacity: 1;
+  transform: translate3d(0, 0%, 0);
+}
+.title-leave-active {
+  transition: transform 0.5s ease, opacity 0.5s linear;
 }
 
 // .recipecard-enter-active {
@@ -35,8 +48,11 @@
 
 .page-enter-active {
   will-change: transform, opacity;
-  transition: transform 1s $outCirc, opacity 0.8s linear;
+  transition: transform 1s $outCirc, opacity 0.6s linear;
   backface-visibility: hidden;
+}
+.page-leave-active {
+  will-change: transform, opacity;
 }
 
 // .page-leave-active {
@@ -80,3 +96,15 @@
 // //   //   opacity: 0;
 // //   transform: translate3d(0, 100%, 0);
 // // }
+
+.slideLeft-enter-active {
+  will-change: transform;
+  transition: transform 1.3s $outCirc !important;
+  backface-visibility: hidden;
+}
+.slideLeft-enter {
+  transform: translate3d(-100%, 0, 0);
+}
+.slideLeft-enter-to {
+  transform: translate3d(0, 0, 0);
+}
