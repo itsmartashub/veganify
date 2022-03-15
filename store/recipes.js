@@ -138,7 +138,7 @@ export const actions = {
 
     await dispatch('promiseAllFn')
 
-    console.error(state.apiErrMsg)
+    // console.error(state.apiErrMsg)
 
     if (state.apiErrMsg == 'Request failed with status code 402') {
       await dispatch('ifErr402', process.env.API_SECRET_RESERVE_1)
@@ -200,24 +200,6 @@ export const actions = {
     } catch (error) {
       console.error(`${error} 💥💥💥`)
       throw error
-    }
-  },
-
-  setActiveRecipesByCategoryName({ state, commit }, categoryName) {
-    let catArr = state.categories
-    let catArrLength = catArr.length
-    let newArr
-
-    for (let i = 0; i < catArrLength; i++) {
-      if (catArr[i].name == categoryName) {
-        newArr = catArr[i].items
-        commit('SET_ACTIVE_RECIPES', newArr)
-        // state.activeRecipes = catArr[i].items
-        break
-      }
-
-      commit('SET_CATEGORY_NAME', categoryName)
-      commit('SET_SCROLL_INTO_VIEW', { _selector: '.categories > .hooper' })
     }
   },
 

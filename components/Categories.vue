@@ -133,7 +133,7 @@ export default {
         this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.recipes)
         this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL RECIPES')
         this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
-          _selector: '.categories > .hooper',
+          _selector: '.recipecards',
         })
         return
       }
@@ -143,6 +143,9 @@ export default {
         categoryName
       )
       this.$store.commit('recipes/SET_CATEGORY_NAME', categoryName)
+      // this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
+      //   _selector: '.recipecards',
+      // })
       this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
         _selector: '.categories > .hooper',
       })

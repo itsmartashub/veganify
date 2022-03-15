@@ -14,15 +14,15 @@ export default {
       },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      // { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
-      // {
-      //   rel: 'stylesheet',
-      //   href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap',
-      // },
-    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+
+  // vue: {
+  //   config: {
+  //     productionTip: true,
+  //     devtools: false,
+  //   },
+  // },
 
   components: true,
 
@@ -35,11 +35,7 @@ export default {
   plugins: ['~/plugins/fetchrecipes.server.js', '~/plugins/filters.js'],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    '@nuxtjs/google-fonts',
-    // With options
-    //  ['@nuxtjs/google-fonts', { /* module options */ }]
-  ],
+  buildModules: ['@nuxtjs/google-fonts'],
 
   googleFonts: {
     families: {
