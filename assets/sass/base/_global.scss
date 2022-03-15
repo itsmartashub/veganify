@@ -35,8 +35,9 @@ body {
 }
 
 ::selection {
-  background: var(--clr_accent);
-  color: var(--clr_accent_to_dark);
+  // background: var(--clr_accent);
+  background: hsl(165, 88%, 55%);
+  color: var(--clr_black);
 }
 
 a {

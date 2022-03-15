@@ -30,7 +30,7 @@ export const state = () => ({
 export const actions = {
   findRecipeByID({ state, commit }, recipeID) {
     console.log(recipeID)
-    if (!state.mergedRecipes[0]) return console.log('NEMA mergedRecipes !!!!')
+    if (!state.mergedRecipes[0]) return this.$router.push('/')
 
     let mergedArr = state.mergedRecipes
     let mergedRecLength = mergedArr.length
@@ -43,7 +43,7 @@ export const actions = {
       }
     }
 
-    if (!selectedRecipe) return new Error('NEMA SELEKTOVANOG RECEPTA')
+    if (!selectedRecipe) return this.$router.push('/')
 
     commit('SET_RECIPE_ITEM', selectedRecipe)
   },
@@ -78,12 +78,12 @@ export const actions = {
       console.error(`${error} 💥💥💥`)
       commit('SET_API_ERR_MSG', error.message)
 
-      if (
-        state.apiErrMsg == 'Request failed with status code 402' ||
-        state.apiErrMsg == 'Request failed with status code 401'
-      ) {
-        await dispatch('ifErr402', process.env.API_SECRET_RESERVE_9_SISSY)
-      }
+      // if (
+      //   state.apiErrMsg == 'Request failed with status code 402' ||
+      //   state.apiErrMsg == 'Request failed with status code 401'
+      // ) {
+      //   await dispatch('ifErr402', process.env.API_SECRET_RESERVE_9_SISSY)
+      // }
       // throw error
     }
   },

@@ -16,11 +16,11 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap',
-      },
+      // { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+      // {
+      //   rel: 'stylesheet',
+      //   href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap',
+      // },
     ],
   },
 
@@ -35,7 +35,22 @@ export default {
   plugins: ['~/plugins/fetchrecipes.server.js', '~/plugins/filters.js'],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: [
+    '@nuxtjs/google-fonts',
+    // With options
+    //  ['@nuxtjs/google-fonts', { /* module options */ }]
+  ],
+
+  googleFonts: {
+    families: {
+      // basic
+      Poppins: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      prefetch: true,
+      preconnect: true,
+      preload: true,
+      useStylesheet: true,
+    },
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -49,8 +64,13 @@ export default {
     baseURL: 'https://api.spoonacular.com/',
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    transpile: ['gsap'],
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '*',
+        redirect: '/',
+        component: resolve(__dirname, 'pages/index.vue'),
+      })
+    },
   },
 }

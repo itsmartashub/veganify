@@ -108,3 +108,39 @@
 .slideLeft-enter-to {
   transform: translate3d(0, 0, 0);
 }
+
+//? Active Component - RecipeitemSteps or RecipeitemIngredients
+.recipesteps-enter {
+  transform: translate3d(5rem, 0, 0);
+}
+.recipesteps-leave-to {
+  transform: translate3d(-5rem, 0, 0);
+}
+
+.ingredients-enter {
+  transform: translate3d(-5rem, 0, 0);
+}
+.ingredients-leave-to {
+  transform: translate3d(5rem, 0, 0);
+}
+
+//! activeComponent - shared:
+.recipesteps-enter-active,
+.ingredients-enter-active {
+  transition: all 0.4s $outSmooth;
+}
+.recipesteps-enter-to,
+.ingredients-enter-to {
+  opacity: 1;
+  transform: translate3d(0, 0%, 0);
+}
+.recipesteps-leave-active,
+.ingredients-leave-active {
+  transition: all 0.25s $outSmooth;
+}
+.recipesteps-enter,
+.recipesteps-leave-to,
+.ingredients-enter,
+.ingredients-leave-to {
+  opacity: 0;
+}

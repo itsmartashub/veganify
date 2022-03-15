@@ -31,6 +31,7 @@
 <script>
 export default {
   layout: 'recipeitem',
+  middleware: ['redirect'],
 
   data() {
     return {
@@ -38,10 +39,10 @@ export default {
     }
   },
 
-  created() {
-    if (!this.$route.params.id) return
-    this.$store.dispatch('recipes/findRecipeByID', this.$route.params.id)
-  },
+  // created() {
+  //   if (!this.$route.params.id) return
+  //   this.$store.dispatch('recipes/findRecipeByID', this.$route.params.id)
+  // },
 
   mounted() {
     this.$nextTick(() => (this.isMounted = true))

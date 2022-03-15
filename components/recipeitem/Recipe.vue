@@ -38,7 +38,16 @@
         </p>
       </header>
 
-      <component :is="activeComponent" />
+      <transition
+        :name="
+          activeComponent === 'RecipeitemIngredients'
+            ? 'ingredients'
+            : 'recipesteps'
+        "
+        mode="out-in"
+      >
+        <component :is="activeComponent" />
+      </transition>
     </section>
   </div>
 </template>

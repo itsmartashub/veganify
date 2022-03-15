@@ -6,7 +6,7 @@
   width: 100%;
   min-height: 100vh;
   @extend %flex-center;
-  z-index: 100000;
+  z-index: 3000;
   background: var(--clr_grd_bg);
   // transition: transform 1.5s $outSmooth, background 0.5s linear;
   transition: background 0.5s linear;

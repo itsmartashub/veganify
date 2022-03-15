@@ -1,3 +1,54 @@
 .bookmarks {
-    @extend .home;
+  @extend .home;
+}
+
+.nobookmarks {
+  grid-area: mid;
+  align-content: center;
+  place-items: center;
+  grid-gap: 5vh;
+
+  &__svgwrapper {
+    --size: 13rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 3.5rem;
+    display: grid;
+    place-items: center;
+    background: var(--clr_accent_light);
+    box-shadow: var(--box_shadow_accent);
+  }
+
+  svg {
+    width: 6rem;
+    fill: var(--clr_accent);
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+
+    span {
+      font-size: 4rem;
+    }
+  }
+  &__subtitle {
+    font-size: 4rem;
+    font-weight: 500;
+  }
+  // width: 100%;
+  &__title,
+  &__subtitle {
+    text-align: center;
+    color: var(--clr_accent);
+  }
+  // height: 100%;
+
+  // h1 {
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  // }
 }

@@ -26,7 +26,7 @@
         smoothies
       </h3>
       <h4 class="recipecard__title">
-        {{ recipe.title | truncateTxt(35) }}
+        {{ recipe.title.toLowerCase() | truncateTxt(35) }}
       </h4>
     </div>
 

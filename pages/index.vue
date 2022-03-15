@@ -14,6 +14,8 @@
 
 <script>
 export default {
+  scrollToTop: false,
+
   head() {
     return {
       title: 'Veganify | Home',
