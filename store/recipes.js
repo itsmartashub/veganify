@@ -29,7 +29,6 @@ export const state = () => ({
 
 export const actions = {
   findRecipeByID({ state, commit }, recipeID) {
-    console.log(recipeID)
     if (!state.mergedRecipes[0]) return this.$router.push('/')
 
     let mergedArr = state.mergedRecipes
@@ -213,10 +212,47 @@ export const actions = {
     ]
 
     state.categories.forEach((cat) => {
-      concatArrs = concatArrs.concat(...cat.items)
+      concatArrs = concatArrs.concat(cat.items)
     })
-    commit('SET_MERGED_RECIPES', [...new Set(concatArrs)])
-    // state.mergedRecipes = [...new Set(concatArrs)]
+
+    //? PRIMER 1: samo itemi sa unikatnim id, znatno najbrze
+    // console.time()
+    const seen = new Set()
+    const filteredArr = concatArrs.filter((el) => {
+      const duplicate = seen.has(el.id)
+      seen.add(el.id)
+      return !duplicate
+    })
+    // console.timeEnd()
+
+    // //? PRIMER 2: samo itemi sa unikatnim id
+    // console.time()
+    // const unique = Array.from(
+    //   new Set(concatArrs.map((concatItem) => concatItem.id))
+    // ).map((id) => {
+    //   return concatArrs.find((conItem) => conItem.id === id)
+    // })
+    // console.timeEnd()
+
+    // //? PRIMER 3: samo itemi sa unikatnim id
+    // console.time()
+    // const filteredArr2 = concatArrs.reduce((acc, current) => {
+    //   const x = acc.find((item) => item.id === current.id)
+    //   if (!x) {
+    //     return acc.concat([current])
+    //   } else {
+    //     return acc
+    //   }
+    // }, [])
+    // console.timeEnd()
+
+    commit('SET_MERGED_RECIPES', filteredArr)
+
+    // console.log('concatArrs: ', concatArrs.length)
+    // console.log('unique: ', unique.length)
+    // console.log('filteredArr: ', filteredArr.length)
+    // console.log('filteredArr2: ', filteredArr2.length)
+    // console.log('state.mergedRecipes: ', state.mergedRecipes.length)
   },
 
   navigateToRecipe({ state }, recipe) {
@@ -249,24 +285,6 @@ export const mutations = {
   },
 
   SET_MERGED_RECIPES(state, mergedRecipes) {
-    // let concatArrs = state.recipeItems
-    //     .concat(state.activeRecipes)
-    //     .concat(state.smoothieItems)
-    //     .concat(state.popularRecipeItems)
-    //     .concat(state.popularSmoothieItems);
-
-    // let concatArrs = [
-    //   ...state.recipeItems,
-    //   ...state.activeRecipes,
-    //   ...state.smoothieItems,
-    //   ...state.popularRecipeItems,
-    //   ...state.popularSmoothieItems,
-    // ]
-
-    // state.categories.forEach((cat) => {
-    //   concatArrs = concatArrs.concat(...cat.items)
-    // })
-    // state.mergedRecipes = [...new Set(concatArrs)]
     state.mergedRecipes = mergedRecipes
   },
 
@@ -278,13 +296,11 @@ export const mutations = {
     state.categoryName = categoryName
   },
   SET_ACTIVE_RECIPES_BY_CATEGORY_NAME(state, categoryName) {
-    // state.categoryName = categoryName
-
     let catArr = state.categories
     let catArrLength = catArr.length
 
     for (let i = 0; i < catArrLength; i++) {
-      if (catArr[i].name == categoryName) {
+      if (catArr[i].name === categoryName) {
         state.activeRecipes = catArr[i].items
         break
       }

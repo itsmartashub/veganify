@@ -58,9 +58,6 @@ export default {
     bookmarks() {
       return this.$store.state.bookmarks.bookmarksRecipes
     },
-    // bookmarkCategory() {
-    //     return this.$store.state.bookmarks.bookmarkCategory;
-    // }
   },
 
   mounted() {

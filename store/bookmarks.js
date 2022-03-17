@@ -6,30 +6,27 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_BOOKMARKS_IDS: (state, bids) => {
+  SET_BOOKMARKS_IDS(state, bids) {
     state.bookmarksIDs = bids
   },
-  ADD_BOOKMARK_ID: (state, { recipeID, recipe }) => {
+  ADD_BOOKMARK_ID(state, { recipeID, recipe }) {
     state.bookmarksIDs.push(recipeID)
     state.bookmarksRecipes.push(recipe)
   },
-  REMOVE_BOOKMARK_ID: (state, { indexOfID, recipeID }) => {
+  REMOVE_BOOKMARK_ID(state, { indexOfID, recipeID }) {
     state.bookmarksIDs.splice(indexOfID, 1)
 
     state.bookmarksRecipes = state.bookmarksRecipes.filter(
       (recipe) => recipe.id !== recipeID
     )
   },
-  SET_BOOKMARKS_RECIPES: (state, recipes) => {
+  SET_BOOKMARKS_RECIPES(state, recipes) {
     state.bookmarksRecipes = recipes
   },
 
-  // SET_ALL_BOOKMARKS_RECIPES: (state) => {
-  //   state.bookmarksAllRecipes = [
-  //     ...bookmarksRecipes,
-  //     ...bookmarksSmoothieRecipes,
-  //   ]
-  // },
+  LS_SET_BOOKMARKS_IDS(state) {
+    localStorage.setItem('bookmarks_ids', JSON.stringify(state.bookmarksIDs))
+  },
 }
 
 export const actions = {
@@ -44,7 +41,7 @@ export const actions = {
     localStorage.setItem('bookmarks_ids', JSON.stringify([]))
   },
 
-  matchingBookmarkRecipes: ({ state, rootState, commit }) => {
+  matchingBookmarkRecipes({ state, rootState, commit }) {
     const matchingRecipes = rootState.recipes.mergedRecipes.filter((recipe) =>
       state.bookmarksIDs.includes(recipe.id)
     )
@@ -56,7 +53,7 @@ export const actions = {
     if (!state.bookmarksIDs.includes(recipeID)) {
       //? 2. ako ne postoji dodajem ga u bookmarksIDS i u LS
       commit('ADD_BOOKMARK_ID', { recipeID, recipe })
-      dispatch('LSsetBookmarksIDS')
+      commit('LS_SET_BOOKMARKS_IDS')
     } else {
       //? 3. ako postoji onda ga brisem iz bookmarksIDS i iz LS-a => tj trazim index id-a u bookmarksIDs koji ima vrednost recipeID-a.
       let indexOfID = state.bookmarksIDs.findIndex((bid) => bid == recipeID)
