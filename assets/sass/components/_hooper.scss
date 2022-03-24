@@ -79,26 +79,73 @@
   // }
 }
 
+// ? ===================== INGREDIENTS HOOPER
 .ingredients .hooper {
+  height: max-content;
+  max-height: 24rem;
+  margin-bottom: 2rem;
+
+  @include device(tab-mid) {
+    // margin-bottom: 5rem;
+    // max-width: max-content;
+    // margin-bottom: 5rem;
+  }
+  // margin-bottom: 3rem;
+  @include device(phone-land) {
+    // height: max-content;
+    // margin-bottom: 4rem;
+    // padding: 2rem 0;
+  }
+
+  &-list {
+    @include device(phone-land) {
+      display: grid;
+    }
+  }
+
   &-track {
-    // display: grid;
+    display: grid;
     // grid-auto-flow: column;
     justify-content: flex-start;
-    grid-gap: 2rem;
-    width: auto;
-    max-width: 40vw;
+    grid-gap: 3rem;
+    height: auto;
+    padding-top: 3rem;
+    margin-bottom: 5rem;
+    // width: auto;
+    // max-width: 40vw;
+
+    @include device(tab-mid) {
+      // margin-bottom: 10rem;
+      // max-width: max-content;
+      // margin-bottom: 5rem;
+    }
+    @include device(phone-land) {
+      // max-width: max-content;
+      // margin-bottom: 5rem;
+    }
     // min-width: 10vw;
   }
   &-slide {
-    max-width: 17rem;
+    min-width: 16rem;
+    max-width: 18rem;
 
+    @include device(tab-land) {
+      // min-width: 15rem;
+      // max-width: 17rem;
+      // width: max-content;
+    }
     @include device(phone-land) {
       max-width: max-content;
     }
   }
-  &-pagination {
-    bottom: 1rem !important;
+  &-pagination,
+  &-indicators {
+    @extend %flex-center;
+    padding: 0;
+    // bottom: 1rem !important;
   }
+  // &-indicators {
+  // }
   &-indicator {
     background: var(--clr_white);
     transition: background 0.3s, opacity 0.3s;
@@ -116,20 +163,27 @@
   &-prev,
   &-next {
     --btn_pos: -12%;
-    top: 32%;
+    top: 60%;
     opacity: 0.4;
+    transform: translateY(-50%);
     transition: opacity 0.5s;
+    z-index: 22;
 
     svg {
-      fill: var(--clr_accent);
+      fill: var(--clr_white);
       height: 3rem;
       width: auto;
       transition: transform 0.5s $outBack;
     }
 
-    @include device(phone) {
-      --btn_pos: -20%;
-      top: 25%;
+    @include device(phone-land) {
+      width: 1rem;
+      height: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // --btn_pos: -20%;
+      // top: 40%;
     }
   }
 

@@ -96,7 +96,7 @@
           {{
             ingredient.amount % 1 == 0
               ? ingredient.amount
-              : ingredient.amount.toFixed(2)
+              : ingredient.amount.toFixed(1)
           }}
         </div>
 
@@ -136,26 +136,26 @@ export default {
         itemsToShow: 2.5,
         // centerMode: true,
         infiniteScroll: true,
-        // breakpoints: {
-        //   360: {
-        //     itemsToShow: 3.5,
-        //   },
-        //   700: {
-        //     itemsToShow: 5,
-        //   },
-        //   760: {
-        //     itemsToShow: 3,
-        //   },
-        //   1000: {
-        //     itemsToShow: 3,
-        //   },
-        // 1200: {
-        //   itemsToShow: 3,
-        // },
-        //   1400: {
-        //     itemsToShow: 3,
-        //   },
-        // },
+        breakpoints: {
+          //   360: {
+          //     itemsToShow: 3.5,
+          //   },
+          //   700: {
+          //     itemsToShow: 5,
+          //   },
+          //   760: {
+          //     itemsToShow: 3,
+          //   },
+          1050: {
+            itemsToShow: 4,
+          },
+          1200: {
+            itemsToShow: 3,
+          },
+          //   1400: {
+          //     itemsToShow: 3,
+          //   },
+        },
       },
     }
   },

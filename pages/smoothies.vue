@@ -5,7 +5,8 @@
     <main class="middle">
       <Header />
       <!-- <RecipeCards :activeRecipes="smoothies" /> -->
-      <RecipeCards :activeRecipes="activeRecipes" />
+      <!-- <RecipeCards :activeRecipes="activeRecipes" /> -->
+      <RecipeCards />
       <!-- <RecipeCards /> -->
     </main>
 
@@ -45,6 +46,7 @@ export default {
 
   created() {
     this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.smoothies)
+    this.$store.commit('pagination/SET_CURR_PAGE', 1)
   },
 }
 </script>

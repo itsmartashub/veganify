@@ -1,10 +1,12 @@
 .recipeitem {
   --gap_window_edge: 3vw;
+  --wrapper_figure_height: 40vmax;
+  // --margin_top: (calc(-1 * (var(--wrapper_figure_height) / 2 - 2vmax)))
+
   background: var(--clr_recipeitem_bg);
   // background: var(--clr_grd_bg);
   width: 100vw;
   min-height: 100vh;
-  // visibility: hidden;
 
   &__btn {
     &-wrapper {
@@ -14,14 +16,31 @@
       @include device(tab-land) {
         padding: 5vw var(--gap_window_edge);
       }
-      @include device(phone-land) {
-        padding: 6vw;
+      @include device(tab-mid) {
+        height: var(--wrapper_figure_height);
+        padding: 0;
+        margin-bottom: 0;
+        position: relative;
+        z-index: 1;
+      }
+      @include device(tab) {
+        --wrapper_figure_height: 38vmax;
+      }
+      @include device(phone) {
+        // height: var(--wrapper_figure_height);
+        // padding: 0;
+        // margin-bottom: 0;
+        // position: relative;
+        // z-index: 1;
+        // box-shadow: inset -1px 32px 62px 21px hsl(210 57% 22% / 0.3);
       }
     }
 
     &-back {
       // color: var(--clr_black);
-      background: var(--clr_sidecard_bg);
+      // background: var(--clr_sidecard_bg);
+      background: var(--clr_white_grd_btns);
+      box-shadow: var(--box_shadow_accent);
       color: var(--clr_accent);
       letter-spacing: 1px;
       transition: letter-spacing 0.3s;
@@ -32,7 +51,6 @@
         // background: var(--clr_backbtn_icontainer);
 
         &__icon {
-          // color: var(--clr_accent_to_dark);
           fill: var(--clr_accent_to_dark);
         }
       }
@@ -43,6 +61,73 @@
         .icontainer {
           transform: translateX(-10%);
         }
+      }
+
+      @include device(tab-mid) {
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        z-index: 2;
+        background: var(--clr_recipeitem_bg);
+        color: var(--clr_white);
+
+        .icontainer--bggreen {
+          background: var(--clr_white);
+        }
+      }
+      @include device(phone) {
+        // position: absolute;
+        // top: 10%;
+        // left: 5%;
+        // padding: 1.5rem;
+        // background: var(--clr_grd_bg);
+        // box-shadow: var(--box_shadow_accent);
+        // box-shadow: 3px 3px 0px 0px var(--clr_accent); //todo ZA DARK OVO
+
+        span {
+          display: none;
+        }
+
+        .icontainer--bggreen {
+          --icontainer_size: fit-content;
+          // --icontainer_radius: 1.6rem;
+
+          background: none;
+          padding: 0;
+        }
+        .icontainer__icon {
+          --svg_size: 8vw;
+          fill: var(--clr_white);
+        }
+      }
+    }
+  }
+
+  &__mobilefigure {
+    display: none;
+
+    @include device(tab-mid) {
+      display: block;
+      height: var(--wrapper_figure_height);
+      width: 100%;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        backdrop-filter: blur(2px);
+        box-shadow: var(--img_box_shadow);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
       }
     }
   }
@@ -56,32 +141,41 @@
     // );
     // box-shadow: var(--box_shadow_accent);
     background: var(--clr_recipeitem_content_bg);
+    // background: var(--clr_recipeitem_bg);
+    box-shadow: var(--box_shadow_accent);
+    // background: var(--clr_recipeitem_right_mobile);
     @extend %w-100;
     @extend %h-100;
     border-radius: var(--content_radius) var(--content_radius) 0 0;
     padding: 12rem 6vw;
     // margin: 0 var(--gap_window_edge) 0 var(--gap_window_edge);
 
-    display: grid;
+    @extend %grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     grid-template-areas: 'l r' 'l r';
     justify-content: space-between;
     grid-gap: 20vw 8vw;
 
     @include device(tab-mid) {
-      --content_radius: 15rem;
+      --content_radius: 16vw;
       justify-content: center;
       justify-items: center;
       grid-template-areas:
         'l'
         'r';
+      grid-gap: 5vh;
+      padding: 0;
+      margin-top: calc(-1 * (var(--wrapper_figure_height) / 2 - 2vmax));
+      background: var(--clr_recipeitem_bg);
+      position: relative;
+      z-index: 2;
     }
-
-    @include device(tab) {
-      padding: 10rem 4rem 0 4rem;
+    @include device(phone-land) {
+      padding: 0rem 3rem;
     }
     @include device(phone) {
-      --content_radius: 12rem;
+      padding: 0;
+      // --content_radius: 10rem;
     }
   }
 
@@ -92,122 +186,148 @@
     justify-content: center;
     place-items: center;
     grid-gap: 9rem;
+
+    @include device(tab-mid) {
+      padding: 12rem 6vw;
+    }
+    @include device(phone-land) {
+      // padding: 10rem 0vw;
+      grid-gap: 12rem;
+    }
+  }
+
+  &__tags {
+    order: 1;
+    @include device(phone) {
+      order: 2;
+    }
+  }
+  &__showcase {
+    order: 3;
   }
 
   &__title {
+    order: 2;
     font-size: 3rem;
     line-height: 1.6;
     text-align: center;
+    text-transform: uppercase;
     @extend %fw-600;
-    overflow: hidden;
-    // background-color: yellow;
-    // @extend %pos-rel;
-    // position: relative;
-    // display: block;
-
-    // width: max-content;
-
-    span {
-      // position: absolute;
-      // width: 100%;
-      // height: 100%;
-      // top: 0;
-      // left: 0;
-      // border: 1px solid red;
-      display: flex;
-      // z-index: 200;
-    }
+    @extend %flex-center;
+    @extend %pos-rel;
 
     @include device(tab-mid) {
       width: 75%;
     }
     @include device(phone) {
-      width: 100%;
+      order: 1;
+      width: 85%;
+      text-transform: capitalize;
+      margin-top: 4rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -6.5rem);
+        height: 5px;
+        width: 6rem;
+        border-radius: 5px;
+        background: var(--clr_black);
+        opacity: 0.5;
+      }
     }
   }
 
   &__right {
-    // --right_radius: 70px;
-    --right_radius: 10rem;
+    --right_radius: 6.5vw;
     grid-area: r;
     background: var(--clr_recipeitem_right_bg);
-    // background: linear-gradient(
-    //   150deg,
-    //   var(--clr_grd_1) 45%,
-    //   var(--clr_accent) 100%
-    // );
     border-radius: var(--right_radius);
-    padding: 2.9vw 4vw;
-    padding: 6vmin;
-    @extend %overflow-hidden;
+    // box-shadow: var(--box_shadow_accent);
+    padding: 5vw 4vw;
+    // background: var(--clr_recipeitem_right_mobile);
 
+    @include device(tab-land) {
+      padding: 4vw;
+    }
     @include device(tab-mid) {
-      width: 75%;
+      --right_radius: 14vw;
+      padding: 10vw;
+      width: 80%;
+      border-radius: var(--right_radius) var(--right_radius) 0 0;
+      background: var(--clr_recipeitem_right_mobile);
     }
     @include device(tab) {
-      --right_radius: 15vw;
       width: 90%;
-      padding: 8vmin;
-      border-radius: var(--right_radius) var(--right_radius) 0 0;
+      // width: 100%;
+      padding: 12vw 10vw;
     }
     @include device(phone-land) {
+      --right_radius: 16vw;
+      // padding: 5rem;
       width: 100%;
     }
     @include device(phone) {
-      padding: 10vmin 5vmin;
+      --right_radius: 14vw;
+      // padding: 0;
     }
   }
 
   &__header {
+    --breadcrumb_radius: 40px;
     @extend %text-center;
-    // display: grid;
-    // grid-template-columns: repeat(2, minmax(max-content, 1fr));
-    // justify-content: space-between;
-    // grid-gap: 3vw;
     display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    margin-bottom: 6rem;
-    // @extend %overflow-hidden;
-
-    & > * + * {
-      margin-left: 3vmax;
-
-      @include device(tab-mid) {
-        margin-left: 6vmax;
-      }
-    }
-
-    @include device(tab-land) {
-      padding: 0;
-    }
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3vw;
+    background: var(--clr_recipeitem_right_bg);
+    border-radius: var(--breadcrumb_radius);
+    margin-bottom: 2vw;
 
     @include device(tab-mid) {
-      padding: 1.5rem 1rem;
+      margin-bottom: 6rem;
+      // border-radius: var(--breadcrumb_radius);
+      // border: 3px solid var(--clr_accent);
+      // background: var(--clr_accent);
+      // background: var(--clr_recipeitem_right_bg);
     }
 
     @include device(phone) {
-      // flex: 1 1 100%;
-      flex-direction: column;
+      display: flex;
+      flex-direction: row;
       justify-content: center;
-      padding: 0;
+      flex-wrap: wrap;
+      margin: 2rem 0 7rem 0;
     }
-    // z-index: 10;
   }
 
   &__breadcrumb {
-    --breadcrumb_radius: 40px;
     flex-grow: 1;
     @extend %pos-rel;
     @extend %cursor;
-    padding: 2.1rem 1rem;
+    padding: 1.3vw 1vw;
     @extend %fw-500;
+    @extend %flex-center;
     text-transform: uppercase;
     color: var(--clr_white);
-    border: 1.5px solid currentColor;
     border-radius: var(--breadcrumb_radius);
-    transition: transform 0.4s $outBack, color 0.3s;
+    transition: transform 0.4s $outBack, color 0.3s ease-in-out;
     z-index: 10 !important;
+
+    @include device(tab-mid) {
+      padding: 2.8rem 1rem;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    @include device(phone-land) {
+      padding: 2rem;
+    }
+    @include device(phone) {
+      padding: 1.8rem;
+    }
 
     &::after {
       @extend %after;
@@ -215,13 +335,12 @@
       left: 0;
       z-index: -1;
       background: var(--clr_white_grd_btns);
-      // border: 1.5px solid var(--clr_accent_to_dark);
       opacity: 0;
       transform: scaleX(0.2);
       transform-origin: right center;
-      transition: transform 0.4s $outBack, opacity 0.3s $outBack,
-        border-color 0.4s linear;
       border-radius: var(--breadcrumb_radius);
+      transition: transform 0.4s $outBack, opacity 0.4s $outBack,
+        border-color 0.4s linear;
     }
     &:nth-of-type(2)::after {
       transform-origin: left center;
@@ -229,30 +348,12 @@
 
     &:hover {
       color: var(--clr_accent);
-      border-color: var(--clr_accent_to_dark);
-      box-shadow: var(--box_shadow_accent);
-
-      // transform: translateY(10%);
 
       &::after {
         opacity: 1;
         transform: scaleX(1);
+        box-shadow: var(--box_shadow_accent_stronger); //todo VECI SHADOWTREBA
       }
-    }
-
-    @include device(tab-land) {
-      padding: 1.8rem 1rem;
-    }
-    @include device(tab-mid) {
-      padding: 2.5rem 1rem;
-    }
-
-    @include device(phone) {
-      max-width: 100%;
-      width: 80%;
-      padding: 4vmin 1rem;
-      margin: 1rem auto;
-      font-size: 1.8rem;
     }
   }
 

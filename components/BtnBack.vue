@@ -13,7 +13,7 @@
         ></path>
       </svg>
     </div>
-    BACK
+    <span>BACK</span>
   </button>
 </template>
 

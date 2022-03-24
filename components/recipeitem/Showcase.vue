@@ -24,7 +24,9 @@
             {{ nutrition.amount.toFixed(0) }}
           </p>
           <p class="showcase__nutrition-name">
-            <span>{{ nutrition.name }}</span>
+            <span>{{
+              nutrition.name === 'Carbohydrates' ? 'Carbs' : nutrition.name
+            }}</span>
             <span class="showcase__nutrition-unit">
               {{
                 nutrition.name == 'Protein' ||

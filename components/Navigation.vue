@@ -198,18 +198,8 @@ export default {
   methods: {
     darkToggle() {
       this.IS_DARK = !this.IS_DARK
-      this.setBodyAttr()
+      this.$store.dispatch('app/setThemeBodyAttr')
     },
-    setBodyAttr() {
-      this.IS_DARK
-        ? document.body.setAttribute('data-theme', 'dark')
-        : document.body.removeAttribute('data-theme')
-    },
-  },
-
-  mounted() {
-    this.$store.commit('app/SET_THEME')
-    this.setBodyAttr()
   },
 }
 </script>

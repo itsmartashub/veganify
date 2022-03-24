@@ -32,7 +32,11 @@ export default {
   loading: '@/components/Loader.vue',
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/fetchrecipes.server.js', '~/plugins/filters.js'],
+  plugins: [
+    '~/plugins/fetchrecipes.server.js',
+    '~/plugins/filters.js',
+    '~/plugins/settheme.client.js',
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: ['@nuxtjs/google-fonts'],

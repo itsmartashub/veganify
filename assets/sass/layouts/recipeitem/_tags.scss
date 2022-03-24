@@ -1,88 +1,90 @@
 .tags {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+
+  // @extend %overflow-hidden;
+
+  @include device(phone) {
+    grid-gap: 5vmin;
+    width: 100%;
+  }
+
+  .tag {
+    width: 100%;
+    padding: 2vmin;
+    // margin: 1rem;
+    line-height: 1;
+    @extend %fw-600;
+    background: var(--clr_white_grd_btns);
+    box-shadow: var(--box_shadow_accent);
+    border-radius: 15px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
+    grid-auto-flow: column;
+    grid-gap: 1.8vmin;
+    align-items: center;
+    justify-content: flex-start;
+    // transition: transform 0.4s $inOutBack;
 
-    @extend %overflow-hidden;
+    // & > * {
+    //   margin: 0.8rem;
+    // }
 
+    @include device(phone-land) {
+      grid-gap: 2vmin;
+      padding: 3vmin;
+    }
     @include device(phone) {
-        grid-gap: 5vmin;
+      grid-auto-flow: row;
+      border-radius: 12px;
     }
 
-    .tag {
-        width: 100%;
-        padding: 2vmin;
-        // margin: 1rem;
-        line-height: 1;
-        @extend %fw-600;
-        background: var(--clr_white_grd_btns);
-        box-shadow: var(--box_shadow_accent);
-        border-radius: 15px;
-        display: grid;
-        grid-auto-flow: column;
-        grid-gap: 1.8vmin;
-        align-items: center;
-        justify-content: flex-start;
-        // transition: transform 0.4s $inOutBack;
+    // &:hover,
+    // &:focus {
+    //   transform: translateY(-5%);
+    // }
 
-        // & > * {
-        //   margin: 0.8rem;
-        // }
+    &__icon-wrapper {
+      --size: 4rem;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 1rem;
+      background: var(--clr_accent_light);
+      display: grid;
+      place-items: center;
 
-        @include device(phone-land) {
-            grid-gap: 2vmin;
-            padding: 3vmin;
-        }
-        @include device(phone) {
-            grid-auto-flow: row;
-            border-radius: 12px;
-        }
-
-        // &:hover,
-        // &:focus {
-        //   transform: translateY(-5%);
-        // }
-
-        &__icon-wrapper {
-            --size: 4rem;
-            width: var(--size);
-            height: var(--size);
-            border-radius: 1rem;
-            background: var(--clr_accent_light);
-            display: grid;
-            place-items: center;
-
-            @include device(phone) {
-                --size: 3.8rem;
-            }
-        }
-        &__svg {
-            width: 2rem;
-            height: auto;
-            fill: var(--clr_accent);
-
-            @include device(phone) {
-                width: 1.8rem;
-            }
-            // stroke: currentColor;
-        }
-
-        &__nameAmountWrapper {
-            flex: 1 1;
-        }
-        &__name {
-            font-size: 1.1rem;
-            color: var(--clr_accent);
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            width: 100%;
-        }
-        &__amount {
-            font-size: 1.7rem;
-            span {
-                @extend %fw-400;
-                font-size: 1.5rem;
-            }
-        }
+      @include device(phone) {
+        --size: 3.8rem;
+      }
     }
+    &__svg {
+      width: 2rem;
+      height: auto;
+      fill: var(--clr_accent);
+
+      @include device(phone) {
+        width: 1.8rem;
+      }
+      // stroke: currentColor;
+    }
+
+    &__nameAmountWrapper {
+      flex: 1 1;
+      margin-left: 2px;
+    }
+    &__name {
+      font-size: 1.1rem;
+      color: var(--clr_accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      width: 100%;
+    }
+    &__amount {
+      font-size: 1.7rem;
+      span {
+        @extend %fw-400;
+        font-size: 1.5rem;
+      }
+    }
+  }
 }

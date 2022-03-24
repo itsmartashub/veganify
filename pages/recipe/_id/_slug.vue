@@ -1,6 +1,14 @@
 <template>
   <main class="recipeitem" ref="recipeitem">
     <div class="recipeitem__btn-wrapper" ref="recipeitem_btnwrapper">
+      <transition name="fadeIn">
+        <figure class="recipeitem__mobilefigure" v-if="isMountedFigure">
+          <img
+            :src="recipeItem.image"
+            :alt="recipeItem.title | altFormatting(recipeItem.title)"
+          />
+        </figure>
+      </transition>
       <!-- <button class="recipeitem__btn-back btn" @click="goBack()">
         <div class="icontainer--bggreen">
           <svg
@@ -17,7 +25,7 @@
         BACK
       </button> -->
       <transition name="slideLeft">
-        <BtnBack v-if="isMounted" />
+        <BtnBack v-if="isMountedBtn" />
       </transition>
     </div>
 
@@ -35,8 +43,15 @@ export default {
 
   data() {
     return {
-      isMounted: false,
+      isMountedBtn: false,
+      isMountedFigure: false,
     }
+  },
+
+  computed: {
+    recipeItem() {
+      return this.$store.state.recipes.recipeItem
+    },
   },
 
   // created() {
@@ -45,7 +60,14 @@ export default {
   // },
 
   mounted() {
-    this.$nextTick(() => (this.isMounted = true))
+    this.$nextTick(() => {
+      setTimeout(() => {
+        this.isMountedFigure = true
+      }, 1000)
+      setTimeout(() => {
+        this.isMountedBtn = true
+      }, 1400)
+    })
   },
 }
 </script>

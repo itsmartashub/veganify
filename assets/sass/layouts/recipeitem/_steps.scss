@@ -1,8 +1,9 @@
 .steps {
-  display: grid;
+  @extend %grid;
   grid-gap: 3rem;
   // margin: 5rem 0;
   padding: 0 1.5vmin;
+  // font-size: 1.8rem;
 
   @include device(tab-mid) {
     padding: 0 2.5vmin;
@@ -15,7 +16,7 @@
   }
 
   .step {
-    display: grid;
+    @extend %grid;
     grid-auto-flow: column;
     justify-content: flex-start;
     grid-gap: 3rem;
@@ -82,7 +83,7 @@
       }
     }
     &__txt {
-      font-size: 1.5rem;
+      // font-size: 1.5rem;
       line-height: 1.35;
       @extend %fw-500;
       word-wrap: break-word;

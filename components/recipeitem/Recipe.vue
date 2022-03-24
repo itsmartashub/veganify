@@ -1,11 +1,9 @@
 <template>
   <div class="recipeitem__content" v-if="recipeItem && isMounted">
     <section class="recipeitem__left">
-      <RecipeitemTags />
+      <h1 class="recipeitem__title">{{ recipeItem.title }}</h1>
 
-      <h1 class="recipeitem__title">
-        <span>{{ recipeItem.title }}</span>
-      </h1>
+      <RecipeitemTags />
 
       <RecipeitemShowcase />
     </section>

@@ -13,7 +13,7 @@ html {
   }
 
   @include device(tab) {
-    font-size: 50%;
+    // font-size: 50%;
   }
 
   @include device(phone) {

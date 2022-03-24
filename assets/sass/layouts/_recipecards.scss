@@ -1,6 +1,7 @@
 .recipecards {
   @extend %text-center;
   @extend %pos-rel;
+  // min-height: 100vh;
 
   &__wrapper {
     @extend %flex;
@@ -141,6 +142,11 @@
 
   @include device(phone-land) {
     --min-width-recipecard: 22rem;
+    // transform: scale(0.9);
+  }
+  @include device(phone) {
+    // transform: scale(1);
+    padding: 3vmin;
   }
 
   &:hover,
@@ -340,12 +346,5 @@
     &--saved {
       @extend .recipecard__bookmark, :hover;
     }
-  }
-
-  @include device(phone-land) {
-    transform: scale(0.9);
-  }
-  @include device(phone) {
-    transform: scale(1);
   }
 }

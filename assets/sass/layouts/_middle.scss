@@ -1,11 +1,12 @@
 .middle {
   grid-area: mid;
 
-  min-height: 100vh;
+  // min-height: 100vh;
   padding: 0 5vw;
   display: grid;
   align-content: flex-start;
   grid-gap: 5vw;
+  // overflow-x: hidden;
 
   @include device(phone-land) {
     padding: 0;

@@ -71,6 +71,19 @@
   transform: translate3d(0, 0, 0);
 }
 
+.fadeIn-enter-active,
+.fadeIn-leave-active {
+  transition: opacity 1s linear;
+}
+.fadeIn-enter,
+.fadeIn-leave-to {
+  opacity: 0;
+}
+.fadeIn-enter-to,
+.fadeIn-leave {
+  opacity: 1;
+}
+
 //! KAD SU ANIMATION UKLJ ZA LOADER
 // .page-enter-active {
 //   transition: transform 1s $outSmooth, opacity 0.8s linear;

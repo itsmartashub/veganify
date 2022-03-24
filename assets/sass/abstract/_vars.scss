@@ -1,29 +1,30 @@
 :root {
-    --default-radius: 8px;
-    // --gradient_deg: 200deg;
-    --grd_deg: 156deg;
-    --padding-home: 2vw;
-    --sidebars_height: calc(100vh - calc(2 * var(--padding-home)));
-    // --sidebars_height: 95vh;
-    --icon-radius: 1.8rem;
-    --icon-square-size: 5.2rem;
+  --default-radius: 8px;
+  // --gradient_deg: 200deg;
+  --grd_deg: 156deg;
+  --padding-home: 2vw;
+  --sidebars_height: calc(100vh - calc(2 * var(--padding-home)));
+  // --sidebars_height: 95vh;
+  --icon-radius: 1.8rem;
+  --icon-square-size: 5.2rem;
 
-    // --hue: 170;
-    // --saturation: 88%;
-    // --brightness: 45%;
+  --inset-value: 4px 60px 100px 35px;
+  // --hue: 170;
+  // --saturation: 88%;
+  // --brightness: 45%;
 
-    --clr-accent: 165 88% 45%;
-    --clr-grd-1: 164 100% 45%;
-    --clr-grd-2: 180 98% 40%;
-    --clr-black: 210 57% 22%;
-    --clr-white: 0 0% 100%;
-    --clr-bg: 0 0% 95%;
+  --clr-accent: 165 88% 45%;
+  --clr-grd-1: 164 100% 45%;
+  --clr-grd-2: 180 98% 40%;
+  --clr-black: 210 57% 22%;
+  --clr-white: 0 0% 100%;
+  --clr-bg: 0 0% 95%;
 
-    --clr-grd-bg: linear-gradient(
-        var(--grd_deg),
-        hsl(var(--clr-grd-1)),
-        hsl(var(--clr-grd-2))
-    );
+  --clr-grd-bg: linear-gradient(
+    var(--grd_deg),
+    hsl(var(--clr-grd-1)),
+    hsl(var(--clr-grd-2))
+  );
 }
 
 // SHADOWS
@@ -34,71 +35,100 @@ $box_shadow: 0 12px 23px 0 rgb(62 73 84 / 4%);
 
 // COLORS
 html {
-    --clr_accent: hsl(165, 88%, 45%);
-    --clr_bg: hsl(0, 0%, 95%);
-    --clr_grd_1: hsl(164, 100%, 45%);
-    --clr_grd_2: hsl(180, 98%, 40%);
-    --clr_grd_bg: linear-gradient(
-        var(--grd_deg),
-        var(--clr_grd_1),
-        var(--clr_grd_2)
-    );
-    --clr_white: hsl(0, 0%, 100%);
-    --clr_accent_to_dark: var(--clr_accent);
-    --clr_white_grd_btns: var(--clr_white);
-    --clr_black: hsl(210, 57%, 22%);
-    // --clr-black: 210 57% 22%;
+  --clr_accent: hsl(165, 88%, 45%);
+  --clr_bg: hsl(0, 0%, 95%);
+  --clr_grd_1: hsl(164, 100%, 45%);
+  --clr_grd_2: hsl(180, 98%, 40%);
+  --clr_grd_3: hsl(164, 99%, 45%);
+  --clr_grd_4: hsl(169, 100%, 42%);
+  --clr_grd_bg: linear-gradient(
+    var(--grd_deg),
+    var(--clr_grd_1),
+    var(--clr_grd_2)
+  );
+  --clr_white: hsl(0, 0%, 100%);
+  --clr_accent_to_dark: var(--clr_accent);
+  --clr_white_grd_btns: var(--clr_white);
+  --clr_black: hsl(210, 57%, 22%);
+  // --clr-black: 210 57% 22%;
 
-    --clr_accent_light: hsl(165, 88%, 90%);
-    --clr_backbtn_icontainer: var(--clr_accent_light);
+  --clr_accent_light: hsl(165, 88%, 90%);
+  --clr_backbtn_icontainer: var(--clr_accent_light);
 
-    --clr_card_bg: var(--clr_white);
-    --clr_sidecard_bg: var(--clr_white);
-    --clr_recipeitem_bg: var(--clr_grd_1);
-    --clr_recipeitem_content_bg: hsla(0, 0%, 100%, 0.09);
-    --clr_recipeitem_right_bg: hsla(165, 88%, 45%, 0.7);
+  --clr_card_bg: var(--clr_white);
+  --clr_sidecard_bg: var(--clr_white);
+  --clr_recipeitem_bg: var(--clr_grd_1);
+  --clr_recipeitem_content_bg: hsla(0, 0%, 100%, 0.09);
+  --clr_recipeitem_right_bg: hsla(165, 88%, 45%, 0.7);
+  --clr_recipeitem_right_mobile: linear-gradient(
+    180deg,
+    var(--clr_grd_3),
+    var(--clr_grd_4)
+  );
 
-    --box_shadow_accent: none;
+  // --box_shadow_accent: none;
 
-    --filter_img: none;
-    --opacity_search: 0.35;
+  --filter_img: none;
+  --opacity_search: 0.35;
+  --img_box_shadow: inset var(--inset-value) hsl(210 57% 22% / 0.6);
+  // --img_overlay: linear-gradient(
+  //   180deg,
+  //   hsl(210 57% 22% / 0.4),
+  //   hsl(210 57% 22% / 0.1)
+  // );
 }
 
-html [data-theme="dark"] {
-    --clr_accent: hsl(165, 70%, 45%);
-    --clr_bg: hsl(240, 30%, 10%);
-    --clr_grd_1: hsl(236, 33%, 20%);
-    --clr_grd_2: hsl(240, 28%, 10%);
-    --clr_grd_bg: linear-gradient(
-        var(--grd_deg),
-        var(--clr_grd_1),
-        var(--clr_grd_2)
-    );
-    --clr_white: var(--clr_accent);
-    --clr_black: hsl(236, 20%, 38%);
-    // --clr-black: 236 20% 38%;
+html [data-theme='dark'] {
+  --clr_accent: hsl(165, 70%, 45%);
+  --clr_bg: hsl(240, 30%, 10%);
+  --clr_grd_1: hsl(236, 33%, 20%);
+  --clr_grd_2: hsl(240, 28%, 10%);
+  --clr_grd_bg: linear-gradient(
+    var(--grd_deg),
+    var(--clr_grd_1),
+    var(--clr_grd_2)
+  );
+  --clr_white: var(--clr_accent);
+  --clr_black: hsl(236, 20%, 38%);
+  // --clr-black: 236 20% 38%;
 
-    // --clr_accent_light: hsl(200, 78%, 8%);
-    --clr_accent_light: hsl(236, 30%, 13%);
-    --clr_backbtn_icontainer: var(--clr_accent);
-    --clr_accent_to_dark: var(--clr_bg);
-    --clr_white_grd_btns: var(--clr_grd_bg);
+  // --clr_accent_light: hsl(200, 78%, 8%);
+  --clr_accent_light: hsl(236, 30%, 13%);
+  --clr_backbtn_icontainer: var(--clr_accent);
+  --clr_accent_to_dark: var(--clr_bg);
+  --clr_white_grd_btns: var(--clr_grd_bg);
 
-    --clr_card_bg: var(--clr_grd_bg);
-    --clr_sidecard_bg: var(--clr_bg);
-    // --clr_recipeitem_bg: hsl(240, 28%, 13%);
-    --clr_recipeitem_bg: linear-gradient(
-        0deg,
-        var(--clr_grd_1) 70%,
-        var(--clr_grd_2) 100%
-    );
-    --clr_recipeitem_content_bg: var(--clr_bg);
-    --clr_recipeitem_right_bg: var(--clr_grd_bg);
+  --clr_card_bg: var(--clr_grd_bg);
+  --clr_sidecard_bg: var(--clr_bg);
+  // --clr_recipeitem_bg: hsl(240, 28%, 13%);
+  --clr_recipeitem_bg: linear-gradient(
+    0deg,
+    var(--clr_grd_1),
+    var(--clr_grd_2)
+  );
+  // --clr_recipeitem_bg: linear-gradient(
+  //   0deg,
+  //   var(--clr_grd_1) 40%,
+  //   var(--clr_grd_2) 100%
+  // );
+  --clr_recipeitem_content_bg: linear-gradient(
+    0deg,
+    var(--clr_grd_2),
+    hsl(236, 33%, 15%)
+  );
+  --clr_recipeitem_right_bg: var(--clr_grd_bg);
+  --clr_recipeitem_right_mobile: var(--clr_grd_bg);
 
-    --box_shadow_accent: 0px 0px 40px 0px hsl(165 70% 45% / 0.07);
+  --box_shadow_accent: 0px 0px 40px 0px hsl(165 70% 45% / 0.07);
+  --box_shadow_accent_stronger: 0px 0px 20px -8px hsl(165 70% 45% / 0.4);
 
-    --filter_img: brightness(82%);
-    --opacity_search: 1;
+  --filter_img: brightness(82%);
+  --opacity_search: 1;
+  --img_box_shadow: inset var(--inset-value) hsl(236 20% 30%/ 0.6);
+
+  .recipeitem__title {
+    color: var(--clr_accent);
+  }
 }
 
 // CUBICS

@@ -1,4 +1,5 @@
 <template>
+  <!-- <transition name="recipecard"> -->
   <article
     class="recipecard"
     @click="navigateToRecipeItem(recipe)"
@@ -15,9 +16,9 @@
     <div class="recipecard__body">
       <h3
         class="recipecard__category"
-        v-if="!($route.name == 'bookmarks' || $route.name == 'smoothies')"
+        v-if="!($route.name === 'bookmarks' || $route.name === 'smoothies')"
       >
-        {{ category }}
+        {{ category === "ALL" ? "ALL RECIPES" : category }}
       </h3>
       <h3 class="recipecard__category" v-if="$route.name == 'bookmarks'">
         bookmarks
@@ -96,10 +97,11 @@
       </div>
     </footer>
   </article>
+  <!-- </transition> -->
 </template>
 
 <script>
-import randomLikes from '~/utils/randomLikes.js'
+import randomLikes from "~/utils/randomLikes.js";
 
 export default {
   props: {
@@ -119,10 +121,10 @@ export default {
 
   computed: {
     bookmarksIDs() {
-      return this.$store.state.bookmarks.bookmarksIDs
+      return this.$store.state.bookmarks.bookmarksIDs;
     },
     isBookmarked() {
-      return this.bookmarksIDs.includes(this.recipe.id)
+      return this.bookmarksIDs.includes(this.recipe.id);
     },
   },
 
@@ -136,15 +138,15 @@ export default {
       // // this.$router.push(`/recipe/${recipe.id}`)
       // this.$router.push(`/recipe/${slug}`)
 
-      this.$store.dispatch('recipes/navigateToRecipe', recipe)
+      this.$store.dispatch("recipes/navigateToRecipe", recipe);
     },
 
     toggleBookmark() {
-      this.$store.dispatch('bookmarks/toggleBookmarkID', {
+      this.$store.dispatch("bookmarks/toggleBookmarkID", {
         recipeID: this.recipe.id,
         recipe: this.recipe,
-      })
+      });
     },
   },
-}
+};
 </script>

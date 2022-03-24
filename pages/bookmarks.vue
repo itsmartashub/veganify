@@ -4,7 +4,8 @@
 
     <main class="middle" v-if="bookmarks[0]">
       <Header />
-      <RecipeCards :activeRecipes="bookmarks" />
+      <!-- <RecipeCards :activeRecipes="bookmarks" /> -->
+      <RecipeCards />
     </main>
 
     <main v-else class="middle nobookmarks">
@@ -58,6 +59,11 @@ export default {
     bookmarks() {
       return this.$store.state.bookmarks.bookmarksRecipes
     },
+  },
+
+  created() {
+    this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.bookmarks)
+    this.$store.commit('pagination/SET_CURR_PAGE', 1)
   },
 
   mounted() {
