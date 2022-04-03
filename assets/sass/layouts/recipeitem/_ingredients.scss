@@ -50,9 +50,11 @@
     &-iconwrapper {
       --icontainer_size: 4.5rem;
       display: none;
+      margin-bottom: 1rem;
 
       svg {
         --svg_size: 3.5rem;
+        transform: translateY(12%);
       }
     }
 
@@ -143,7 +145,7 @@
   }
 }
 
-body[data-theme='dark'] {
+body[data-theme="dark"] {
   .ingredients__pic-imgwrapper {
     display: none;
   }

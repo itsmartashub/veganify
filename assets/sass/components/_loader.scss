@@ -1,5 +1,5 @@
 .loader {
-  will-change: background, transform;
+  will-change: background-image, transform;
   @extend %pos-fix;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@
   z-index: 3000;
   background: var(--clr_grd_bg);
   // transition: transform 1.5s $outSmooth, background 0.5s linear;
-  transition: background 0.5s linear;
+  transition: background-image 0.5s linear;
   transform-origin: center bottom;
   backface-visibility: hidden;
 
@@ -17,18 +17,18 @@
     @extend %flex-center;
     flex-direction: column;
     @extend %pos-abs;
-    // transition: transform 1s;
   }
 
   &__logo {
-    // animation: rotating90 alternate 2s ease-in-out;
-    // animation-iteration-count: 4;
-
     .logo__svg {
       width: 10vw !important;
       height: auto;
       fill: var(--clr_white);
       transition: fill 0.4s linear;
+
+      @include device(tab) {
+        width: 20vw !important;
+      }
     }
   }
 
@@ -36,7 +36,6 @@
     @extend .header__title;
     font-size: 4rem;
     color: var(--clr_white) !important;
-    // transition: transform 1s ease, opacity 1s linear, color 0.4s linear;
     transition: color 0.4s linear;
     @extend %overflow-hidden;
     perspective: 200px;
@@ -61,60 +60,7 @@
       opacity: 0;
       transform: translate3d(0, -100%, 0);
     }
-
-    // animation: loaderAnim 1.5s $outSmooth alternate;
-    // transform: translate3d(0, -100%, 0);
-    // transform: scaleY(0);
-    // transition: transform 1.5s $outSmooth;
-    // transition-delay: 0.5s;
-
-    // .loader__content {
-    //     transform: translate3d(0, -50%, 0);
-    // }
-    // .loader__title {
-    //     span {
-    //         transform-style: preserve-3d;
-    //         transform: translate3d(0, -100%, 0) rotateX(45deg);
-    //         // opacity: 0;
-    //     }
-    //     span:nth-of-type(1) {
-    //         transition-delay: 0.3s;
-    //     }
-    //     span:nth-of-type(2) {
-    //         transition-delay: 0.2s;
-    //     }
-    //     span:nth-of-type(3) {
-    //         transition-delay: 0.1s;
-    //     }
-    // }
   }
-  &--enter {
-    // transform: translate3d(0, 100%, 0);
-    // animation: loaderAnim 1.5s $outSmooth;
-    // transform: scaleY(1);
-
-    // .loader__title {
-    //   span {
-    //     transform: initial;
-    //   }
-    //   // span:nth-of-type(1) {
-    //   //     transition-delay: 0.3s;
-    //   // }
-    //   // span:nth-of-type(2) {
-    //   //     transition-delay: 0.2s;
-    //   // }
-    //   // span:nth-of-type(3) {
-    //   //     transition-delay: 0.1s;
-    //   // }
-    // }
-  }
-
-  // &--enter-active {
-  //   transition: transform 1.5s $outSmooth;
-  // }
-  // &--enter-to {
-  //   transform: translate3d(0, 0, 0);
-  // }
 }
 
 @keyframes rotating90 {

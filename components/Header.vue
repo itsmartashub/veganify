@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       searchInput: null,
-    }
+    };
   },
 
   // computed: {
@@ -50,24 +50,34 @@ export default {
 
   methods: {
     async submitSearch() {
-      if (!this.searchInput || this.searchInput.trim() === '') return
+      if (!this.searchInput || this.searchInput.trim() === "") return;
+      this.$store.commit("app/SET_IS_WAITING", true);
 
-      this.searchInput = this.searchInput.replaceAll(/[$.]+/g, '')
+      this.searchInput = this.searchInput.replaceAll(/[$.]+/g, "");
 
-      if (this.$route.name === 'smoothies') {
-        await this.$store.dispatch('recipes/fetchSearchedRecipes', {
+      // setTimeout(() => {
+
+      // }, 100);
+
+      if (this.$route.name === "smoothies") {
+        await this.$store.dispatch("recipes/fetchSearchedRecipes", {
           searchedTerm: this.searchInput,
           isSmoothie: true,
-        })
-        return
+        });
+        this.$nextTick(() => this.$store.commit("app/SET_IS_WAITING", false));
+
+        return;
       }
 
-      //todo fetch searched term
-      await this.$store.dispatch('recipes/fetchSearchedRecipes', {
+      await this.$store.dispatch("recipes/fetchSearchedRecipes", {
         searchedTerm: this.searchInput,
-      })
-      //todo set searched array
+      });
+      this.$store.commit("recipes/SET_SCROLL_INTO_VIEW", {
+        _selector: ".categories > .hooper",
+      });
+      // this.$store.commit("app/SET_IS_WAITING", false);
+      this.$nextTick(() => this.$store.commit("app/SET_IS_WAITING", false));
     },
   },
-}
+};
 </script>

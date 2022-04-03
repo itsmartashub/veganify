@@ -70,6 +70,9 @@ export const actions = {
         );
 
       commit("SET_ACTIVE_RECIPES", response.data.results);
+      // commit("pagination/SET_PAGINATED_RECIPES", response.data.results, {
+      //   root: true,
+      // });
       commit("SET_CATEGORY_NAME", searchedTerm);
       commit("SET_SCROLL_INTO_VIEW", { _selector: ".recipecards" });
       dispatch("mergeRecipes");
@@ -309,6 +312,10 @@ export const mutations = {
         break;
       }
     }
+
+    // state.activeRecipes = state.categories.find(
+    //   (cat) => cat.name === categoryName
+    // ).items;
   },
   SET_CATEGORIES(state, categoriesArr) {
     state.categories = categoriesArr;
@@ -318,7 +325,7 @@ export const mutations = {
     state.randomTriviaItem = randomTriviaText;
   },
 
-  SET_SCROLL_INTO_VIEW(state, { _selector }) {
+  SET_SCROLL_INTO_VIEW(_, { _selector }) {
     document.querySelector(_selector).scrollIntoView({ behavior: "smooth" });
   },
   SET_NOTIFY(state, notify) {

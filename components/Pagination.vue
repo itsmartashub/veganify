@@ -50,6 +50,15 @@ export default {
     };
   },
 
+  props: {
+    recipes: {
+      type: Array,
+      // default: function () {
+      //   return this.$store.state.recipes.activeRecipes;
+      // },
+    },
+  },
+
   computed: {
     currentPage: {
       get() {
@@ -57,6 +66,7 @@ export default {
       },
       set(newValue) {
         this.$store.commit("pagination/SET_CURR_PAGE", newValue);
+        // this.$store.commit("pagination/SET_PAGINATED_RECIPES", this.recipes);
       },
     },
 
@@ -96,12 +106,14 @@ export default {
     goToPreviousPage() {
       if (this.isFirstPage) return;
       this.currentPage = this.currentPage - 1;
+      // this.$store.commit("pagination/SET_PAGINATED_RECIPES", this.recipes);
       this.$store.commit("recipes/SET_SCROLL_INTO_VIEW", {
         _selector: ".recipecards",
       });
     },
     goToPage(page) {
       this.currentPage = page;
+      // this.$store.commit("pagination/SET_PAGINATED_RECIPES", this.recipes);
       this.$store.commit("recipes/SET_SCROLL_INTO_VIEW", {
         _selector: ".recipecards",
       });
@@ -109,6 +121,7 @@ export default {
     goToNextPage() {
       if (this.isLastPage) return;
       this.currentPage = this.currentPage + 1;
+      // this.$store.commit("pagination/SET_PAGINATED_RECIPES", this.recipes);
       this.$store.commit("recipes/SET_SCROLL_INTO_VIEW", {
         _selector: ".recipecards",
       });
@@ -117,5 +130,10 @@ export default {
       return this.currentPage === page;
     },
   },
+
+  // created() {
+  //   // this.$store.dispatch("pagination/setPaginatedRecipes", this.recipes);
+  //   this.$store.commit("pagination/SET_PAGINATED_RECIPES", this.recipes);
+  // },
 };
 </script>

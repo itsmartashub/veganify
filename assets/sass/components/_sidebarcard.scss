@@ -20,13 +20,13 @@
   grid-template-columns: 1fr 1fr;
   justify-items: space-between;
   grid-gap: 1.8rem;
-  transition: transform 0.5s;
   background: var(--clr_sidecard_bg);
   // background: currentColor;
   @extend %cursor;
 
   padding: 2.5vh 1.6vw;
   min-height: 14rem;
+  transition: transform 0.5s $inOutBack, box-shadow 0.5s $outBack 0.3s;
 
   &:hover,
   &:focus {

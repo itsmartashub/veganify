@@ -6,7 +6,10 @@
       <Header />
       <Categories v-if="isMounted && !err402" />
       <!-- <RecipeCards :activeRecipes="activeRecipes" :category="categoryName" /> -->
+      <WaitingPlaceholder />
       <RecipeCards :category="categoryName" />
+
+      <Notification />
     </main>
 
     <Sidebar />

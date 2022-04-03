@@ -5,16 +5,21 @@
       <span>RECIPES</span>
     </h2>
 
+    <!-- <button @click.prevent="getRecipesByCategoryName('burger')">
+      TRY PIZZA
+    </button> -->
+
     <Hooper :settings="hooperSettings">
       <Slide :key="category.name" v-for="category in categories">
-        <article
+        <button
           class="categories__category"
           :class="[
             category.name === selectedCategory
               ? 'categories__category--active'
               : '',
           ]"
-          @click="getRecipesByCategoryName(category.name)"
+          :disabled="category.name === selectedCategory"
+          @click.prevent="getRecipesByCategoryName(category.name)"
         >
           <div
             class="categories__icon icontainer--bgwhite"
@@ -22,7 +27,7 @@
           ></div>
           <div class="categories__name">{{ category.name }}</div>
           <div class="categories__counter">{{ category.count }}+</div>
-        </article>
+        </button>
       </Slide>
 
       <hooper-navigation slot="hooper-addons"></hooper-navigation>
@@ -142,40 +147,65 @@ export default {
     recipes() {
       return this.$store.state.recipes.recipeItems;
     },
+    isWaiting() {
+      return this.$store.state.app.isWaiting;
+    },
   },
 
   methods: {
     getRecipesByCategoryName(categoryName) {
-      if (categoryName === "ALL") {
-        this.$store.commit("recipes/SET_ACTIVE_RECIPES", this.recipes);
-        this.$store.commit("recipes/SET_CATEGORY_NAME", "ALL");
+      this.$store.commit("app/SET_IS_WAITING", true);
+
+      setTimeout(() => {
+        if (categoryName === "ALL") {
+          this.$store.commit("recipes/SET_ACTIVE_RECIPES", this.recipes);
+          this.$store.commit("recipes/SET_CATEGORY_NAME", "ALL");
+          this.$store.commit("pagination/SET_CURR_PAGE", 1);
+
+          this.$nextTick(() => {
+            this.$store.commit("app/SET_IS_WAITING", false);
+          });
+
+          return;
+        }
+
+        this.$store.commit(
+          "recipes/SET_ACTIVE_RECIPES_BY_CATEGORY_NAME",
+          categoryName
+        );
+        this.$store.commit("recipes/SET_CATEGORY_NAME", categoryName);
         this.$store.commit("pagination/SET_CURR_PAGE", 1);
+
+        this.$nextTick(() => {
+          this.$store.commit("app/SET_IS_WAITING", false);
+        });
         this.$store.commit("recipes/SET_SCROLL_INTO_VIEW", {
           _selector: ".categories > .hooper",
         });
-        return;
-      }
+      }, 100);
 
-      this.$store.commit(
-        "recipes/SET_ACTIVE_RECIPES_BY_CATEGORY_NAME",
-        categoryName
-      );
-      this.$store.commit("recipes/SET_CATEGORY_NAME", categoryName);
-      this.$store.commit("pagination/SET_CURR_PAGE", 1);
-      this.$store.commit("recipes/SET_SCROLL_INTO_VIEW", {
-        _selector: ".categories > .hooper",
-      });
+      // this.$store.commit("recipes/SET_SCROLL_INTO_VIEW", {
+      //   _selector: ".categories > .hooper",
+      // });
+
+      // this.$nextTick(() => {
+      //   this.$store.commit("app/SET_IS_WAITING", false);
+      // });
+
+      // setTimeout(() => {
+      //   this.$store.commit("app/SET_IS_WAITING", false);
+      // }, 800);
     },
 
-    catItemsLength(name) {
-      return this.categoriesArr.find((cat) => cat.name === name).items.length;
-    },
+    // catItemsLength(name) {
+    //   return this.categoriesArr.find((cat) => cat.name === name).items.length;
+    // },
   },
 
-  mounted() {
-    console.log(
-      this.categoriesArr.find((cat) => cat.name === "salad").items.length
-    );
-  },
+  // mounted() {
+  //   console.log(
+  //     this.categoriesArr.find((cat) => cat.name === "salad").items.length
+  //   );
+  // },
 };
 </script>

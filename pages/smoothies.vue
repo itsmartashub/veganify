@@ -6,8 +6,11 @@
       <Header />
       <!-- <RecipeCards :activeRecipes="smoothies" /> -->
       <!-- <RecipeCards :activeRecipes="activeRecipes" /> -->
-      <RecipeCards />
+      <WaitingPlaceholder />
+      <RecipeCards :recipes="smoothies" />
       <!-- <RecipeCards /> -->
+
+      <Notification />
     </main>
 
     <Sidebar :popularRecipes="popularSmoothies" />
@@ -18,35 +21,32 @@
 export default {
   head() {
     return {
-      title: 'Veganify | Smoothies',
+      title: "Veganify | Smoothies",
       meta: [
         {
-          name: 'description',
-          content: 'This is a Veganify homepage BLABLA',
-          hid: 'description',
+          name: "description",
+          content: "This is a Veganify homepage BLABLA",
+          hid: "description",
         },
       ],
-    }
+    };
   },
 
   computed: {
-    activeRecipes() {
-      // return this.$store.state.smoothies.smoothieItems;
-      return this.$store.state.recipes.activeRecipes
-    },
+    // activeRecipes() {
+    //   return this.$store.state.recipes.activeRecipes;
+    // },
     smoothies() {
-      // return this.$store.state.smoothies.smoothieItems;
-      return this.$store.state.recipes.smoothieItems
+      return this.$store.state.recipes.smoothieItems;
     },
     popularSmoothies() {
-      // return this.$store.state.smoothies.popularSmoothieItems;
-      return this.$store.state.recipes.popularSmoothieItems
+      return this.$store.state.recipes.popularSmoothieItems;
     },
   },
 
   created() {
-    this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.smoothies)
-    this.$store.commit('pagination/SET_CURR_PAGE', 1)
+    this.$store.commit("recipes/SET_ACTIVE_RECIPES", this.smoothies);
+    this.$store.commit("pagination/SET_CURR_PAGE", 1);
   },
-}
+};
 </script>

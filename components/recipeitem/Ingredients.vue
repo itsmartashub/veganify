@@ -94,7 +94,7 @@
       >
         <div class="ingredients__item--amount">
           {{
-            ingredient.amount % 1 == 0
+            ingredient.amount % 1 === 0
               ? ingredient.amount
               : ingredient.amount.toFixed(1)
           }}
@@ -119,8 +119,8 @@ import {
   Hooper,
   Navigation as HooperNavigation,
   Pagination as HooperPagination,
-} from 'hooper'
-import 'hooper/dist/hooper.css'
+} from "hooper";
+import "hooper/dist/hooper.css";
 
 export default {
   components: {
@@ -157,13 +157,13 @@ export default {
           //   },
         },
       },
-    }
+    };
   },
 
   computed: {
     recipeItem() {
-      return this.$store.state.recipes.recipeItem
+      return this.$store.state.recipes.recipeItem;
     },
   },
-}
+};
 </script>

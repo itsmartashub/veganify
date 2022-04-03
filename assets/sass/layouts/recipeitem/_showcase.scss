@@ -100,8 +100,9 @@
     letter-spacing: 0.5px;
     background: var(--clr_white_grd_btns);
     color: var(--clr_accent);
-    box-shadow: var(--box_shadow_accent);
     transform-origin: right center;
+    box-shadow: var(--box_shadow_alpha);
+
     transition: 0.8s;
 
     @include device(tab-land) {
@@ -211,8 +212,8 @@
     &::after {
       @extend %pos-abs;
       // content: '"';
-      content: '\275D';
-      content: '\201F';
+      content: "\275D";
+      content: "\201F";
       // color: currentColor;
       color: var(--clr_accent_light);
       text-shadow: 3px 3px 0px var(--clr_accent);

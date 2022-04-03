@@ -1,90 +1,93 @@
 %pos-fix {
-    position: fixed;
+  position: fixed;
 }
 
 %pos-abs {
-    position: absolute;
+  position: absolute;
 }
 
 %pos-rel {
-    position: relative;
+  position: relative;
 }
 
 %height-auto {
-    height: auto;
+  height: auto;
 }
 
 %object-fit {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 %block {
-    display: block;
+  display: block;
 }
 
 %inline-block {
-    display: inline-block;
+  display: inline-block;
 }
 
 %grid {
-    display: grid;
+  display: grid;
 }
 
 %flex {
-    display: flex;
+  display: flex;
 }
 
 %grid-center {
-    @extend %grid;
-    place-items: center;
-    justify-content: center;
+  @extend %grid;
+  place-items: center;
+  justify-content: center;
 }
 
 %flex-center {
-    @extend %flex;
-    align-items: center;
-    justify-content: center;
+  @extend %flex;
+  align-items: center;
+  justify-content: center;
 }
 
 %flex-jsb {
-    @extend %flex;
-    align-items: center;
-    justify-content: space-between;
+  @extend %flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 %w-100 {
-    width: 100%;
+  width: 100%;
 }
 
 %h-100 {
-    height: 100%;
+  height: 100%;
 }
 
 %after {
-    content: "";
-    @extend %pos-abs;
-    @extend %w-100;
-    @extend %h-100;
+  content: "";
+  @extend %pos-abs;
+  @extend %w-100;
+  @extend %h-100;
 }
 
 %abs-center {
-    @extend %pos-abs;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  @extend %pos-abs;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 %overflow-hidden {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 %objfit-cover {
-    object-fit: cover;
+  object-fit: cover;
+}
+%objfit-sd {
+  object-fit: scale-down;
 }
 %img-basic {
-    @extend %objfit-cover;
-    @extend %w-100;
-    @extend %h-100;
+  @extend %objfit-cover;
+  @extend %w-100;
+  @extend %h-100;
 }
 
 // %radius-btn {
@@ -100,55 +103,55 @@
 // }
 
 %radius-50 {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 %cursor {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 %text-center {
-    text-align: center;
+  text-align: center;
 }
 
 %opacity-0 {
-    opacity: 0;
+  opacity: 0;
 }
 
 %fw-700 {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 %fw-600 {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 %fw-500 {
-    font-weight: 500;
+  font-weight: 500;
 }
 %fw-400 {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 %fw-300 {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 %z-minus {
-    z-index: -1;
+  z-index: -1;
 }
 
 %box-shadow {
-    box-shadow: $box_shadow;
+  box-shadow: $box_shadow;
 }
 
 %optimizeProps {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 %optimizePropsForGsap {
-    @extend %pos-abs;
-    top: 0;
-    left: 0;
+  @extend %pos-abs;
+  top: 0;
+  left: 0;
 }

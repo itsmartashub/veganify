@@ -1,36 +1,38 @@
 // @import "abstract/font-face";
-@import 'base/reset';
-@import 'abstract/vars';
-@import 'abstract/mixins';
-@import 'abstract/extends';
-@import 'abstract/animations';
-@import 'components/loader';
+@import "base/reset";
+@import "abstract/vars";
+@import "abstract/mixins";
+@import "abstract/extends";
+@import "abstract/animations";
+@import "components/loader";
 
-@import 'base/global';
-@import 'base/typo';
+@import "base/global";
+@import "base/typo";
 
-@import 'components/btns';
-@import 'components/icons';
-@import 'components/logo';
-@import 'components/sidebarcard';
-@import 'components/hooper';
-@import 'components/scrolltotop';
-@import 'components/pagination';
+@import "components/btns";
+@import "components/icons";
+@import "components/logo";
+@import "components/sidebarcard";
+@import "components/hooper";
+@import "components/scrolltotop";
+@import "components/pagination";
+@import "components/waiting";
+@import "components/notification";
 
-@import 'layouts/navigation';
-@import 'layouts/header';
-@import 'layouts/middle';
-@import 'layouts/sidebar';
-@import 'layouts/categories';
-@import 'layouts/recipecards';
+@import "layouts/navigation";
+@import "layouts/header";
+@import "layouts/middle";
+@import "layouts/sidebar";
+@import "layouts/categories";
+@import "layouts/recipecards";
 
-@import 'layouts/recipeitem/showcase';
-@import 'layouts/recipeitem/ingredients';
-@import 'layouts/recipeitem/steps';
-@import 'layouts/recipeitem/tags';
+@import "layouts/recipeitem/showcase";
+@import "layouts/recipeitem/ingredients";
+@import "layouts/recipeitem/steps";
+@import "layouts/recipeitem/tags";
 
-@import 'pages/home';
-@import 'pages/recipeitem';
-@import 'pages/bookmarks';
-@import 'pages/smoothies';
-@import 'pages/error';
+@import "pages/home";
+@import "pages/recipeitem";
+@import "pages/bookmarks";
+@import "pages/smoothies";
+@import "pages/error";
