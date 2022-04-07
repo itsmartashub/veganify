@@ -4,34 +4,24 @@
   overflow-y: scroll;
   scroll-behavior: smooth; //! jer je ovo skrolovano kad se klikne na scrolltotop
   padding: var(--padding-home);
-  display: grid;
+  @extend %d--grid;
   justify-content: center;
   grid-auto-flow: column;
-  // grid-template-areas: "nav mid side side";
 
-  // grid-template-areas: "sidebar main aside";
-  grid-template-areas: 'nav mid side';
-  // grid-template-columns: minmax(0, 1fr) minmax(0, 12fr) minmax(300px, 7fr);
+  grid-template-areas: "nav mid side";
   grid-template-columns: minmax(0, max-content) minmax(0, 13fr) minmax(
       30rem,
       4fr
     );
 
-  // @extend %optimizeProps;
-  //   @extend %optimizePropsForGsap;
-
-  // visibility: hidden;
-
   @include device(tab-land) {
-    grid-template-areas: 'nav mid mid';
-    // grid-template-columns: minmax(0, 1fr) minmax(0, 4fr);
+    grid-template-areas: "nav mid mid";
   }
 
   @include device(phone-land) {
     grid-template-areas:
-      'mid'
-      'nav';
-    // height: auto;
+      "mid"
+      "nav";
     grid-template-columns: 1fr;
   }
 }

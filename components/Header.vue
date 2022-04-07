@@ -42,22 +42,12 @@ export default {
     };
   },
 
-  // computed: {
-  //     MSG() {
-  //         return this.$store.state.apk.msg;
-  //     }
-  // },
-
   methods: {
     async submitSearch() {
       if (!this.searchInput || this.searchInput.trim() === "") return;
       this.$store.commit("app/SET_IS_WAITING", true);
 
       this.searchInput = this.searchInput.replaceAll(/[$.]+/g, "");
-
-      // setTimeout(() => {
-
-      // }, 100);
 
       if (this.$route.name === "smoothies") {
         await this.$store.dispatch("recipes/fetchSearchedRecipes", {
@@ -75,7 +65,6 @@ export default {
       this.$store.commit("recipes/SET_SCROLL_INTO_VIEW", {
         _selector: ".categories > .hooper",
       });
-      // this.$store.commit("app/SET_IS_WAITING", false);
       this.$nextTick(() => this.$store.commit("app/SET_IS_WAITING", false));
     },
   },

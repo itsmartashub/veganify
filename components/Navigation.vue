@@ -181,25 +181,28 @@
 export default {
   computed: {
     darkTheme() {
-      return this.$store.state.app.isDark
+      return this.$store.state.app.isDark;
     },
 
     IS_DARK: {
       get: function () {
-        return this.$store.state.app.isDark
+        return this.$store.state.app.isDark;
       },
       set: function (newValue) {
-        window.localStorage.setItem('veganify_isdark', JSON.stringify(newValue))
-        this.$store.commit('app/SET_THEME', newValue)
+        window.localStorage.setItem(
+          "veganify_isdark",
+          JSON.stringify(newValue)
+        );
+        this.$store.commit("app/SET_THEME", newValue);
       },
     },
   },
 
   methods: {
     darkToggle() {
-      this.IS_DARK = !this.IS_DARK
-      this.$store.dispatch('app/setThemeBodyAttr')
+      this.IS_DARK = !this.IS_DARK;
+      this.$store.dispatch("app/setThemeBodyAttr");
     },
   },
-}
+};
 </script>

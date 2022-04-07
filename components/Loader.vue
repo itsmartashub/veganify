@@ -1,5 +1,5 @@
 <template>
-  <transition name="loader" :duration="2000">
+  <transition name="loader">
     <section class="loader" v-if="loading">
       <div class="loader__content">
         <div class="loader__logo">
@@ -20,22 +20,21 @@ export default {
   data() {
     return {
       loading: true,
-    }
+    };
   },
   methods: {
     start() {
-      this.loading = true
+      this.loading = true;
     },
     finish() {
-      this.loading = false
+      this.loading = false;
     },
   },
   mounted() {
     this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-      setTimeout(() => this.$nuxt.$loading.finish(), 500)
-      // this.$nuxt.$loading.finish()
-    })
+      this.$nuxt.$loading.start();
+      setTimeout(() => this.$nuxt.$loading.finish(), 500);
+    });
   },
-}
+};
 </script>

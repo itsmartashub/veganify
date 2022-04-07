@@ -1,0 +1,29 @@
+.summary {
+    a {
+        color: var(--clr_black);
+        @extend %fw-700;
+        @extend %pos-rel;
+        opacity: 0.9;
+        transition: opacity 0.5s $outSmooth;
+
+        &::after {
+            @extend %after;
+            background: var(--clr_black);
+            left: 0;
+            top: 100%;
+            height: 3px;
+            border-radius: 50%;
+            transform-origin: 100% 50%;
+            transform: scaleX(1);
+            transition: transform 0.5s $outSmooth;
+        }
+
+        &:hover,
+        &:focus {
+            opacity: 1;
+            &::after {
+                transform: scaleX(0);
+            }
+        }
+    }
+}

@@ -4,7 +4,6 @@
 
     <main class="middle" v-if="bookmarks[0]">
       <Header />
-      <!-- <RecipeCards :recipes="bookmarks" /> -->
       <RecipeCards />
       <Notification />
     </main>

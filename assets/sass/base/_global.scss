@@ -4,9 +4,6 @@ body {
   @extend %w-100;
   min-height: 100vh;
   overflow-x: hidden;
-
-  // scrollbar-color: $main transparent;
-  // scrollbar-width: none;
 }
 
 body {
@@ -18,20 +15,11 @@ body {
   color: var(--clr_black);
   @extend %overflow-hidden;
   @extend %flex-center;
-  transition: colors 0.3s ease, background 0.3s ease;
-  // transition: 0.3s;
 }
 
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-track {
-  // background: $white;
-  // width: 0.8rem  ;
   display: none;
-}
-
-::-webkit-scrollbar-thumb {
-  // background: $main;
-  // @extend %radius-btn;
 }
 
 ::selection {
@@ -50,29 +38,29 @@ img {
 .bp {
   font-size: 2rem;
   padding: 0.3rem 1rem;
-  display: block;
-  @extend %text-center;
+  @extend %d--block;
+  @extend %txt-center;
   @extend %pos-fix;
   bottom: 5%;
   left: 50%;
   z-index: 2000;
 
   &::before {
-    content: 'desktop ';
+    content: "desktop ";
   }
 
   @include device(tab-land) {
     // width < 1200 ?
     background: purple;
     &::before {
-      content: 'tab-land';
+      content: "tab-land";
     }
   }
   @include device(tab-mid) {
     // width < 1050 ?
     background: darkslategrey;
     &::before {
-      content: 'tab-mid';
+      content: "tab-mid";
     }
   }
 
@@ -80,7 +68,7 @@ img {
     // width < 900 ?
     background: teal;
     &::before {
-      content: 'tab';
+      content: "tab";
     }
   }
 
@@ -88,7 +76,7 @@ img {
     // width < 600 ?
     background: lightgreen;
     &::before {
-      content: 'phone-land';
+      content: "phone-land";
     }
   }
 
@@ -96,7 +84,7 @@ img {
     // width < 500 ?
     background: orangered;
     &::before {
-      content: 'phone';
+      content: "phone";
     }
   }
 
@@ -104,7 +92,7 @@ img {
     // width < 320 ?
     background: coral;
     &::before {
-      content: 'phone-ant';
+      content: "phone-ant";
     }
   }
 
@@ -112,7 +100,7 @@ img {
     // width > 1920 ?
     background: red;
     &::before {
-      content: 'big';
+      content: "big";
     }
   }
 }

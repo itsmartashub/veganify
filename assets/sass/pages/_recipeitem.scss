@@ -1,359 +1,317 @@
 .recipeitem {
-  --gap_window_edge: 3vw;
-  --wrapper_figure_height: 12vmax;
-  // --margin_top: (calc(-1 * (var(--wrapper_figure_height) / 2 - 2vmax)))
+    --gap_window_edge: 3vw;
+    --wrapper_figure_height: 12vmax;
 
-  background: var(--clr_recipeitem_bg);
-  // background: var(--clr_grd_bg);
-  width: 100vw;
-  min-height: 100vh;
+    background: var(--clr_recipeitem_bg);
+    width: 100vw;
+    min-height: 100vh;
 
-  &__btn {
-    &-wrapper {
-      padding: var(--gap_window_edge);
-      margin-bottom: 4rem;
-      height: var(--wrapper_figure_height);
+    &__btn {
+        &-wrapper {
+            padding: var(--gap_window_edge);
+            margin-bottom: 4rem;
+            height: var(--wrapper_figure_height);
 
-      @include device(tab-land) {
-        padding: 5vw var(--gap_window_edge);
-      }
-      @include device(tab-mid) {
-        --wrapper_figure_height: 40vmax;
-        // height: var(--wrapper_figure_height);
-        padding: 0;
-        margin-bottom: 0;
-        position: relative;
-        z-index: 1;
-      }
-      @include device(tab) {
-        --wrapper_figure_height: 38vmax;
-      }
+            @include device(tab-land) {
+                padding: 5vw var(--gap_window_edge);
+            }
+            @include device(tab-mid) {
+                --wrapper_figure_height: 40vmax;
+                padding: 0;
+                margin-bottom: 0;
+                position: relative;
+                z-index: 1;
+            }
+            @include device(tab) {
+                --wrapper_figure_height: 38vmax;
+            }
+        }
+
+        &-back {
+            background: var(--clr_white_grd_btns);
+            box-shadow: var(--box_shadow_accent);
+            color: var(--clr_accent);
+            letter-spacing: 1px;
+            transition: letter-spacing 0.3s;
+
+            .icontainer {
+                --icontainer_size: 4rem;
+                --icontainer_radius: 1.2rem;
+
+                &__icon {
+                    fill: var(--clr_accent_to_dark);
+                }
+            }
+
+            &:hover {
+                letter-spacing: initial;
+
+                .icontainer {
+                    transform: translateX(-10%);
+                }
+            }
+
+            @include device(tab-mid) {
+                position: absolute;
+                top: 10%;
+                left: 5%;
+                z-index: 2;
+                background: var(--clr_recipeitem_bg);
+                color: var(--clr_white);
+
+                .icontainer--bggreen {
+                    background: var(--clr_white);
+                }
+            }
+            @include device(phone) {
+                span {
+                    display: none;
+                }
+
+                .icontainer--bggreen {
+                    --icontainer_size: fit-content;
+                    background: none;
+                    padding: 0;
+                }
+                .icontainer__icon {
+                    --svg_size: 8vw;
+                    fill: var(--clr_white);
+                }
+            }
+        }
     }
 
-    &-back {
-      // color: var(--clr_black);
-      // background: var(--clr_sidecard_bg);
-      background: var(--clr_white_grd_btns);
-      box-shadow: var(--box_shadow_accent);
-      color: var(--clr_accent);
-      letter-spacing: 1px;
-      transition: letter-spacing 0.3s;
+    &__mobilefigure {
+        display: none;
 
-      .icontainer {
-        --icontainer_size: 4rem;
-        --icontainer_radius: 1.2rem;
-        // background: var(--clr_backbtn_icontainer);
+        @include device(tab-mid) {
+            display: block;
+            height: var(--wrapper_figure_height);
+            width: 100%;
 
-        &__icon {
-          fill: var(--clr_accent_to_dark);
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                backdrop-filter: blur(2px);
+                box-shadow: var(--img_box_shadow);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+            }
         }
-      }
+    }
 
-      &:hover {
-        letter-spacing: initial;
+    &__content {
+        --content_radius: 12vw;
+        background: var(--clr_recipeitem_content_bg);
+        box-shadow: var(--box_shadow_accent);
+        @extend %w-100;
+        @extend %h-100;
+        border-radius: var(--content_radius) var(--content_radius) 0 0;
+        padding: 12rem 6vw;
+        @extend %d--grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+        grid-template-areas: 'l r' 'l r';
+        justify-content: space-between;
+        grid-gap: 20vw 8vw;
 
-        .icontainer {
-          transform: translateX(-10%);
+        @include device(tab-mid) {
+            --content_radius: 16vw;
+            justify-content: center;
+            justify-items: center;
+            grid-template-areas:
+                'l'
+                'r';
+            grid-gap: 5vh;
+            padding: 0;
+            margin-top: calc(-1 * (var(--wrapper_figure_height) + 5vmax));
+            background: var(--clr_recipeitem_bg);
+            position: relative;
+            z-index: 2;
         }
-      }
+        @include device(phone-land) {
+            padding: 0rem 3rem;
+        }
+        @include device(phone) {
+            padding: 0;
+        }
+    }
 
-      @include device(tab-mid) {
-        position: absolute;
-        top: 10%;
-        left: 5%;
-        z-index: 2;
-        background: var(--clr_recipeitem_bg);
+    &__left {
+        grid-area: l;
+        align-self: flex-start;
+        @extend %grid-center;
+        grid-gap: 15rem;
+
+        @include device(tab-mid) {
+            padding: 12rem 6vw;
+        }
+        @include device(phone-land) {
+            grid-gap: 12rem;
+        }
+    }
+
+    &__tags {
+        order: 1;
+        @include device(phone) {
+            order: 2;
+        }
+    }
+    &__showcase {
+        order: 3;
+    }
+
+    &__title {
+        order: 2;
+        font-size: 3rem;
+        @extend %txt-center;
+        text-transform: uppercase;
+        @extend %fw-600;
+        @extend %flex-center;
+        @extend %pos-rel;
+
+        @include device(tab-mid) {
+            width: 75%;
+        }
+        @include device(phone) {
+            order: 1;
+            width: 85%;
+            text-transform: capitalize;
+            margin-top: 4rem;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -6.5rem);
+                height: 5px;
+                width: 6rem;
+                border-radius: 5px;
+                background: var(--clr_black);
+                opacity: 0.5;
+            }
+        }
+    }
+
+    &__right {
+        --right_radius: 6.5vw;
+        grid-area: r;
+        background: var(--clr_recipeitem_right_bg);
+        border-radius: var(--right_radius);
+        padding: 5vw 4vw;
+
+        @include device(tab-land) {
+            padding: 4vw;
+        }
+        @include device(tab-mid) {
+            --right_radius: 14vw;
+            padding: 10vw;
+            width: 80%;
+            border-radius: var(--right_radius) var(--right_radius) 0 0;
+            background: var(--clr_recipeitem_right_mobile);
+        }
+        @include device(tab) {
+            width: 90%;
+            padding: 12vw 10vw;
+        }
+        @include device(phone-land) {
+            --right_radius: 16vw;
+            width: 100%;
+        }
+        @include device(phone) {
+            --right_radius: 14vw;
+        }
+    }
+
+    &__header {
+        --breadcrumb_radius: 40px;
+        @extend %txt-center;
+        @extend %d--flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 3vw;
+        background: var(--clr_recipeitem_right_bg);
+        border-radius: var(--breadcrumb_radius);
+        margin-bottom: 3.5vw;
+
+        @include device(tab-mid) {
+            margin-bottom: 6rem;
+        }
+
+        @include device(phone) {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0 7rem 0;
+        }
+    }
+
+    &__breadcrumb {
+        flex-grow: 1;
+        @extend %pos-rel;
+        @extend %cursor;
+        padding: 1.3vw 1vw;
+        @extend %fw-500;
+        @extend %flex-center;
+        text-transform: uppercase;
         color: var(--clr_white);
+        border-radius: var(--breadcrumb_radius);
+        transition: transform 0.4s $outBack, color 0.3s ease-in-out;
+        z-index: 10 !important;
 
-        .icontainer--bggreen {
-          background: var(--clr_white);
-        }
-      }
-      @include device(phone) {
-        // position: absolute;
-        // top: 10%;
-        // left: 5%;
-        // padding: 1.5rem;
-        // background: var(--clr_grd_bg);
-        // box-shadow: var(--box_shadow_accent);
-        // box-shadow: 3px 3px 0px 0px var(--clr_accent); //todo ZA DARK OVO
-
-        span {
-          display: none;
+        @include device(tab-mid) {
+            padding: 2.8rem 1rem;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
         }
 
-        .icontainer--bggreen {
-          --icontainer_size: fit-content;
-          // --icontainer_radius: 1.6rem;
-
-          background: none;
-          padding: 0;
+        @include device(phone-land) {
+            padding: 2rem;
         }
-        .icontainer__icon {
-          --svg_size: 8vw;
-          fill: var(--clr_white);
+        @include device(phone) {
+            padding: 1.8rem;
         }
-      }
-    }
-  }
 
-  &__mobilefigure {
-    display: none;
+        &::after {
+            @extend %after;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: var(--clr_white_grd_btns);
+            @extend %opacity-0;
+            transform: scaleX(0.2);
+            transform-origin: right center;
+            border-radius: var(--breadcrumb_radius);
+            transition: transform 0.4s $outBack, opacity 0.4s $outBack,
+                box-shadow 0.4s $outBack;
+        }
+        &:nth-of-type(2)::after {
+            transform-origin: left center;
+        }
 
-    @include device(tab-mid) {
-      display: block;
-      height: var(--wrapper_figure_height);
-      width: 100%;
+        &:hover {
+            color: var(--clr_accent);
 
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        backdrop-filter: blur(2px);
-        box-shadow: var(--img_box_shadow);
-      }
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top;
-      }
-    }
-  }
-
-  &__content {
-    --content_radius: 12vw;
-    // --clr_grd_bg: linear-gradient(
-    //   var(--grd_deg),
-    //   var(--clr_grd_1),
-    //   var(--clr_grd_2)
-    // );
-    // box-shadow: var(--box_shadow_accent);
-    background: var(--clr_recipeitem_content_bg);
-    // background: var(--clr_recipeitem_bg);
-    box-shadow: var(--box_shadow_accent);
-    // background: var(--clr_recipeitem_right_mobile);
-    @extend %w-100;
-    @extend %h-100;
-    border-radius: var(--content_radius) var(--content_radius) 0 0;
-    padding: 12rem 6vw;
-    // margin: 0 var(--gap_window_edge) 0 var(--gap_window_edge);
-
-    @extend %grid;
-    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-    grid-template-areas: "l r" "l r";
-    justify-content: space-between;
-    grid-gap: 20vw 8vw;
-
-    @include device(tab-mid) {
-      --content_radius: 16vw;
-      justify-content: center;
-      justify-items: center;
-      grid-template-areas:
-        "l"
-        "r";
-      grid-gap: 5vh;
-      padding: 0;
-      // margin-top: calc(-1 * (var(--wrapper_figure_height) / 2 - 2vmax));
-      margin-top: calc(-1 * (var(--wrapper_figure_height) + 5vmax));
-      background: var(--clr_recipeitem_bg);
-      position: relative;
-      z-index: 2;
-    }
-    @include device(phone-land) {
-      padding: 0rem 3rem;
-    }
-    @include device(phone) {
-      padding: 0;
-      // --content_radius: 10rem;
-    }
-  }
-
-  &__left {
-    grid-area: l;
-    align-self: flex-start;
-    display: grid;
-    justify-content: center;
-    place-items: center;
-    grid-gap: 9rem;
-
-    @include device(tab-mid) {
-      padding: 12rem 6vw;
-    }
-    @include device(phone-land) {
-      // padding: 10rem 0vw;
-      grid-gap: 12rem;
-    }
-  }
-
-  &__tags {
-    order: 1;
-    @include device(phone) {
-      order: 2;
-    }
-  }
-  &__showcase {
-    order: 3;
-  }
-
-  &__title {
-    order: 2;
-    font-size: 3rem;
-    line-height: 1.6;
-    text-align: center;
-    text-transform: uppercase;
-    @extend %fw-600;
-    @extend %flex-center;
-    @extend %pos-rel;
-
-    @include device(tab-mid) {
-      width: 75%;
-    }
-    @include device(phone) {
-      order: 1;
-      width: 85%;
-      text-transform: capitalize;
-      margin-top: 4rem;
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -6.5rem);
-        height: 5px;
-        width: 6rem;
-        border-radius: 5px;
-        background: var(--clr_black);
-        opacity: 0.5;
-      }
-    }
-  }
-
-  &__right {
-    --right_radius: 6.5vw;
-    grid-area: r;
-    background: var(--clr_recipeitem_right_bg);
-    border-radius: var(--right_radius);
-    // box-shadow: var(--box_shadow_accent);
-    padding: 5vw 4vw;
-    // background: var(--clr_recipeitem_right_mobile);
-
-    @include device(tab-land) {
-      padding: 4vw;
-    }
-    @include device(tab-mid) {
-      --right_radius: 14vw;
-      padding: 10vw;
-      width: 80%;
-      border-radius: var(--right_radius) var(--right_radius) 0 0;
-      background: var(--clr_recipeitem_right_mobile);
-    }
-    @include device(tab) {
-      width: 90%;
-      // width: 100%;
-      padding: 12vw 10vw;
-    }
-    @include device(phone-land) {
-      --right_radius: 16vw;
-      // padding: 5rem;
-      width: 100%;
-    }
-    @include device(phone) {
-      --right_radius: 14vw;
-      // padding: 0;
-    }
-  }
-
-  &__header {
-    --breadcrumb_radius: 40px;
-    @extend %text-center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3vw;
-    background: var(--clr_recipeitem_right_bg);
-    border-radius: var(--breadcrumb_radius);
-    margin-bottom: 3.5vw;
-
-    @include device(tab-mid) {
-      margin-bottom: 6rem;
-      // border-radius: var(--breadcrumb_radius);
-      // border: 3px solid var(--clr_accent);
-      // background: var(--clr_accent);
-      // background: var(--clr_recipeitem_right_bg);
+            &::after {
+                box-shadow: var(--box_shadow_alpha);
+                @extend %opacity-1;
+                transform: scaleX(1);
+            }
+        }
     }
 
-    @include device(phone) {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 2rem 0 7rem 0;
+    &--active {
+        @extend .recipeitem__breadcrumb, :hover;
     }
-  }
-
-  &__breadcrumb {
-    flex-grow: 1;
-    @extend %pos-rel;
-    @extend %cursor;
-    padding: 1.3vw 1vw;
-    @extend %fw-500;
-    @extend %flex-center;
-    text-transform: uppercase;
-    color: var(--clr_white);
-    border-radius: var(--breadcrumb_radius);
-    transition: transform 0.4s $outBack, color 0.3s ease-in-out;
-    z-index: 10 !important;
-
-    @include device(tab-mid) {
-      padding: 2.8rem 1rem;
-      font-size: 1.8rem;
-      letter-spacing: 1px;
-    }
-
-    @include device(phone-land) {
-      padding: 2rem;
-    }
-    @include device(phone) {
-      padding: 1.8rem;
-    }
-
-    &::after {
-      @extend %after;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      background: var(--clr_white_grd_btns);
-      opacity: 0;
-      transform: scaleX(0.2);
-      transform-origin: right center;
-      border-radius: var(--breadcrumb_radius);
-      transition: transform 0.4s $outBack, opacity 0.4s $outBack,
-        box-shadow 0.4s $outBack;
-    }
-    &:nth-of-type(2)::after {
-      transform-origin: left center;
-    }
-
-    &:hover {
-      color: var(--clr_accent);
-
-      &::after {
-        box-shadow: var(--box_shadow_alpha);
-        opacity: 1;
-        transform: scaleX(1);
-        // box-shadow: var(--box_shadow_accent_stronger); //todo VECI SHADOWTREBA
-      }
-    }
-  }
-
-  &--active {
-    @extend .recipeitem__breadcrumb, :hover;
-  }
 }

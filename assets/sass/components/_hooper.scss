@@ -1,21 +1,18 @@
 .hooper {
   &-track {
-    display: grid;
+    @extend %d--grid;
     grid-auto-flow: column;
     transition: transform 1s $outSmooth;
   }
 }
 
 .categories .hooper {
-  display: grid;
-  min-height: 30rem;
+  @extend %d--grid;
   align-content: center;
-  // transition: 1s;
+  min-height: 30rem;
 
   &-track {
     justify-content: flex-start;
-
-    // justify-content: center;
     padding: 4rem 0;
     grid-gap: 5rem;
   }
@@ -57,7 +54,7 @@
     left: -6%;
     &:hover,
     &:focus {
-      opacity: 1;
+      @extend %opacity-1;
       svg {
         transform: translate3d(-20%, 0, 0);
       }
@@ -67,16 +64,12 @@
     right: -6%;
     &:hover,
     &:focus {
-      opacity: 1;
+      @extend %opacity-1;
       svg {
         transform: translate3d(20%, 0, 0);
       }
     }
   }
-
-  // @include device(tab-land) {
-  //     min-height: 25vh;
-  // }
 }
 
 // ? ===================== INGREDIENTS HOOPER
@@ -85,18 +78,6 @@
   max-height: 24rem;
   margin-bottom: 2rem;
 
-  @include device(tab-mid) {
-    // margin-bottom: 5rem;
-    // max-width: max-content;
-    // margin-bottom: 5rem;
-  }
-  // margin-bottom: 3rem;
-  @include device(phone-land) {
-    // height: max-content;
-    // margin-bottom: 4rem;
-    // padding: 2rem 0;
-  }
-
   &-list {
     @include device(phone-land) {
       display: grid;
@@ -104,36 +85,17 @@
   }
 
   &-track {
-    display: grid;
-    // grid-auto-flow: column;
+    @extend %d--grid;
     justify-content: flex-start;
     grid-gap: 3rem;
     height: auto;
     padding-top: 3rem;
     margin-bottom: 5rem;
-    // width: auto;
-    // max-width: 40vw;
-
-    @include device(tab-mid) {
-      // margin-bottom: 10rem;
-      // max-width: max-content;
-      // margin-bottom: 5rem;
-    }
-    @include device(phone-land) {
-      // max-width: max-content;
-      // margin-bottom: 5rem;
-    }
-    // min-width: 10vw;
   }
   &-slide {
     min-width: 16rem;
     max-width: 18rem;
 
-    @include device(tab-land) {
-      // min-width: 15rem;
-      // max-width: 17rem;
-      // width: max-content;
-    }
     @include device(phone-land) {
       max-width: max-content;
     }
@@ -142,10 +104,7 @@
   &-indicators {
     @extend %flex-center;
     padding: 0;
-    // bottom: 1rem !important;
   }
-  // &-indicators {
-  // }
   &-indicator {
     background: var(--clr_white);
     transition: background 0.3s, opacity 0.3s;
@@ -182,8 +141,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      // --btn_pos: -20%;
-      // top: 40%;
     }
   }
 
@@ -191,7 +148,7 @@
     left: var(--btn_pos);
     &:hover,
     &:focus {
-      opacity: 1;
+      @extend %opacity-1;
       svg {
         transform: translate3d(-20%, 0, 0);
       }
@@ -201,7 +158,7 @@
     right: var(--btn_pos);
     &:hover,
     &:focus {
-      opacity: 1;
+      @extend %opacity-1;
       svg {
         transform: translate3d(20%, 0, 0);
       }

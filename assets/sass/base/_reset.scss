@@ -40,8 +40,7 @@ header,
 hgroup,
 menu,
 nav,
-section,
-img {
+section {
   display: block;
 }
 
@@ -73,7 +72,7 @@ input {
 }
 
 // remove search controls
-input[type='search']::-webkit-search-decoration {
+input[type="search"]::-webkit-search-decoration {
   display: none;
 }
 
@@ -104,11 +103,11 @@ picture {
 // }
 
 /* make images easier to work with */
-// img,
-// picture {
-//   max-width: 100%;
-//   display: block;
-// }
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
 
 /* make form elements easier to work with */
 // input,

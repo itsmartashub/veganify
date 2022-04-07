@@ -1,157 +1,121 @@
 %pos-fix {
-  position: fixed;
+    position: fixed;
 }
-
 %pos-abs {
-  position: absolute;
+    position: absolute;
 }
-
 %pos-rel {
-  position: relative;
+    position: relative;
 }
 
-%height-auto {
-  height: auto;
+%d--block {
+    display: block;
 }
-
-%object-fit {
-  object-fit: cover;
+%d--inline-block {
+    display: inline-block;
 }
-
-%block {
-  display: block;
+%d--grid {
+    display: grid;
 }
-
-%inline-block {
-  display: inline-block;
-}
-
-%grid {
-  display: grid;
-}
-
-%flex {
-  display: flex;
+%d--flex {
+    display: flex;
 }
 
 %grid-center {
-  @extend %grid;
-  place-items: center;
-  justify-content: center;
+    @extend %d--grid;
+    place-items: center;
+    justify-content: center;
 }
 
 %flex-center {
-  @extend %flex;
-  align-items: center;
-  justify-content: center;
+    @extend %d--flex;
+    align-items: center;
+    justify-content: center;
 }
 
 %flex-jsb {
-  @extend %flex;
-  align-items: center;
-  justify-content: space-between;
+    @extend %d--flex;
+    align-items: center;
+    justify-content: space-between;
+}
+%flex-jsa {
+    @extend %d--flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 %w-100 {
-  width: 100%;
+    width: 100%;
 }
-
 %h-100 {
-  height: 100%;
+    height: 100%;
+}
+%h-auto {
+    height: auto;
 }
 
 %after {
-  content: "";
-  @extend %pos-abs;
-  @extend %w-100;
-  @extend %h-100;
+    content: '';
+    @extend %pos-abs;
+    @extend %w-100;
+    @extend %h-100;
 }
 
 %abs-center {
-  @extend %pos-abs;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    @extend %pos-abs;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 %overflow-hidden {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 %objfit-cover {
-  object-fit: cover;
-}
-%objfit-sd {
-  object-fit: scale-down;
+    object-fit: cover;
 }
 %img-basic {
-  @extend %objfit-cover;
-  @extend %w-100;
-  @extend %h-100;
-}
-
-// %radius-btn {
-// 	border-radius: 8px;
-// }
-
-// %radius-icon {
-// 	border-radius: 1.5rem;
-// }
-
-// %radius-img {
-// 	border-radius: 4.5rem;
-// }
-
-%radius-50 {
-  border-radius: 50%;
+    @extend %objfit-cover;
+    @extend %w-100;
+    @extend %h-100;
 }
 
 %cursor {
-  cursor: pointer;
+    cursor: pointer;
 }
 
-%text-center {
-  text-align: center;
+%txt-center {
+    text-align: center;
 }
 
 %opacity-0 {
-  opacity: 0;
+    opacity: 0;
+}
+%opacity-1 {
+    opacity: 1;
 }
 
 %fw-700 {
-  font-weight: 700;
+    font-weight: 700;
 }
-
 %fw-600 {
-  font-weight: 600;
+    font-weight: 600;
 }
-
 %fw-500 {
-  font-weight: 500;
+    font-weight: 500;
 }
 %fw-400 {
-  font-weight: 400;
+    font-weight: 400;
 }
-
 %fw-300 {
-  font-weight: 300;
+    font-weight: 300;
 }
 
 %z-minus {
-  z-index: -1;
+    z-index: -1;
 }
 
 %box-shadow {
-  box-shadow: $box_shadow;
-}
-
-%optimizeProps {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-%optimizePropsForGsap {
-  @extend %pos-abs;
-  top: 0;
-  left: 0;
+    box-shadow: $box_shadow;
 }

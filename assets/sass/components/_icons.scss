@@ -4,7 +4,7 @@
   width: var(--icontainer_size);
   height: var(--icontainer_size);
   border-radius: var(--icontainer_radius);
-  display: grid;
+  @extend %d--grid;
   place-items: center;
   transition: transform 0.5s $outBack;
 
@@ -30,22 +30,3 @@
     background: var(--clr_white);
   }
 }
-
-// .icon {
-//   --wrapper_size: 3rem;
-//   --wrapper_radius: 0.5vw;
-//   @extend %pos-rel;
-//   display: grid;
-//   place-items: center;
-
-//   &::before {
-//     @extend %after;
-//     top: 0;
-//     left: 0;
-//     width: var(--wrapper_size);
-//     height: var(--wrapper_size);
-//     border-radius: var(--wrapper_radius);
-//     background: var(--clr_accent_alpha_2);
-//     transition: 0.5s $outBack;
-//   }
-// }

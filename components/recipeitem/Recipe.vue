@@ -1,100 +1,92 @@
 <template>
-  <div class="recipeitem__content" v-if="recipeItem && isMounted">
-    <section class="recipeitem__left">
-      <h1 class="recipeitem__title">{{ recipeItem.title }}</h1>
+    <div class="recipeitem__content" v-if="recipeItem && isMounted">
+        <section class="recipeitem__left">
+            <h1 class="recipeitem__title">{{ recipeItem.title }}</h1>
 
-      <RecipeitemTags />
+            <RecipeitemTags />
 
-      <RecipeitemShowcase />
-    </section>
+            <RecipeitemShowcase />
+        </section>
 
-    <section class="recipeitem__right">
-      <header class="recipeitem__header">
-        <p
-          class="recipeitem__breadcrumb"
-          :class="{ 'recipeitem--active': componentIndex === 0 }"
-          @click="changeActiveComponent(0)"
-          v-if="recipeItem.extendedIngredients"
-        >
-          Ingredients
-        </p>
-        <p
-          class="recipeitem__breadcrumb"
-          :class="{ 'recipeitem--active': componentIndex === 1 }"
-          @click="changeActiveComponent(1)"
-          v-if="recipeItem.analyzedInstructions"
-        >
-          Recipe steps
-        </p>
-        <p
-          class="recipeitem__breadcrumb"
-          :class="{ 'recipeitem--active': componentIndex === 2 }"
-          @click="changeActiveComponent(2)"
-          v-if="!recipeItem.extendedIngredients"
-        >
-          Summary
-        </p>
-      </header>
+        <section class="recipeitem__right">
+            <header class="recipeitem__header">
+                <p
+                    class="recipeitem__breadcrumb"
+                    :class="{ 'recipeitem--active': componentIndex === 0 }"
+                    @click="changeActiveComponent(0)"
+                    v-if="recipeItem.extendedIngredients"
+                >
+                    Ingredients
+                </p>
+                <p
+                    class="recipeitem__breadcrumb"
+                    :class="{ 'recipeitem--active': componentIndex === 1 }"
+                    @click="changeActiveComponent(1)"
+                    v-if="recipeItem.analyzedInstructions"
+                >
+                    Recipe steps
+                </p>
+                <p
+                    class="recipeitem__breadcrumb"
+                    :class="{ 'recipeitem--active': componentIndex === 2 }"
+                    @click="changeActiveComponent(2)"
+                    v-if="!recipeItem.extendedIngredients"
+                >
+                    Summary
+                </p>
+            </header>
 
-      <transition
-        :name="
-          activeComponent === 'RecipeitemIngredients'
-            ? 'ingredients'
-            : 'recipesteps'
-        "
-        mode="out-in"
-      >
-        <component :is="activeComponent" />
-      </transition>
-    </section>
-  </div>
+            <transition
+                :name="
+                    activeComponent === 'RecipeitemIngredients'
+                        ? 'ingredients'
+                        : 'recipesteps'
+                "
+                mode="out-in"
+            >
+                <component :is="activeComponent" />
+            </transition>
+        </section>
+    </div>
 </template>
 
 <script>
 export default {
-  //   props: {
-  //     recipeItem: {
-  //       type: Object,
-  //       required: true,
-  //     },
-  //   },
-  data() {
-    return {
-      components: [
-        'RecipeitemIngredients',
-        'RecipeitemSteps',
-        'RecipeitemSummary',
-      ],
-      componentIndex: 0,
+    data() {
+        return {
+            components: [
+                'RecipeitemIngredients',
+                'RecipeitemSteps',
+                'RecipeitemSummary',
+            ],
+            componentIndex: 0,
 
-      isMounted: false,
-    }
-  },
-  computed: {
-    recipeItem() {
-      return this.$store.state.recipes.recipeItem
+            isMounted: false,
+        }
     },
-    activeComponent() {
-      return this.components[this.componentIndex]
+    computed: {
+        recipeItem() {
+            return this.$store.state.recipes.recipeItem
+        },
+        activeComponent() {
+            return this.components[this.componentIndex]
+        },
     },
-  },
-  methods: {
-    changeActiveComponent(index) {
-      this.componentIndex = index
+    methods: {
+        changeActiveComponent(index) {
+            this.componentIndex = index
+        },
     },
-  },
-  created() {
-    if (!this.recipeItem) return console.log('LLALALLALALLA')
-    // this.$store.commit('recipes/SET_RECIPE_ITEM', this.$route.params.id)
+    created() {
+        if (!this.recipeItem) return console.log('LLALALLALALLA')
 
-    if (!this.recipeItem?.extendedIngredients?.[0]) {
-      this.componentIndex = 1
-    }
-    // console.log(this.recipeItem)
-  },
+        if (!this.recipeItem?.extendedIngredients?.[0]) {
+            this.componentIndex = 1
+        }
+    },
 
-  mounted() {
-    this.$nextTick(() => (this.isMounted = true))
-  },
+    mounted() {
+        this.$nextTick(() => (this.isMounted = true))
+    },
 }
 </script>

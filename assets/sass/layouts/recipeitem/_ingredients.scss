@@ -1,20 +1,5 @@
 .ingredients {
-  // padding: 0 2rem;
-
-  @include device(phone-land) {
-    padding: 0;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // flex-direction: column;
-  }
-
   &__pics {
-    // width: 110%;
-    // transform: translateX(-5%);
-    @include device(tab-mid) {
-      // margin-bottom: 3rem;
-    }
     @include device(phone) {
       display: none;
     }
@@ -24,7 +9,6 @@
     background: var(--clr_white_grd_btns);
     box-shadow: var(--box_shadow_accent);
     border-radius: var(--icon-radius);
-    // border-radius: 1.5vw;
     padding: 1.5rem 2rem;
     line-height: 1.2;
 
@@ -43,8 +27,6 @@
         object-fit: contain;
         width: var(--size);
         height: var(--size);
-        // width: 100%;
-        // height: 100%;
       }
     }
     &-iconwrapper {
@@ -67,17 +49,15 @@
       @extend %fw-600;
       color: var(--clr_accent);
       margin-bottom: 1.2rem;
-      // margin: 1rem 0 1.2rem 0.5rem;
     }
     &-unitamount {
       font-size: 1.5rem;
       opacity: 0.9;
       word-wrap: break-word;
-      // margin-left: 0.5rem;
 
       span {
         @extend %fw-600;
-        opacity: 1;
+        @extend %opacity-1;
         font-size: 1.65rem;
       }
     }
@@ -86,7 +66,7 @@
   &__items {
     padding: 3rem 1rem;
     line-height: 1.1;
-    @extend %grid;
+    @extend %d--grid;
     justify-content: center;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1.2rem 3rem;
@@ -110,10 +90,6 @@
     @include device(phone-land) {
       margin-bottom: 1.2rem;
     }
-    // font-size: 1.5rem;
-
-    // @include device(phone) {
-    // }
 
     &--amount {
       --amount-bg-size: 3.5rem;
@@ -124,7 +100,6 @@
       color: var(--clr_accent_to_dark);
       border-radius: 11px;
       @extend %fw-600;
-      // font-size: 1.2rem;
 
       @include device(phone-land) {
         --amount-bg-size: 5rem;

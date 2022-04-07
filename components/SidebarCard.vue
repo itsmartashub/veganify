@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import randomLikes from '~/utils/randomLikes.js'
+import randomLikes from "~/utils/randomLikes.js";
 
 export default {
   props: {
@@ -63,19 +63,17 @@ export default {
   data() {
     return {
       isReview: true,
-    }
+    };
   },
 
   methods: {
     randomLikes,
 
     navigateToRecipeItem(recipe) {
-      // this.$store.dispatch('recipes/findPopularRecipeByID', recipe.id)
-      // this.$router.push(`/recipe/${recipe.id}`)
-      this.$store.dispatch('recipes/navigateToRecipe', recipe)
+      this.$store.dispatch("recipes/navigateToRecipe", recipe);
     },
   },
-}
+};
 </script>
 
 <style></style>

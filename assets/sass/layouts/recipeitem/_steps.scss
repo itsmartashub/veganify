@@ -1,9 +1,7 @@
 .steps {
-  @extend %grid;
+  @extend %d--grid;
   grid-gap: 3rem;
-  // margin: 5rem 0;
   padding: 0 1.5vmin;
-  // font-size: 1.8rem;
 
   @include device(tab-mid) {
     padding: 0 2.5vmin;
@@ -16,7 +14,7 @@
   }
 
   .step {
-    @extend %grid;
+    @extend %d--grid;
     grid-auto-flow: column;
     justify-content: flex-start;
     grid-gap: 3rem;
@@ -27,7 +25,6 @@
     }
 
     &__count {
-      // @extend .categories__icon;
       --count_size: 5rem;
       --count_radius: 12px;
       width: var(--count_size);
@@ -84,7 +81,6 @@
       }
     }
     &__txt {
-      // font-size: 1.5rem;
       line-height: 1.35;
       @extend %fw-500;
       word-wrap: break-word;

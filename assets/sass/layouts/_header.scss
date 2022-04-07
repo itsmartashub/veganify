@@ -1,7 +1,5 @@
 .header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    @extend %flex-center;
     flex-wrap: wrap-reverse;
     color: var(--clr_accent);
 
@@ -17,16 +15,16 @@
     &__form {
         flex: 1;
         min-width: 40rem;
-        display: flex;
+        @extend %d--flex;
         align-items: center;
         @extend %pos-rel;
 
         svg {
-            position: absolute;
+            @extend %pos-abs;
             left: 30px;
             opacity: var(--opacity_search);
             width: 3rem;
-            height: auto;
+            @extend %h-auto;
             fill: var(--clr_accent);
             transition: 0.4s;
         }
@@ -43,12 +41,13 @@
         padding: 2.5rem 2.5rem 2.5rem 8rem;
         font-family: $font-family;
         border-radius: 30px;
-        display: flex;
+        @extend %d--flex;
         align-items: center;
         background: var(--clr_card_bg);
         color: var(--clr_black);
         font-size: inherit;
         @extend %box-shadow;
+
         transform-origin: center bottom;
         transition: 0.4s;
 
@@ -60,12 +59,12 @@
     &__search::placeholder {
         font-family: $font-family;
         opacity: 0.4;
-        // color: currentColor;
         color: currentColor;
     }
     &__search:focus {
         color: var(--clr_accent);
-        opacity: 1;
+        @extend %opacity-1;
+        box-shadow: 0 20px 5px -14px hsl(var(--clr-black) / 0.08);
 
         & + svg {
             transform: rotate(90deg);
@@ -75,7 +74,7 @@
 
     &__title {
         display: inline-flex;
-        @extend %text-center;
+        @extend %txt-center;
         color: var(--clr_accent);
         @extend %fw-600;
         font-size: 3.5rem;
@@ -83,7 +82,7 @@
         text-shadow: 2px 2px 2px hsla(210, 57%, 22%, 0.1);
 
         span {
-            display: inline-block;
+            @extend %d--inline-block;
         }
 
         @include device(tab) {
@@ -106,20 +105,20 @@
 }
 
 /* clears the ‘X’ from Internet Explorer */
-input[type="search"]::-ms-clear {
+input[type='search']::-ms-clear {
     display: none;
     width: 0;
     height: 0;
 }
-input[type="search"]::-ms-reveal {
+input[type='search']::-ms-reveal {
     display: none;
     width: 0;
     height: 0;
 }
 /* clears the ‘X’ from Chrome */
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
     display: none;
 }

@@ -1,7 +1,6 @@
 .btn {
   --radius-btn: 1.5rem;
-  display: grid;
-  place-items: center;
+  @extend %grid-center;
   place-content: center;
   grid-auto-flow: column;
   grid-gap: 1.5rem;
@@ -16,8 +15,7 @@
 
   &__label {
     --radius-btn: 1.4rem;
-    display: grid;
-    place-items: center;
+    @extend %grid-center;
     place-content: center;
     grid-auto-flow: column;
     grid-gap: 0.5rem;

@@ -1,6 +1,6 @@
 // $font-family: 'Poppins', sans-serif;
-$font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Arial, 'Segoe UI',
-  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-family: "Poppins", -apple-system, BlinkMacSystemFont, Arial, "Segoe UI",
+  Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 $font-size: 1.6rem;
 $line-height: 1.8;
 $letter-spacing: 0.1px;
@@ -33,7 +33,7 @@ body {
   font-family: $font-family;
   font-size: $font-size;
   line-height: $line-height;
-  letter-spacing: $letter-spacing;
+  // letter-spacing: $letter-spacing;
 }
 
 h1,

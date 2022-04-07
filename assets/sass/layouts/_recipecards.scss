@@ -1,350 +1,326 @@
 .recipecards {
-  @extend %text-center;
-  @extend %pos-rel;
-  // min-height: 100vh;
-
-  &__wrapper {
-    @extend %flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  &__title {
-    grid-column: 1/-1;
-    @extend %fw-600;
-    text-transform: uppercase;
-    display: inline-block;
-    margin: 1rem 0 5rem 0;
-    border-radius: 3rem;
+    @extend %txt-center;
     @extend %pos-rel;
-    @extend %overflow-hidden;
-  }
 
-  &__notifysubtitle {
-    font-size: 1.9rem;
-    background: var(--clr_grd_bg);
-    color: var(--clr_white);
-    @extend %flex;
-    flex-direction: column;
-    gap: 2vw;
-    padding: 7rem 6.5rem;
-    border-radius: 6rem;
-    width: 80%;
-    margin: 0 auto;
-    line-height: 1.5;
-    @extend %fw-500;
-    @extend %pos-rel;
-    transition: 0.4s transform $outBack;
-
-    @include device(tab) {
-      width: 90%;
-    }
-    @include device(phone) {
-      padding: 5rem;
+    &__wrapper {
+        @extend %d--flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    &:hover {
-      transform: translate3d(0, -1rem, 0);
-
-      &::before {
-        transform: translate3d(0, 20%, 0) rotate(180deg);
-      }
+    &__title {
+        grid-column: 1/-1;
+        @extend %fw-600;
+        text-transform: uppercase;
+        @extend %d--inline-block;
+        margin: 1rem 0 5rem 0;
+        border-radius: 3rem;
+        @extend %pos-rel;
+        @extend %overflow-hidden;
     }
 
-    &::before {
-      @extend %pos-abs;
-      content: "⚠️";
-      bottom: -15%;
-      right: 0%;
-      width: fit-content;
-      font-size: 10rem;
-      // color: currentColor;
-      z-index: 1;
-      transition: 0.4s transform $inOutBack;
-    }
+    &__notifysubtitle {
+        font-size: 1.9rem;
+        background: var(--clr_grd_bg);
+        color: var(--clr_white);
+        @extend %d--flex;
+        flex-direction: column;
+        gap: 2vw;
+        padding: 7rem 6.5rem;
+        border-radius: 6rem;
+        width: 80%;
+        margin: 0 auto;
+        line-height: 1.5;
+        @extend %fw-500;
+        @extend %pos-rel;
+        transition: 0.4s transform $outBack;
 
-    p {
-      --bullet_size: 1rem;
-      text-align: left;
-      @extend %pos-rel;
-      margin-left: 3rem;
-
-      &::before {
-        @extend %after;
-        width: var(--bullet_size);
-        height: var(--bullet_size);
-        border-radius: 100%;
-        background: currentColor;
-        top: 50%;
-        left: 0;
-        z-index: 20;
-        transform: translate(-3rem, -50%);
-        opacity: 0.7;
-      }
-
-      @include device(phone) {
-        margin-left: 0;
-        &::before {
-          display: none;
+        @include device(tab) {
+            width: 90%;
         }
-      }
+        @include device(phone) {
+            padding: 5rem;
+        }
+
+        &:hover,
+        &:focus {
+            transform: translate3d(0, -1rem, 0);
+
+            &::before {
+                transform: translate3d(0, 20%, 0) rotate(180deg);
+            }
+        }
+
+        &::before {
+            @extend %pos-abs;
+            content: '⚠️';
+            bottom: -15%;
+            right: 0%;
+            width: fit-content;
+            font-size: 10rem;
+            z-index: 1;
+            transition: 0.4s transform $inOutBack;
+        }
+
+        p {
+            --bullet_size: 1rem;
+            text-align: left;
+            @extend %pos-rel;
+            margin-left: 3rem;
+
+            &::before {
+                @extend %after;
+                width: var(--bullet_size);
+                height: var(--bullet_size);
+                border-radius: 100%;
+                background: currentColor;
+                top: 50%;
+                left: 0;
+                z-index: 20;
+                transform: translate(-3rem, -50%);
+                opacity: 0.7;
+            }
+
+            @include device(phone) {
+                margin-left: 0;
+                &::before {
+                    display: none;
+                }
+            }
+        }
+
+        a {
+            @extend %pos-rel;
+            @extend %fw-700;
+            color: currentColor;
+
+            &::after {
+                @extend %after;
+                top: 110%;
+                left: 0;
+                background: currentColor;
+                height: 3px;
+                border-radius: 2rem;
+                opacity: 0.8;
+                transform-origin: 100% 50%;
+                transition: 0.3s transform $outSmooth;
+            }
+
+            &:hover::after {
+                transform: scaleX(0);
+            }
+        }
     }
-
-    a {
-      @extend %pos-rel;
-      @extend %fw-700;
-      color: currentColor;
-
-      &::after {
-        @extend %after;
-        top: 110%;
-        left: 0;
-        background: currentColor;
-        height: 3px;
-        border-radius: 2rem;
-        opacity: 0.8;
-        transform-origin: 100% 50%;
-        transition: 0.3s transform $outSmooth;
-      }
-
-      &:hover::after {
-        transform: scaleX(0);
-      }
-    }
-    // width: 50vw;
-    // text-align: left;
-  }
 }
 
 .recipecard {
-  --radius-card: 5.3rem;
-  // --min-width-recipecard: 14em;
-  // --max-width-recipecard: 17em;
-  --min-width-recipecard: 24.5rem;
-  --max-width-recipecard: 27rem;
+    --radius-card: 5.3rem;
+    --min-width-recipecard: 24.5rem;
+    --max-width-recipecard: 27rem;
 
-  @extend %box-shadow;
-  @extend %cursor;
-  max-width: var(--max-width-recipecard);
-  flex: 1 1 var(--min-width-recipecard);
-  border-radius: var(--radius-card);
-  padding: 2.2vmin;
-  margin: 2vw;
-  background: var(--clr_card_bg);
+    @extend %box-shadow;
+    @extend %cursor;
+    max-width: var(--max-width-recipecard);
+    flex: 1 1 var(--min-width-recipecard);
+    border-radius: var(--radius-card);
+    padding: 2.2vmin;
+    margin: 2vw;
+    background: var(--clr_card_bg);
 
-  @extend %flex;
-  flex-direction: column;
-  justify-content: space-between;
-  // align-content: center;
-  // display: grid;
-  // grid-gap: 1vw;
-  transition: 0.5s;
+    @extend %d--flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 20px 5px -14px transparent;
+    transition: box-shadow 0.5s ease;
 
-  @include device(phone-land) {
-    --min-width-recipecard: 22rem;
-    // transform: scale(0.9);
-  }
-  @include device(phone) {
-    // transform: scale(1);
-    padding: 3vmin;
-  }
-
-  &:hover,
-  &:focus {
-    .recipecard__img {
-      transform: scale(1.2);
+    @include device(phone-land) {
+        --min-width-recipecard: 22rem;
     }
-    .recipecard__category {
-      transform: translate(15%, 15%);
-      &::after {
-        transform: scale(1);
-      }
+    @include device(phone) {
+        padding: 3vmin;
     }
-    .recipecard__title {
-      transform: translateY(25%);
-    }
-    .recipecard__min {
-      svg,
-      p {
-        transform: translateX(1rem);
-        opacity: 1;
-        span {
-          opacity: 0.5;
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 20px 5px -14px hsl(var(--clr-black) / 0.1);
+
+        .recipecard__img {
+            transform: scale(1.2);
         }
-      }
-      svg {
-        opacity: 0.8;
-        stroke: var(--clr_accent);
-      }
-    }
-  }
-
-  &__figure {
-    @extend %overflow-hidden;
-    @extend %pos-rel;
-    width: 100%;
-    // height: 20rem;
-    // height: 64%;
-    max-height: 64%;
-    border-radius: calc(var(--radius-card) - 0.8rem);
-    margin-bottom: 1rem;
-    // transition: 0.5s;
-
-    // box-shadow: inset -3px -100px 34px -22px rgba(0, 0, 0, 0.8);
-    // z-index: 12;
-
-    &::after {
-      // TODO za dark mode potamniti slike
-      @extend %after;
-      z-index: 10;
-      top: 0;
-      left: 0;
-      // background: hsla(240, 28%, 10%, 0.2);
-      mix-blend-mode: luminosity;
-      // mix-blend-mode: soft-light;
-    }
-  }
-
-  &__img {
-    @extend %img-basic;
-    transition: transform 1s $outSmooth;
-    // transform: scale(1.1);
-  }
-
-  &__body {
-    padding: 0 1.4rem;
-    flex: 1 1;
-  }
-
-  &__category {
-    @extend %pos-rel;
-    @extend %flex;
-
-    color: var(--clr_accent);
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    padding: 0.6rem 0rem;
-    width: fit-content;
-    // display: inline-block;
-    margin-bottom: 0.2rem;
-    // display: grid;
-    // place-items: center;
-
-    transition: 0.5s;
-    transition-delay: 0.2s;
-
-    &::after {
-      @extend %after;
-      width: 130%;
-      background: var(--clr_accent_light);
-      top: 0;
-      left: -15%;
-      border-radius: 1rem;
-      transform-origin: 0 50%;
-      transform: scale(0);
-      transition: 0.5s;
-      z-index: -1;
-    }
-  }
-  &__title {
-    @extend %fw-600;
-    text-align: left;
-    margin-bottom: 1rem;
-    text-transform: capitalize;
-    word-wrap: break-word;
-    transition: 0.5s;
-  }
-
-  &__footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    transform: translateY(12%);
-  }
-
-  &__min {
-    @extend %flex-center;
-    transition: 0.5s;
-
-    svg {
-      width: 1.5rem;
-      margin-right: 1rem;
-      stroke: currentColor;
-      align-self: flex-start;
-      transition: 0.4s;
-      transition-delay: 0.15s;
-      opacity: 0.5;
+        .recipecard__category {
+            transform: translate(15%, 15%);
+            &::after {
+                transform: scaleX(1);
+            }
+        }
+        .recipecard__title {
+            transform: translateY(25%);
+        }
+        .recipecard__min {
+            svg,
+            p {
+                transform: translateX(1rem);
+                @extend %opacity-1;
+                span {
+                    opacity: 0.5;
+                }
+            }
+            svg {
+                opacity: 0.8;
+                stroke: var(--clr_accent);
+            }
+        }
     }
 
-    p {
-      line-height: 1;
-      transition: 0.5s;
-      font-weight: 600;
-      opacity: 0.5;
+    &__figure {
+        @extend %overflow-hidden;
+        @extend %pos-rel;
+        width: 100%;
+        max-height: 64%;
+        border-radius: calc(var(--radius-card) - 0.8rem);
+        margin-bottom: 1rem;
 
-      span {
-        font-weight: normal;
-        font-size: 1.4rem;
-      }
-    }
-  }
-  &__bookmark {
-    --size: 4.2rem;
-    width: var(--size);
-    height: var(--size);
-    display: grid;
-    place-items: center;
-    border-radius: 0.8em;
-    background: var(--clr_accent_light);
-    z-index: 2;
-    // transition: transform 0.3s;
-
-    &-svgs {
-      @extend %pos-rel;
-      display: grid;
-      place-items: center;
+        &::after {
+            // TODO za dark mode potamniti slike
+            @extend %after;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            mix-blend-mode: luminosity;
+        }
     }
 
-    &-svg {
-      will-change: transform, opacity;
-
-      --svg-size: 2.4rem;
-      @extend %pos-abs;
-      height: var(--svg-size);
-      width: var(--svg-size);
-      fill: var(--clr_accent);
-      z-index: 1;
-      transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
-
-      &--outline {
-        opacity: 1;
-        transform: scale(1);
-      }
-      &--filled {
-        opacity: 0;
-        transform: scale(0.4);
-      }
+    &__img {
+        @extend %img-basic;
+        transition: transform 1s $outSmooth;
     }
 
-    &:hover {
-      .recipecard__bookmark-svg--outline {
-        opacity: 0;
-        transform: scale(0);
-      }
-      .recipecard__bookmark-svg--filled {
-        opacity: 1;
-        transform: scale(1);
-      }
+    &__body {
+        padding: 0 1.4rem;
+        flex: 1 1;
     }
 
-    &--saved {
-      @extend .recipecard__bookmark, :hover;
-      transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
-      // &:hover {
-      //   transition: none !important;
-      // }
+    &__category {
+        @extend %pos-rel;
+        @extend %d--flex;
+
+        color: var(--clr_accent);
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        @extend %fw-700;
+        letter-spacing: 0.5px;
+        padding: 0.6rem 0rem;
+        width: fit-content;
+        margin-bottom: 0.2rem;
+
+        transition: transform 0.5s ease-in-out;
+
+        &::after {
+            @extend %after;
+            width: 130%;
+            background: var(--clr_accent_light);
+            top: 0;
+            left: -15%;
+            border-radius: 1rem;
+            transform-origin: 0 50%;
+            transform: scaleX(0);
+            transition: transform 0.4s $inOutQuart;
+            z-index: -1;
+        }
     }
-  }
+    &__title {
+        @extend %fw-600;
+        text-align: left;
+        margin-bottom: 1rem;
+        text-transform: capitalize;
+        word-wrap: break-word;
+        transition: transform 0.5s;
+    }
+
+    &__footer {
+        @extend %flex-jsa;
+        transform: translateY(12%);
+    }
+
+    &__min {
+        @extend %flex-center;
+
+        svg {
+            align-self: flex-start;
+            width: 1.5rem;
+            margin-right: 1rem;
+            stroke: currentColor;
+            opacity: 0.5;
+            transition: transform 0.8s $inOutBack, opacity 0.4s linear,
+                stroke 0.4s ease;
+            transition-delay: 0.1s;
+        }
+
+        p {
+            opacity: 0.5;
+            line-height: 1;
+            @extend %fw-600;
+            transition: transform 0.8s $inOutBack, opacity 0.4s linear;
+
+            span {
+                font-weight: normal;
+                font-size: 1.4rem;
+                transition: opacity 0.4s linear;
+            }
+        }
+    }
+    &__bookmark {
+        --size: 4.2rem;
+        width: var(--size);
+        height: var(--size);
+        @extend %d--grid;
+        place-items: center;
+        border-radius: 0.8em;
+        background: var(--clr_accent_light);
+        z-index: 2;
+
+        &-svgs {
+            @extend %pos-rel;
+            @extend %d--grid;
+            place-items: center;
+        }
+
+        &-svg {
+            will-change: transform, opacity;
+
+            --svg-size: 2.4rem;
+            @extend %pos-abs;
+            height: var(--svg-size);
+            width: var(--svg-size);
+            fill: var(--clr_accent);
+            z-index: 1;
+            transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
+
+            &--outline {
+                @extend %opacity-1;
+                transform: scale(1);
+            }
+            &--filled {
+                @extend %opacity-0;
+                transform: scale(0.4);
+            }
+        }
+
+        &:hover,
+        &:focus {
+            .recipecard__bookmark-svg--outline {
+                @extend %opacity-0;
+                transform: scale(0);
+            }
+            .recipecard__bookmark-svg--filled {
+                @extend %opacity-1;
+                transform: scale(1);
+            }
+        }
+
+        &--saved {
+            @extend .recipecard__bookmark, :hover;
+            transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
+        }
+    }
 }

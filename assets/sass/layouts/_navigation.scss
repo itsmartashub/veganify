@@ -1,17 +1,15 @@
 .navigation {
-  // --svg_size: 2.4rem;
   --svg_size: 3.5rem;
 
   grid-area: nav;
   border-radius: 10rem;
   padding: 4rem 0.5rem;
-  display: flex;
-  flex-direction: column;
+  @extend %d--flex;
   align-items: center;
+  flex-direction: column;
   flex: 1;
-  @extend %text-center;
+  @extend %txt-center;
   @extend %box-shadow;
-  // align-items: flex-start;
 
   background: var(--clr_grd_bg);
   color: var(--clr_white);
@@ -20,7 +18,6 @@
   position: sticky;
   top: 0;
   left: 0;
-  // height: 100%;
   height: var(--sidebars_height);
   transform-origin: left center;
 
@@ -29,8 +26,6 @@
     @extend %cursor;
     fill: var(--clr_white);
     stroke: var(--clr_white);
-    // height: var(--svg_size);
-    // width: auto;
     height: var(--svg_size);
     width: auto;
   }
@@ -38,13 +33,13 @@
   &__links {
     font-size: 4rem;
     flex: 2;
-    display: grid;
+    @extend %d--grid;
     place-content: center;
     grid-gap: 7vh;
   }
 
   &__link {
-    display: grid;
+    @extend %d--grid;
     place-items: center;
     @extend %pos-rel;
 
@@ -60,7 +55,7 @@
       }
 
       &::after {
-        content: 'smoothies';
+        content: "smoothies";
       }
     }
 
@@ -78,47 +73,28 @@
       box-shadow: 0px 3px 10px 0px hsl(165 70% 45% / 0.2);
       transform: translate3d(-15%, -50%, 0);
       transition: 0.4s transform $outBack, 0.4s opacity ease;
-      opacity: 0;
+      @extend %opacity-0;
       pointer-events: none;
       z-index: 1000;
     }
 
     &:nth-of-type(1)::after {
-      content: 'home';
+      content: "home";
     }
     &:nth-of-type(3)::after {
-      content: 'bookmarks';
+      content: "bookmarks";
     }
 
     &:hover {
       &::after {
         transform: translate3d(0, -50%, 0);
-        opacity: 1;
+        @extend %opacity-1;
       }
 
       svg {
         transform: scale(0.95);
       }
     }
-
-    // &:nth-of-type(1) {
-    //   --svg_size: calc(var(--svg_size) + 1px);
-    //   #home--roof {
-    //     transition: 0.3s;
-    //   }
-    //   &:hover {
-    //     transform: translateY(6px);
-    //     #home--roof {
-    //       transform: translateY(-4px);
-    //     }
-    //   }
-    // }
-    // &:nth-of-type(2):hover {
-    //   transform: rotate(20deg);
-    // }
-    // &:nth-of-type(3):hover {
-    //   transform: translateY(5px);
-    // }
   }
 
   &__logowrapper {
@@ -129,11 +105,6 @@
       }
       .logo__veganify {
         transform: scale(0.95) translateY(0.5rem);
-        // font-weight: 300;
-
-        // span {
-        //     font-weight: 700;
-        // }
       }
     }
   }
@@ -168,7 +139,6 @@
       .navigation__svg {
         &--moon {
           transform: scale(0) rotate(180deg);
-          // pointer-events: none;
         }
         &--sun {
           transform: scale(1) rotate(0);
@@ -178,17 +148,7 @@
     }
   }
 
-  // &__moon {
-  //   --svg_size: calc(var(--svg_size) + 0.2rem);
-  //   transition: 0.3s;
-  //   &:hover {
-  //     transform: rotate(300deg);
-  //   }
-  // }
-
   @include device(phone-land) {
-    // --svg_size: rem;
-
     margin: 0 auto;
     position: fixed;
     left: 0;
@@ -203,17 +163,14 @@
     z-index: 2001;
     padding: 4.5vmin 5vw;
     box-shadow: 0px 0px 20px 0px var(--clr_recipeitem_right_bg);
-    // border: 3px solid var(--clr_bg);
 
     &__links {
       grid-auto-flow: column;
       grid-gap: 10vw;
-      // justify-content: center;
     }
 
     &__link {
       &:nth-of-type(2) {
-        // --svg_size: calc(var(--svg_size) + 5px);
         --svg_size: 3.9rem;
       }
 
@@ -236,9 +193,5 @@
         display: none;
       }
     }
-
-    // &__logowrapper {
-    //   transform: scale(0.9);
-    // }
   }
 }

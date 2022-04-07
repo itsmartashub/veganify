@@ -8,10 +8,9 @@
   @extend %flex-center;
   z-index: 3000;
   background: var(--clr_grd_bg);
-  // transition: transform 1.5s $outSmooth, background 0.5s linear;
-  transition: background-image 0.5s linear;
   transform-origin: center bottom;
   backface-visibility: hidden;
+  transition: background-image 0.5s linear;
 
   &__content {
     @extend %flex-center;
@@ -41,7 +40,7 @@
     perspective: 200px;
 
     span {
-      display: inline-block;
+      @extend %d--inline-block;
       transition: transform 1s ease, opacity 1s linear;
     }
   }
@@ -51,65 +50,15 @@
   &__yourmeal {
     @extend .header__yourmeal;
   }
-
-  &--leave {
-    animation: loaderAnim 1.5s $outSmooth;
-
-    .loader--content {
-      transition: transform 0.5s ease, opacity 0.5s linear;
-      opacity: 0;
-      transform: translate3d(0, -100%, 0);
-    }
-  }
-}
-
-@keyframes rotating90 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(90deg);
-  }
-}
-@keyframes loaderAnim {
-  0% {
-    transform: translate3d(0, -100%, 0);
-  }
-  30% {
-    transform: translate3d(0, 0, 0);
-  }
-  60% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(0, 100%, 0);
-  }
 }
 
 .loader-enter-active,
 .loader-leave-active {
   transition: transform 1.5s $outCirc;
 }
-
-// .loader-enter {
-//   transform: translate3d(0, -100%, 0);
-// }
 .loader-enter-to {
   transform: translate3d(0, 0%, 0);
 }
 .loader-leave-to {
   transform: translate3d(0, 100%, 0);
 }
-
-//! ANIMATED
-// .loader-leave-active {
-//   animation: loaderAnim 1.5s $outSmooth backwards;
-// }
-// // .loader-enter-active {
-// //   animation: loaderAnim 1.5s $outSmooth reverse;
-// //   .loader--content {
-// //     transition: transform 0.5s ease, opacity 0.5s linear;
-// //     opacity: 0;
-// //     transform: translate3d(0, -100%, 0);
-// //   }
-// // }

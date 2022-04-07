@@ -1,7 +1,7 @@
 .categories {
     --category-radius: 3.3rem;
-    @extend %text-center;
-    display: grid;
+    @extend %txt-center;
+    @extend %d--grid;
     grid-gap: 5rem;
     color: var(--clr_white);
 
@@ -23,7 +23,7 @@
         border-radius: var(--category-radius);
         padding: 2.2rem 4rem;
 
-        display: grid;
+        @extend %d--grid;
         place-items: center;
         grid-gap: 1rem;
 
@@ -34,14 +34,11 @@
 
         height: 16rem;
         width: 100%;
-        // max-width: 15rem;
 
         &--active,
         &:hover,
         &:focus,
         &:active {
-            // padding: 3.2rem 4.2rem;
-
             .categories__icon {
                 transform: translateY(-110%) rotate(90deg) scale(1.3);
                 border-color: var(--clr_bg);
@@ -54,7 +51,7 @@
             }
             .categories__counter {
                 transform: translateY(-10%) scale(1);
-                opacity: 1;
+                @extend %opacity-1;
             }
         }
     }
@@ -70,33 +67,28 @@
 
     &__name {
         font-size: 1.6rem;
-        font-weight: 500;
+        @extend %fw-500;
         letter-spacing: 1px;
         transition: 0.5s;
         transition-delay: 0.05s;
     }
 
     &__counter {
-        background: var(--clr_white);
-        color: var(--clr_accent_to_dark);
-        font-weight: 700;
-        letter-spacing: 2px;
-        font-size: 1.8rem;
-        width: 70%;
-        padding: 1rem;
-        border-radius: var(--icon-radius);
-        // transform: translateY(10px);
-        transform: translateY(20%) scale(0);
-        transition: 0.5s transform, 0.5s opacity;
-        transition-delay: 0.1s;
-        transform-origin: center bottom;
         @extend %pos-abs;
         bottom: 10px;
-        opacity: 0;
+        width: 70%;
+        padding: 1rem;
+        background: var(--clr_white);
+        color: var(--clr_accent_to_dark);
+        font-size: 1.8rem;
+        @extend %fw-700;
+        letter-spacing: 2px;
+        border-radius: var(--icon-radius);
+        @extend %opacity-0;
         pointer-events: none;
+        transform: translateY(20%) scale(0);
+        transform-origin: center bottom;
+        transition-delay: 0.1s;
+        transition: 0.5s transform, 0.5s opacity;
     }
 }
-
-// .active-cat {
-//     @extend .categories__category:hover;
-// }

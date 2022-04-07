@@ -4,12 +4,8 @@
 
     <main class="middle">
       <Header />
-      <!-- <RecipeCards :activeRecipes="smoothies" /> -->
-      <!-- <RecipeCards :activeRecipes="activeRecipes" /> -->
       <WaitingPlaceholder />
       <RecipeCards :recipes="smoothies" />
-      <!-- <RecipeCards /> -->
-
       <Notification />
     </main>
 
@@ -33,9 +29,6 @@ export default {
   },
 
   computed: {
-    // activeRecipes() {
-    //   return this.$store.state.recipes.activeRecipes;
-    // },
     smoothies() {
       return this.$store.state.recipes.smoothieItems;
     },
