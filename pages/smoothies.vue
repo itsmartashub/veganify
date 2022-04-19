@@ -25,7 +25,7 @@ export default {
                 title: 'Veganify | Smoothies',
                 description:
                     'This is a Veganify webpage with vegetarian-friendly smoothie recipes',
-                image: 'https://veganify.vercel.app/veganify.jpg',
+                image: 'https://veganify.vercel.app/veganify.png',
             },
         }
     },
