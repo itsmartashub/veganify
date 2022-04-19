@@ -1,33 +1,30 @@
 <template>
-  <section class="error">
-    <img
-      src="https://media1.tenor.com/images/99f00b32545bf5b5db8bf8ecbb7f0aec/tenor.gif?itemid=7971019"
-    /><br /><br />
+    <main class="error">
+        <section class="error__headers">
+            <h1 class="error__404">
+                <span>4</span> <span @click="$nuxt.refresh()">🍽️</span>
+                <span>4</span>
+            </h1>
 
-    <Notify :recipeNotifyText="recipeNotifyText" />
-  </section>
+            <h2 class="error__msg">
+                {{ error.message }}
+            </h2>
+        </section>
+        <p class="error__wanted"><span>#</span>RECIPESWANTED</p>
+    </main>
 </template>
 <script>
 export default {
-  head() {
-    return {
-      title: "OOOOPPPSSSSY",
-    };
-  },
-  props: {
-    error: {
-      type: Object,
-      required: true,
+    head() {
+        return {
+            title: 'Error | Page not found',
+        }
     },
-  },
-
-  data() {
-    return {
-      recipeNotifyText: `<ul>
-        <li>ERROR MESSAGE: ${this.error.message}</li>
-        <li>ERROR STATUS CODE: ${this.error.statusCode}</li>
-      </ul>`,
-    };
-  },
-};
+    props: {
+        error: {
+            type: Object,
+            required: true,
+        },
+    },
+}
 </script>

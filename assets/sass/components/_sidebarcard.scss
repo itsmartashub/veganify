@@ -12,59 +12,59 @@
 
 .sidebarcard {
     --radius-sidebarcard: 2.3vw;
+    will-change: transform, box-shadow, background-color;
+    @extend %cursor;
     @extend %overflow-hidden;
     @extend %pos-rel;
     width: 100%;
-    border-radius: var(--radius-sidebarcard);
+    min-height: 14rem;
+    padding: 2.5vh 1.6vw;
     @extend %d--grid;
     grid-template-columns: 1fr 1fr;
     justify-items: space-between;
     grid-gap: 1.8rem;
-    background: var(--clr_sidecard_bg);
-    @extend %cursor;
-
-    padding: 2.5vh 1.6vw;
-    min-height: 14rem;
-    // box-shadow: var(--box_shadow_accent);
-
-    transition: transform 0.5s $inOutBack, box-shadow 0.5s $outBack 0.2s;
+    background-color: var(--clr_sidebarcard_bg);
+    border-radius: var(--radius-sidebarcard);
+    transition: transform 0.5s $inOutBack, box-shadow 0.5s $outBack 0.2s,
+        background-color 0.5s $outSmooth;
 
     &:hover,
     &:focus {
         transform: translateY(-3%);
-        box-shadow: 0 25px 3px -20px hsl(var(--clr-black) / 0.5);
+        background-color: transparent;
+        box-shadow: var(--box_shadow_sidebarcard);
 
         .sidebarcard__title {
             color: currentColor;
             @extend %fw-600;
         }
         .sidebarcard__figure {
-            --radius-sidebarfigure: var(--radius-sidebarcard);
+            --radius-sidebarcard-figure: var(--radius-sidebarcard);
             width: 100% !important;
             height: 100% !important;
             right: 0;
 
             &::after {
-                background: hsl(var(--clr-black) / 0.75);
+                background-color: hsl(var(--clr_sidebarcard_after) / 0.75);
             }
         }
     }
 
     &__left {
-        z-index: 3;
         @extend %d--flex;
         flex-direction: column;
         justify-content: space-between;
+        z-index: 3;
     }
 
     &__title {
-        color: var(--clr_black);
+        color: hsl(var(--clr_black));
         font-size: 1.5rem;
         text-transform: capitalize;
         @extend %d--inline-block;
         @extend %fw-500;
         margin-bottom: 1.5rem;
-        transition: color 0.4s, font-weight 0.4s;
+        transition: color 0.4s $outSmooth, font-weight 0.4s $outSmooth;
     }
 
     &__btns {
@@ -80,18 +80,18 @@
     }
 
     &__figure {
-        --radius-sidebarfigure: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        will-change: width, height, right, border-radius;
         --size: 7vw;
         @extend %overflow-hidden;
         @extend %pos-abs;
-        top: 50%;
         right: -5%;
+        top: 50%;
         transform: translateY(-50%);
         width: var(--size);
         height: var(--size);
+        border-radius: var(--radius-sidebarcard-figure);
+        transition: 0.5s $outBack;
         z-index: 2;
-        border-radius: var(--radius-sidebarfigure);
-        transition: 0.4s;
 
         &::after {
             --gradient_deg: 90deg;
@@ -99,8 +99,8 @@
             @extend %after;
             top: 0;
             left: 0;
-            background: hsl(var(--clr-black) / 0.2);
-            transition: 0.4s;
+            background-color: hsl(var(--clr_sidebarcard_after) / 0.2);
+            transition: background-color 0.4s;
         }
     }
     &__img {

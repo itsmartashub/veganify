@@ -1,197 +1,170 @@
 .navigation {
-  --svg_size: 3.5rem;
-
-  grid-area: nav;
-  border-radius: 10rem;
-  padding: 4rem 0.5rem;
-  @extend %d--flex;
-  align-items: center;
-  flex-direction: column;
-  flex: 1;
-  @extend %txt-center;
-  @extend %box-shadow;
-
-  background: var(--clr_grd_bg);
-  color: var(--clr_white);
-
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  left: 0;
-  height: var(--sidebars_height);
-  transform-origin: left center;
-
-  svg {
-    overflow: visible;
-    @extend %cursor;
-    fill: var(--clr_white);
-    stroke: var(--clr_white);
-    height: var(--svg_size);
-    width: auto;
-  }
-
-  &__links {
-    font-size: 4rem;
-    flex: 2;
-    @extend %d--grid;
-    place-content: center;
-    grid-gap: 7vh;
-  }
-
-  &__link {
-    @extend %d--grid;
-    place-items: center;
-    @extend %pos-rel;
-
-    svg {
-      transition: 0.3s transform $outBack;
-    }
-
-    &:nth-of-type(2) {
-      --svg_size: calc(var(--svg_size) + 5px);
-
-      svg {
-        stroke: none;
-      }
-
-      &::after {
-        content: "smoothies";
-      }
-    }
-
-    &::after {
-      @extend %pos-abs;
-      @extend %fw-500;
-      left: 140%;
-      top: 50%;
-      background: var(--clr_white);
-      color: var(--clr_accent_to_dark);
-      padding: 0.5rem 0.8rem;
-      font-size: 1rem;
-      text-transform: uppercase;
-      border-radius: 1rem;
-      box-shadow: 0px 3px 10px 0px hsl(165 70% 45% / 0.2);
-      transform: translate3d(-15%, -50%, 0);
-      transition: 0.4s transform $outBack, 0.4s opacity ease;
-      @extend %opacity-0;
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    &:nth-of-type(1)::after {
-      content: "home";
-    }
-    &:nth-of-type(3)::after {
-      content: "bookmarks";
-    }
-
-    &:hover {
-      &::after {
-        transform: translate3d(0, -50%, 0);
-        @extend %opacity-1;
-      }
-
-      svg {
-        transform: scale(0.95);
-      }
-    }
-  }
-
-  &__logowrapper {
-    transition: 0.3s;
-    &:hover {
-      .logo__svg {
-        transform: rotate(90deg);
-      }
-      .logo__veganify {
-        transform: scale(0.95) translateY(0.5rem);
-      }
-    }
-  }
-
-  &__svg {
-    &--sun {
-      @extend %pos-abs;
-      top: 0;
-      left: 0;
-      transform: scale(0) rotate(180deg);
-    }
-    &--moon {
-      transform: scale(1) rotate(0deg);
-    }
-  }
-
-  &__themes {
-    @extend %pos-rel;
-    @extend %flex-center;
-    transition: transform 0.4s $outBack;
-
-    svg {
-      transform-origin: center center;
-      transition: transform 0.8s $outBack;
-    }
-
-    &:hover {
-      transform: scale(0.9) rotate(10deg);
-    }
-
-    &--dark {
-      .navigation__svg {
-        &--moon {
-          transform: scale(0) rotate(180deg);
-        }
-        &--sun {
-          transform: scale(1) rotate(0);
-          z-index: 10;
-        }
-      }
-    }
-  }
-
-  @include device(phone-land) {
-    margin: 0 auto;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 3%;
-    top: auto;
-    flex-direction: row;
+    --svg_size: 3.5rem;
+    grid-area: nav;
+    @extend %nav-sidebar-shared;
+    @extend %d--flex;
     align-items: center;
-    justify-content: center;
-    width: 90%;
-    height: max-content;
-    z-index: 2001;
-    padding: 4.5vmin 5vw;
-    box-shadow: 0px 0px 20px 0px var(--clr_recipeitem_right_bg);
+    flex-direction: column;
+    flex: 1;
+    @extend %txt-center;
+    padding: 4rem 0.5rem;
+
+    svg {
+        overflow: visible;
+        @extend %cursor;
+        fill: hsl(var(--clr_white));
+        stroke: hsl(var(--clr_white));
+        height: var(--svg_size);
+        width: auto;
+    }
 
     &__links {
-      grid-auto-flow: column;
-      grid-gap: 10vw;
+        font-size: 4rem;
+        flex: 2;
+        @extend %d--grid;
+        place-content: center;
+        grid-gap: 7vh;
     }
 
     &__link {
-      &:nth-of-type(2) {
-        --svg_size: 3.9rem;
-      }
+        @extend %d--grid;
+        place-items: center;
+        @extend %pos-rel;
 
-      &::after {
-        left: 50%;
-        top: 100%;
-        transform: translate3d(-50%, 0%, 0);
-      }
+        svg {
+            transition: 0.3s transform $outBack;
+        }
 
-      &:hover::after {
-        transform: translate3d(-50%, 50%, 0);
-      }
+        &:nth-of-type(2) {
+            svg {
+                stroke: none;
+            }
+
+            &::before {
+                --translate: translate(-100%, 20px);
+            }
+        }
+
+        &::before {
+            --translate: translate(-50%, 13px);
+            --size: 0.6rem;
+            content: '';
+            @extend %pos-abs;
+            bottom: 0;
+            left: 50%;
+            display: inline-block;
+            width: var(--size);
+            height: var(--size);
+            background-color: hsl(var(--clr_white));
+            border-radius: var(--radius-circle);
+            transform: var(--translate) scale(0);
+            transition: transform 0.5s $outSmooth;
+            z-index: 999;
+        }
+
+        &::after {
+            @extend %pos-abs;
+            content: attr(data-link-name);
+            left: 140%;
+            top: 50%;
+            padding: 0.5rem 0.8rem;
+            background-color: hsl(var(--clr_white));
+            color: var(--clr_accent_to_dark);
+            font-size: 1rem;
+            @extend %fw-500;
+            @extend %txt-uppercase;
+            border-radius: var(--radius-default);
+            box-shadow: 0px 3px 10px 0px hsl(var(--clr_accent) / 0.2);
+            @extend %opacity-0;
+            transform: translate3d(-15%, -50%, 0);
+            pointer-events: none;
+            transition: 0.4s transform $outBack, 0.4s opacity ease;
+            z-index: 999;
+        }
+
+        &:hover,
+        &:focus {
+            &::after {
+                transform: translate3d(0, -50%, 0);
+                @extend %opacity-1;
+            }
+
+            svg {
+                transform: scale(0.95);
+            }
+        }
     }
 
     &__logowrapper {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      p {
-        display: none;
-      }
+        .logo__svg {
+            transition: transform 0.5s $outBack;
+        }
+        .logo__veganify {
+            transition: transform 0.5s $outBack;
+        }
+        &:hover,
+        &:focus {
+            .logo__svg {
+                transform: rotate(90deg);
+            }
+            .logo__veganify {
+                transform: scale(0.95) translateY(0.5rem);
+            }
+        }
     }
-  }
+
+    @include device(tab-to-phoneland) {
+        margin: 0 auto;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 3%;
+        top: auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        height: max-content;
+        z-index: 2001;
+        padding: 4.5vmin 5vw;
+        box-shadow: 0px 0px 20px 0px var(--clr_recipeitem_right_bg);
+
+        &__links {
+            grid-auto-flow: column;
+            grid-gap: 10vw;
+        }
+
+        &__link {
+            &::after {
+                left: 50%;
+                top: 100%;
+                transform: translate3d(-50%, 0%, 0);
+            }
+
+            &:hover::after,
+            &:focus::after {
+                transform: translate3d(-50%, 50%, 0);
+            }
+        }
+
+        &__logowrapper {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            p {
+                display: none;
+            }
+        }
+    }
+}
+
+.navigation__link.nuxt-link-exact-active {
+    &::before {
+        transform: var(--translate) scale(1);
+    }
+
+    &:hover::before,
+    &:focus::before {
+        transform: var(--translate) scale(0);
+    }
 }

@@ -1,12 +1,12 @@
 .middle {
-  grid-area: mid;
+    grid-area: mid;
 
-  padding: 0 5vw;
-  display: grid;
-  align-content: flex-start;
-  grid-gap: 5vw;
+    padding: 0 var(--padding-middle);
+    display: grid;
+    // align-content: flex-start;
+    grid-gap: 5vw;
 
-  @include device(phone-land) {
-    padding: 0;
-  }
+    @include device(phone-land) {
+        --padding-middle: 0;
+    }
 }

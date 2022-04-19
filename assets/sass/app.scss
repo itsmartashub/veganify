@@ -1,13 +1,14 @@
 // @import "abstract/font-face";
 @import 'base/reset';
-@import 'abstract/vars';
 @import 'abstract/mixins';
+@import 'abstract/vars';
+@import 'base/typo';
 @import 'abstract/extends';
 @import 'abstract/animations';
+
 @import 'components/loader';
 
 @import 'base/global';
-@import 'base/typo';
 
 @import 'components/btns';
 @import 'components/icons';
@@ -16,7 +17,10 @@
 @import 'components/hooper';
 @import 'components/pagination';
 @import 'components/waiting';
+@import 'components/notify';
 @import 'components/notification';
+@import 'components/btn-bookmark';
+@import 'components/btn-themeToggle';
 
 @import 'layouts/navigation';
 @import 'layouts/header';

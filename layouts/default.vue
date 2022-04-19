@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <Nuxt />
-    <p class="bp"></p>
-  </div>
+    <div>
+        <Nuxt />
+        <!-- <div class="bp"></div> -->
+    </div>
 </template>
 <script>
 export default {
-  mounted() {
-    if (process.client && window) {
-      window.history.scrollRestoration = "auto";
-    }
-  },
-};
+    mounted() {
+        if (process.client && window) {
+            window.history.scrollRestoration = 'auto'
+        }
+    },
+}
 </script>

@@ -1,39 +1,25 @@
-// $font-family: 'Poppins', sans-serif;
-$font-family: "Poppins", -apple-system, BlinkMacSystemFont, Arial, "Segoe UI",
-  Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-$font-size: 1.6rem;
-$line-height: 1.8;
-$letter-spacing: 0.1px;
-
 html {
-  font-size: 62.5%;
+    font-size: 62.5%;
 
-  @include device(tab-land) {
-    font-size: 56.25%;
-  }
-
-  @include device(tab) {
-    // font-size: 50%;
-  }
-
-  @include device(phone) {
-    font-size: 43.75%;
-  }
-
-  @include device(phone-ant) {
-    font-size: 37.5%;
-  }
-
-  @include device(big) {
-    font-size: 75%;
-  }
+    @include device(tab-land) {
+        font-size: 56.25%;
+    }
+    @include device(phone) {
+        font-size: 43.75%;
+    }
+    @include device(phone-ant) {
+        font-size: 37.5%;
+    }
+    @include device(big) {
+        font-size: 75%;
+    }
 }
 
 body {
-  font-family: $font-family;
-  font-size: $font-size;
-  line-height: $line-height;
-  // letter-spacing: $letter-spacing;
+    font-family: var(--f-family);
+    font-size: var(--f-size);
+    line-height: var(--line-height);
+    font-display: swap;
 }
 
 h1,
@@ -41,6 +27,6 @@ h2,
 h3,
 h4,
 h5 {
-  line-height: 1.4;
-  color: var(--clr_black);
+    line-height: 1.4;
+    color: hsl(var(--clr_black));
 }

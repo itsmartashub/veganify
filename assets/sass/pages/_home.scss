@@ -1,27 +1,27 @@
 .home {
-  height: 100vh; //! mora da se odredi ova visina zbog nava i sidebara
-  width: 100%;
-  overflow-y: scroll;
-  scroll-behavior: smooth; //! jer je ovo skrolovano kad se klikne na scrolltotop
-  padding: var(--padding-home);
-  @extend %d--grid;
-  justify-content: center;
-  grid-auto-flow: column;
+    height: 100vh; //! mora da se odredi ova visina zbog nava i sidebara
+    width: 100%;
+    overflow-y: scroll;
+    // scroll-behavior: smooth; //! jer je ovo skrolovano kad se klikne na scrolltotop
+    padding: var(--padding-home);
+    @extend %d--grid;
+    justify-content: center;
+    grid-auto-flow: column;
 
-  grid-template-areas: "nav mid side";
-  grid-template-columns: minmax(0, max-content) minmax(0, 13fr) minmax(
-      30rem,
-      4fr
-    );
+    grid-template-areas: 'nav mid side';
+    grid-template-columns: minmax(0, max-content) minmax(0, 13fr) minmax(
+            30rem,
+            4fr
+        );
 
-  @include device(tab-land) {
-    grid-template-areas: "nav mid mid";
-  }
+    @include device(tab-land) {
+        grid-template-areas: 'nav mid mid';
+    }
 
-  @include device(phone-land) {
-    grid-template-areas:
-      "mid"
-      "nav";
-    grid-template-columns: 1fr;
-  }
+    @include device(tab-to-phoneland) {
+        grid-template-areas:
+            'mid'
+            'nav';
+        grid-template-columns: 1fr;
+    }
 }

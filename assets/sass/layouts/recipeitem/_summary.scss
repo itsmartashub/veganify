@@ -1,6 +1,6 @@
 .summary {
     a {
-        color: var(--clr_black);
+        color: hsl(var(--clr_black));
         @extend %fw-700;
         @extend %pos-rel;
         opacity: 0.9;
@@ -8,7 +8,7 @@
 
         &::after {
             @extend %after;
-            background: var(--clr_black);
+            background: currentColor;
             left: 0;
             top: 100%;
             height: 3px;
@@ -20,7 +20,8 @@
 
         &:hover,
         &:focus {
-            opacity: 1;
+            @extend %opacity-1;
+
             &::after {
                 transform: scaleX(0);
             }

@@ -1,22 +1,23 @@
 .notifications {
-  @extend %overflow-hidden;
-  @extend %pos-abs;
-  top: 10%;
-  left: 10%;
-  z-index: 200;
-  width: fit-content;
+    @extend %overflow-hidden;
+    @extend %pos-abs;
+    top: 10%;
+    left: 10%;
+    z-index: 200;
+    width: fit-content;
 
-  .notification {
-    padding: 2rem;
-    font-size: 1.8rem;
-    border-radius: var(--icon-radius);
-    color: var(--clr_white);
-    transition: all 0.3 ease-out;
-    &--red {
-      background: #ffa07a;
+    .notification {
+        padding: 2rem;
+        font-size: 1.8rem;
+        border-radius: var(--radius-icontainer);
+        color: var(--clr_white);
+        transition: all 0.3 ease-out;
+
+        &--red {
+            background: #ffa07a;
+        }
+        &--green {
+            background: var(--clr_grd_bg);
+        }
     }
-    &--green {
-      background: var(--clr_grd_bg);
-    }
-  }
 }

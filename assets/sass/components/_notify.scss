@@ -1,0 +1,98 @@
+.notify {
+    @extend %pos-rel;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 35vh;
+    padding: 7rem 6.5rem;
+    font-size: 1.9rem;
+    @extend %fw-500;
+    line-height: 1.5;
+    background: var(--clr_grd_bg);
+    color: hsl(var(--clr_white));
+    @extend %d--flex;
+    flex-direction: column;
+    border-radius: var(--radius-notify);
+    transition: 0.4s transform $outBack;
+
+    * + * {
+        // svi childovi osim prvog
+        margin-top: 2.2rem;
+    }
+
+    @include device(tab) {
+        width: 90%;
+    }
+    @include device(phone) {
+        padding: 5rem;
+    }
+
+    &:hover,
+    &:focus {
+        transform: translate3d(0, -1rem, 0);
+
+        &::before {
+            transform: translate3d(0, 20%, 0) rotate(180deg);
+        }
+    }
+
+    &::before {
+        @extend %pos-abs;
+        content: '⚠️';
+        bottom: -15%;
+        right: 0%;
+        width: fit-content;
+        font-size: 10rem;
+        transition: 0.4s transform $inOutBack;
+        z-index: 1;
+    }
+
+    p {
+        --bullet_size: 1rem;
+        text-align: left;
+        @extend %pos-rel;
+        margin-left: 3rem;
+
+        &::before {
+            @extend %after;
+            width: var(--bullet_size);
+            height: var(--bullet_size);
+            border-radius: var(--radius-circle);
+            background: currentColor;
+            opacity: 0.7;
+            top: 50%;
+            left: 0;
+            z-index: 20;
+            transform: translate(-3rem, -50%);
+        }
+
+        @include device(phone) {
+            margin-left: 0;
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+    a {
+        @extend %pos-rel;
+        @extend %fw-700;
+        color: currentColor;
+
+        &::after {
+            @extend %after;
+            top: 110%;
+            left: 0;
+            background: currentColor;
+            height: 3px;
+            border-radius: 2rem;
+            opacity: 0.8;
+            transform-origin: 100% 50%;
+            transition: 0.3s transform $outSmooth;
+        }
+
+        &:hover::after,
+        &:focus::after {
+            transform: scaleX(0);
+        }
+    }
+}

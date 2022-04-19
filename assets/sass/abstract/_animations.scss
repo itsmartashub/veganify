@@ -1,139 +1,141 @@
-.recipecard-enter-active {
-  transition: transform 0.4s ease, opacity 0.4s linear;
-}
-.recipecard-enter,
-.recipecard-leave-to {
-  opacity: 0;
-  transform: translate3d(0, 20%, 0);
-}
-.recipecard-enter-to {
-  opacity: 1;
-  transform: translate3d(0, 0%, 0);
-}
-.recipecard-leave-active {
-  transition: transform 0.2s ease, opacity 0.2s linear;
-}
-
-// .title-enter-active {
-//   transition: transform 0.6s $outBack, opacity 0.6s linear;
-// }
-// .title-leave {
-//   opacity: 0;
-//   transform: translate3d(0, 100%, 0);
-// }
-// .title-enter {
-//   opacity: 1;
-//   transform: translate3d(0, 0%, 0);
-// }
-// .title-leave-active {
-//   transition: transform 0.5s ease, opacity 0.5s linear;
-// }
-
 .page-enter-active {
-  will-change: transform, opacity;
-  transition: transform 1s $outCirc, opacity 0.6s linear;
-  backface-visibility: hidden;
+    @extend %will-change;
+    backface-visibility: hidden;
+    transition: transform 1s $outCirc, opacity 0.6s $outSmooth;
 }
 .page-leave-active {
-  will-change: transform, opacity;
+    @extend %will-change;
 }
-
 .page-enter,
 .page-leave-to {
-  opacity: 0;
-  transform: translate3d(0, 100%, 0);
+    @extend %opacity-0;
+    transform: translate3d(0, 100%, 0);
 }
 .page-enter-to,
 .page-leave {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
+    @extend %opacity-1;
+    @extend %transform-3d-0;
+}
+
+.recipecards-enter-active,
+.recipecards-leave-active {
+    @extend %will-change;
+}
+.recipecards-enter-active {
+    transition: transform 0.8s $outSmooth, opacity 0.8s $outSmooth;
+}
+.recipecards-leave-active {
+    transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
+}
+.recipecards-enter,
+.recipecards-leave-to {
+    @extend %opacity-0;
+    transform: translateY(100%);
+}
+.recipecards-enter-to,
+.recipecards-leave {
+    @extend %opacity-1;
+    transform: translateY(0);
 }
 
 .fadeIn-enter-active,
 .fadeIn-leave-active {
-  transition: opacity 1s linear;
+    transition: opacity 1s $outSmooth;
 }
 .fadeIn-enter,
 .fadeIn-leave-to {
-  opacity: 0;
+    @extend %opacity-0;
 }
 .fadeIn-enter-to,
 .fadeIn-leave {
-  opacity: 1;
+    @extend %opacity-1;
 }
 
-.waiting-enter-active,
+.waiting-enter-active {
+    @extend %will-change;
+    transition: transform 0.5s $outCirc, opacity 0.5s $outCirc;
+}
 .waiting-leave-active {
-  transition: opacity 0.3s linear;
+    @extend %will-change;
+    transition: transform 0.8s $outCirc, opacity 0.8s $outCirc;
 }
 .waiting-enter,
 .waiting-leave-to {
-  opacity: 0;
+    @extend %opacity-0;
+    transform: translateY(-2rem);
 }
 .waiting-enter-to,
 .waiting-leave {
-  opacity: 1;
+    @extend %opacity-1;
+    transform: translateY(0);
 }
 
 .notification-enter-active {
-  transition: transform 0.5s $outQuart;
+    transition: transform 0.5s $outQuart;
 }
 .notification-leave-active {
-  transition: transform 0.5s $inExpo;
+    transition: transform 0.5s $inExpo;
 }
 .notification-enter,
 .notification-leave-to {
-  transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
 }
 .notification-enter-to,
 .notification-leave {
-  transform: translate3d(0, 0, 0);
+    @extend %transform-3d-0;
 }
 
-.slideLeft-enter-active {
-  will-change: transform;
-  transition: transform 1.3s $outCirc !important;
-  backface-visibility: hidden;
+.slideFromLeft-enter-active {
+    will-change: transform;
+    transition: transform 1.3s $outCirc !important;
+    backface-visibility: hidden;
 }
-.slideLeft-enter {
-  transform: translate3d(-100%, 0, 0);
+.slideFromLeft-enter {
+    transform: translate3d(-100%, 0, 0);
 }
-.slideLeft-enter-to {
-  transform: translate3d(0, 0, 0);
+.slideFromLeft-enter-to {
+    @extend %transform-3d-0;
+}
+
+.slideRotateFromRight-enter-active {
+    will-change: transform;
+    transition: transform 1.3s $outCirc !important;
+    backface-visibility: hidden;
+}
+.slideRotateFromRight-enter {
+    transform: translate3d(100%, 0, 0) rotate(180deg);
+}
+.slideRotateFromRight-enter-to {
+    transform: translate3d(0, 0, 0) rotate(0deg);
 }
 
 //? Active Component - RecipeitemSteps or RecipeitemIngredients
-.recipesteps-enter {
-  transform: translate3d(5rem, 0, 0);
+.recipesteps-enter,
+.ingredients-leave-tor {
+    transform: translate3d(5rem, 0, 0);
 }
-.recipesteps-leave-to {
-  transform: translate3d(-5rem, 0, 0);
-}
-
+.recipesteps-leave-to,
 .ingredients-enter {
-  transform: translate3d(-5rem, 0, 0);
-}
-.ingredients-leave-to {
-  transform: translate3d(5rem, 0, 0);
+    transform: translate3d(-5rem, 0, 0);
 }
 
 //! activeComponent - shared:
 .recipesteps-enter-active,
 .ingredients-enter-active {
-  transition: all 0.4s $outSmooth;
+    transition: transform 0.4s $outSmooth, opacity 0.4s $outSmooth;
 }
 .recipesteps-enter-to,
 .ingredients-enter-to {
-  opacity: 1;
-  transform: translate3d(0, 0%, 0);
+    @extend %opacity-1;
+    @extend %transform-3d-0;
 }
 .recipesteps-leave-active,
 .ingredients-leave-active {
-  transition: all 0.25s $outSmooth;
+    transition: transform 0.25s $outSmooth, transform 0.25s $outSmooth;
 }
 .recipesteps-enter,
 .recipesteps-leave-to,
 .ingredients-enter,
 .ingredients-leave-to {
-  opacity: 0;
+    @extend %opacity-0;
 }

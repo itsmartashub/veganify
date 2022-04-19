@@ -1,147 +1,44 @@
 :root {
-  --default-radius: 8px;
-  // --gradient_deg: 200deg;
-  --grd_deg: 156deg;
-  --padding-home: 2vw;
-  --sidebars_height: calc(100vh - calc(2 * var(--padding-home)));
-  // --sidebars_height: 95vh;
-  --icon-radius: 1.8rem;
-  --icon-square-size: 5.2rem;
+    // FONT
+    --f-family: 'Poppins', -apple-system, BlinkMacSystemFont, Arial, 'Segoe UI',
+        Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+        sans-serif;
+    --f-size: 1.6rem;
+    --line-height: 1.8;
+    --letter-spacing: 0.1px;
 
-  --inset-value: 4px 60px 100px 35px;
-  // --hue: 170;
-  // --saturation: 88%;
-  // --brightness: 45%;
+    --grd-deg: 156deg;
 
-  --clr-accent: 165 88% 45%;
-  --clr-grd-1: 164 100% 45%;
-  --clr-grd-2: 180 98% 40%;
-  --clr-black: 210 57% 22%;
-  --clr-white: 0 0% 100%;
-  --clr-bg: 0 0% 95%;
+    // SPACES
+    --padding-home: 2vw;
+    --padding-middle: 5vw;
+    --nav-sidebar-height: calc(100vh - calc(2 * var(--padding-home)));
 
-  --clr-grd-bg: linear-gradient(
-    var(--grd_deg),
-    hsl(var(--clr-grd-1)),
-    hsl(var(--clr-grd-2))
-  );
-}
+    // RADIUS
+    --radius-default: 1rem;
+    --radius-btn: 1.6rem;
+    --radius-icontainer: 1.3rem;
+    --radius-category: 3.3rem;
+    --radius-search: 3rem;
+    --radius-circle: 50vw;
+    --radius-nav-sidebar: 9rem;
+    --radius-notify: 6rem;
+    --radius-recipecard: 5.3rem;
+    --radius-sidebarcard: 2.3vw;
+    --radius-sidebarcard-showcase-img: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    --radius-sidebarcard-figure: var(--radius-sidebarcard-showcase-img);
+    --radius-ingredients-card: 2rem;
+    --radius-recipeitem-main: 12vw;
+    --radius-recipeitem-right: 6.5vw;
+    --radius-recipeitem-breadcrumb: 50vw;
 
-// SHADOWS
-// $box_shadow: rgba(0, 0, 0, 0.08) 0px 3px 5px;
-// $box_shadow: rgba(0, 0, 0, 0.05) -4px 9px 25px -6px;
-$box_shadow: 0 12px 23px 0 rgb(62 73 84 / 4%);
-// rgba(0, 0, 0, 0.05) -4px 9px 25px -6px
+    // SHADOWS
+    --inset-value: 4px 60px 100px 35px;
+    --box-shadow-alpha-spread: 8px;
 
-// COLORS
-html {
-  --clr_accent: hsl(165 88% 45%);
-  --clr_bg: hsl(0 0% 95%);
-  --clr_grd_1: hsl(164 100% 45%);
-  --clr_grd_2: hsl(180 98% 40%);
-  --clr_grd_3: hsl(164 99% 45%);
-  --clr_grd_4: hsl(169 100% 42%);
-  --clr_grd_bg: linear-gradient(
-    var(--grd_deg),
-    var(--clr_grd_1),
-    var(--clr_grd_2)
-  );
-  --clr_white: hsl(0 0% 100%);
-  --clr_accent_to_dark: var(--clr_accent);
-  --clr_white_grd_btns: var(--clr_white);
-  --clr_black: hsl(210 57% 22%);
-  // --clr-black: 210 57% 22%;
-
-  --clr_accent_light: hsl(165 88% 90%);
-  --clr_backbtn_icontainer: var(--clr_accent_light);
-
-  --clr_card_bg: var(--clr_white);
-  --clr_sidecard_bg: var(--clr_white);
-  --clr_recipeitem_bg: var(--clr_grd_1);
-  --clr_recipeitem_content_bg: hsla(0 0% 100% / 0.09);
-  --clr_recipeitem_right_bg: hsla(165 88% 45% / 0.7);
-  --clr_recipeitem_right_mobile: linear-gradient(
-    180deg,
-    var(--clr_grd_3),
-    var(--clr_grd_4)
-  );
-
-  // --box_shadow_accent: none;
-
-  --filter_img: none;
-  --opacity_search: 0.35;
-  --img_box_shadow: inset var(--inset-value) hsl(210 57% 22% / 0.6);
-  // --img_overlay: linear-gradient(
-  //   180deg,
-  //   hsl(210 57% 22% / 0.4),
-  //   hsl(210 57% 22% / 0.1)
-  // );
-
-  // --box_shadow_alpha: 0 0 0 8px hsl(var(--clr_white) / 0.4);
-  --box_shadow_alpha: 0 0 0 8px hsl(0 0% 100% / 0.4);
-}
-
-html [data-theme="dark"] {
-  --clr_accent: hsl(165 70% 45%);
-  --clr_bg: hsl(240 30% 10%);
-  --clr_grd_1: hsl(236 33% 20%);
-  --clr_grd_2: hsl(240 28% 10%);
-  --clr_grd_bg: linear-gradient(
-    var(--grd_deg),
-    var(--clr_grd_1),
-    var(--clr_grd_2)
-  );
-  --clr_white: var(--clr_accent);
-  --clr_black: hsl(236 20% 38%);
-  // --clr-black: 236 20% 38%;
-
-  // --clr_accent_light: hsl(200 78% 8%);
-  --clr_accent_light: hsl(236 30% 13%);
-  --clr_backbtn_icontainer: var(--clr_accent);
-  --clr_accent_to_dark: var(--clr_bg);
-  --clr_white_grd_btns: var(--clr_grd_bg);
-
-  --clr_card_bg: var(--clr_grd_bg);
-  --clr_sidecard_bg: var(--clr_bg);
-  // --clr_recipeitem_bg: hsl(240, 28%, 13%);
-  --clr_recipeitem_bg: linear-gradient(
-    0deg,
-    var(--clr_grd_1),
-    var(--clr_grd_2)
-  );
-  // --clr_recipeitem_bg: linear-gradient(
-  //   0deg,
-  //   var(--clr_grd_1) 40%,
-  //   var(--clr_grd_2) 100%
-  // );
-  --clr_recipeitem_content_bg: linear-gradient(
-    0deg,
-    var(--clr_grd_2),
-    hsl(236 33% 15%)
-  );
-  --clr_recipeitem_right_bg: var(--clr_grd_bg);
-  --clr_recipeitem_right_mobile: var(--clr_grd_bg);
-
-  --box_shadow_accent: 0px 0px 40px 0px hsl(165 70% 45% / 0.07);
-  --box_shadow_accent_stronger: 0px 0px 20px -8px hsl(165 70% 45% / 0.4);
-
-  --filter_img: brightness(82%);
-  --opacity_search: 1;
-  --img_box_shadow: inset var(--inset-value) hsl(236 20% 30%/ 0.6);
-
-  .recipeitem__title {
-    color: var(--clr_accent);
-  }
-
-  //TODO za promenu ukoliko zelimo i alpha: hsl(var(--clr-accent) / .2)
-  --clr-accent: 165 70% 45%;
-  --clr-grd-1: 236 33% 20%;
-  --clr-grd-2: 240 28% 10%;
-  --clr-black: 210 57% 22%;
-  --clr-white: var(--clr-accent);
-  --clr-bg: 240 30% 10%;
-
-  --box_shadow_alpha: var(--box_shadow_accent);
+    @include device(phone) {
+        --box-shadow-alpha-spread: 6px;
+    }
 }
 
 // CUBICS
@@ -169,3 +66,193 @@ $inOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
 $inOutExpo: cubic-bezier(1, 0, 0, 1);
 $inOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 $inOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+// @media (prefers-color-scheme: dark) {
+//     html {
+//         --clr_accent: 165 70% 45%;
+//         --clr_bg: 240 30% 10%;
+//         --clr_grd_1: 236 33% 20%;
+//         --clr_grd_2: 240 28% 10%;
+//         --clr_grd_bg: linear-gradient(
+//             var(--grd-deg),
+//             hsl(var(--clr_grd_1)),
+//             hsl(var(--clr_grd_2))
+//         );
+//         --clr_white: var(--clr_accent);
+//         --clr_black: 200 20% 43%;
+//         --clr_accent_light: 236 30% 13%;
+//         --clr_accent_to_dark: hsl(var(--clr_bg));
+//         --clr_black_to_accent: hsl(var(--clr_accent));
+//         --clr_white_to_grd: var(--clr_grd_bg);
+//         --clr_backbtn_icontainer: hsl(var(--clr_accent));
+
+//         --clr_sidebarcard_bg: hsl(var(--clr_bg));
+//         --clr_sidebarcard_after: var(--clr_grd_1);
+//         --clr_recipeitem_bg: linear-gradient(
+//             0deg,
+//             hsl(var(--clr_grd_1)),
+//             hsl(var(--clr_grd_2))
+//         );
+//         --clr_recipeitem_main_bg: linear-gradient(
+//             0deg,
+//             hsl(var(--clr_grd_2)),
+//             hsl(236 33% 15%)
+//         );
+//         --clr_recipeitem_right_bg: var(--clr_grd_bg);
+//         --clr_recipeitem_right_mobile: var(--clr_grd_bg);
+
+//         // STYLES
+//         --filter_img: brightness(82%);
+//         --filter_404: hue-rotate(340deg) brightness(88%);
+//         --opacity_search: 1;
+
+//         // SHADOWS
+//         --box_shadow_img: inset var(--inset-value) hsl(236 20% 30%/ 0.6);
+//         --box_shadow_accent: 0px 0px 40px 0px hsl(var(--clr_accent) / 0.07);
+//         --box_shadow_alpha: var(--box_shadow_accent),
+//             0px 0px 4px 1px hsl(var(--clr_accent) / 0.1);
+//         --box_shadow_sidebarcard: 0 0 0 1px hsl(var(--clr_accent) / 0.1),
+//             0px 5px 40px -10px hsl(var(--clr_accent) / 0.3);
+//         --box-shadow-error: inset var(--inset-value) hsl(var(--clr_grd_1) / 0.4);
+//     }
+// }
+
+// @media (prefers-color-scheme: light) {
+//     html {
+//         // COLORS
+//         --clr_accent: 165 88% 45%;
+//         --clr_bg: 0 0% 95%;
+//         --clr_grd_1: 164 100% 45%;
+//         --clr_grd_2: 180 98% 40%;
+//         --clr_grd_3: 164 99% 45%;
+//         --clr_grd_4: 169 100% 42%;
+//         --clr_grd_bg: linear-gradient(
+//             var(--grd-deg),
+//             hsl(var(--clr_grd_1)),
+//             hsl(var(--clr_grd_2))
+//         );
+//         --clr_white: 0 0% 100%;
+//         --clr_black: 210 57% 22%;
+//         --clr_accent_light: 165 88% 90%;
+//         --clr_accent_to_dark: hsl(var(--clr_accent));
+//         --clr_black_to_accent: hsl(var(--clr_black));
+//         --clr_white_to_grd: hsl(var(--clr_white));
+//         --clr_backbtn_icontainer: hsl(var(--clr_accent_light));
+
+//         --clr_sidebarcard_bg: hsl(var(--clr_white));
+//         --clr_sidebarcard_after: var(--clr_black);
+//         --clr_recipeitem_bg: hsl(var(--clr_grd_1));
+//         --clr_recipeitem_main_bg: hsla(var(--clr_white) / 0.09);
+//         --clr_recipeitem_right_bg: hsla(var(--clr_accent) / 0.7);
+//         --clr_recipeitem_right_mobile: linear-gradient(
+//             180deg,
+//             hsl(var(--clr_grd_3)),
+//             hsl(var(--clr_grd_4))
+//         );
+
+//         // STYLES
+//         --filter_img: none;
+//         --filter_404: none;
+//         --opacity_search: 0.35;
+
+//         // SHADOWS
+//         --box_shadow_img: inset var(--inset-value) hsl(var(--clr_black) / 0.6);
+//         --box_shadow_alpha: 0 0 0 var(--box-shadow-alpha-spread)
+//             hsl(var(--clr_white) / 0.4);
+//         --box-shadow-error: none;
+//         --box_shadow_sidebarcard: 0 25px 0 -20px hsl(var(--clr_black) / 0.3);
+//     }
+// }
+
+body {
+    // COLORS
+    --clr_accent: 165 88% 45%;
+    --clr_bg: 0 0% 95%;
+    --clr_grd_1: 164 100% 45%;
+    --clr_grd_2: 180 98% 40%;
+    --clr_grd_3: 164 99% 45%;
+    --clr_grd_4: 169 100% 42%;
+    --clr_grd_bg: linear-gradient(
+        var(--grd-deg),
+        hsl(var(--clr_grd_1)),
+        hsl(var(--clr_grd_2))
+    );
+    --clr_white: 0 0% 100%;
+    --clr_black: 210 57% 22%;
+    --clr_accent_light: 165 88% 90%;
+    --clr_accent_to_dark: hsl(var(--clr_accent));
+    --clr_black_to_accent: hsl(var(--clr_black));
+    --clr_white_to_grd: hsl(var(--clr_white));
+    --clr_backbtn_icontainer: hsl(var(--clr_accent_light));
+
+    --clr_sidebarcard_bg: hsl(var(--clr_white));
+    --clr_sidebarcard_after: var(--clr_black);
+    --clr_recipeitem_bg: hsl(var(--clr_grd_1));
+    --clr_recipeitem_main_bg: hsla(var(--clr_white) / 0.09);
+    --clr_recipeitem_right_bg: hsla(var(--clr_accent) / 0.7);
+    --clr_recipeitem_right_mobile: linear-gradient(
+        180deg,
+        hsl(var(--clr_grd_3)),
+        hsl(var(--clr_grd_4))
+    );
+
+    // STYLES
+    --filter_img: none;
+    --filter_404: none;
+    --opacity_search: 0.35;
+
+    // SHADOWS
+    --box_shadow_img: inset var(--inset-value) hsl(var(--clr_black) / 0.6);
+    --box_shadow_alpha: 0 0 0 var(--box-shadow-alpha-spread)
+        hsl(var(--clr_white) / 0.4);
+    --box-shadow-error: none;
+    --box_shadow_sidebarcard: 0 25px 0 -20px hsl(var(--clr_black) / 0.3);
+}
+
+body[data-theme='dark'] {
+    --clr_accent: 165 70% 45%;
+    --clr_bg: 240 30% 10%;
+    --clr_grd_1: 236 33% 20%;
+    --clr_grd_2: 240 28% 10%;
+    --clr_grd_bg: linear-gradient(
+        var(--grd-deg),
+        hsl(var(--clr_grd_1)),
+        hsl(var(--clr_grd_2))
+    );
+    --clr_white: var(--clr_accent);
+    --clr_black: 200 20% 43%;
+    --clr_accent_light: 236 30% 13%;
+    --clr_accent_to_dark: hsl(var(--clr_bg));
+    --clr_black_to_accent: hsl(var(--clr_accent));
+    --clr_white_to_grd: var(--clr_grd_bg);
+    --clr_backbtn_icontainer: hsl(var(--clr_accent));
+
+    --clr_sidebarcard_bg: hsl(var(--clr_bg));
+    --clr_sidebarcard_after: var(--clr_grd_1);
+    --clr_recipeitem_bg: linear-gradient(
+        0deg,
+        hsl(var(--clr_grd_1)),
+        hsl(var(--clr_grd_2))
+    );
+    --clr_recipeitem_main_bg: linear-gradient(
+        0deg,
+        hsl(var(--clr_grd_2)),
+        hsl(236 33% 15%)
+    );
+    --clr_recipeitem_right_bg: var(--clr_grd_bg);
+    --clr_recipeitem_right_mobile: var(--clr_grd_bg);
+
+    // STYLES
+    --filter_img: brightness(82%);
+    --filter_404: hue-rotate(340deg) brightness(88%);
+    --opacity_search: 1;
+
+    // SHADOWS
+    --box_shadow_img: inset var(--inset-value) hsl(236 20% 30%/ 0.6);
+    --box_shadow_accent: 0px 0px 40px 0px hsl(var(--clr_accent) / 0.07);
+    --box_shadow_alpha: var(--box_shadow_accent),
+        0px 0px 4px 1px hsl(var(--clr_accent) / 0.1);
+    --box_shadow_sidebarcard: 0 0 0 1px hsl(var(--clr_accent) / 0.1),
+        0px 5px 40px -10px hsl(var(--clr_accent) / 0.3);
+    --box-shadow-error: inset var(--inset-value) hsl(var(--clr_grd_1) / 0.4);
+}

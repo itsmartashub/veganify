@@ -1,9 +1,8 @@
 .categories {
-    --category-radius: 3.3rem;
     @extend %txt-center;
     @extend %d--grid;
     grid-gap: 5rem;
-    color: var(--clr_white);
+    color: hsl(var(--clr_white));
 
     @include device(tab) {
         grid-gap: 1rem;
@@ -12,28 +11,27 @@
     &__title {
         @extend %fw-600;
         @extend %overflow-hidden;
+        color: var(--clr_black_to_accent);
+
         span:nth-of-type(2) {
             @extend %fw-300;
         }
     }
 
     &__category {
+        min-width: max-content;
         background: var(--clr_grd_bg);
         color: currentColor;
-        border-radius: var(--category-radius);
+        @extend %w-100;
+        height: 16rem;
         padding: 2.2rem 4rem;
-
         @extend %d--grid;
         place-items: center;
         grid-gap: 1rem;
-
-        transition: 0.5s;
         @extend %pos-rel;
         @extend %cursor;
         @extend %box-shadow;
-
-        height: 16rem;
-        width: 100%;
+        border-radius: var(--radius-category);
 
         &--active,
         &:hover,
@@ -41,7 +39,7 @@
         &:active {
             .categories__icon {
                 transform: translateY(-110%) rotate(90deg) scale(1.3);
-                border-color: var(--clr_bg);
+                border-color: hsl(var(--clr_bg)) !important;
                 svg {
                     transform: rotate(-90deg);
                 }
@@ -56,12 +54,13 @@
         }
     }
 
-    &__icon {
+    .icontainer--bgwhite {
+        --icontainer_size: 5.2rem;
+        --radius-icontainer: 1.6rem;
         border: 5px solid transparent;
-        transition: 0.5s;
-
+        transition: transform 0.5s $outSmooth, border-color 0.5s $outSmooth;
         svg {
-            transition: 0.25s;
+            transition: transform 0.25s $outSmooth;
         }
     }
 
@@ -69,8 +68,7 @@
         font-size: 1.6rem;
         @extend %fw-500;
         letter-spacing: 1px;
-        transition: 0.5s;
-        transition-delay: 0.05s;
+        transition: transform 0.5s $outSmooth;
     }
 
     &__counter {
@@ -78,17 +76,16 @@
         bottom: 10px;
         width: 70%;
         padding: 1rem;
-        background: var(--clr_white);
+        background: hsl(var(--clr_white));
         color: var(--clr_accent_to_dark);
         font-size: 1.8rem;
         @extend %fw-700;
         letter-spacing: 2px;
-        border-radius: var(--icon-radius);
+        border-radius: var(--radius-btn);
         @extend %opacity-0;
         pointer-events: none;
         transform: translateY(20%) scale(0);
         transform-origin: center bottom;
-        transition-delay: 0.1s;
-        transition: 0.5s transform, 0.5s opacity;
+        transition: 0.5s transform $outSmooth, 0.5s opacity $outSmooth;
     }
 }

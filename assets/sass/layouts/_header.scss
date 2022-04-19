@@ -1,13 +1,13 @@
 .header {
     @extend %flex-center;
     flex-wrap: wrap-reverse;
-    color: var(--clr_accent);
+    color: hsl(var(--clr_accent));
 
     &__form,
     &__title {
         margin: 3vw 2vw;
 
-        @include device(phone) {
+        @include device(tab) {
             margin: 6vw 2vw;
         }
     }
@@ -25,8 +25,8 @@
             opacity: var(--opacity_search);
             width: 3rem;
             @extend %h-auto;
-            fill: var(--clr_accent);
-            transition: 0.4s;
+            fill: currentColor;
+            transition: transform 0.4s $outSmooth, opacity 0.3s $outSmooth;
         }
 
         @include device(tab) {
@@ -38,33 +38,32 @@
     }
 
     &__search {
-        padding: 2.5rem 2.5rem 2.5rem 8rem;
-        font-family: $font-family;
-        border-radius: 30px;
+        --padding-left: 8rem;
+        padding: 2.5rem 2.5rem 2.5rem var(--padding-left);
+        border-radius: var(--radius-search);
         @extend %d--flex;
         align-items: center;
-        background: var(--clr_card_bg);
-        color: var(--clr_black);
+        background: var(--clr_white_to_grd);
+        color: hsl(var(--clr_black));
         font-size: inherit;
         @extend %box-shadow;
-
         transform-origin: center bottom;
-        transition: 0.4s;
+        transition: color 0.4s $outSmooth, box-shadow 0.4s $outBack,
+            opacity 0.4s $outSmooth;
 
         @include device(tab) {
-            padding: 2.5rem 2.5rem 2.5rem 9rem;
+            --padding-left: 9rem;
         }
     }
 
     &__search::placeholder {
-        font-family: $font-family;
         opacity: 0.4;
         color: currentColor;
     }
     &__search:focus {
-        color: var(--clr_accent);
+        color: currentColor;
         @extend %opacity-1;
-        box-shadow: 0 20px 5px -14px hsl(var(--clr-black) / 0.08);
+        box-shadow: 0 20px 0px -16px hsl(var(--clr_accent) / 0.05);
 
         & + svg {
             transform: rotate(90deg);
@@ -74,12 +73,14 @@
 
     &__title {
         display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
         @extend %txt-center;
-        color: var(--clr_accent);
+        color: currentColor;
         @extend %fw-600;
-        font-size: 3.5rem;
+        font-size: 3.8rem;
         letter-spacing: 1px;
-        text-shadow: 2px 2px 2px hsla(210, 57%, 22%, 0.1);
 
         span {
             @extend %d--inline-block;
@@ -90,7 +91,7 @@
         }
 
         @include device(phone) {
-            font-size: 4rem;
+            font-size: 4.5rem;
         }
     }
 
@@ -99,17 +100,13 @@
         opacity: 0.6;
     }
     &__yourmeal {
-        color: var(--clr_black);
+        color: hsl(var(--clr_black));
         @extend %fw-300;
     }
 }
 
 /* clears the ‘X’ from Internet Explorer */
-input[type='search']::-ms-clear {
-    display: none;
-    width: 0;
-    height: 0;
-}
+input[type='search']::-ms-clear,
 input[type='search']::-ms-reveal {
     display: none;
     width: 0;

@@ -1,167 +1,182 @@
 .hooper {
-  &-track {
-    @extend %d--grid;
-    grid-auto-flow: column;
-    transition: transform 1s $outSmooth;
-  }
+    &-track {
+        @extend %d--grid;
+        grid-auto-flow: column;
+        transition: transform 1s $outSmooth;
+    }
 }
 
 .categories .hooper {
-  @extend %d--grid;
-  align-content: center;
-  min-height: 30rem;
-
-  &-track {
-    justify-content: flex-start;
-    padding: 4rem 0;
-    grid-gap: 5rem;
-  }
-  &-slide {
-    max-width: 14rem;
+    @extend %d--grid;
+    align-content: center;
+    min-height: 30rem;
 
     @include device(phone-land) {
-      max-width: max-content;
+        padding: 0 2rem;
     }
-  }
-  &-pagination {
-    bottom: -1rem !important;
-  }
-  &-indicator {
-    background: var(--clr_white);
-    transition: background 0.3s;
 
-    &.is-active,
-    &:hover,
-    &:focus {
-      background: var(--clr_grd_bg);
+    &-track {
+        justify-content: flex-start;
+        padding: 4rem 0;
+        grid-gap: 5rem;
     }
-  }
+    &-slide {
+        max-width: 14rem;
 
-  &-prev,
-  &-next {
-    opacity: 0.4;
-    transition: opacity 0.5s;
+        @include device(phone-land) {
+            max-width: max-content;
+        }
+    }
+    &-pagination {
+        bottom: -1rem !important;
+    }
+    &-indicator {
+        background-color: hsl(var(--clr_white));
+        transition: background-color 0.5s;
 
-    svg {
-      fill: var(--clr_accent);
-      height: 4rem;
-      width: auto;
-      transition: transform 0.5s $outBack;
+        &.is-active,
+        &:hover,
+        &:focus {
+            background-color: hsl(var(--clr_accent));
+        }
     }
-  }
 
-  &-prev {
-    left: -6%;
-    &:hover,
-    &:focus {
-      @extend %opacity-1;
-      svg {
-        transform: translate3d(-20%, 0, 0);
-      }
+    &-prev,
+    &-next {
+        --btn-pos: -6%;
+        opacity: 0.4;
+        transition: opacity 0.5s;
+
+        svg {
+            fill: hsl(var(--clr_accent));
+            height: 4rem;
+            width: auto;
+            transition: transform 0.5s $outBack;
+        }
+
+        @include device(tab) {
+            --btn-pos: -7%;
+        }
+        @include device(tab-to-phoneland) {
+            --btn-pos: -10%;
+        }
+        @include device(phone-land) {
+            display: none;
+        }
     }
-  }
-  &-next {
-    right: -6%;
-    &:hover,
-    &:focus {
-      @extend %opacity-1;
-      svg {
-        transform: translate3d(20%, 0, 0);
-      }
+
+    &-prev {
+        left: var(--btn-pos);
+        &:hover,
+        &:focus {
+            @extend %opacity-1;
+            svg {
+                transform: translate3d(-20%, 0, 0);
+            }
+        }
     }
-  }
+    &-next {
+        right: var(--btn-pos);
+        &:hover,
+        &:focus {
+            @extend %opacity-1;
+            svg {
+                transform: translate3d(20%, 0, 0);
+            }
+        }
+    }
 }
 
 // ? ===================== INGREDIENTS HOOPER
 .ingredients .hooper {
-  height: max-content;
-  max-height: 24rem;
-  margin-bottom: 2rem;
+    height: max-content;
+    max-height: 24rem;
+    margin-bottom: 2rem;
 
-  &-list {
-    @include device(phone-land) {
-      display: grid;
-    }
-  }
-
-  &-track {
-    @extend %d--grid;
-    justify-content: flex-start;
-    grid-gap: 3rem;
-    height: auto;
-    padding-top: 3rem;
-    margin-bottom: 5rem;
-  }
-  &-slide {
-    min-width: 16rem;
-    max-width: 18rem;
-
-    @include device(phone-land) {
-      max-width: max-content;
-    }
-  }
-  &-pagination,
-  &-indicators {
-    @extend %flex-center;
-    padding: 0;
-  }
-  &-indicator {
-    background: var(--clr_white);
-    transition: background 0.3s, opacity 0.3s;
-
-    &:hover,
-    &:focus {
-      background: var(--clr_black);
-      opacity: 0.4;
-    }
-    &.is-active {
-      background: var(--clr_black);
-    }
-  }
-
-  &-prev,
-  &-next {
-    --btn_pos: -12%;
-    top: 60%;
-    opacity: 0.4;
-    transform: translateY(-50%);
-    transition: opacity 0.5s;
-    z-index: 22;
-
-    svg {
-      fill: var(--clr_white);
-      height: 3rem;
-      width: auto;
-      transition: transform 0.5s $outBack;
+    &-list {
+        @include device(phone-land) {
+            display: grid;
+        }
     }
 
-    @include device(phone-land) {
-      width: 1rem;
-      height: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    &-track {
+        @extend %d--grid;
+        justify-content: flex-start;
+        grid-gap: 3rem;
+        height: auto;
+        padding-top: 3rem;
+        margin-bottom: 5rem;
     }
-  }
+    &-slide {
+        min-width: 16rem;
+        max-width: 18rem;
 
-  &-prev {
-    left: var(--btn_pos);
-    &:hover,
-    &:focus {
-      @extend %opacity-1;
-      svg {
-        transform: translate3d(-20%, 0, 0);
-      }
+        @include device(phone-land) {
+            max-width: max-content;
+        }
     }
-  }
-  &-next {
-    right: var(--btn_pos);
-    &:hover,
-    &:focus {
-      @extend %opacity-1;
-      svg {
-        transform: translate3d(20%, 0, 0);
-      }
+    &-pagination,
+    &-indicators {
+        @extend %flex-center;
+        padding: 0;
     }
-  }
+    &-indicator {
+        background: hsl(var(--clr_white));
+        transition: background 0.3s, opacity 0.3s;
+
+        &:hover,
+        &:focus {
+            background: hsl(var(--clr_black));
+            opacity: 0.4;
+        }
+        &.is-active {
+            background: hsl(var(--clr_black));
+        }
+    }
+
+    &-prev,
+    &-next {
+        --btn_pos: -12%;
+        top: 60%;
+        opacity: 0.4;
+        transform: translateY(-50%);
+        transition: opacity 0.5s;
+        z-index: 22;
+
+        svg {
+            fill: hsl(var(--clr_white));
+            height: 3rem;
+            width: auto;
+            transition: transform 0.5s $outBack;
+        }
+
+        @include device(phone-land) {
+            width: 1rem;
+            height: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &-prev {
+        left: var(--btn_pos);
+        &:hover,
+        &:focus {
+            @extend %opacity-1;
+            svg {
+                transform: translate3d(-20%, 0, 0);
+            }
+        }
+    }
+    &-next {
+        right: var(--btn_pos);
+        &:hover,
+        &:focus {
+            @extend %opacity-1;
+            svg {
+                transform: translate3d(20%, 0, 0);
+            }
+        }
+    }
 }

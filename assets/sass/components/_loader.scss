@@ -1,64 +1,57 @@
 .loader {
-  will-change: background-image, transform;
-  @extend %pos-fix;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 100vh;
-  @extend %flex-center;
-  z-index: 3000;
-  background: var(--clr_grd_bg);
-  transform-origin: center bottom;
-  backface-visibility: hidden;
-  transition: background-image 0.5s linear;
-
-  &__content {
+    will-change: background-image, transform;
+    @extend %pos-fix;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 100vh;
     @extend %flex-center;
-    flex-direction: column;
-    @extend %pos-abs;
-  }
+    background: var(--clr_grd_bg);
+    transform-origin: center bottom;
+    backface-visibility: hidden;
+    z-index: 3000;
 
-  &__logo {
-    .logo__svg {
-      width: 10vw !important;
-      height: auto;
-      fill: var(--clr_white);
-      transition: fill 0.4s linear;
-
-      @include device(tab) {
-        width: 20vw !important;
-      }
+    &__content {
+        @extend %pos-abs;
+        @extend %flex-center;
+        flex-direction: column;
     }
-  }
 
-  &__title {
-    @extend .header__title;
-    font-size: 4rem;
-    color: var(--clr_white) !important;
-    transition: color 0.4s linear;
-    @extend %overflow-hidden;
-    perspective: 200px;
+    &__logo {
+        .logo__svg {
+            width: 10vw !important;
+            height: auto;
+            fill: hsl(var(--clr_white));
 
-    span {
-      @extend %d--inline-block;
-      transition: transform 1s ease, opacity 1s linear;
+            @include device(tab) {
+                width: 20vw !important;
+            }
+        }
     }
-  }
-  &__ify {
-    @extend .header__ify;
-  }
-  &__yourmeal {
-    @extend .header__yourmeal;
-  }
+
+    &__title {
+        @extend .header__title;
+        @extend %overflow-hidden;
+        font-size: 4rem;
+        color: hsl(var(--clr_white)) !important;
+    }
+    &__ify {
+        @extend .header__ify;
+    }
+    &__yourmeal {
+        @extend .header__yourmeal;
+    }
 }
 
 .loader-enter-active,
 .loader-leave-active {
-  transition: transform 1.5s $outCirc;
+    transition: transform 1.5s $outCirc;
 }
 .loader-enter-to {
-  transform: translate3d(0, 0%, 0);
+    transform: translate3d(0, 0%, 0);
 }
 .loader-leave-to {
-  transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
 }

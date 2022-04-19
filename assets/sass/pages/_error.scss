@@ -1,4 +1,141 @@
 .error {
-  @extend %flex-center;
-  flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    min-height: 100vh;
+    @extend %flex-center;
+    @extend %overflow-hidden;
+    flex-direction: column;
+    background-image: var(--clr_grd_bg);
+    z-index: 1;
+
+    &__headers {
+        padding: 12rem 6rem 5rem 6rem;
+        @extend %flex-center;
+        flex-direction: column;
+        @extend %txt-center;
+        z-index: 10;
+        box-shadow: var(--box-shadow-error);
+        background: hsl(var(--clr_white) / 0.02);
+        backdrop-filter: blur(8px);
+        border-radius: var(--radius-recipecard);
+    }
+
+    &__404 {
+        // display: flex;
+        // align-items: center;
+        @extend %flex-center;
+        flex-wrap: nowrap;
+        font-size: 18rem;
+        line-height: 1;
+        // margin-bottom: 4rem;
+
+        @include device(tab) {
+            font-size: 12rem;
+        }
+        @include device(phone-ant) {
+            font-size: 10rem;
+        }
+
+        span {
+            display: inline-block;
+            transform-origin: center center;
+        }
+
+        span:nth-of-type(1) {
+            transform: translateY(10%) rotate(-20deg);
+        }
+        span:nth-of-type(3) {
+            transform: translateY(10%) rotate(20deg);
+        }
+        span:nth-of-type(1),
+        span:nth-of-type(3) {
+            color: var(--clr_black_to_accent);
+            transition: transform 0.5s $outBack;
+        }
+
+        span:nth-of-type(2) {
+            @extend %pos-rel;
+            font-size: 1.5em;
+            z-index: 2;
+            @extend %cursor;
+            // filter: var(--filter_404);
+            transition: transform 0.5s $outSmooth;
+
+            &::before {
+                content: '🕵🏻‍♀️';
+                font-size: 0.4em;
+                @extend %pos-abs;
+                top: 0;
+                right: 15%;
+                transform: translate(-5%, -32%) rotate(22deg) scale(1);
+                transition: transform 0.6s $outBack;
+                z-index: -1;
+            }
+            &::after {
+                content: '👇🏽\A GO BACK\A👆🏽';
+                white-space: pre-wrap;
+                font-size: 0.08em;
+                line-height: 1.5;
+                @extend %txt-center;
+                @extend %pos-abs;
+                top: 50%;
+                left: 51%;
+                transform: translate(-50%, -50%);
+
+                // background-image: var(--clr_grd_bg);
+                // background-image: linear-gradient(
+                //     120deg,
+                //     var(--clr_black_to_accent),
+                //     var(--clr_black_to_accent)
+                // );
+                background-color: var(--clr_black_to_accent);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            span:nth-of-type(2) {
+                transform: scale(0.95);
+                &::before {
+                    transform: translate(-40%, 50%) rotate(0deg) scale(0);
+                }
+            }
+            span:nth-of-type(1),
+            span:nth-of-type(3) {
+                transform: translateY(0%) rotate(0deg);
+            }
+        }
+    }
+
+    &__msg {
+        font-size: 1.5em;
+        line-height: 1.8;
+        max-width: 70rem;
+        padding: 8rem 3rem;
+        color: var(--clr_black_to_accent);
+        // margin: 0 2rem;
+        // background: hsl(var(--clr_white) / 0);
+        // backdrop-filter: blur(10px);
+        // border-radius: var(--radius-recipecard);
+    }
+
+    &__wanted {
+        @extend %pos-abs;
+        @extend %d--block;
+        @extend %fw-700;
+        font-size: 18rem;
+        line-height: 1;
+        color: hsl(var(--clr_white) / 0.7);
+        opacity: 0.1;
+        transform: rotate(30deg);
+        pointer-events: none;
+        z-index: -1;
+    }
 }

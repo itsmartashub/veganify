@@ -1,5 +1,5 @@
 <template>
-    <article class="recipeitem__showcase showcase">
+    <article class="recipeitem__left-showcase showcase">
         <figure class="showcase__figure">
             <img
                 :src="recipeItem.image"

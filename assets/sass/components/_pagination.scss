@@ -1,79 +1,85 @@
 .pagination {
     padding-top: 10rem;
+    padding-bottom: 3rem;
 
     @include device(phone-land) {
         padding-bottom: 18vh;
     }
 
     &__items {
-        @extend %grid-center;
-        grid-auto-flow: column;
-        grid-gap: 1vw;
+        @extend %d--grid;
+        grid-template-areas: 'prev pages next';
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        grid-gap: 3rem;
 
         @include device(phone-land) {
-            display: flex;
-            flex-wrap: wrap;
-            grid-gap: 4vw;
-            justify-content: center;
-            align-items: center;
+            grid-template-columns: 1fr;
+            grid-template-areas: 'pages' 'next' 'prev';
+            grid-gap: 2rem;
         }
     }
 
     &__item {
+        &--prev {
+            grid-area: prev;
+        }
+        &--next {
+            grid-area: next;
+        }
+        &--pages {
+            grid-area: pages;
+            ul {
+                display: inline-flex;
+                align-items: center;
+                grid-gap: 2rem;
+            }
+
+            li {
+                width: fit-content;
+            }
+        }
         @include device(phone-land) {
-            &:first-child,
-            &:last-child {
-                flex: 1 1 100%;
+            &--pages {
+                margin-bottom: 1.5rem;
             }
-            &:first-child {
-                order: 1;
-            }
-
-            .pagination__btn--previous,
-            .pagination__btn--next {
-                display: block;
-                width: 68vw;
-                margin: 0 auto;
-                padding: 2.5rem 0;
-
-                &:hover,
-                &:focus {
-                    transform: none;
-                }
-            }
-
-            .pagination__btn--next {
-                margin-top: 3rem;
+            &--prev,
+            &--next {
+                width: 80vw;
             }
         }
     }
 
     &__btn {
-        --prev_next_gap: 3rem;
         --size_btn: 5rem;
         min-width: var(--size_btn);
         min-height: var(--size_btn);
+        margin: 0 auto;
+        width: 100%;
         background: var(--clr_grd_bg);
-        color: var(--clr_white);
-        border: 1px solid var(--clr_accent_light);
+        color: hsl(var(--clr_white));
+        border: 1px solid hsl(var(--clr_accent) / 0.1);
         transform-origin: center center;
-        // transition: background-color 0.4s ease, background-image 0.4s ease;
+        transition: transform 0.5s $outBack;
 
         &:hover,
         &:focus {
-            background: var(--clr_white);
-            color: var(--clr_grd_1);
+            background: hsl(var(--clr_white));
+            color: var(--clr_accent_to_dark);
         }
 
-        &--previous {
-            margin-right: var(--prev_next_gap);
+        &--prev,
+        &--next {
+            padding: 1.2rem 2.5rem;
+        }
+
+        &--prev {
             &:hover,
             &:focus {
                 transform: translate(-5px, 0);
             }
         }
         &--next {
-            margin-left: var(--prev_next_gap);
             &:hover,
             &:focus {
                 transform: translate(5px, 0);
@@ -81,6 +87,11 @@
         }
 
         @include device(phone-land) {
+            &--prev,
+            &--next {
+                width: 100%;
+                padding: 2rem;
+            }
         }
 
         &--active {
@@ -94,7 +105,7 @@
             &:hover,
             &:focus {
                 background: var(--clr_grd_bg);
-                color: var(--clr_white);
+                color: hsl(var(--clr_white));
             }
         }
     }

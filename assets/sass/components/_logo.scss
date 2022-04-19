@@ -1,19 +1,16 @@
 .logo {
-  &__svg {
-    width: 5rem !important;
-    transition: 0.3s;
-  }
-  &__veganify {
-    color: var(--clr_white) !important;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-    @extend %fw-600;
-    @extend %flex-center;
-    transition: 0.3s;
-
-    span {
-      @extend %fw-300;
-      transition: 0.3s;
+    &__svg {
+        width: 5rem !important;
     }
-  }
+    &__veganify {
+        color: hsl(var(--clr_white)) !important;
+        font-size: 1.5rem;
+        @extend %fw-600;
+        @extend %txt-uppercase;
+        @extend %flex-center;
+
+        span {
+            @extend %fw-300;
+        }
+    }
 }

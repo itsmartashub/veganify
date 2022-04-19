@@ -1,7 +1,7 @@
 <template>
-    <div class="recipeitem__content" v-if="recipeItem && isMounted">
+    <main class="recipeitem__main" v-if="recipeItem && isMounted">
         <section class="recipeitem__left">
-            <h1 class="recipeitem__title">{{ recipeItem.title }}</h1>
+            <h1 class="recipeitem__left-title">{{ recipeItem.title }}</h1>
 
             <RecipeitemTags />
 
@@ -9,9 +9,9 @@
         </section>
 
         <section class="recipeitem__right">
-            <header class="recipeitem__header">
+            <header class="recipeitem__right-header">
                 <p
-                    class="recipeitem__breadcrumb"
+                    class="recipeitem__right-breadcrumb"
                     :class="{ 'recipeitem--active': componentIndex === 0 }"
                     @click="changeActiveComponent(0)"
                     v-if="recipeItem.extendedIngredients"
@@ -19,7 +19,7 @@
                     Ingredients
                 </p>
                 <p
-                    class="recipeitem__breadcrumb"
+                    class="recipeitem__right-breadcrumb"
                     :class="{ 'recipeitem--active': componentIndex === 1 }"
                     @click="changeActiveComponent(1)"
                     v-if="recipeItem.analyzedInstructions"
@@ -27,7 +27,7 @@
                     Recipe steps
                 </p>
                 <p
-                    class="recipeitem__breadcrumb"
+                    class="recipeitem__right-breadcrumb"
                     :class="{ 'recipeitem--active': componentIndex === 2 }"
                     @click="changeActiveComponent(2)"
                     v-if="!recipeItem.extendedIngredients"
@@ -47,7 +47,7 @@
                 <component :is="activeComponent" />
             </transition>
         </section>
-    </div>
+    </main>
 </template>
 
 <script>

@@ -1,6 +1,10 @@
 %pos-fix {
     position: fixed;
 }
+%pos-stck {
+    position: -webkit-sticky;
+    position: sticky;
+}
 %pos-abs {
     position: absolute;
 }
@@ -88,6 +92,9 @@
 %txt-center {
     text-align: center;
 }
+%txt-uppercase {
+    text-transform: uppercase;
+}
 
 %opacity-0 {
     opacity: 0;
@@ -117,5 +124,32 @@
 }
 
 %box-shadow {
-    box-shadow: $box_shadow;
+    box-shadow: 0 12px 23px 0 rgb(62 73 84 / 4%);
+}
+
+%theme-hidden-props {
+    pointer-events: none;
+    z-index: -1;
+}
+%theme-showed-props {
+    pointer-events: all;
+    transform: scale(1) rotate(0deg);
+    z-index: 2;
+}
+
+%nav-sidebar-shared {
+    height: var(--nav-sidebar-height);
+    background: var(--clr_grd_bg);
+    color: hsl(var(--clr_white));
+    @extend %box-shadow;
+    @extend %pos-stck;
+    top: 0;
+    left: 0;
+    border-radius: var(--radius-nav-sidebar);
+}
+%will-change {
+    will-change: transform, opacity;
+}
+%transform-3d-0 {
+    transform: translate3d(0, 0%, 0);
 }

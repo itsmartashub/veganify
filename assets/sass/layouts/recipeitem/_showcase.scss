@@ -1,5 +1,4 @@
 .showcase {
-    --img_radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     @extend %d--grid;
     width: max-content;
     @extend %pos-rel; //* imperative for the overlapping to work
@@ -11,8 +10,8 @@
     &:hover,
     &:focus {
         .showcase__trivia {
-            transform: scale(1);
             @extend %opacity-1;
+            transform: scale(1);
             box-shadow: var(--box_shadow_alpha);
 
             p {
@@ -20,19 +19,16 @@
                 transform: translateY(0);
             }
             &::after {
-                // transform: scaleY(1);
+                @extend %opacity-1;
                 transform: scaleY(1) rotate(0deg);
             }
             &::before {
+                opacity: 0.2;
                 transform: scale(1) rotate(30deg);
             }
         }
-
         .showcase__nutrition {
-            & > * {
-                @extend %opacity-0;
-            }
-            transform: scale(0);
+            transform: translateX(120%);
         }
     }
 
@@ -40,7 +36,7 @@
         --img_size: 28vw;
         width: var(--img_size);
         height: var(--img_size);
-        border-radius: var(--img_radius);
+        border-radius: var(--radius-sidebarcard-showcase-img);
         @extend %overflow-hidden;
 
         @include device(tab-mid) {
@@ -57,11 +53,13 @@
         }
     }
     &__nutritions {
+        padding: 2rem;
         justify-self: flex-end;
         @extend %d--grid;
         grid-gap: 2.5vh;
         @extend %pos-abs;
         top: 45%;
+        @extend %overflow-hidden;
         transform: translate(32%, -50%);
 
         @include device(tab-land) {
@@ -81,7 +79,7 @@
         min-width: 20rem;
         width: 13vw;
         padding: 1.1rem;
-        border-radius: 5rem;
+        border-radius: var(--radius-recipeitem-breadcrumb);
         @extend %grid-center;
         grid-auto-flow: column;
         justify-content: start;
@@ -89,12 +87,11 @@
         font-size: 1.4rem;
         @extend %fw-600;
         letter-spacing: 0.5px;
-        background: var(--clr_white_grd_btns);
-        color: var(--clr_accent);
+        background: var(--clr_white_to_grd);
+        color: hsl(var(--clr_accent));
         transform-origin: right center;
         box-shadow: var(--box_shadow_alpha);
-
-        transition: 0.8s;
+        transition: transform 1s $inOutBack;
 
         @include device(tab-land) {
             padding: 0.8rem;
@@ -122,10 +119,6 @@
             padding: 0.8rem;
         }
 
-        & > * {
-            transition: opacity 0.3s ease;
-        }
-
         &:nth-of-type(1) {
             transition-delay: 0.1s;
         }
@@ -133,18 +126,18 @@
             transition-delay: 0.15s;
         }
         &:nth-of-type(3) {
-            transition-delay: 0.15s;
+            transition-delay: 0.2s;
         }
         &:nth-of-type(4) {
-            transition-delay: 0.1s;
+            transition-delay: 0.25s;
         }
 
         &-amount {
             @extend %flex-center;
             width: var(--amount_size);
             height: var(--amount_size);
-            background: var(--clr_accent_light);
-            border-radius: 100vw;
+            background: hsl(var(--clr_accent) / 0.2);
+            border-radius: var(--radius-circle);
             @extend %fw-700;
         }
         &-name {
@@ -154,8 +147,8 @@
         &-unit {
             font-size: 0.9rem;
             @extend %fw-700;
-            text-transform: uppercase;
-            color: var(--clr_black);
+            @extend %txt-uppercase;
+            color: hsl(var(--clr_black));
             opacity: 0.9;
 
             @include device(phone) {
@@ -165,9 +158,10 @@
     }
 
     &__trivia {
-        background: var(--clr_white);
-        border-radius: var(--img_radius);
-        padding: 4rem;
+        --delay: 0.5s;
+        will-change: transform, opacity, box-shadow;
+        background: hsl(var(--clr_white));
+        border-radius: var(--radius-sidebarcard-showcase-img);
         @extend %pos-abs;
         @extend %w-100;
         @extend %h-100;
@@ -175,19 +169,23 @@
         @extend %txt-center;
         @extend %fw-500;
         @extend %opacity-0;
-        transform: scale(0.25);
-        transform-origin: left center;
-        transition: 0.8s;
-        transition-delay: 0.1s;
+        transform: scale(0);
+        transform-origin: center center;
+        transition: transform 0.8s $outBack var(--delay),
+            opacity 0.5s $outSmooth var(--delay),
+            box-shadow 0.8s $outBack calc(var(--delay) + 0.3s);
         z-index: 100;
-        border-radius: var(--img_radius);
 
         p {
-            font-size: 1.6rem;
+            @extend %will-change;
+            @extend %flex-center;
+            font-size: 1.7rem;
+            padding: 4rem;
+            border-radius: var(--radius-sidebarcard-showcase-img);
             @extend %opacity-0;
-            transform: translateY(100%);
-            transition: transform 0.8s $outSmooth, opacity 0.8s $outSmooth;
-            transition-delay: 0.6s;
+            transform: translateY(2rem);
+            transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
+            transition-delay: calc(var(--delay) + 0.3s);
 
             @include device(tab-mid) {
                 font-size: 1.8rem;
@@ -198,18 +196,21 @@
         }
 
         &::after {
+            @extend %will-change;
             @extend %pos-abs;
             content: '\201F';
-            color: var(--clr_accent_light);
-            text-shadow: 1px 5px 0px var(--clr_accent);
-            font-size: 25rem;
+            color: hsl(var(--clr_accent_light));
+            text-shadow: 1px 5px 0px hsl(var(--clr_accent));
+            font-size: 25vw;
             @extend %fw-600;
+            @extend %opacity-0;
             line-height: 0;
-            top: 29%;
+            top: 25%;
             left: -10%;
             transform: scaleY(0) rotate(90deg);
-            transition: transform 0.8s $outBack;
-            transition-delay: 0.7s;
+            transition: transform 0.8s $outBack, opacity 0.3s linear;
+            transition-delay: calc(var(--delay) + 0.3s);
+
             z-index: -1;
 
             @include device(tab-land) {
@@ -225,19 +226,19 @@
             }
         }
         &::before {
+            @extend %will-change;
             @extend %pos-abs;
             content: '💡';
-            text-shadow: 5px 5px 0px var(--clr_accent);
-            text-shadow: 1px 5px 0px var(--clr_accent);
+            text-shadow: 1px 5px 0px hsl(var(--clr_accent));
             font-size: 30rem;
             @extend %fw-600;
             line-height: 0;
-            top: 60%;
+            top: 58%;
             right: 0%;
-            opacity: 0.2;
+            @extend %opacity-0;
             transform: scale(0) rotate(0deg);
-            transition: transform 0.8s $outBack;
-            transition-delay: 1s;
+            transition: transform 0.8s $outBack, opacity 0.3s linear;
+            transition-delay: calc(var(--delay) + 0.3s);
             z-index: -1;
 
             @include device(tab-land) {
@@ -246,6 +247,14 @@
             @include device(tab-mid) {
                 font-size: 30rem;
             }
+        }
+    }
+}
+
+html [data-theme='dark'] {
+    .showcase__trivia {
+        p {
+            color: hsl(var(--clr_bg));
         }
     }
 }

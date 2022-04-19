@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Nuxt />
-    <p class="bp"></p>
-  </div>
+    <div>
+        <Nuxt />
+        <!-- <div class="bp"></div> -->
+    </div>
 </template>

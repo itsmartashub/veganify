@@ -1,76 +1,67 @@
 .tags {
-  @extend %d--grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem;
-
-  @include device(phone) {
-    grid-gap: 5vmin;
-    width: 100%;
-  }
-
-  .tag {
-    width: 100%;
-    padding: 2vmin;
-    line-height: 1;
-    @extend %fw-600;
-    background: var(--clr_white_grd_btns);
-    box-shadow: var(--box_shadow_accent);
-    border-radius: 15px;
     @extend %d--grid;
-    grid-auto-flow: column;
-    grid-gap: 1.8vmin;
-    align-items: center;
-    justify-content: flex-start;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
 
-    @include device(phone-land) {
-      grid-gap: 2vmin;
-      padding: 3vmin;
-    }
     @include device(phone) {
-      grid-auto-flow: row;
-      border-radius: 12px;
+        grid-gap: 5vmin;
+        width: 100%;
     }
 
-    &__icon-wrapper {
-      --size: 4rem;
-      width: var(--size);
-      height: var(--size);
-      border-radius: 1rem;
-      background: var(--clr_accent_light);
-      @extend %d--grid;
-      place-items: center;
+    .tag {
+        @extend %w-100;
+        padding: 2vmin;
+        line-height: 1;
+        @extend %fw-600;
+        background: var(--clr_white_to_grd);
+        box-shadow: var(--box_shadow_accent);
+        border-radius: var(--radius-ingredients-card);
+        @extend %d--grid;
+        grid-auto-flow: column;
+        grid-gap: 1.8vmin;
+        align-items: center;
+        justify-content: flex-start;
 
-      @include device(phone) {
-        --size: 3.8rem;
-      }
-    }
-    &__svg {
-      width: 2rem;
-      height: auto;
-      fill: var(--clr_accent);
+        @include device(phone-land) {
+            grid-gap: 2vmin;
+            padding: 3vmin;
+        }
+        @include device(phone) {
+            --radius-ingredients-card: 12px;
+            grid-auto-flow: row;
+        }
 
-      @include device(phone) {
-        width: 1.8rem;
-      }
-    }
+        .icontainer--bggreen {
+            svg {
+                --svg_size: 2rem;
+            }
 
-    &__nameAmountWrapper {
-      flex: 1 1;
-      margin-left: 2px;
+            @include device(phone) {
+                --icontainer_size: 3.8rem;
+
+                svg {
+                    --svg_size: 1.8rem;
+                }
+            }
+        }
+
+        &__nameAmountWrapper {
+            flex: 1 1;
+            margin-left: 2px;
+        }
+        &__name {
+            @extend %w-100;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            @extend %txt-uppercase;
+            color: hsl(var(--clr_accent));
+        }
+        &__amount {
+            font-size: 1.7rem;
+            span {
+                @extend %fw-400;
+                font-size: 1.5rem;
+            }
+        }
     }
-    &__name {
-      font-size: 1.1rem;
-      color: var(--clr_accent);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-      width: 100%;
-    }
-    &__amount {
-      font-size: 1.7rem;
-      span {
-        @extend %fw-400;
-        font-size: 1.5rem;
-      }
-    }
-  }
 }

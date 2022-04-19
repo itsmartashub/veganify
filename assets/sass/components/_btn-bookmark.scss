@@ -1,0 +1,50 @@
+.bookmark {
+    --radius-icontainer: 1.3rem;
+    background: hsl(var(--clr_accent) / 0.2);
+    z-index: 2;
+
+    &__svgs {
+        @extend %pos-rel;
+        @extend %d--grid;
+        place-items: center;
+
+        &--outline {
+            @extend %opacity-1;
+            transform: scale(1);
+        }
+        &--filled {
+            @extend %opacity-0;
+            transform: scale(0.4);
+            pointer-events: none;
+        }
+    }
+
+    svg {
+        @extend %will-change;
+        --svg_size: 2.6rem;
+        height: var(--svg_size);
+        @extend %pos-abs;
+        fill: hsl(var(--clr_accent));
+        transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
+        z-index: 1;
+    }
+
+    &:hover,
+    &:focus {
+        .bookmark__svgs--outline {
+            @extend %opacity-0;
+            transform: scale(0);
+            pointer-events: none;
+        }
+        .bookmark__svgs--filled {
+            @extend %opacity-1;
+            transform: scale(1);
+            pointer-events: all;
+        }
+    }
+
+    &--saved {
+        @extend .bookmark, :hover;
+        transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
+    }
+}

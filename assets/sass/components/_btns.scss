@@ -1,34 +1,32 @@
 .btn {
-  --radius-btn: 1.5rem;
-  @extend %grid-center;
-  place-content: center;
-  grid-auto-flow: column;
-  grid-gap: 1.5rem;
-  width: max-content;
-  padding: 1rem 1.8rem;
-  border-radius: var(--radius-btn);
-  background: var(--clr_card_bg);
-  color: currentColor;
-  @extend %fw-700;
-  @extend %cursor;
-  box-shadow: var(--box_shadow_accent);
-
-  &__label {
-    --radius-btn: 1.4rem;
-    @extend %grid-center;
-    place-content: center;
-    grid-auto-flow: column;
-    grid-gap: 0.5rem;
-    width: max-content;
-    padding: 0.9rem 1.2rem;
-    border-radius: var(--radius-btn);
-    background: var(--clr_grd_bg);
-    font-size: 1.2rem;
-
-    &--outline {
-      @extend .btn__label;
-      background: var(--clr_accent_light);
-      color: var(--clr_accent) !important;
+    &,
+    &__label {
+        border-radius: var(--radius-btn);
+        @extend %grid-center;
+        place-content: center;
+        grid-auto-flow: column;
     }
-  }
+
+    grid-gap: 1.5rem;
+    padding: 1.2rem;
+    background: var(--clr_white_to_grd);
+    color: currentColor;
+    @extend %fw-700;
+    @extend %cursor;
+    box-shadow: var(--box_shadow_accent);
+
+    &__label {
+        --radius-btn: 1.4rem;
+        grid-gap: 0.5rem;
+        padding: 0.9rem 1.2rem;
+        width: max-content;
+        background: var(--clr_grd_bg);
+        font-size: 1.2rem;
+
+        &--outline {
+            @extend .btn__label;
+            background: hsl(var(--clr_accent_light));
+            color: hsl(var(--clr_accent)) !important;
+        }
+    }
 }

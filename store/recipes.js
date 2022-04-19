@@ -173,35 +173,13 @@ export const actions = {
             `
         )
         commit('SET_402', true)
-
         commit('SET_APIK', newApik)
-
         commit('SET_API_ERR_MSG', '')
+
         await dispatch('promiseAllFn')
+
         commit('SET_402', false)
     },
-
-    // async fetchRandomTrivia({ commit, state }) {
-    //     try {
-    //         const response = await this.$axios.get(
-    //             `food/trivia/random?apiKey=${state.apik}`
-    //         )
-
-    //         // console.log(response.status !== 200)
-    //         if (response.status !== 200)
-    //             throw new Error(`Something's wrong. ${response.status}`)
-
-    //         const { text } = response.data
-
-    //         commit('SET_RANDOM_TRIVIA', text)
-    //     } catch (error) {
-    //         // if (state.apiErrMsg == 'Request failed with status code 402') {
-    //         //     await dispatch('ifErr402', process.env.API_SECRET_RESERVE_1)
-    //         // }
-    //         console.error(`${error} 💥💥💥`)
-    //         throw error
-    //     }
-    // },
 
     mergeRecipes({ state, commit }) {
         let concatArrs = [

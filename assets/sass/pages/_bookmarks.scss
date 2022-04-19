@@ -7,40 +7,38 @@
     align-content: center;
     place-items: center;
     grid-gap: 5vh;
+    font-size: 4rem;
+    @extend %txt-center;
 
     &__svgwrapper {
         --size: 13rem;
         width: var(--size);
         height: var(--size);
-        border-radius: 3.5rem;
+        border-radius: var(--radius-category);
         @extend %d--grid;
         place-items: center;
-        background: var(--clr_accent_light);
+        background: hsl(var(--clr_accent_light));
         box-shadow: var(--box_shadow_accent);
     }
 
     svg {
-        width: 6rem;
-        fill: var(--clr_accent);
+        width: calc(var(--size) / 2);
+        height: auto;
+        fill: hsl(var(--clr_accent));
     }
 
     &__title {
-        text-transform: uppercase;
-        font-size: 3rem;
+        @extend %txt-uppercase;
+        font-size: inherit;
         @extend %fw-400;
         margin-bottom: 2rem;
-
-        span {
-            font-size: 4rem;
-        }
     }
     &__subtitle {
-        font-size: 4rem;
+        font-size: inherit;
         @extend %fw-500;
     }
     &__title,
     &__subtitle {
-        @extend %txt-center;
-        color: var(--clr_accent);
+        color: hsl(var(--clr_accent));
     }
 }

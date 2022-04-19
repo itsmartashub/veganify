@@ -7,8 +7,6 @@
             <Categories v-if="isMounted && !err402" />
             <WaitingPlaceholder />
             <RecipeCards :category="categoryName" />
-
-            <Notification />
         </main>
 
         <Sidebar />
@@ -16,24 +14,19 @@
 </template>
 
 <script>
-export default {
-    scrollToTop: false,
+import SEO from '~/mixins/SEO.js'
 
-    head() {
-        return {
-            title: 'Veganify | Home',
-            meta: [
-                {
-                    name: 'description',
-                    content: 'This is a Veganify homepage BLABLA',
-                    hid: 'description',
-                },
-            ],
-        }
-    },
+export default {
+    mixins: [SEO],
+    scrollToTop: false,
 
     data() {
         return {
+            seo: {
+                title: 'Veganify | Home',
+                description: 'Website with nice vegetarian recipes.',
+                image: 'https://veganify.vercel.app/veganify.jpg',
+            },
             isMounted: false,
         }
     },
@@ -62,6 +55,15 @@ export default {
         this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL')
 
         this.$nextTick(() => (this.isMounted = true))
+
+        // if (window.matchMedia('(prefers-color-scheme: dark)').matched)
+        //     window.localStorage.setItem(
+        //         'veganify_isdark',
+        //         JSON.stringify(
+        //             window.matchMedia('(prefers-color-scheme: dark)').matched
+        //         )
+        //     )
+        // console.log(window.matchMedia('(prefers-color-scheme: dark)'))
     },
 }
 </script>

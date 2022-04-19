@@ -1,71 +1,60 @@
 .sidebar {
-  --radius-sidebar: 8rem;
-  grid-area: side;
+    grid-area: side;
+    @extend %nav-sidebar-shared;
+    @extend %d--grid;
+    justify-content: center;
+    grid-gap: 2rem;
+    padding: 5vh 2vw;
 
-  background: var(--clr_grd_bg);
-  color: var(--clr_white);
-  border-radius: var(--radius-sidebar);
-  @extend %box-shadow;
-  height: var(--sidebars_height);
-  padding: 5vh 2vw;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  right: 0;
-  @extend %d--grid;
-  justify-content: center;
-  grid-gap: 2rem;
-  transform-origin: right center;
+    &__title {
+        @extend %txt-center;
+        @extend %fw-300;
+        font-size: 2.4rem;
+        color: currentColor;
+        align-self: center;
 
-  &__title {
-    @extend %txt-center;
-    @extend %fw-300;
-    font-size: 2.4rem;
-    color: currentColor;
-    align-self: center;
+        span {
+            @extend %pos-rel;
+            @extend %d--block;
+        }
 
-    span {
-      @extend %pos-rel;
-      @extend %d--block;
+        span:nth-of-type(2) {
+            @extend %fw-700;
+        }
     }
 
-    span:nth-of-type(2) {
-      @extend %fw-700;
+    &__norecipes {
+        @extend %flex-center;
+        flex-direction: column;
+
+        p:nth-of-type(1) {
+            font-size: 1.8rem;
+            width: 75%;
+            @extend %txt-center;
+            margin-bottom: 4rem;
+        }
+        p:nth-of-type(2) {
+            line-height: 1;
+            font-size: 15vw;
+            @extend %pos-rel;
+            @extend %flex-center;
+            opacity: 0.8;
+
+            &::after {
+                content: '❔';
+                font-size: 5vw;
+                letter-spacing: 0;
+                @extend %pos-abs;
+
+                background-image: var(--clr_grd_bg);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
     }
-  }
 
-  &__norecipes {
-    @extend %flex-center;
-    flex-direction: column;
-
-    p:nth-of-type(1) {
-      font-size: 1.8rem;
-      width: 75%;
-      @extend %txt-center;
-      margin-bottom: 4rem;
+    @include device(tab-land) {
+        display: none;
     }
-    p:nth-of-type(2) {
-      line-height: 1;
-      font-size: 15vw;
-      @extend %pos-rel;
-      @extend %flex-center;
-      opacity: 0.8;
-
-      &::after {
-        content: "❔";
-        font-size: 5vw;
-        letter-spacing: 0;
-        @extend %pos-abs;
-
-        background: var(--clr_grd_bg);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    }
-  }
-
-  @include device(tab-land) {
-    display: none;
-  }
 }

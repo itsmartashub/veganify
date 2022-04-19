@@ -14,6 +14,11 @@
             @content;
         } // 600/16
     }
+    @if $breakpoint == tab-to-phoneland {
+        @media only screen and (max-width: 41.25em) {
+            @content;
+        } // 660/16
+    }
     @if $breakpoint == tab {
         @media only screen and (max-width: 56.25em) {
             @content;

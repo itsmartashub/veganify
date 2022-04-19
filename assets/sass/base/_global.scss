@@ -1,106 +1,118 @@
 html,
 body {
-  scroll-behavior: smooth;
-  @extend %w-100;
-  min-height: 100vh;
-  overflow-x: hidden;
+    scroll-behavior: smooth;
+    @extend %w-100;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 body {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  background: var(--clr_bg);
-  color: var(--clr_black);
-  @extend %overflow-hidden;
-  @extend %flex-center;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background: hsl(var(--clr_bg));
+    color: hsl(var(--clr_black));
+    @extend %overflow-hidden;
+    @extend %flex-center;
 }
 
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-track {
-  display: none;
+    display: none;
 }
 
 ::selection {
-  // background: var(--clr_accent);
-  background: hsl(165, 88%, 55%);
-  color: var(--clr_black);
+    background: hsl(var(--clr_accent));
+    color: hsl(var(--clr_white)) !important;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 img {
-  filter: var(--filter_img);
+    filter: var(--filter_img);
 }
 
+/*
 .bp {
-  font-size: 2rem;
-  padding: 0.3rem 1rem;
-  @extend %d--block;
-  @extend %txt-center;
-  @extend %pos-fix;
-  bottom: 5%;
-  left: 50%;
-  z-index: 2000;
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-icontainer);
+    color: #fff;
+    @extend %d--block;
+    @extend %txt-center;
+    @extend %pos-fix;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200000;
+    background: var(--clr_grd_bg);
 
-  &::before {
-    content: "desktop ";
-  }
+    &::before {
+        content: 'desktop ';
+    }
 
-  @include device(tab-land) {
-    // width < 1200 ?
-    background: purple;
-    &::before {
-      content: "tab-land";
+    @include device(tab-land) {
+        // width < 1200 ?
+        background: purple;
+        &::before {
+            content: 'tab-land';
+        }
     }
-  }
-  @include device(tab-mid) {
-    // width < 1050 ?
-    background: darkslategrey;
-    &::before {
-      content: "tab-mid";
+    @include device(tab-mid) {
+        // width < 1050 ?
+        background: darkslategrey;
+        &::before {
+            content: 'tab-mid';
+        }
     }
-  }
 
-  @include device(tab) {
-    // width < 900 ?
-    background: teal;
-    &::before {
-      content: "tab";
+    @include device(tab) {
+        // width < 900 ?
+        background: teal;
+        &::before {
+            content: 'tab';
+        }
     }
-  }
+    @include device(tab-to-phoneland) {
+        // width < 900 ?
+        background: darkseagreen;
+        &::before {
+            content: 'tab-to-phoneland';
+        }
+    }
 
-  @include device(phone-land) {
-    // width < 600 ?
-    background: lightgreen;
-    &::before {
-      content: "phone-land";
+    @include device(phone-land) {
+        // width < 600 ?
+        background: lightgreen;
+        &::before {
+            content: 'phone-land';
+        }
     }
-  }
 
-  @include device(phone) {
-    // width < 500 ?
-    background: orangered;
-    &::before {
-      content: "phone";
+    @include device(phone) {
+        // width < 500 ?
+        background: orangered;
+        &::before {
+            content: 'phone';
+        }
     }
-  }
 
-  @include device(phone-ant) {
-    // width < 320 ?
-    background: coral;
-    &::before {
-      content: "phone-ant";
+    @include device(phone-ant) {
+        // width < 320 ?
+        background: coral;
+        &::before {
+            content: 'phone-ant';
+        }
     }
-  }
 
-  @include device(big) {
-    // width > 1920 ?
-    background: red;
-    &::before {
-      content: "big";
+    @include device(big) {
+        // width > 1920 ?
+        background: red;
+        &::before {
+            content: 'big';
+        }
     }
-  }
 }
+*/

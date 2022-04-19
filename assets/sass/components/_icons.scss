@@ -1,32 +1,30 @@
 .icontainer {
-  --icontainer_size: 5.2rem;
-  --icontainer_radius: 1.6rem;
-  width: var(--icontainer_size);
-  height: var(--icontainer_size);
-  border-radius: var(--icontainer_radius);
-  @extend %d--grid;
-  place-items: center;
-  transition: transform 0.5s $outBack;
+    --icontainer_size: 4.5rem;
+    width: var(--icontainer_size);
+    height: var(--icontainer_size);
+    border-radius: var(--radius-icontainer);
+    @extend %d--grid;
+    place-items: center;
 
-  &__icon {
-    --icon_size: 2.4rem;
-    font-size: var(--icon_size);
-    color: var(--clr_accent);
-  }
+    &__icon {
+        --icon_size: 2.4rem;
+        font-size: var(--icon_size);
+        color: hsl(var(--clr_accent));
+    }
 
-  svg {
-    --svg_size: 2.65rem;
-    width: var(--svg_size);
-    height: auto;
-    fill: var(--clr_accent);
-  }
+    svg {
+        --svg_size: 2.65rem;
+        width: var(--svg_size);
+        height: auto;
+        fill: var(--clr_accent_to_dark);
+    }
 
-  &--bggreen {
-    @extend .icontainer;
-    background: var(--clr_backbtn_icontainer);
-  }
-  &--bgwhite {
-    @extend .icontainer;
-    background: var(--clr_white);
-  }
+    &--bggreen {
+        @extend .icontainer;
+        background: var(--clr_backbtn_icontainer);
+    }
+    &--bgwhite {
+        @extend .icontainer;
+        background: hsl(var(--clr_white));
+    }
 }

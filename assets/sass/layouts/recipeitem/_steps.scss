@@ -1,93 +1,89 @@
 .steps {
-  @extend %d--grid;
-  grid-gap: 3rem;
-  padding: 0 1.5vmin;
-
-  @include device(tab-mid) {
-    padding: 0 2.5vmin;
-  }
-  @include device(phone-land) {
-    grid-gap: 10vmin;
-  }
-  @include device(phone) {
-    padding: 0 8vmin;
-  }
-
-  .step {
+    --space-x: 1.5vmin;
     @extend %d--grid;
-    grid-auto-flow: column;
-    justify-content: flex-start;
     grid-gap: 3rem;
+    padding: 0 var(--space-x);
 
+    @include device(tab-mid) {
+        --space-x: 2.5vmin;
+    }
     @include device(phone-land) {
-      grid-auto-flow: row;
-      grid-gap: 2vmin;
+        grid-gap: 10vmin;
+    }
+    @include device(phone) {
+        --space-x: 8vmin;
     }
 
-    &__count {
-      --count_size: 5rem;
-      --count_radius: 12px;
-      width: var(--count_size);
-      height: var(--count_size);
-      border-radius: var(--count_radius);
-      background: var(--clr_white);
-      color: var(--clr_accent_to_dark);
-      font-size: 1.8rem;
-      @extend %fw-600;
-      line-height: 1;
-      @extend %flex-center;
-      flex-direction: column;
-      @extend %pos-rel;
-
-      @include device(tab) {
-        font-size: 2.5rem;
-      }
-      @include device(phone-land) {
-        --count_size: 5.5rem;
-        --count_radius: 10px;
-        flex-direction: row;
-        width: 10rem;
-      }
-
-      &::after {
-        content: "step";
-        font-size: 0.4em;
-        display: inline-flex;
-        opacity: 0.9;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
+    .step {
+        @extend %d--grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+        grid-gap: 3rem;
 
         @include device(phone-land) {
-          margin-left: 1rem;
+            grid-auto-flow: row;
+            grid-gap: 2vmin;
         }
-      }
 
-      &::before {
-        content: "\2039";
-        content: "\00AB";
-        color: currentColor;
-        @extend %pos-abs;
-        bottom: 0%;
-        left: 24%;
-        font-size: 1.3em;
-        @extend %fw-400;
-        transform: rotate(-90deg) translate(-5px, 0);
-        display: none;
-        transform-origin: center center;
+        &__count {
+            --count_size: 5rem;
+            width: var(--count_size);
+            height: var(--count_size);
+            border-radius: var(--radius-icontainer);
+            background: hsl(var(--clr_white));
+            color: var(--clr_accent_to_dark);
+            font-size: 1.8rem;
+            @extend %fw-600;
+            line-height: 1;
+            @extend %flex-center;
+            flex-direction: column;
+            @extend %pos-rel;
 
-        @include device(phone-land) {
-          display: block;
+            @include device(tab) {
+                font-size: 2.5rem;
+            }
+            @include device(phone-land) {
+                --count_size: 5.5rem;
+                --radius-icontainer: 10px;
+                flex-direction: row;
+                width: 10rem;
+
+                &::before {
+                    content: '\2039';
+                    // content: '\00AB';
+                    color: currentColor;
+                    position: absolute;
+                    line-height: 1;
+                    bottom: 0%;
+                    left: 27%;
+                    font-size: 1.3em;
+                    font-weight: 400;
+                    transform: rotate(-90deg) translate(-5px, 0);
+                    transform-origin: center center;
+                }
+            }
+
+            &::after {
+                content: 'step';
+                font-size: 0.4em;
+                display: inline-flex;
+                opacity: 0.9;
+                letter-spacing: 0.5px;
+                @extend %txt-uppercase;
+
+                @include device(phone-land) {
+                    margin-left: 1rem;
+                }
+            }
         }
-      }
-    }
-    &__txt {
-      line-height: 1.35;
-      @extend %fw-500;
-      word-wrap: break-word;
+        &__txt {
+            line-height: 1.35;
+            @extend %fw-500;
+            word-wrap: break-word;
 
-      @include device(tab) {
-        font-size: 1.8rem;
-      }
+            @include device(tab) {
+                font-size: 1.8rem;
+            }
+        }
     }
-  }
 }

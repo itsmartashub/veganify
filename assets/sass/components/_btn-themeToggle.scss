@@ -1,0 +1,55 @@
+.themetoggle {
+    --svg_size: 4rem;
+    --delay: 0;
+    @extend %pos-rel;
+    @extend %will-change;
+    @extend %flex-center;
+    overflow: visible;
+    @extend %cursor;
+    min-width: calc(var(--svg_size) + 1rem);
+    min-height: calc(var(--svg_size) + 1rem);
+    transform-origin: center center;
+    transition: transform 0.5s $outBack, opacity 0.4s $outSmooth;
+
+    &:hover {
+        transform: scale(0.9) rotate(20deg);
+        opacity: 0.9;
+    }
+
+    &__svg {
+        @extend %will-change;
+        @extend %pos-abs;
+        width: var(--svg_size);
+        height: auto;
+        overflow: visible;
+        fill: hsl(var(--clr_white));
+        stroke: hsl(var(--clr_white));
+        transform-origin: center center;
+        transition: transform 0.5s $inOutCirc, opacity 0.5s ease;
+        transition-delay: var(--delay);
+
+        &--sun {
+            --delay: 0s;
+            transform: scale(0) rotate(-180deg);
+            @extend %theme-hidden-props;
+        }
+        &--moon {
+            --delay: 0.3s;
+            @extend %theme-showed-props;
+        }
+    }
+
+    &--dark {
+        .themetoggle__svg {
+            &--sun {
+                --delay: 0.3s;
+                @extend %theme-showed-props;
+            }
+            &--moon {
+                --delay: 0s;
+                transform: scale(0) rotate(180deg);
+                @extend %theme-hidden-props;
+            }
+        }
+    }
+}
