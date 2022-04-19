@@ -25,7 +25,7 @@ export default {
             seo: {
                 title: 'Veganify | Home',
                 description: 'Website with nice vegetarian recipes.',
-                image: 'https://veganify.vercel.app/veganify.jpg',
+                image: 'https://veganify.vercel.app/veganify.png',
             },
             isMounted: false,
         }

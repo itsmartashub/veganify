@@ -55,7 +55,7 @@ export default {
                 title: 'Veganify | Bookmarks',
                 description:
                     'This is a Veganify webpage with your vegetarian-friendly bookmarked recipes',
-                image: 'https://veganify.vercel.app/veganify.jpg',
+                image: 'https://veganify.vercel.app/veganify.png',
             },
         }
     },

@@ -47,7 +47,7 @@ export default {
                 description: `This is a vegetarian recipe about ${
                     this.recipeItem?.title || ''
                 }.`,
-                image: 'https://veganify.vercel.app/veganify.jpg',
+                image: 'https://veganify.vercel.app/veganify.png',
             },
             isMountedBtn: false,
             isMountedFigure: false,
