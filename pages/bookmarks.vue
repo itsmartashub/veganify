@@ -5,11 +5,13 @@
         <main class="middle" v-if="bookmarks[0]">
             <Header />
             <RecipeCards />
+
+            <NotificationList />
         </main>
 
         <transition name="page">
             <main class="middle nobookmarks" v-if="!bookmarks[0]">
-                <div class="nobookmarks__svgwrapper">
+                <div class="nobookmarks__svgwrapper icontainer--bggreen">
                     <svg
                         version="1.1"
                         xmlns="http://www.w3.org/2000/svg"
@@ -30,16 +32,20 @@
 
                 <div>
                     <h1 class="nobookmarks__title">
-                        Such a empty! <span class="plate">🍽️</span>
+                        Such empty! <span class="plate">🍽️</span>
                     </h1>
                     <h2 class="nobookmarks__subtitle">
-                        There is no bookmarks yet
+                        No bookmarks yet.
+                        <br />
+                        Find a nice recipe and bookmark it.
                     </h2>
                 </div>
             </main>
         </transition>
 
         <Sidebar />
+
+        <!-- <NotificationList /> -->
     </div>
 </template>
 
@@ -68,10 +74,17 @@ export default {
 
     created() {
         if (process.client) {
-            this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
-            this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.bookmarks)
+            // this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
+            // this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.bookmarks)
             this.$store.commit('pagination/SET_CURR_PAGE', 1)
         }
+    },
+    mounted() {
+        // if (process.client) {
+        this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
+        this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.bookmarks)
+        // this.$store.commit('pagination/SET_CURR_PAGE', 1)
+        // }
     },
 }
 </script>

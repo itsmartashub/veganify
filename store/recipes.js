@@ -20,9 +20,26 @@ export const state = () => ({
     err402: false,
     apiErrMsg: '',
     recipeNotifyText: `
-        <p>There is no required item 😶 </p>
-        <p>Please, try something else 🍽️</p>`,
+        <p>No recipes found for your query! 😶 </p>
+        <p>Please try again 🍽️</p>`,
     randomTrivia: '',
+    // apikArr: [
+    //     process.env.API_SECRET_DEFAULT,
+    //     process.env.API_SECRET_RESERVE_1,
+    //     process.env.API_SECRET_RESERVE_2,
+    //     process.env.API_SECRET_RESERVE_3,
+    //     process.env.API_SECRET_RESERVE_4,
+    //     process.env.API_SECRET_RESERVE_5_SISSY,
+    //     process.env.API_SECRET_RESERVE_6_SISSY,
+    //     process.env.API_SECRET_RESERVE_7_SISSY,
+    //     process.env.API_SECRET_RESERVE_8_SISSY,
+    //     process.env.API_SECRET_RESERVE_9_SISSY,
+    //     process.env.API_SECRET_RESERVE_10_SISSY,
+    //     process.env.API_SECRET_RESERVE_11_SISSY,
+    //     process.env.API_SECRET_RESERVE_12_SISSY,
+    //     process.env.API_SECRET_RESERVE_13_SISSY,
+    //     process.env.API_SECRET_RESERVE_14_SISSY,
+    // ],
 })
 
 export const actions = {
@@ -62,10 +79,11 @@ export const actions = {
             if (!response.data.results[0])
                 commit(
                     'SET_NOTIFY',
-                    `<p>There is no required item 😶 </p>
-                    <p>Please, try something else 🍽️</p>`
+                    `<p>No recipes found for your query! 😶 </p>
+                    <p>Please try again 🍽️</p>`
                 )
 
+            // commit('SET_SUBMIT_SEARCH', true)
             commit('SET_ACTIVE_RECIPES', response.data.results)
             commit('SET_CATEGORY_NAME', searchedTerm)
             dispatch('mergeRecipes')
@@ -73,6 +91,79 @@ export const actions = {
             //TODO ako nema trazenog recepta da vidimo sta cemo
             console.error(`${error} 💥💥💥`)
             commit('SET_API_ERR_MSG', error.message)
+
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch('ifErr402', process.env.API_SECRET_RESERVE_1)
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch('ifErr402', process.env.API_SECRET_RESERVE_2)
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch('ifErr402', process.env.API_SECRET_RESERVE_3)
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch('ifErr402', process.env.API_SECRET_RESERVE_4)
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_5_SISSY
+                )
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_6_SISSY
+                )
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_7_SISSY
+                )
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_8_SISSY
+                )
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_9_SISSY
+                )
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_10_SISSY
+                )
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_11_SISSY
+                )
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_12_SISSY
+                )
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_13_SISSY
+                )
+            }
+            if (state.apiErrMsg == 'Request failed with status code 402') {
+                await dispatch(
+                    'ifErr402',
+                    process.env.API_SECRET_RESERVE_14_SISSY
+                )
+            }
         }
     },
 
@@ -81,20 +172,14 @@ export const actions = {
             // [0] All Recipes
             `recipes/complexSearch?apiKey=${state.apik}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`,
 
-            // [1] Popular recipes
-            `recipes/complexSearch?apiKey=${state.apik}&query=the most popular&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=3`,
-
-            // [2] Smoothies
+            // [1] Smoothies
             `recipes/complexSearch?apiKey=${state.apik}&query=smoothies&instructionsRequired=true&addRecipeInformation=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`,
 
-            // [3] Popular Smoothies
-            `recipes/complexSearch?apiKey=${state.apik}&query=popular smoothies&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=3`,
-
-            // [4] Popular Smoothies
+            // [2] Trivia
             `food/trivia/random?apiKey=${state.apik}`,
         ]
 
-        // [5], [6], [7], [8], [9] Popular Smoothies
+        // [3], [4], [5], [6], [7] Categories
         state.categories.forEach((cat) => {
             endpoints.push(
                 `recipes/complexSearch?apiKey=${state.apik}&query=${cat.name}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`
@@ -107,24 +192,33 @@ export const actions = {
             .then((response) => {
                 commit('SET_RECIPES', response[0].data.results)
                 commit('SET_ACTIVE_RECIPES', response[0].data.results)
-                commit('SET_POPULAR_RECIPES', response[1].data.results)
-                commit('SET_SMOOTHIES', response[2].data.results)
-                commit('SET_POPULAR_SMOOTHIES', response[3].data.results)
-                commit('SET_RANDOM_TRIVIA', response[4].data.text)
+                commit('SET_SMOOTHIES', response[1].data.results)
+                commit('SET_RANDOM_TRIVIA', response[2].data.text)
 
                 commit('SET_CATEGORIES', [
-                    { name: 'salad', items: response[5].data.results },
-                    { name: 'soup', items: response[6].data.results },
-                    { name: 'pasta', items: response[7].data.results },
-                    { name: 'pizza', items: response[8].data.results },
-                    { name: 'burger', items: response[9].data.results },
+                    { name: 'salad', items: response[3].data.results },
+                    { name: 'soup', items: response[4].data.results },
+                    { name: 'pasta', items: response[5].data.results },
+                    { name: 'pizza', items: response[6].data.results },
+                    { name: 'burger', items: response[7].data.results },
                 ])
 
+                commit('SET_POPULAR_RECIPES')
+
                 dispatch('mergeRecipes')
-                commit('SET_SCROLL_INTO_VIEW', { _selector: '.recipecards' })
             })
-            .catch((errors) => {
-                commit('SET_API_ERR_MSG', errors.message)
+            .catch(async (error) => {
+                commit('SET_API_ERR_MSG', error.message)
+
+                // if (error.message === 'Request failed with status code 402') {
+                //     // ? promeni api k
+                //     commit('SET_APIK', state.apikArr[0])
+
+                //     // ? ponovo pozovi ovu f-ju
+                //     await dispatch('promiseAllFn')
+
+                //     console.log(error.message)
+                // }
             })
     },
 
@@ -132,6 +226,12 @@ export const actions = {
         commit('SET_APIK', process.env.API_SECRET_DEFAULT)
 
         await dispatch('promiseAllFn')
+
+        // state.apikArr.forEach(async (apik) => {
+        //     if (state.apiErrMsg == 'Request failed with status code 402') {
+        //         await dispatch('ifErr402', apik)
+        //     }
+        // })
 
         if (state.apiErrMsg == 'Request failed with status code 402') {
             await dispatch('ifErr402', process.env.API_SECRET_RESERVE_1)
@@ -160,6 +260,21 @@ export const actions = {
         if (state.apiErrMsg == 'Request failed with status code 402') {
             await dispatch('ifErr402', process.env.API_SECRET_RESERVE_9_SISSY)
         }
+        if (state.apiErrMsg == 'Request failed with status code 402') {
+            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_10_SISSY)
+        }
+        if (state.apiErrMsg == 'Request failed with status code 402') {
+            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_11_SISSY)
+        }
+        if (state.apiErrMsg == 'Request failed with status code 402') {
+            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_12_SISSY)
+        }
+        if (state.apiErrMsg == 'Request failed with status code 402') {
+            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_13_SISSY)
+        }
+        if (state.apiErrMsg == 'Request failed with status code 402') {
+            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_14_SISSY)
+        }
     },
 
     async ifErr402({ commit, dispatch }, newApik) {
@@ -186,8 +301,8 @@ export const actions = {
             ...state.recipeItems,
             ...state.activeRecipes,
             ...state.smoothieItems,
-            ...state.popularRecipeItems,
-            ...state.popularSmoothieItems,
+            // ...state.popularRecipeItems,
+            // ...state.popularSmoothieItems,
         ]
 
         state.categories.forEach((cat) => {
@@ -240,8 +355,26 @@ export const mutations = {
     SET_RECIPES(state, recipes) {
         state.recipeItems = recipes
     },
-    SET_POPULAR_RECIPES(state, popularRecipes) {
-        state.popularRecipeItems = popularRecipes
+    SET_POPULAR_RECIPES(state) {
+        let getRandomNum = (min, max) => {
+            return Math.floor(Math.random() * (max - min) + min)
+        }
+
+        let random_1 = getRandomNum(1, 14)
+        let random_2 = random_1 - 1
+        let random_3 = random_1 + 1
+
+        state.popularRecipeItems = [
+            state.recipeItems[random_1],
+            state.recipeItems[random_2],
+            state.recipeItems[random_3],
+        ]
+
+        state.popularSmoothieItems = [
+            state.smoothieItems[random_1],
+            state.smoothieItems[random_2],
+            state.smoothieItems[random_3],
+        ]
     },
     SET_RECIPE_ITEM(state, selectedRecipe) {
         state.recipeItem = selectedRecipe
@@ -250,10 +383,6 @@ export const mutations = {
     SET_SMOOTHIES(state, smoothies) {
         state.smoothieItems = smoothies
     },
-    SET_POPULAR_SMOOTHIES(state, popularSmoothies) {
-        state.popularSmoothieItems = popularSmoothies
-    },
-
     SET_MERGED_RECIPES(state, mergedRecipes) {
         state.mergedRecipes = mergedRecipes
     },
@@ -277,9 +406,6 @@ export const mutations = {
     },
     SET_RANDOM_TRIVIA(state, randomTriviaText) {
         state.randomTrivia = randomTriviaText
-    },
-    SET_SCROLL_INTO_VIEW(_, { _selector }) {
-        document.querySelector(_selector).scrollIntoView({ behavior: 'smooth' })
     },
     SET_NOTIFY(state, notify) {
         state.recipeNotifyText = notify

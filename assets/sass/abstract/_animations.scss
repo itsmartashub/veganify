@@ -1,112 +1,159 @@
-.page-enter-active {
-    @extend %will-change;
-    backface-visibility: hidden;
-    transition: transform 1s $outCirc, opacity 0.6s $outSmooth;
-}
-.page-leave-active {
-    @extend %will-change;
-}
-.page-enter,
-.page-leave-to {
-    @extend %opacity-0;
-    transform: translate3d(0, 100%, 0);
-}
-.page-enter-to,
-.page-leave {
-    @extend %opacity-1;
-    @extend %transform-3d-0;
-}
-
-.recipecards-enter-active,
-.recipecards-leave-active {
-    @extend %will-change;
-}
-.recipecards-enter-active {
-    transition: transform 0.8s $outSmooth, opacity 0.8s $outSmooth;
-}
-.recipecards-leave-active {
-    transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
-}
-.recipecards-enter,
-.recipecards-leave-to {
-    @extend %opacity-0;
-    transform: translateY(100%);
-}
-.recipecards-enter-to,
-.recipecards-leave {
-    @extend %opacity-1;
-    transform: translateY(0);
+.page {
+    &-enter-active {
+        @extend %will-change;
+        backface-visibility: hidden;
+        transition: transform 1s $outCirc, opacity 0.6s $outSmooth;
+    }
+    &-leave-active {
+        @extend %will-change;
+    }
+    &-enter,
+    &-leave-to {
+        @extend %opacity-0;
+        transform: translate3d(0, 100%, 0);
+    }
+    &-enter-to,
+    &-leave {
+        @extend %opacity-1;
+        @extend %transform-3d-0;
+    }
 }
 
-.fadeIn-enter-active,
-.fadeIn-leave-active {
-    transition: opacity 1s $outSmooth;
-}
-.fadeIn-enter,
-.fadeIn-leave-to {
-    @extend %opacity-0;
-}
-.fadeIn-enter-to,
-.fadeIn-leave {
-    @extend %opacity-1;
-}
-
-.waiting-enter-active {
-    @extend %will-change;
-    transition: transform 0.5s $outCirc, opacity 0.5s $outCirc;
-}
-.waiting-leave-active {
-    @extend %will-change;
-    transition: transform 0.8s $outCirc, opacity 0.8s $outCirc;
-}
-.waiting-enter,
-.waiting-leave-to {
-    @extend %opacity-0;
-    transform: translateY(-2rem);
-}
-.waiting-enter-to,
-.waiting-leave {
-    @extend %opacity-1;
-    transform: translateY(0);
+.recipecards {
+    &-enter-active,
+    &-leave-active {
+        @extend %will-change;
+    }
+    &-enter-active {
+        transition: transform 0.6s $outSmooth, opacity 0.6s $outSmooth;
+    }
+    &-leave-active {
+        transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
+    }
+    &-enter,
+    &-leave-to {
+        @extend %opacity-0;
+        transform: translateY(10rem);
+    }
+    &-enter-to,
+    &-leave {
+        @extend %opacity-1;
+        transform: translateY(0);
+    }
 }
 
-.notification-enter-active {
-    transition: transform 0.5s $outQuart;
-}
-.notification-leave-active {
-    transition: transform 0.5s $inExpo;
-}
-.notification-enter,
-.notification-leave-to {
-    transform: translate3d(-100%, 0, 0);
-}
-.notification-enter-to,
-.notification-leave {
-    @extend %transform-3d-0;
-}
-
-.slideFromLeft-enter-active {
-    will-change: transform;
-    transition: transform 1.3s $outCirc !important;
-    backface-visibility: hidden;
-}
-.slideFromLeft-enter {
-    transform: translate3d(-100%, 0, 0);
-}
-.slideFromLeft-enter-to {
-    @extend %transform-3d-0;
+.recipecard {
+    &-enter-active {
+        transition: transform 0.8s $outBack, opacity 0.8s ease;
+    }
+    &-enter,
+    &-leave-to {
+        opacity: 0;
+        transform: scale(0.7) translate3d(0, 100%, 0);
+    }
+    &-enter-to {
+        opacity: 1;
+        transform: scale(1) translate3d(0, 0%, 0);
+    }
+    &-leave-active {
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
 }
 
-.slideRotateFromRight-enter-active {
-    will-change: transform;
-    transition: transform 1.3s $outCirc !important;
-    backface-visibility: hidden;
+.fadeIn {
+    &-enter-active,
+    &-leave-active {
+        transition: opacity 1s $outSmooth;
+    }
+    &-enter,
+    &-leave-to {
+        @extend %opacity-0;
+    }
+    &-enter-to,
+    &-leave {
+        @extend %opacity-1;
+    }
 }
-.slideRotateFromRight-enter {
-    transform: translate3d(100%, 0, 0) rotate(180deg);
+
+.waiting {
+    &-enter-active {
+        @extend %will-change;
+        transition: transform 0.5s $outCirc, opacity 0.5s $outCirc;
+    }
+    &-leave-active {
+        @extend %will-change;
+        transition: transform 0.8s $outCirc, opacity 0.8s $outCirc;
+    }
+    &-enter,
+    &-leave-to {
+        @extend %opacity-0;
+        transform: translateY(-2rem);
+    }
+    &-enter-to,
+    &-leave {
+        @extend %opacity-1;
+        transform: translateY(0);
+    }
 }
-.slideRotateFromRight-enter-to {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+
+.notification {
+    &-enter-active {
+        transition: transform 0.4s $outQuart;
+    }
+    &-leave-active {
+        transition: transform 0.35s $inExpo;
+    }
+    &-enter,
+    &-leave-to {
+        transform: translate3d(-100%, 0, 0);
+    }
+    &-enter-to,
+    &-leave {
+        @extend %transform-3d-0;
+    }
+    // &-enter-active,
+    // &-leave-active {
+    //     transition: transform 0.4s $outQuart, opacity 0.4s $outQuart;
+    // }
+
+    // &-enter,
+    // &-leave-to {
+    //     transform: translate3d(0, -100%, 0);
+    //     opacity: 0;
+    // }
+    // &-enter-to,
+    // &-leave {
+    //     opacity: 1;
+    //     @extend %transform-3d-0;
+    // }
+}
+
+.slideFromLeft {
+    &-enter-active {
+        will-change: transform;
+        transition: transform 1.3s $outCirc !important;
+        backface-visibility: hidden;
+    }
+    &-enter {
+        transform: translate3d(-100%, 0, 0);
+    }
+    &-enter-to {
+        @extend %transform-3d-0;
+    }
+}
+
+.slideRotateFromRight {
+    &-enter-active {
+        will-change: transform;
+        transition: transform 1.3s $outCirc !important;
+        backface-visibility: hidden;
+    }
+    &-enter {
+        transform: translate3d(100%, 0, 0) rotate(180deg);
+    }
+    &-enter-to {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
 }
 
 //? Active Component - RecipeitemSteps or RecipeitemIngredients

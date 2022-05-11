@@ -47,4 +47,42 @@
         @extend .bookmark, :hover;
         transition: transform 0.5s $outSmooth, opacity 0.5s $outSmooth;
     }
+
+    @include device(tab) {
+        svg {
+            transition: none;
+        }
+        &:hover,
+        &:focus {
+            .bookmark__svgs--outline {
+                opacity: 1;
+                transform: scale(1);
+            }
+            .bookmark__svgs--filled {
+                opacity: 0;
+                transform: scale(0.4);
+            }
+        }
+
+        &--saved {
+            transition: none;
+
+            &,
+            &:hover,
+            &:focus {
+                .bookmark__svgs--outline {
+                    opacity: 0;
+                    transform: scale(0);
+                    pointer-events: none;
+                    transition: none;
+                }
+                .bookmark__svgs--filled {
+                    opacity: 1;
+                    transform: scale(1);
+                    pointer-events: all;
+                    transition: none;
+                }
+            }
+        }
+    }
 }

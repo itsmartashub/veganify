@@ -1,8 +1,9 @@
 .home {
+    @extend %pos-rel;
     height: 100vh; //! mora da se odredi ova visina zbog nava i sidebara
     width: 100%;
     overflow-y: scroll;
-    // scroll-behavior: smooth; //! jer je ovo skrolovano kad se klikne na scrolltotop
+    scroll-behavior: smooth;
     padding: var(--padding-home);
     @extend %d--grid;
     justify-content: center;
@@ -19,9 +20,34 @@
     }
 
     @include device(tab-to-phoneland) {
-        grid-template-areas:
-            'mid'
-            'nav';
-        grid-template-columns: 1fr;
+        // grid-template-areas:
+        //     'mid'
+        //     'nav';
+        // grid-template-columns: 1fr;
+
+        display: block;
+        // grid-template-rows: 1fr 1fr;
     }
+
+    // @include device(phone-port-land) {
+    //     grid-template-areas:
+    //         'mid'
+    //         'nav';
+    //     grid-template-columns: 1fr;
+    // }
+
+    // @include device(phone) {
+    //     // width: 100%;
+
+    // }
 }
+
+// @supports not (grid-template-areas: 'mid' 'nav') {
+//     @include device(tab-to-phoneland) {
+//         .home {
+//             display: flex;
+//             background-color: red;
+//         }
+//     }
+//     /* Isolated code for non-support of grid */
+// }

@@ -11,7 +11,7 @@
     background: var(--clr_grd_bg);
     transform-origin: center bottom;
     backface-visibility: hidden;
-    z-index: 3000;
+    z-index: var(--z-preloader);
 
     &__content {
         @extend %pos-abs;
@@ -28,20 +28,37 @@
             @include device(tab) {
                 width: 20vw !important;
             }
+            @include device(phone) {
+                width: 25vw !important;
+            }
         }
     }
 
     &__title {
         @extend .header__title;
-        @extend %overflow-hidden;
+        justify-content: center;
         font-size: 4rem;
         color: hsl(var(--clr_white)) !important;
+
+        @include device(phone) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
     }
     &__ify {
         @extend .header__ify;
     }
     &__yourmeal {
         @extend .header__yourmeal;
+        margin-left: 10px;
+
+        @include device(phone) {
+            margin-left: 0px;
+        }
     }
 }
 

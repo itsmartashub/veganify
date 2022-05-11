@@ -64,6 +64,20 @@ export default {
         toggleBookmark() {
             this.isBookmarked = !this.isBookmarked
 
+            // if (this.isBookmarked) {
+            //     this.$store.dispatch('app/notification', {
+            //         display: true,
+            //         content: `Recipe has been bookmarked`,
+            //         className: 'notification--green',
+            //     })
+            // } else {
+            //     this.$store.dispatch('app/notification', {
+            //         display: true,
+            //         content: `Recipe has been removed from bookmarks`,
+            //         className: 'notification--red',
+            //     })
+            // }
+
             setTimeout(() => {
                 window.requestAnimationFrame(() => {
                     this.$store.dispatch('bookmarks/toggleBookmarkID', {

@@ -7,24 +7,16 @@
     align-content: center;
     place-items: center;
     grid-gap: 5vh;
-    font-size: 4rem;
+    font-size: 2.5rem;
     @extend %txt-center;
 
-    &__svgwrapper {
-        --size: 13rem;
-        width: var(--size);
-        height: var(--size);
-        border-radius: var(--radius-category);
-        @extend %d--grid;
-        place-items: center;
-        background: hsl(var(--clr_accent_light));
-        box-shadow: var(--box_shadow_accent);
+    .icontainer--bggreen {
+        --icontainer_size: 10rem;
+        border-radius: var(--radius-search);
     }
 
     svg {
-        width: calc(var(--size) / 2);
-        height: auto;
-        fill: hsl(var(--clr_accent));
+        width: calc(var(--icontainer_size) / 2);
     }
 
     &__title {

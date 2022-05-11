@@ -14,6 +14,10 @@
     --padding-middle: 5vw;
     --nav-sidebar-height: calc(100vh - calc(2 * var(--padding-home)));
 
+    // SIZES
+    --category-width: 14rem;
+    --category-height: 16rem;
+
     // RADIUS
     --radius-default: 1rem;
     --radius-btn: 1.6rem;
@@ -36,135 +40,20 @@
     --inset-value: 4px 60px 100px 35px;
     --box-shadow-alpha-spread: 8px;
 
+    // INDEX
+    --z-nav: 900;
+    --z-nav-tooltip: 910;
+    --z-hooper-cat: 700;
+    --z-search: 100;
+    --z-preloader: 1000;
+
     @include device(phone) {
         --box-shadow-alpha-spread: 6px;
     }
 }
 
-// CUBICS
-$inQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-$inCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-$inQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
-$inQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-$inExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
-$inCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
-$inBack: cubic-bezier(0.36, 0, 0.66, -0.56);
-
-$outSmooth: cubic-bezier(0.215, 0.61, 0.355, 1);
-$outQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-$outCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
-$outQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
-$outQuint: cubic-bezier(0.23, 1, 0.32, 1);
-$outExpo: cubic-bezier(0.19, 1, 0.22, 1);
-$outCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
-$outBack: cubic-bezier(0.34, 1.56, 0.64, 1);
-
-$inOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-$inOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
-$inOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
-$inOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
-$inOutExpo: cubic-bezier(1, 0, 0, 1);
-$inOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-$inOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
-
-// @media (prefers-color-scheme: dark) {
-//     html {
-//         --clr_accent: 165 70% 45%;
-//         --clr_bg: 240 30% 10%;
-//         --clr_grd_1: 236 33% 20%;
-//         --clr_grd_2: 240 28% 10%;
-//         --clr_grd_bg: linear-gradient(
-//             var(--grd-deg),
-//             hsl(var(--clr_grd_1)),
-//             hsl(var(--clr_grd_2))
-//         );
-//         --clr_white: var(--clr_accent);
-//         --clr_black: 200 20% 43%;
-//         --clr_accent_light: 236 30% 13%;
-//         --clr_accent_to_dark: hsl(var(--clr_bg));
-//         --clr_black_to_accent: hsl(var(--clr_accent));
-//         --clr_white_to_grd: var(--clr_grd_bg);
-//         --clr_backbtn_icontainer: hsl(var(--clr_accent));
-
-//         --clr_sidebarcard_bg: hsl(var(--clr_bg));
-//         --clr_sidebarcard_after: var(--clr_grd_1);
-//         --clr_recipeitem_bg: linear-gradient(
-//             0deg,
-//             hsl(var(--clr_grd_1)),
-//             hsl(var(--clr_grd_2))
-//         );
-//         --clr_recipeitem_main_bg: linear-gradient(
-//             0deg,
-//             hsl(var(--clr_grd_2)),
-//             hsl(236 33% 15%)
-//         );
-//         --clr_recipeitem_right_bg: var(--clr_grd_bg);
-//         --clr_recipeitem_right_mobile: var(--clr_grd_bg);
-
-//         // STYLES
-//         --filter_img: brightness(82%);
-//         --filter_404: hue-rotate(340deg) brightness(88%);
-//         --opacity_search: 1;
-
-//         // SHADOWS
-//         --box_shadow_img: inset var(--inset-value) hsl(236 20% 30%/ 0.6);
-//         --box_shadow_accent: 0px 0px 40px 0px hsl(var(--clr_accent) / 0.07);
-//         --box_shadow_alpha: var(--box_shadow_accent),
-//             0px 0px 4px 1px hsl(var(--clr_accent) / 0.1);
-//         --box_shadow_sidebarcard: 0 0 0 1px hsl(var(--clr_accent) / 0.1),
-//             0px 5px 40px -10px hsl(var(--clr_accent) / 0.3);
-//         --box-shadow-error: inset var(--inset-value) hsl(var(--clr_grd_1) / 0.4);
-//     }
-// }
-
-// @media (prefers-color-scheme: light) {
-//     html {
-//         // COLORS
-//         --clr_accent: 165 88% 45%;
-//         --clr_bg: 0 0% 95%;
-//         --clr_grd_1: 164 100% 45%;
-//         --clr_grd_2: 180 98% 40%;
-//         --clr_grd_3: 164 99% 45%;
-//         --clr_grd_4: 169 100% 42%;
-//         --clr_grd_bg: linear-gradient(
-//             var(--grd-deg),
-//             hsl(var(--clr_grd_1)),
-//             hsl(var(--clr_grd_2))
-//         );
-//         --clr_white: 0 0% 100%;
-//         --clr_black: 210 57% 22%;
-//         --clr_accent_light: 165 88% 90%;
-//         --clr_accent_to_dark: hsl(var(--clr_accent));
-//         --clr_black_to_accent: hsl(var(--clr_black));
-//         --clr_white_to_grd: hsl(var(--clr_white));
-//         --clr_backbtn_icontainer: hsl(var(--clr_accent_light));
-
-//         --clr_sidebarcard_bg: hsl(var(--clr_white));
-//         --clr_sidebarcard_after: var(--clr_black);
-//         --clr_recipeitem_bg: hsl(var(--clr_grd_1));
-//         --clr_recipeitem_main_bg: hsla(var(--clr_white) / 0.09);
-//         --clr_recipeitem_right_bg: hsla(var(--clr_accent) / 0.7);
-//         --clr_recipeitem_right_mobile: linear-gradient(
-//             180deg,
-//             hsl(var(--clr_grd_3)),
-//             hsl(var(--clr_grd_4))
-//         );
-
-//         // STYLES
-//         --filter_img: none;
-//         --filter_404: none;
-//         --opacity_search: 0.35;
-
-//         // SHADOWS
-//         --box_shadow_img: inset var(--inset-value) hsl(var(--clr_black) / 0.6);
-//         --box_shadow_alpha: 0 0 0 var(--box-shadow-alpha-spread)
-//             hsl(var(--clr_white) / 0.4);
-//         --box-shadow-error: none;
-//         --box_shadow_sidebarcard: 0 25px 0 -20px hsl(var(--clr_black) / 0.3);
-//     }
-// }
-
-body {
+body,
+body.light {
     // COLORS
     --clr_accent: 165 88% 45%;
     --clr_bg: 0 0% 95%;
@@ -209,7 +98,7 @@ body {
     --box_shadow_sidebarcard: 0 25px 0 -20px hsl(var(--clr_black) / 0.3);
 }
 
-body[data-theme='dark'] {
+body.dark {
     --clr_accent: 165 70% 45%;
     --clr_bg: 240 30% 10%;
     --clr_grd_1: 236 33% 20%;
@@ -256,3 +145,13 @@ body[data-theme='dark'] {
         0px 5px 40px -10px hsl(var(--clr_accent) / 0.3);
     --box-shadow-error: inset var(--inset-value) hsl(var(--clr_grd_1) / 0.4);
 }
+
+// CUBICS
+$inExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+$outSmooth: cubic-bezier(0.215, 0.61, 0.355, 1);
+$outQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$outQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+$outCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+$outBack: cubic-bezier(0.34, 1.56, 0.64, 1);
+$inOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+$inOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);

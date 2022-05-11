@@ -7,31 +7,63 @@
 }
 
 .categories .hooper {
-    @extend %d--grid;
-    align-content: center;
-    min-height: 30rem;
+    min-height: 28rem;
+    z-index: var(--z-hooper-cat);
 
     @include device(phone-land) {
         padding: 0 2rem;
     }
 
     &-track {
+        @extend %d--grid;
         justify-content: flex-start;
+        align-content: center;
         padding: 4rem 0;
-        grid-gap: 5rem;
     }
     &-slide {
-        max-width: 14rem;
-
-        @include device(phone-land) {
-            max-width: max-content;
-        }
+        max-width: calc(6rem + var(--category-width));
     }
     &-pagination {
         bottom: -1rem !important;
+
+        li {
+            display: none;
+
+            &:nth-child(-n + 3) {
+                display: initial;
+            }
+
+            @include device(tab) {
+                &:nth-child(-n + 4) {
+                    display: initial;
+                }
+            }
+
+            @include device(phone-land) {
+                &:nth-child(-n + 5) {
+                    display: initial;
+                }
+            }
+            // @include device(phone) {
+            //     &:nth-child(-n + 4) {
+            //         display: initial;
+            //     }
+            //     &:nth-of-type(5) {
+            //         display: none;
+            //     }
+            // }
+            @include device(phone-to-ant) {
+                &:nth-child(-n + 5) {
+                    display: initial;
+                }
+            }
+        }
     }
     &-indicator {
         background-color: hsl(var(--clr_white));
+        width: 1.65rem;
+        height: 0.65rem;
+        margin: 0 3px;
         transition: background-color 0.5s;
 
         &.is-active,
@@ -41,50 +73,52 @@
         }
     }
 
-    &-prev,
-    &-next {
-        --btn-pos: -6%;
-        opacity: 0.4;
-        transition: opacity 0.5s;
+    // &-prev,
+    // &-next {
+    //     --btn-pos: -6%;
+    //     --translateX: 20%;
+    //     border-radius: var(--radius-icontainer);
+    //     @extend %flex-center;
+    //     backdrop-filter: blur(3px);
+    //     background: hsl(var(--clr_accent) / 0.05);
+    //     transition: transform 0.5s $outBack;
+    //     z-index: var(--z-hooper-cat);
 
-        svg {
-            fill: hsl(var(--clr_accent));
-            height: 4rem;
-            width: auto;
-            transition: transform 0.5s $outBack;
-        }
+    //     svg {
+    //         fill: hsl(var(--clr_accent));
+    //         height: 3rem;
+    //         width: auto;
+    //     }
 
-        @include device(tab) {
-            --btn-pos: -7%;
-        }
-        @include device(tab-to-phoneland) {
-            --btn-pos: -10%;
-        }
-        @include device(phone-land) {
-            display: none;
-        }
-    }
+    //     @include device(tab) {
+    //         --btn-pos: -7%;
+    //     }
+    //     @include device(tab-to-phoneland) {
+    //         --btn-pos: -10%;
+    //     }
+    //     @include device(phone-land) {
+    //         // display: none;
+    //         --btn-pos: -4%;
+    //         --translateX: 5%;
+    //         background: transparent;
+    //         backdrop-filter: none;
+    //     }
+    // }
 
-    &-prev {
-        left: var(--btn-pos);
-        &:hover,
-        &:focus {
-            @extend %opacity-1;
-            svg {
-                transform: translate3d(-20%, 0, 0);
-            }
-        }
-    }
-    &-next {
-        right: var(--btn-pos);
-        &:hover,
-        &:focus {
-            @extend %opacity-1;
-            svg {
-                transform: translate3d(20%, 0, 0);
-            }
-        }
-    }
+    // &-prev {
+    //     left: var(--btn-pos);
+    //     &:hover,
+    //     &:focus {
+    //         transform: translate3d(#{-var(--translateX)}, -50%, 0);
+    //     }
+    // }
+    // &-next {
+    //     right: var(--btn-pos);
+    //     &:hover,
+    //     &:focus {
+    //         transform: translate3d(var(--translateX), -50%, 0);
+    //     }
+    // }
 }
 
 // ? ===================== INGREDIENTS HOOPER
@@ -177,6 +211,18 @@
             svg {
                 transform: translate3d(20%, 0, 0);
             }
+        }
+    }
+}
+
+body.dark {
+    .hooper-indicator {
+        background-color: hsl(var(--clr_white));
+
+        &.is-active,
+        &:hover,
+        &:focus {
+            background-color: hsl(var(--clr_black));
         }
     }
 }

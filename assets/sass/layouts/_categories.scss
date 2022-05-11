@@ -1,37 +1,64 @@
 .categories {
     @extend %txt-center;
-    @extend %d--grid;
-    grid-gap: 5rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 2rem;
+
     color: hsl(var(--clr_white));
 
     @include device(tab) {
         grid-gap: 1rem;
     }
+    @include device(phone) {
+        padding: 2rem 0;
+    }
+
+    // &__hooper-wrapper {
+    //     overflow: hidden;
+    //     width: 100%;
+    //     display: block;
+    //     margin: 0 auto;
+    // }
 
     &__title {
         @extend %fw-600;
-        @extend %overflow-hidden;
+        // @extend %overflow-hidden;
+        // padding-top: 2rem;
         color: var(--clr_black_to_accent);
+        margin-bottom: 4rem;
 
         span:nth-of-type(2) {
             @extend %fw-300;
         }
+
+        @include device(tab) {
+            margin-bottom: 2rem;
+        }
     }
 
     &__category {
-        min-width: max-content;
+        // min-width: max-content;
+        // width: 100vw;
+        // max-width: 16rem;
+        width: var(--category-width);
+        height: var(--category-height);
         background: var(--clr_grd_bg);
         color: currentColor;
         @extend %w-100;
-        height: 16rem;
         padding: 2.2rem 4rem;
-        @extend %d--grid;
-        place-items: center;
-        grid-gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         @extend %pos-rel;
         @extend %cursor;
         @extend %box-shadow;
         border-radius: var(--radius-category);
+        margin-right: 2rem;
+
+        * + * {
+            margin-top: 1.5rem;
+        }
 
         &--active,
         &:hover,
@@ -57,10 +84,16 @@
     .icontainer--bgwhite {
         --icontainer_size: 5.2rem;
         --radius-icontainer: 1.6rem;
-        border: 5px solid transparent;
+        --border-weight: 0.6rem;
+        border: var(--border-weight) solid transparent;
         transition: transform 0.5s $outSmooth, border-color 0.5s $outSmooth;
         svg {
             transition: transform 0.25s $outSmooth;
+        }
+
+        @include device(phone) {
+            --icontainer_size: 6rem;
+            --radius-icontainer: 1.8rem;
         }
     }
 

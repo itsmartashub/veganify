@@ -2,8 +2,9 @@
     <main class="error">
         <section class="error__headers">
             <h1 class="error__404">
-                <span>4</span> <span @click="$nuxt.refresh()">🍽️</span>
-                <span>4</span>
+                <span>{{ statusCodeArr[0] }}</span>
+                <span @click.prevent="reloadApp">🍽️</span>
+                <span>{{ statusCodeArr[2] }}</span>
             </h1>
 
             <h2 class="error__msg">
@@ -17,13 +18,25 @@
 export default {
     head() {
         return {
-            title: 'Error | Page not found',
+            title: `Error | ${this.error.statusCode}`,
         }
     },
     props: {
         error: {
             type: Object,
             required: true,
+        },
+    },
+
+    computed: {
+        statusCodeArr() {
+            return this.error.statusCode.toString().split('')
+        },
+    },
+
+    methods: {
+        reloadApp() {
+            window.location.reload(true)
         },
     },
 }

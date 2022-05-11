@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: veganify.vercel.app
+Token: 4059ad5a1f28ae5800c31d2c291fb33558066ec44053c02109bee0e371b907d6

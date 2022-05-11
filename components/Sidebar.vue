@@ -13,7 +13,7 @@
         <section class="sidebar__body sidebarcards">
             <template v-for="sidebarRecipe in popularRecipes">
                 <SidebarCard
-                    :key="sidebarRecipe.title"
+                    :key="sidebarRecipe.id + Date.now()"
                     :sidebarRecipe="sidebarRecipe"
                 />
             </template>

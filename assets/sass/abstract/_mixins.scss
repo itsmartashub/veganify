@@ -1,42 +1,124 @@
-@mixin device($breakpoint) {
-    @if $breakpoint == phone-ant {
+@mixin device($bp) {
+    @if $bp == phone-ant {
         @media only screen and (max-width: 20em) {
             @content;
         } // 320/16
     }
-    @if $breakpoint == phone {
+    @if $bp == phone-to-ant {
+        @media only screen and (max-width: 25em) {
+            @content;
+        } // 400/16
+    }
+
+    @if $bp == phone {
         @media only screen and (max-width: 31.25em) {
             @content;
         } // 500/16
     }
-    @if $breakpoint == phone-land {
+
+    @if $bp == phone-land {
         @media only screen and (max-width: 37.5em) {
             @content;
         } // 600/16
     }
-    @if $breakpoint == tab-to-phoneland {
+    @if $bp == tab-to-phoneland {
         @media only screen and (max-width: 41.25em) {
             @content;
         } // 660/16
     }
-    @if $breakpoint == tab {
+    @if $bp == tab {
         @media only screen and (max-width: 56.25em) {
             @content;
         } // 900/16
     }
-    @if $breakpoint == tab-mid {
+    @if $bp == tab-mid {
         @media only screen and (max-width: 65.625em) {
             @content;
         } // 1050/16
     }
-    @if $breakpoint == tab-land {
+    @if $bp == tab-land {
         @media only screen and (max-width: 75em) {
             @content;
         } // 1200/16
     }
-    @if $breakpoint == big {
+    @if $bp == laptop {
+        @media only screen and (max-width: 77.5em) {
+            @content;
+        } // 1240/16
+    }
+    @if $bp == big {
         @media only screen and (min-width: 120em) {
             @content;
         } // 1920/16
     }
 }
+
+// @use 'sass:map';
+
+// $breakpoints: (
+//     // phone-ant: 20em,
+//     // phone-to-ant: 25em,
+//     // phone: 31.25em,
+//     // phone-land: 37.5em,
+//     // tab-to-phoneland: 41.25em,
+//     // tab: 56.25em,
+//     // tab-mid: 65.625em,
+//     // tab-land: 75em,
+//     // laptop: 77.5em,
+//     // big: 120em,
+//     big: 1920px,
+//     laptop: 1240px,
+//     tab-land: 1200px,
+//     tab-mid: 1050px,
+//     tab: 900px,
+//     tab-to-phoneland: 660px,
+//     phone-land: 600px,
+//     phone: 500px,
+//     phone-to-ant: 400px,
+//     phone-ant: 320px
+// );
+
+//? TRY 1
+// @mixin device($name) {
+//     // If the key exists in the map
+//     @if map-has-key($breakpoints, $name) {
+//         // Prints a media query based on the value
+//         // @include bp-floating($breakpoint);
+
+//         @media only screen and (max-width: map-get($breakpoints, $name)) {
+//             @content;
+//         }
+//     }
+//     // If the key doesn't exist in the map
+//     @else {
+//         @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+//           + "Available breakpoints are: #{map-keys($breakpoints)}.";
+//     }
+// }
+
+//? TRY 2
+// @mixin device($name) {
+//     // If the breakpoint exists in the map.
+//     @if map-has-key($breakpoints, $name) {
+//         // Get the breakpoint value.
+//         $bp-value: map-get($breakpoints, $name);
+
+//         // Write the media query.
+//         @media only screen and (max-width: $bp-value) {
+//             @content;
+//         }
+
+//         // If the breakpoint doesn't exist in the map.
+//     }
+// }
+
+//? TRY 3
+// @mixin device($name) {
+//     @each $bp, $size in $breakpoints {
+//         @if $name == $bp {
+//             @media only screen and (max-width: $size) {
+//                 @content;
+//             }
+//         }
+//     }
+// }

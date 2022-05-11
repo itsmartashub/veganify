@@ -8,6 +8,11 @@ export default {
                     name: 'description',
                     content: this.seo.description,
                 },
+                {
+                    hid: 'title',
+                    name: 'title',
+                    content: this.seo.title,
+                },
                 // OGP
                 {
                     hid: 'og:title',

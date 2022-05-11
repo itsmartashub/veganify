@@ -27,7 +27,7 @@
                 </button>
             </Slide>
 
-            <hooper-navigation slot="hooper-addons"></hooper-navigation>
+            <!-- <hooper-navigation slot="hooper-addons"></hooper-navigation> -->
             <hooper-pagination slot="hooper-addons"></hooper-pagination>
         </Hooper>
     </section>
@@ -96,28 +96,53 @@ export default {
 
             hooperSettings: {
                 itemsToShow: 2,
-                // centerMode: true,
-                // infiniteScroll: true,
+                itemsToSlide: 3,
+                // transition: 500,
+                centerMode: false,
+                infiniteScroll: false,
+                wheelControl: false,
+                trimWhiteSpace: true,
+                // pagination: 'fraction',
                 breakpoints: {
+                    320: {
+                        itemsToShow: 2,
+                        // itemsToSlide: 4,
+                    },
                     360: {
+                        // itemsToShow: 3,
+                        // itemsToSlide: 2,
+                    },
+                    400: {
+                        itemsToShow: 2.5,
+                        // itemsToSlide: 4,
+                    },
+                    500: {
                         itemsToShow: 2,
                     },
-                    700: {
+                    600: {
+                        // itemsToShow: 5.2,
+                    },
+                    660: {
                         itemsToShow: 3,
+                        itemsToSlide: 2,
                     },
-                    760: {
-                        itemsToShow: 5,
-                    },
-                    1000: {
-                        itemsToShow: 6,
-                    },
-                    1200: {
+                    900: {
                         itemsToShow: 4,
+                        itemsToSlide: 2,
                     },
-                    1400: {
-                        itemsToShow: 5.2,
-                        infiniteScroll: true,
-                    },
+                    // 1050: {
+                    //     itemsToShow: 4,
+                    //     itemsToSlide: 2,
+                    // },
+                    // 1200: {
+                    //     itemsToShow: 4,
+                    //     itemsToSlide: 2,
+                    // },
+                    // 1920: {
+                    //     itemsToShow: 4,
+                    //     itemsToSlide: 2,
+                    //     // infiniteScroll: true,
+                    // },
                 },
             },
         }
@@ -138,6 +163,10 @@ export default {
     methods: {
         getRecipesByCategoryName(categoryName) {
             this.$store.commit('app/SET_IS_WAITING', true)
+
+            this.$store.commit('app/SET_SCROLL_INTO_VIEW', {
+                _selector: '.categories .hooper',
+            })
 
             setTimeout(() => {
                 if (categoryName === 'ALL') {
@@ -164,10 +193,6 @@ export default {
 
                 this.$nextTick(() => {
                     this.$store.commit('app/SET_IS_WAITING', false)
-                })
-
-                this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
-                    _selector: '.categories > .hooper',
                 })
             }, 300)
         },

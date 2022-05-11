@@ -180,6 +180,7 @@
             @extend %will-change;
             @extend %flex-center;
             font-size: 1.7rem;
+            overflow: scroll;
             padding: 4rem;
             border-radius: var(--radius-sidebarcard-showcase-img);
             @extend %opacity-0;
@@ -210,7 +211,6 @@
             transform: scaleY(0) rotate(90deg);
             transition: transform 0.8s $outBack, opacity 0.3s linear;
             transition-delay: calc(var(--delay) + 0.3s);
-
             z-index: -1;
 
             @include device(tab-land) {
@@ -223,6 +223,9 @@
                 font-size: 38rem;
                 top: 25%;
                 left: -8%;
+            }
+            @include device(phone) {
+                // font-size: 30rem;
             }
         }
         &::before {
@@ -247,14 +250,25 @@
             @include device(tab-mid) {
                 font-size: 30rem;
             }
+            @include device(phone) {
+                font-size: 20rem;
+                right: 10%;
+            }
         }
     }
 }
 
-html [data-theme='dark'] {
+body.dark {
     .showcase__trivia {
         p {
             color: hsl(var(--clr_bg));
         }
     }
 }
+// html [data-theme='dark'] {
+//     .showcase__trivia {
+//         p {
+//             color: hsl(var(--clr_bg));
+//         }
+//     }
+// }

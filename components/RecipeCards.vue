@@ -1,6 +1,11 @@
 <template>
     <transition name="recipecards">
-        <section class="recipecards" id="recipecards" v-if="!isWaiting">
+        <section
+            class="recipecards"
+            ref="recipecards"
+            id="recipecards"
+            v-if="!isWaiting"
+        >
             <h2
                 class="recipecards__title"
                 v-if="
@@ -22,7 +27,7 @@
                 <span>SMOOTHIES</span>
             </h2>
 
-            <section class="recipecards__wrapper">
+            <section class="recipecards__wrapper" ref="recipecards__wrapper">
                 <template v-for="activeRecipe in paginatedRecipes">
                     <RecipeCard
                         :recipe="activeRecipe"
@@ -37,7 +42,7 @@
             <!-- <template>
                 <TransitionGroup
                     appear
-                    name="recipecard"
+                    name="page"
                     mode="out-in"
                     tag="section"
                     class="recipecards__wrapper"

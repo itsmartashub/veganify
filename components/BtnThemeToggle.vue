@@ -1,8 +1,8 @@
 <template>
     <button
         class="themetoggle"
-        :class="{ 'themetoggle--dark': IS_DARK }"
-        @click="darkToggle"
+        :class="{ 'themetoggle--dark': THEME === 'dark' }"
+        @click="toggleTheme"
         aria-label="Change Website Theme"
     >
         <svg
@@ -85,41 +85,27 @@
 <script>
 export default {
     computed: {
-        darkTheme() {
-            return this.$store.state.app.isDark
-        },
-
-        IS_DARK: {
+        THEME: {
             get: function () {
-                return this.$store.state.app.isDark
+                return this.$store.state.app.theme
             },
             set: function (newValue) {
-                window.localStorage.setItem(
-                    'veganify_isdark',
-                    JSON.stringify(newValue)
-                )
+                this.$cookiz.set('theme', newValue, {
+                    path: '/',
+                    maxAge: 60 * 60 * 24 * 7,
+                })
                 this.$store.commit('app/SET_THEME', newValue)
+                this.$store.commit('app/SET_THEME_BODY_CLASSNAME', newValue)
             },
         },
     },
-
     methods: {
-        darkToggle() {
-            this.IS_DARK = !this.IS_DARK
-            this.$store.dispatch('app/setThemeBodyAttr')
+        toggleTheme() {
+            this.THEME = this.THEME === 'light' ? 'dark' : 'light'
+
+            // this.$store.dispatch('app/setThemeBodyAttr')
+            // this.$store.commit('app/SET_THEME_BODY_CLASSNAME', this.THEME)
         },
     },
-
-    // created() {
-    // if (process.client) {
-    //     console.log(process)
-    // if (window.matchMedia('(prefers-color-scheme: dark)').matched)
-    //     console.log('DARK')
-    // this.IS_DARK = window.matchMedia(
-    //     '(prefers-color-scheme: dark)'
-    // ).matched
-    // this.$store.dispatch('app/setThemeBodyAttr')
-    // }
-    // },
 }
 </script>

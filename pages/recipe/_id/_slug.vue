@@ -44,19 +44,18 @@ export default {
         return {
             seo: {
                 title: `Veganify | ${this.recipeItem?.title || 'Recipe Item'}`,
-                description: `This is a vegetarian recipe about ${
-                    this.recipeItem?.title || ''
-                }.`,
+                description:
+                    this.recipeItem?.summary?.replace(
+                        /<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g,
+                        ''
+                    ) ||
+                    `This is a vegetarian recipe about ${this.recipeItem?.title}.`,
                 image: 'https://veganify.vercel.app/veganify.png',
             },
             isMountedBtn: false,
             isMountedFigure: false,
         }
     },
-
-    // async fetch({ store }) {
-    //     await store.dispatch('recipes/fetchRandomTrivia')
-    // },
 
     computed: {
         recipeItem() {

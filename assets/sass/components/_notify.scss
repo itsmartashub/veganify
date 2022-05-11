@@ -12,7 +12,6 @@
     @extend %d--flex;
     flex-direction: column;
     border-radius: var(--radius-notify);
-    transition: 0.4s transform $outBack;
 
     * + * {
         // svi childovi osim prvog
@@ -28,8 +27,6 @@
 
     &:hover,
     &:focus {
-        transform: translate3d(0, -1rem, 0);
-
         &::before {
             transform: translate3d(0, 20%, 0) rotate(180deg);
         }
@@ -38,12 +35,23 @@
     &::before {
         @extend %pos-abs;
         content: '⚠️';
-        bottom: -15%;
+        bottom: -20%;
         right: 0%;
         width: fit-content;
         font-size: 10rem;
-        transition: 0.4s transform $inOutBack;
+        transition: 0.7s transform $inOutBack;
         z-index: 1;
+
+        // @include device(tab) {
+        //     background-color: hsl(var(--clr_accent));
+        //     -webkit-background-clip: text;
+        //     background-clip: text;
+        //     -webkit-text-fill-color: transparent;
+        // }
+
+        @include device(phone) {
+            font-size: 8rem;
+        }
     }
 
     p {
@@ -51,6 +59,7 @@
         text-align: left;
         @extend %pos-rel;
         margin-left: 3rem;
+        transition: 0.5s $outBack transform;
 
         &::before {
             @extend %after;
@@ -62,7 +71,16 @@
             top: 50%;
             left: 0;
             z-index: 20;
-            transform: translate(-3rem, -50%);
+            transform: translate(-3rem, -50%) scale(0);
+            transition: 0.5s $outBack transform;
+        }
+
+        &:hover,
+        &:focus {
+            transform: translateX(1rem);
+            &::before {
+                transform: translate(-3rem, -50%) scale(1);
+            }
         }
 
         @include device(phone) {

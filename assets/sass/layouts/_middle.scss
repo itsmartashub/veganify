@@ -3,10 +3,14 @@
 
     padding: 0 var(--padding-middle);
     display: grid;
-    // align-content: flex-start;
+    align-content: flex-start;
     grid-gap: 5vw;
 
     @include device(phone-land) {
         --padding-middle: 0;
+    }
+
+    @include device(phone) {
+        grid-gap: 10vw;
     }
 }

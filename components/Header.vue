@@ -6,11 +6,14 @@
             v-if="$route.name !== 'bookmarks'"
         >
             <input
+                v-model="searchInput"
                 type="search"
                 class="header__search"
-                placeholder="What do you want to eat, Veganifier?"
+                :placeholder="placeholder"
                 aria-label="search"
-                v-model="searchInput"
+                name="search"
+                enterkeyhint="search"
+                inputmode="search"
             />
 
             <svg
@@ -41,10 +44,22 @@ export default {
         }
     },
 
+    computed: {
+        placeholder() {
+            if (this.$route.name === 'index')
+                return 'What do you want to eat, Veganifier?'
+            if (this.$route.name === 'smoothies')
+                return 'Which smoothie do you want to drink?'
+        },
+    },
+
     methods: {
         async submitSearch() {
             if (!this.searchInput || this.searchInput.trim() === '') return
+
             this.$store.commit('app/SET_IS_WAITING', true)
+            this.$el.querySelector('.header__search').blur()
+            this.$store.commit('pagination/SET_CURR_PAGE', 1)
 
             this.searchInput = this.searchInput.replaceAll(/[$.]+/g, '')
 
@@ -53,24 +68,33 @@ export default {
                     searchedTerm: this.searchInput,
                     isSmoothie: true,
                 })
-                this.$nextTick(() =>
-                    this.$store.commit('app/SET_IS_WAITING', false)
-                )
 
-                this.searchInput = ''
+                this.clearSearchInput()
+                this.$nextTick(() => {
+                    this.$store.commit('app/SET_IS_WAITING', false)
+                })
 
                 return
             }
 
+            this.$store.commit('app/SET_HIDE_CATEGORIES', true)
+
             await this.$store.dispatch('recipes/fetchSearchedRecipes', {
                 searchedTerm: this.searchInput,
             })
-            this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
-                _selector: '.categories > .hooper',
-            })
-            this.$nextTick(() =>
+
+            this.clearSearchInput()
+
+            this.$nextTick(() => {
                 this.$store.commit('app/SET_IS_WAITING', false)
-            )
+            })
+
+            this.$store.commit('app/SET_SCROLL_INTO_VIEW', {
+                _selector: '.home .scrollTo',
+            })
+        },
+
+        clearSearchInput() {
             this.searchInput = ''
         },
     },
