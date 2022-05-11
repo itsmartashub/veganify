@@ -2,11 +2,37 @@
     @extend %txt-center;
     @extend %pos-rel;
 
+    @include device(tab-to-phoneland) {
+        padding-bottom: 20vh;
+    }
+
+    // margin-top: 5vw;
+
     &__wrapper {
+        // --min-width-recipecard: 22rem;
+
         @extend %d--flex;
         flex-wrap: wrap;
         justify-content: center;
         margin-top: 5rem;
+
+        // @include device(phone) {
+        //     display: grid;
+        //     grid-template-columns: repeat(
+        //         auto-fit,
+        //         minmax(
+        //             var(--min-width-recipecard, 21rem),
+        //             var(--max-width-recipecard, 1fr)
+        //         )
+        //     );
+        //     grid-gap: 2rem 4rem;
+        //     justify-content: space-evenly;
+        //     padding: 0 2rem;
+        // }
+        // @include device(phone-ant) {
+        //     --min-width-recipecard: 17rem;
+        //     --max-width-recipecard: 25rem;
+        // }
     }
 
     &__title {
@@ -45,7 +71,14 @@
         --min-width-recipecard: 22rem;
     }
     @include device(phone) {
-        padding: 3vmin;
+        --radius-recipecard: 5rem;
+        --min-width-recipecard: 20rem;
+        padding: 3vw;
+        margin-bottom: 3.5rem;
+    }
+    @include device(phone-ant) {
+        --radius-recipecard: 4.5rem;
+        padding: 1.5rem;
     }
 
     &:hover,
@@ -54,7 +87,7 @@
         transform: translateY(-2%);
 
         .recipecard__img {
-            transform: scale(1.2);
+            transform: scale(1.25);
         }
         .recipecard__category {
             transform: translate(15%, 15%);
@@ -63,12 +96,14 @@
             }
         }
         .recipecard__title {
-            transform: translateY(30%);
+            transform: translateY(1.5rem);
         }
         .recipecard__min {
             svg,
             p {
                 transform: translateX(1rem);
+            }
+            p {
                 @extend %opacity-1;
                 span {
                     opacity: 0.5;
@@ -85,6 +120,47 @@
         }
     }
 
+    @include device(tab) {
+        transition: transform 0.8s $outSmooth;
+
+        &:hover,
+        &:focus {
+            box-shadow: none;
+
+            .recipecard__category {
+                transform: translate(15%, 15%);
+                &::after {
+                    transform: scaleX(1);
+                }
+            }
+            .recipecard__img {
+                transform: scale(1.15);
+            }
+            .recipecard__title {
+                transform: translateY(1rem);
+            }
+            .recipecard__min {
+                p {
+                    opacity: 1;
+                    transform: none;
+                    span {
+                        opacity: 0.5;
+                    }
+                }
+
+                svg {
+                    opacity: 0.8;
+                    transform: none;
+                    stroke: hsl(var(--clr_accent));
+                }
+            }
+
+            .recipecard__footer {
+                transform: translateY(12%);
+            }
+        }
+    }
+
     &__figure {
         @extend %overflow-hidden;
         @extend %pos-rel;
@@ -92,6 +168,29 @@
         max-height: 64%;
         border-radius: calc(var(--radius-recipecard) - 0.8rem);
         margin-bottom: 1rem;
+        // background-color: #d9d9d9;
+        // background-color: hsl(var(--clr_grd_2));
+        background-image: linear-gradient(
+            to left,
+            hsl(180, 98%, 40%),
+            hsl(var(--clr_accent))
+        );
+        // background-image: linear-gradient(
+        //     to left,
+        //     hsl(var(--clr_accent)),
+        //     hsl(180, 98%, 40%)
+        // );
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+        z-index: 2;
+
+        &--bg-none {
+            background-image: none;
+        }
+
+        // -webkit-transform: translate3d(0, 0, 0);
+        // -moz-transform: translate3d(0, 0, 0);
 
         &::after {
             // TODO za dark mode potamniti slike
@@ -106,12 +205,58 @@
     &__img {
         will-change: transform;
         @extend %img-basic;
+        border-radius: inherit;
+        transform: scale(1.15);
         transition: transform 1s $outSmooth;
+        z-index: -1;
+
+        @include device(tab) {
+            transition: none;
+        }
+    }
+    &__skeleton {
+        --gradient_opacity: 0.65;
+        height: 15rem;
+        @extend %w-100;
+        border-radius: inherit;
+        // background-image: linear-gradient(
+        //     to right,
+        //     hsl(var(--clr_accent) / var(--gradient_opacity)) 0%,
+        //     hsl(180, 98%, 40%) 30%,
+        //     hsl(var(--clr_accent) / var(--gradient_opacity)) 100%
+        // );
+        background-image: linear-gradient(
+            to right,
+            hsl(180 98% 40% / var(--gradient_opacity)) 0%,
+            hsl(var(--clr_accent)) 20%,
+            hsl(180 98% 40% / var(--gradient_opacity)) 100%
+        );
+        background-size: 45rem 15rem;
+        background-repeat: no-repeat;
+
+        animation: skeletonShimmer 1s linear infinite;
+        // background-size: 100% 15rem;
+        // background-image: linear-gradient(
+        //     90deg,
+        //     hsl(var(--clr_grd_1) / var(--gradient_opacity)),
+        //     hsl(var(--clr_grd_2) / var(--gradient_opacity))
+        // );
+        z-index: 3;
+
+        &--animation-none {
+            animation: none;
+        }
     }
 
     &__body {
         padding: 0 1.4rem;
         flex: 1 1;
+
+        @include device(tab) {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     &__category {
@@ -140,6 +285,15 @@
             transition: transform 0.4s $outSmooth;
             z-index: -1;
         }
+
+        @include device(tab) {
+            transform: translate(15%, 15%);
+            transition: none;
+            &::after {
+                transform: scaleX(1);
+                transition: none;
+            }
+        }
     }
     &__title {
         @extend %fw-600;
@@ -148,6 +302,11 @@
         text-transform: capitalize;
         word-wrap: break-word;
         transition: transform 0.5s $outSmooth;
+
+        @include device(tab) {
+            transition: none;
+            transform: translateY(1rem);
+        }
     }
 
     &__footer {
@@ -184,5 +343,34 @@
                 transition: opacity 0.4s $outSmooth;
             }
         }
+
+        @include device(tab) {
+            svg,
+            p {
+                transform: none;
+                transition: none;
+            }
+            p {
+                opacity: 1;
+
+                span {
+                    opacity: 0.5;
+                    transition: none;
+                }
+            }
+            svg {
+                opacity: 0.8;
+                stroke: hsl(var(--clr_accent));
+            }
+        }
+    }
+}
+
+@keyframes skeletonShimmer {
+    0% {
+        background-position: -45rem 0;
+    }
+    100% {
+        background-position: 45rem 0;
     }
 }

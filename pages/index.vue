@@ -4,9 +4,18 @@
 
         <main class="middle">
             <Header />
-            <Categories v-if="isMounted && !err402" />
-            <WaitingPlaceholder />
-            <RecipeCards :category="categoryName" />
+
+            <transition name="waiting">
+                <Categories v-if="isMounted && !err402 && !hideCategories" />
+                <!-- <Categories v-if="false" /> -->
+            </transition>
+
+            <div class="scrollTo" id="scroll-to">
+                <WaitingPlaceholder />
+                <RecipeCards :category="categoryName" />
+            </div>
+
+            <NotificationList />
         </main>
 
         <Sidebar />
@@ -18,13 +27,13 @@ import SEO from '~/mixins/SEO.js'
 
 export default {
     mixins: [SEO],
-    scrollToTop: false,
+    // scrollToTop: false,
 
     data() {
         return {
             seo: {
                 title: 'Veganify | Home',
-                description: 'Website with nice vegetarian recipes.',
+                description: `Vegetarian recipes for anyone planning on trying plant-based! Whether it's breakfast, lunch, dinner or snacks - we've got you!`,
                 image: 'https://veganify.vercel.app/veganify.png',
             },
             isMounted: false,
@@ -44,26 +53,31 @@ export default {
         err402() {
             return this.$store.state.recipes.err402
         },
+        hideCategories() {
+            return this.$store.state.app.hideCategories
+        },
     },
     created() {
         this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.recipeItems)
-        this.$store.commit('pagination/SET_CURR_PAGE', 1)
+        // this.$store.commit('pagination/SET_CURR_PAGE', 1)
+        this.$store.commit('app/SET_HIDE_CATEGORIES', false)
+
+        // console.log(this.$store.state.app.notifications.length)
+        // this.$store.commit('app/CLEAR_NOTIFICATIONS')
+        // console.log(this.$store.state.app.notifications.length)
+
+        // if (process.client) {
+        //     this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
+        //     this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL')
+        // }
     },
 
     mounted() {
         this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
+        // this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL')
         this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL')
 
         this.$nextTick(() => (this.isMounted = true))
-
-        // if (window.matchMedia('(prefers-color-scheme: dark)').matched)
-        //     window.localStorage.setItem(
-        //         'veganify_isdark',
-        //         JSON.stringify(
-        //             window.matchMedia('(prefers-color-scheme: dark)').matched
-        //         )
-        //     )
-        // console.log(window.matchMedia('(prefers-color-scheme: dark)'))
     },
 }
 </script>

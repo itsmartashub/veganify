@@ -6,11 +6,11 @@
                     <Logo />
                 </div>
                 <div class="loader__title">
-                    <div>
+                    <p>
                         <span class="loader__vegan">Vegan</span
                         ><span class="loader__ify">ifing</span>
-                    </div>
-                    <span class="loader__yourmeal">&nbsp;Your Meal</span>
+                    </p>
+                    <span class="loader__yourmeal">Your Meal</span>
                 </div>
             </div>
         </section>

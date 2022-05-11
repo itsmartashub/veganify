@@ -20,6 +20,11 @@ export default {
     methods: {
         goBack() {
             this.$router.back()
+            //todo SETUJ CATEGORYNAME koji je bio
+            //todo SETUJ AKTIVNU CATEOGRY koji je bio
+            // window.history.length > 1
+            //     ? this.$router.go(-1)
+            //     : this.$router.push('/')
         },
     },
 }

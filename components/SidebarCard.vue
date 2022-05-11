@@ -6,7 +6,7 @@
     >
         <div class="sidebarcard__left">
             <h4 class="sidebarcard__title">
-                {{ sidebarRecipe.title.toLowerCase() | truncateTxt(35) }}
+                {{ sidebarRecipe.title.toLowerCase() | truncateTxt(20) }}
             </h4>
 
             <div class="sidebarcard__btns">

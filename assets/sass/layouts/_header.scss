@@ -1,7 +1,16 @@
 .header {
+    --svg-left: 3.5rem;
+    --search-padding-left: calc(var(--svg-left) + 5rem);
     @extend %flex-center;
     flex-wrap: wrap-reverse;
     color: hsl(var(--clr_accent));
+    // align-self: flex-start;
+
+    // margin-bottom: 5vw;
+
+    @include device(phone) {
+        padding: 0 3rem;
+    }
 
     &__form,
     &__title {
@@ -15,13 +24,16 @@
     &__form {
         flex: 1;
         min-width: 40rem;
+        max-width: 60rem;
+
         @extend %d--flex;
         align-items: center;
         @extend %pos-rel;
+        z-index: 20;
 
         svg {
             @extend %pos-abs;
-            left: 30px;
+            left: var(--svg-left);
             opacity: var(--opacity_search);
             width: 3rem;
             @extend %h-auto;
@@ -30,7 +42,11 @@
         }
 
         @include device(tab) {
+            min-width: 40vw;
             max-width: 85%;
+        }
+        @include device(phone) {
+            max-width: 95%;
         }
         @include device(phone) {
             max-width: 95%;
@@ -38,8 +54,7 @@
     }
 
     &__search {
-        --padding-left: 8rem;
-        padding: 2.5rem 2.5rem 2.5rem var(--padding-left);
+        padding: 2.5rem 2.5rem 2.5rem var(--search-padding-left);
         border-radius: var(--radius-search);
         @extend %d--flex;
         align-items: center;
@@ -50,10 +65,6 @@
         transform-origin: center bottom;
         transition: color 0.4s $outSmooth, box-shadow 0.4s $outBack,
             opacity 0.4s $outSmooth;
-
-        @include device(tab) {
-            --padding-left: 9rem;
-        }
     }
 
     &__search::placeholder {

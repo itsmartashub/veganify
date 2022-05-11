@@ -1,23 +1,85 @@
 .notifications {
+    --top: 5%;
+    --left: 10%;
     @extend %overflow-hidden;
-    @extend %pos-abs;
-    top: 10%;
-    left: 10%;
-    z-index: 200;
-    width: fit-content;
+    @extend %pos-fix;
+    top: var(--top);
+    left: var(--left);
+    @extend %d--flex;
+    flex-direction: column;
+    z-index: var(--z-nav);
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+
+    * + * {
+        margin-top: 1rem;
+    }
+
+    @include device(tab-mid) {
+        --left: 15%;
+    }
+    @include device(tab-to-phoneland) {
+        --left: 5%;
+        --top: 2%;
+    }
+    @include device(phone-to-ant) {
+        --left: 2%;
+        width: 100%;
+    }
 
     .notification {
-        padding: 2rem;
+        padding: 2.2rem 3rem;
         font-size: 1.8rem;
-        border-radius: var(--radius-icontainer);
-        color: var(--clr_white);
-        transition: all 0.3 ease-out;
+        @extend %d--flex;
+        align-items: center;
+        width: fit-content;
+        border-radius: var(--radius-search);
+        color: hsl(var(--clr_white));
+        border: 1px solid hsl(var(--clr_accent) / 0.15);
 
-        &--red {
-            background: #ffa07a;
+        @include device(phone-land) {
+            padding: 1.8rem 3rem;
         }
-        &--green {
-            background: var(--clr_grd_bg);
+
+        @include device(phone-to-ant) {
+            width: calc(100% - 2 * var(--left));
+            justify-content: center;
+            text-align: center;
+        }
+
+        p::before {
+            content: var(--content-icon, '');
+            margin-right: 1rem;
+
+            // @include device(phone-to-ant) {
+            //     display: none;
+            // }
+            @include device(phone-ant) {
+                display: none;
+            }
+        }
+
+        &--add {
+            --content-icon: '✅';
+
+            background-image: linear-gradient(
+                var(--grd-deg),
+                hsl(var(--clr_grd_2)),
+                hsl(var(--clr_grd_1))
+            );
+
+            p::before {
+                @include device(tab) {
+                    color: hsl(var(--clr_accent));
+                    background-color: hsl(var(--clr_accent));
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+        &--remove {
+            --content-icon: '❌';
+            background-image: var(--clr_grd_bg);
         }
     }
 }

@@ -1,32 +1,32 @@
 * {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  box-shadow: none;
-  box-sizing: inherit;
-  -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
 
-  &::after,
-  &::before {
-    box-sizing: border-box;
-  }
+    &::after,
+    &::before {
+        box-sizing: border-box;
+    }
 }
 
 input,
 button {
-  user-select: none;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  border-radius: 0;
-  font: inherit;
+    user-select: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    font: inherit;
 }
 
 // button
 button {
-  appearance: none;
-  background: none;
+    appearance: none;
+    background: none;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -41,39 +41,45 @@ hgroup,
 menu,
 nav,
 section {
-  display: block;
+    display: block;
 }
 
 ol,
 ul {
-  list-style: none;
+    list-style: none;
 }
 
 li {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 img {
-  user-select: none;
-  background-color: transparent;
+    user-select: none;
+    background-color: transparent;
 }
 
 //form
 input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-clip: border-box;
-  margin: 0;
-  outline: 0;
-  text-align: left;
-  vertical-align: top;
-  width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-clip: border-box;
+    margin: 0;
+    outline: 0;
+    text-align: left;
+    vertical-align: top;
+    width: 100%;
+
+    //! bez ovoga dole nije hteo da radi search na iphone, tj kucas al text ne izlazi
+    -webkit-user-select: text; /* Chrome, Opera, Safari */
+    -moz-user-select: text; /* Firefox 2+ */
+    -ms-user-select: text; /* IE 10+ */
+    user-select: text; /* Standard syntax */
 }
 
 // remove search controls
-input[type="search"]::-webkit-search-decoration {
-  display: none;
+input[type='search']::-webkit-search-decoration {
+    display: none;
 }
 
 //* RESET OD KP-a
@@ -93,7 +99,7 @@ h5,
 p,
 figure,
 picture {
-  margin: 0;
+    margin: 0;
 }
 
 // /* set up the body */
@@ -105,8 +111,8 @@ picture {
 /* make images easier to work with */
 img,
 picture {
-  max-width: 100%;
-  display: block;
+    max-width: 100%;
+    display: block;
 }
 
 /* make form elements easier to work with */
@@ -119,12 +125,12 @@ picture {
 
 /* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

@@ -5,8 +5,7 @@
     grid-gap: 1vmin;
 
     @include device(tab-land) {
-        grid-auto-flow: row;
-        width: 50vw;
+        display: none;
     }
 }
 
@@ -18,15 +17,21 @@
     @extend %pos-rel;
     width: 100%;
     min-height: 14rem;
+    // height: 15vh;
     padding: 2.5vh 1.6vw;
     @extend %d--grid;
     grid-template-columns: 1fr 1fr;
-    justify-items: space-between;
-    grid-gap: 1.8rem;
+    justify-items: space-around;
     background-color: var(--clr_sidebarcard_bg);
     border-radius: var(--radius-sidebarcard);
     transition: transform 0.5s $inOutBack, box-shadow 0.5s $outBack 0.2s,
         background-color 0.5s $outSmooth;
+
+    @include device(laptop) {
+        // min-height: 13rem;
+        padding: 2vh 1.6vw;
+        min-height: 13rem;
+    }
 
     &:hover,
     &:focus {
@@ -55,6 +60,14 @@
         flex-direction: column;
         justify-content: space-between;
         z-index: 3;
+
+        @include device(laptop) {
+            justify-content: center;
+
+            * + * {
+                margin-top: 0.1rem;
+            }
+        }
     }
 
     &__title {

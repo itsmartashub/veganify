@@ -4,12 +4,18 @@
 
         <main class="middle">
             <Header />
-            <WaitingPlaceholder />
-            <!-- <RecipeCards :recipes="smoothies" /> -->
-            <RecipeCards />
+
+            <div class="scrollTo" id="scroll-to">
+                <WaitingPlaceholder />
+                <RecipeCards />
+            </div>
+
+            <NotificationList />
         </main>
 
         <Sidebar :popularRecipes="popularSmoothies" />
+
+        <!-- <NotificationList /> -->
     </div>
 </template>
 
@@ -24,7 +30,7 @@ export default {
             seo: {
                 title: 'Veganify | Smoothies',
                 description:
-                    'This is a Veganify webpage with vegetarian-friendly smoothie recipes',
+                    'Here are all the best vegan smoothie recipes to try: creamy and full of flavor! These plant based purees are ideal for breakfast and snacks.',
                 image: 'https://veganify.vercel.app/veganify.png',
             },
         }

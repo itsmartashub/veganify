@@ -56,6 +56,24 @@ export const actions = {
             //? 2. ako ne postoji dodajem ga u bookmarksIDS i u LS
             commit('ADD_BOOKMARK_ID', { recipe })
             commit('LS_SET_BOOKMARKS_IDS')
+
+            // dispatch(
+            //     'app/notification',
+            //     {
+            //         display: true,
+            //         content: `Recipe has been bookmarked`,
+            //         className: 'notification--add',
+            //     },
+            //     { root: true }
+            // )
+            dispatch(
+                'app/addNotification',
+                {
+                    message: `Recipe has been bookmarked`,
+                    className: 'add',
+                },
+                { root: true }
+            )
         } else {
             //? 3. ako postoji onda ga brisem iz bookmarksIDS i iz LS-a => tj trazim index id-a u bookmarksIDs koji ima vrednost recipe.id-a.
             let indexOfID = state.bookmarksIDs.findIndex(
@@ -63,6 +81,24 @@ export const actions = {
             )
             commit('REMOVE_BOOKMARK_ID', { indexOfID, recipeID: recipe.id })
             dispatch('LSsetBookmarksIDS')
+
+            // dispatch(
+            //     'app/notification',
+            //     {
+            //         display: true,
+            //         content: `Recipe has been removed from bookmarks`,
+            //         className: 'notification--remove',
+            //     },
+            //     { root: true }
+            // )
+            dispatch(
+                'app/addNotification',
+                {
+                    message: `Recipe has been removed from bookmarks`,
+                    className: 'remove',
+                },
+                { root: true }
+            )
         }
     },
 

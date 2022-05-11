@@ -16,9 +16,9 @@
             <NuxtLink
                 to="/"
                 class="navigation__link"
-                @click.prevent="$nuxt.refresh()"
                 aria-label="Go To The Home Page"
                 data-link-name="home"
+                @click.native="clickOnLink('index')"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +39,7 @@
                 class="navigation__link"
                 aria-label="Go To The Smoothies Page"
                 data-link-name="smoothies"
+                @click.native="clickOnLink('smoothies')"
             >
                 <svg
                     data-name="blender-svgrepo-com (1)"
@@ -121,3 +122,49 @@
         <BtnThemeToggle />
     </aside>
 </template>
+]
+<script>
+export default {
+    computed: {
+        activeRecipes() {
+            return this.$store.state.recipes.activeRecipes
+        },
+        recipeItems() {
+            return this.$store.state.recipes.recipeItems
+        },
+        smoothieItems() {
+            return this.$store.state.recipes.smoothieItems
+        },
+    },
+    methods: {
+        clickOnLink(linkName) {
+            if (this.$route.name !== linkName) return
+            this.$store.commit('pagination/SET_CURR_PAGE', 1)
+
+            if (linkName === 'index') {
+                this.$store.commit(
+                    'recipes/SET_ACTIVE_RECIPES',
+                    this.recipeItems
+                )
+                this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL')
+                this.$store.commit('app/SET_HIDE_CATEGORIES', false)
+                this.$store.commit('app/SET_SCROLL_INTO_VIEW', {
+                    _selector: '.home .header',
+                })
+                return
+            }
+            if (linkName === 'smoothies') {
+                this.$store.commit(
+                    'recipes/SET_ACTIVE_RECIPES',
+                    this.smoothieItems
+                )
+                this.$store.commit('recipes/SET_CATEGORY_NAME', 'SMOOTHIES')
+                this.$store.commit('app/SET_SCROLL_INTO_VIEW', {
+                    _selector: '.smoothies .header',
+                })
+                return
+            }
+        },
+    },
+}
+</script>

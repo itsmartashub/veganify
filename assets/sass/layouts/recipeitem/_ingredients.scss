@@ -121,7 +121,7 @@
     }
 }
 
-html [data-theme='dark'] {
+body.dark {
     .ingredients__card--imgwrapper {
         display: none;
     }
@@ -129,3 +129,11 @@ html [data-theme='dark'] {
         @extend %grid-center;
     }
 }
+// html [data-theme='dark'] {
+//     .ingredients__card--imgwrapper {
+//         display: none;
+//     }
+//     .ingredients__card--iconwrapper {
+//         @extend %grid-center;
+//     }
+// }

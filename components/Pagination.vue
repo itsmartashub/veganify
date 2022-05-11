@@ -5,6 +5,7 @@
                 class="pagination__item pagination__item--prev"
                 title="Previous Page"
             >
+                <!-- <a href="#scroll-to"> -->
                 <button
                     class="pagination__btn pagination__btn--prev btn"
                     @click="goToPreviousPage"
@@ -14,6 +15,7 @@
                 >
                     Prev
                 </button>
+                <!-- </a> -->
             </li>
 
             <li class="pagination__item pagination__item--pages">
@@ -23,6 +25,7 @@
                         :key="index"
                         :title="`Page ${page.number}`"
                     >
+                        <!-- <a href="#scroll-to"> -->
                         <button
                             class="pagination__btn btn"
                             @click="goToPage(page.number)"
@@ -36,6 +39,7 @@
                         >
                             {{ page.number }}
                         </button>
+                        <!-- </a> -->
                     </li>
                 </ul>
             </li>
@@ -44,6 +48,7 @@
                 class="pagination__item pagination__item--next"
                 title="Next Page"
             >
+                <!-- <a href="#scroll-to"> -->
                 <button
                     class="pagination__btn pagination__btn--next btn"
                     :class="{ 'pagination__btn--disabled': isLastPage }"
@@ -53,6 +58,7 @@
                 >
                     Next
                 </button>
+                <!-- </a> -->
             </li>
         </ul>
     </div>
@@ -123,23 +129,23 @@ export default {
             if (this.isFirstPage) return
             this.currentPage = this.currentPage - 1
             // this.$store.commit("pagination/SET_PAGINATED_RECIPES", this.recipes);
-            this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
-                _selector: '.recipecards__title',
+            this.$store.commit('app/SET_SCROLL_INTO_VIEW', {
+                _selector: '#scroll-to',
             })
         },
         goToPage(page) {
             this.currentPage = page
             // this.$store.commit("pagination/SET_PAGINATED_RECIPES", this.recipes);
-            this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
-                _selector: '.recipecards__title',
+            this.$store.commit('app/SET_SCROLL_INTO_VIEW', {
+                _selector: '#scroll-to',
             })
         },
         goToNextPage() {
             if (this.isLastPage) return
             this.currentPage = this.currentPage + 1
             // this.$store.commit("pagination/SET_PAGINATED_RECIPES", this.recipes);
-            this.$store.commit('recipes/SET_SCROLL_INTO_VIEW', {
-                _selector: '.recipecards__title',
+            this.$store.commit('app/SET_SCROLL_INTO_VIEW', {
+                _selector: '#scroll-to',
             })
         },
         isPageActive(page) {

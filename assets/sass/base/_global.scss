@@ -34,85 +34,98 @@ img {
     filter: var(--filter_img);
 }
 
-/*
-.bp {
-    font-size: 2rem;
-    padding: 1rem 2rem;
-    border-radius: var(--radius-icontainer);
-    color: #fff;
-    @extend %d--block;
-    @extend %txt-center;
-    @extend %pos-fix;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 200000;
-    background: var(--clr_grd_bg);
+// .bp {
+//     font-size: 2rem;
+//     padding: 1rem 2rem;
+//     border-radius: var(--radius-icontainer);
+//     color: #fff;
+//     @extend %d--block;
+//     @extend %txt-center;
+//     @extend %pos-fix;
+//     bottom: 5%;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     z-index: 200000;
+//     pointer-events: none;
+//     background: var(--clr_grd_bg);
 
-    &::before {
-        content: 'desktop ';
-    }
+//     &::before {
+//         content: 'desktop ';
+//     }
 
-    @include device(tab-land) {
-        // width < 1200 ?
-        background: purple;
-        &::before {
-            content: 'tab-land';
-        }
-    }
-    @include device(tab-mid) {
-        // width < 1050 ?
-        background: darkslategrey;
-        &::before {
-            content: 'tab-mid';
-        }
-    }
+//     @include device(laptop) {
+//         // width < 1240 ?
+//         background: #333;
+//         &::before {
+//             content: 'laptop';
+//         }
+//     }
+//     @include device(tab-land) {
+//         // width < 1200 ?
+//         background: purple;
+//         &::before {
+//             content: 'tab-land';
+//         }
+//     }
+//     @include device(tab-mid) {
+//         // width < 1050 ?
+//         background: darkslategrey;
+//         &::before {
+//             content: 'tab-mid';
+//         }
+//     }
 
-    @include device(tab) {
-        // width < 900 ?
-        background: teal;
-        &::before {
-            content: 'tab';
-        }
-    }
-    @include device(tab-to-phoneland) {
-        // width < 900 ?
-        background: darkseagreen;
-        &::before {
-            content: 'tab-to-phoneland';
-        }
-    }
+//     @include device(tab) {
+//         // width < 900 ?
+//         background: teal;
+//         &::before {
+//             content: 'tab';
+//         }
+//     }
+//     @include device(tab-to-phoneland) {
+//         // width < 900 ?
+//         background: darkseagreen;
+//         &::before {
+//             content: 'tab-to-phoneland';
+//         }
+//     }
 
-    @include device(phone-land) {
-        // width < 600 ?
-        background: lightgreen;
-        &::before {
-            content: 'phone-land';
-        }
-    }
+//     @include device(phone-land) {
+//         // width < 600 ?
+//         background: lightgreen;
+//         &::before {
+//             content: 'phone-land';
+//         }
+//     }
 
-    @include device(phone) {
-        // width < 500 ?
-        background: orangered;
-        &::before {
-            content: 'phone';
-        }
-    }
+//     @include device(phone) {
+//         // width < 500 ?
+//         background: orangered;
+//         &::before {
+//             content: 'phone';
+//         }
+//     }
 
-    @include device(phone-ant) {
-        // width < 320 ?
-        background: coral;
-        &::before {
-            content: 'phone-ant';
-        }
-    }
+//     @include device(phone-to-ant) {
+//         // width < 400 ?
+//         background: yellow;
+//         &::before {
+//             content: 'phone-to-ant';
+//         }
+//     }
+//     @include device(phone-ant) {
+//         // width < 320 ?
+//         background: coral;
+//         &::before {
+//             content: 'phone-ant';
+//         }
+//     }
 
-    @include device(big) {
-        // width > 1920 ?
-        background: red;
-        &::before {
-            content: 'big';
-        }
-    }
-}
-*/
+//     @include device(big) {
+//         // width > 1920 ?
+//         background: red;
+//         &::before {
+//             content: 'big';
+//         }
+//     }
+// }
