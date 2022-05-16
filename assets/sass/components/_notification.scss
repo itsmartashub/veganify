@@ -50,9 +50,6 @@
             content: var(--content-icon, '');
             margin-right: 1rem;
 
-            // @include device(phone-to-ant) {
-            //     display: none;
-            // }
             @include device(phone-ant) {
                 display: none;
             }
@@ -68,12 +65,10 @@
             );
 
             p::before {
-                @include device(tab) {
-                    background-color: hsl(var(--clr_white));
-                    -webkit-background-clip: text;
-                    background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                }
+                background-color: hsl(var(--clr_white));
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
         }
         &--remove {

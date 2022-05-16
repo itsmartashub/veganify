@@ -47,6 +47,12 @@
     align-items: center;
     justify-content: space-around;
 }
+%abs-center {
+    @extend %pos-abs;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 %w-100 {
     width: 100%;
@@ -63,13 +69,6 @@
     @extend %pos-abs;
     @extend %w-100;
     @extend %h-100;
-}
-
-%abs-center {
-    @extend %pos-abs;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 %overflow-hidden {
