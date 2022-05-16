@@ -26,6 +26,7 @@
         @extend %d--grid;
         align-self: center;
         justify-items: center;
+        grid-gap: 5rem;
         font-size: 2.5rem;
         @extend %txt-center;
         align-self: center;
