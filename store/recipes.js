@@ -19,9 +19,20 @@ export const state = () => ({
     mergedRecipes: [],
     err402: false,
     apiErrMsg: '',
-    recipeNotifyText: `
-        <p>No recipes found for your query! 😶 </p>
+    // notifyText: `
+    //     <p>No recipes found for your query! 😶 </p>
+    //     <p>Please try again 🍽️</p>`,
+    notifyText: `
         <p>Please try again 🍽️</p>`,
+
+    notifyText_err402: `
+        <p>Guess you won't be <b>VEGANIFEED</b> today 😡 But, please, try to <b>refresh the App</b>. 🤞🏽</p>
+        <p>I'm so sorry, this is the free app and there're no more free <a href='https://spoonacular.com/food-api/'>Spoonacular API</a> calls 😭</p>
+        <p>Is it impossible to give me the chance again tomorrow? 👩🏼‍🍳</p>
+        <p>All these recipes and much more can be found on the <a href='https://spoonacular.com/recipes' target="_blank" rel="noopener">Spoonacular website</a> 🥕</p>`,
+    notifyText_noSearchItem: `
+        <p>No recipes found for your query! 😶 </p>
+        <p>Please try something else 🍽️</p>`,
     randomTrivia: '',
     // apikArr: [
     //     process.env.API_SECRET_DEFAULT,
@@ -40,6 +51,9 @@ export const state = () => ({
     //     process.env.API_SECRET_RESERVE_13_SISSY,
     //     process.env.API_SECRET_RESERVE_14_SISSY,
     // ],
+
+    // searched_term: '',
+    // searched_is_smoothie: false,
 })
 
 export const actions = {
@@ -73,96 +87,28 @@ export const actions = {
                 `recipes/complexSearch?apiKey=${state.apik}&query=${query}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`
             )
 
-            if (response.status !== 200)
-                throw new Error(`Something's wrong. ${response.status}`)
+            // console.log(state.searched_term)
+            // console.log(state.searched_is_smoothie)
 
-            if (!response.data.results[0])
-                commit(
-                    'SET_NOTIFY',
-                    `<p>No recipes found for your query! 😶 </p>
-                    <p>Please try again 🍽️</p>`
+            if (response.status !== 200)
+                throw new Error(
+                    `RESPONSE STATUS IS NOT 200! IT IS: ${response.status}`
                 )
 
-            // commit('SET_SUBMIT_SEARCH', true)
+            if (!response.data.results[0] && !state.err402)
+                commit('SET_NOTIFY', state.notifyText_noSearchItem)
+
             commit('SET_ACTIVE_RECIPES', response.data.results)
             commit('SET_CATEGORY_NAME', searchedTerm)
             dispatch('mergeRecipes')
         } catch (error) {
             //TODO ako nema trazenog recepta da vidimo sta cemo
-            console.error(`${error} 💥💥💥`)
+            console.error(`💥💥💥 ${error.message} 💥💥💥`)
             commit('SET_API_ERR_MSG', error.message)
 
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch('ifErr402', process.env.API_SECRET_RESERVE_1)
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch('ifErr402', process.env.API_SECRET_RESERVE_2)
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch('ifErr402', process.env.API_SECRET_RESERVE_3)
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch('ifErr402', process.env.API_SECRET_RESERVE_4)
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_5_SISSY
-                )
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_6_SISSY
-                )
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_7_SISSY
-                )
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_8_SISSY
-                )
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_9_SISSY
-                )
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_10_SISSY
-                )
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_11_SISSY
-                )
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_12_SISSY
-                )
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_13_SISSY
-                )
-            }
-            if (state.apiErrMsg == 'Request failed with status code 402') {
-                await dispatch(
-                    'ifErr402',
-                    process.env.API_SECRET_RESERVE_14_SISSY
-                )
+            if (state.apiErrMsg === 'Request failed with status code 402') {
+                commit('SET_NOTIFY', state.notifyText_err402)
+                commit('SET_402', true)
             }
         }
     },
@@ -186,40 +132,54 @@ export const actions = {
             )
         })
         //! sa this.$axios.$get se dohvate podaci (data), a sa this.$axios.get (bez dollar sign ovo get) se dohvati response
-        await Promise.all(
-            endpoints.map((endpoint) => this.$axios.get(endpoint))
-        )
-            .then((response) => {
-                commit('SET_RECIPES', response[0].data.results)
-                commit('SET_ACTIVE_RECIPES', response[0].data.results)
-                commit('SET_SMOOTHIES', response[1].data.results)
-                commit('SET_RANDOM_TRIVIA', response[2].data.text)
+        try {
+            const response = await Promise.all(
+                endpoints.map((endpoint) => this.$axios.get(endpoint))
+            )
 
-                commit('SET_CATEGORIES', [
-                    { name: 'salad', items: response[3].data.results },
-                    { name: 'soup', items: response[4].data.results },
-                    { name: 'pasta', items: response[5].data.results },
-                    { name: 'pizza', items: response[6].data.results },
-                    { name: 'burger', items: response[7].data.results },
-                ])
+            commit('SET_RECIPES', response[0].data.results)
+            commit('SET_ACTIVE_RECIPES', response[0].data.results)
+            commit('SET_SMOOTHIES', response[1].data.results)
+            commit('SET_RANDOM_TRIVIA', response[2].data.text)
 
-                commit('SET_POPULAR_RECIPES')
+            commit('SET_CATEGORIES', [
+                { name: 'salad', items: response[3].data.results },
+                { name: 'soup', items: response[4].data.results },
+                { name: 'pasta', items: response[5].data.results },
+                { name: 'pizza', items: response[6].data.results },
+                { name: 'burger', items: response[7].data.results },
+            ])
 
-                dispatch('mergeRecipes')
-            })
-            .catch(async (error) => {
-                commit('SET_API_ERR_MSG', error.message)
+            commit('SET_POPULAR_RECIPES')
 
-                // if (error.message === 'Request failed with status code 402') {
-                //     // ? promeni api k
-                //     commit('SET_APIK', state.apikArr[0])
+            dispatch('mergeRecipes')
+        } catch (error) {
+            commit('SET_API_ERR_MSG', error.message)
+        }
+        // await Promise.all(
+        //     endpoints.map((endpoint) => this.$axios.get(endpoint))
+        // )
+        //     .then((response) => {
+        //         commit('SET_RECIPES', response[0].data.results)
+        //         commit('SET_ACTIVE_RECIPES', response[0].data.results)
+        //         commit('SET_SMOOTHIES', response[1].data.results)
+        //         commit('SET_RANDOM_TRIVIA', response[2].data.text)
 
-                //     // ? ponovo pozovi ovu f-ju
-                //     await dispatch('promiseAllFn')
+        //         commit('SET_CATEGORIES', [
+        //             { name: 'salad', items: response[3].data.results },
+        //             { name: 'soup', items: response[4].data.results },
+        //             { name: 'pasta', items: response[5].data.results },
+        //             { name: 'pizza', items: response[6].data.results },
+        //             { name: 'burger', items: response[7].data.results },
+        //         ])
 
-                //     console.log(error.message)
-                // }
-            })
+        //         commit('SET_POPULAR_RECIPES')
+
+        //         dispatch('mergeRecipes')
+        //     })
+        //     .catch(async (error) => {
+        //         commit('SET_API_ERR_MSG', error.message)
+        //     })
     },
 
     async fetchAllInOnce({ commit, dispatch, state }) {
@@ -227,66 +187,94 @@ export const actions = {
 
         await dispatch('promiseAllFn')
 
-        // state.apikArr.forEach(async (apik) => {
-        //     if (state.apiErrMsg == 'Request failed with status code 402') {
-        //         await dispatch('ifErr402', apik)
-        //     }
-        // })
-
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_1)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_1
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_2)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_2
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_3)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_3
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_4)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_4
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_5_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_5_SISSY
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_6_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_6_SISSY
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_7_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_7_SISSY
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_8_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_8_SISSY
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_9_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_9_SISSY
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_10_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_10_SISSY
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_11_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_11_SISSY
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_12_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_12_SISSY
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_13_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_13_SISSY
+            )
         }
         if (state.apiErrMsg == 'Request failed with status code 402') {
-            await dispatch('ifErr402', process.env.API_SECRET_RESERVE_14_SISSY)
+            await dispatch(
+                'ifErr402AllRecipes',
+                process.env.API_SECRET_RESERVE_14_SISSY
+            )
         }
     },
 
-    async ifErr402({ commit, dispatch }, newApik) {
-        commit(
-            'SET_NOTIFY',
-            `
-            <p>Guess you won't be <b>VEGANIFEED</b> today 😡 But try to refresh the App. </p>
-            <p>I'm so sorry, this is the free app and there're no more free <a href='https://spoonacular.com/food-api/'>Spoonacular API</a> calls 😭</p>
-            <p>Is it impossible to give me the chance again tomorrow? 👩🏼‍🍳</p>
-            <p>All these recipes and much more can be found on the <a href='https://spoonacular.com/recipes'>Spoonacular website</a> 🥕</p>
-            `
-        )
+    async ifErr402AllRecipes({ commit, dispatch }, newApik) {
+        commit('SET_NOTIFY', state.notifyText_err402)
         commit('SET_402', true)
         commit('SET_APIK', newApik)
         commit('SET_API_ERR_MSG', '')
@@ -295,6 +283,22 @@ export const actions = {
 
         commit('SET_402', false)
     },
+
+    // async ifErr402SearchedRecipes({ state, commit, dispatch }, newApik) {
+    //     commit('SET_NOTIFY', state.notifyText_err402)
+    //     commit('SET_402', true)
+    //     commit('SET_APIK', newApik)
+    //     commit('SET_API_ERR_MSG', '')
+
+    //     // console.log(state.searched_term, state.searched_is_smoothie)
+
+    //     await dispatch('fetchSearchedRecipes', {
+    //         searchedTerm: state.searched_term,
+    //         isSmoothies: state.searched_is_smoothie,
+    //     })
+
+    //     commit('SET_402', false)
+    // },
 
     mergeRecipes({ state, commit }) {
         let concatArrs = [
@@ -408,7 +412,7 @@ export const mutations = {
         state.randomTrivia = randomTriviaText
     },
     SET_NOTIFY(state, notify) {
-        state.recipeNotifyText = notify
+        state.notifyText = notify
     },
     SET_402(state, err402) {
         state.err402 = err402
@@ -419,4 +423,9 @@ export const mutations = {
     SET_APIK(state, newApik) {
         state.apik = newApik
     },
+
+    // SET_SEARCHED_TERM_AND_IS_SMOOTHIE(state, { searchedTerm, isSmoothie }) {
+    //     state.searched_term = searchedTerm
+    //     state.searched_is_smoothie = isSmoothie
+    // },
 }

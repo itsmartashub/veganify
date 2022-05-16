@@ -25,7 +25,7 @@ export default {
     created() {
         this.timeout = setTimeout(() => {
             this.$store.commit('app/REMOVE_NOTIFICATION', this.notification)
-        }, 1000)
+        }, 1500)
     },
 
     beforeDestroy() {

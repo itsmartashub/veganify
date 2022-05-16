@@ -29,10 +29,17 @@
         }
         &--pages {
             grid-area: pages;
+
+            @include device(phone-ant) {
+                display: none;
+            }
+
             ul {
                 display: inline-flex;
                 align-items: center;
-                grid-gap: 2rem;
+                * + * {
+                    margin-left: 2rem;
+                }
             }
 
             li {
@@ -62,6 +69,10 @@
         transform-origin: center center;
         transition: transform 0.5s $outBack;
 
+        @include device(phone-land) {
+            --size_btn: 6rem;
+        }
+
         &:hover,
         &:focus {
             background: hsl(var(--clr_white));
@@ -77,12 +88,20 @@
             &:hover,
             &:focus {
                 transform: translate(-5px, 0);
+
+                @include device(phone-land) {
+                    transform: none;
+                }
             }
         }
         &--next {
             &:hover,
             &:focus {
                 transform: translate(5px, 0);
+
+                @include device(phone-land) {
+                    transform: none;
+                }
             }
         }
 
@@ -91,6 +110,7 @@
             &--next {
                 width: 100%;
                 padding: 2rem;
+                transition: none;
             }
         }
 

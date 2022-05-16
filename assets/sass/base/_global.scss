@@ -1,9 +1,10 @@
 html,
 body {
+    overflow-x: hidden;
     scroll-behavior: smooth;
+    @extend %scroll-smooth-iphone; //! ZA IPHONE SMOOTH SCROLL NJEGOV JEEEEE
     @extend %w-100;
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
 body {
@@ -80,6 +81,13 @@ img {
 //         background: teal;
 //         &::before {
 //             content: 'tab';
+//         }
+//     }
+
+//     @include device(tab-landrot) {
+//         background: lightblue;
+//         &::before {
+//             content: 'tab-landrot';
 //         }
 //     }
 //     @include device(tab-to-phoneland) {

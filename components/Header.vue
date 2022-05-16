@@ -64,6 +64,13 @@ export default {
             this.searchInput = this.searchInput.replaceAll(/[$.]+/g, '')
 
             if (this.$route.name === 'smoothies') {
+                // this.$store.commit(
+                //     'recipes/SET_SEARCHED_TERM_AND_IS_SMOOTHIE',
+                //     {
+                //         searchedTerm: this.searchInput,
+                //         isSmoothie: true,
+                //     }
+                // )
                 await this.$store.dispatch('recipes/fetchSearchedRecipes', {
                     searchedTerm: this.searchInput,
                     isSmoothie: true,
@@ -79,8 +86,14 @@ export default {
 
             this.$store.commit('app/SET_HIDE_CATEGORIES', true)
 
+            // this.$store.commit('recipes/SET_SEARCHED_TERM_AND_IS_SMOOTHIE', {
+            //     searchedTerm: this.searchInput,
+            //     isSmoothie: false,
+            // })
+
             await this.$store.dispatch('recipes/fetchSearchedRecipes', {
                 searchedTerm: this.searchInput,
+                isSmoothie: false,
             })
 
             this.clearSearchInput()

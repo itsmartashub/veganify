@@ -14,10 +14,10 @@ export default {
             // console.log(this.$store.state.app.notifications.length)
         },
     },
-    mounted() {
-        if (process.client && window) {
-            window.history.scrollRestoration = 'auto'
-        }
-    },
+    // mounted() {
+    //     if (process.client && window) {
+    //         window.history.scrollRestoration = 'auto'
+    //     }
+    // },
 }
 </script>

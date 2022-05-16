@@ -26,7 +26,7 @@ export default {
                     hid: 'theme-color',
                     name: 'theme-color',
                     media: '(prefers-color-scheme: dark)',
-                    content: '#121221',
+                    content: '#0ed8a5',
                 },
                 {
                     hid: 'author',
@@ -88,6 +88,7 @@ export default {
         }
     },
 
+    //! NE ZABORAVI OVO ZA PRODUCTION, PRE BUILDA. DA UGASIS DEVTOOLS
     vue: {
         config: {
             productionTip: true,

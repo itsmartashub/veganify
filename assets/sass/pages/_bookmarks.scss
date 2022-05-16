@@ -1,5 +1,11 @@
 .bookmarks {
     @extend .home;
+
+    @include device(tab-to-phoneland) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .nobookmarks {
