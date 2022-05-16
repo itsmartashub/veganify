@@ -5,7 +5,6 @@
                 class="pagination__item pagination__item--prev"
                 title="Previous Page"
             >
-                <!-- <a href="#scroll-to"> -->
                 <button
                     class="pagination__btn pagination__btn--prev btn"
                     @click="goToPreviousPage"
@@ -15,7 +14,6 @@
                 >
                     Prev
                 </button>
-                <!-- </a> -->
             </li>
 
             <li class="pagination__item pagination__item--pages">
@@ -25,7 +23,6 @@
                         :key="index"
                         :title="`Page ${page.number}`"
                     >
-                        <!-- <a href="#scroll-to"> -->
                         <button
                             class="pagination__btn btn"
                             @click="goToPage(page.number)"
@@ -39,7 +36,6 @@
                         >
                             {{ page.number }}
                         </button>
-                        <!-- </a> -->
                     </li>
                 </ul>
             </li>
@@ -48,7 +44,6 @@
                 class="pagination__item pagination__item--next"
                 title="Next Page"
             >
-                <!-- <a href="#scroll-to"> -->
                 <button
                     class="pagination__btn pagination__btn--next btn"
                     :class="{ 'pagination__btn--disabled': isLastPage }"
@@ -58,7 +53,6 @@
                 >
                     Next
                 </button>
-                <!-- </a> -->
             </li>
         </ul>
     </div>

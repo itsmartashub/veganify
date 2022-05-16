@@ -6,6 +6,7 @@
 // // this goes just before app.use(nuxt.render)
 // app.use(cookieParser())
 
-export default async ({ store, app }) => {
+export default async ({ store }) => {
     await store.dispatch('recipes/fetchAllInOnce')
+    // await store.dispatch('recipes/promiseAllFn')
 }

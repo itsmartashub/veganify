@@ -1,45 +1,59 @@
 <template>
-    <transition name="recipecards">
-        <section
-            class="recipecards"
-            ref="recipecards"
-            id="recipecards"
-            v-if="!isWaiting"
-        >
-            <h2
-                class="recipecards__title"
-                v-if="
-                    !(
-                        $route.name === 'bookmarks' ||
-                        $route.name === 'smoothies'
-                    )
-                "
+    <div>
+        <transition name="recipecards">
+            <section
+                class="recipecards"
+                ref="recipecards"
+                id="recipecards"
+                v-if="!isWaiting && !err402"
             >
-                <span v-if="activeRecipes[0]">
-                    {{ categoryName === 'ALL' ? 'ALL RECIPES' : categoryName }}
-                </span>
-                <span v-else> OH, NO 😶 </span>
-            </h2>
-            <h2 class="recipecards__title" v-if="$route.name === 'bookmarks'">
-                <span>BOOKMARKS</span>
-            </h2>
-            <h2 class="recipecards__title" v-if="$route.name === 'smoothies'">
-                <span>SMOOTHIES</span>
-            </h2>
+                <h2
+                    class="recipecards__title"
+                    v-if="
+                        !(
+                            $route.name === 'bookmarks' ||
+                            $route.name === 'smoothies'
+                        )
+                    "
+                >
+                    <span v-if="activeRecipes[0]">
+                        {{
+                            categoryName === 'ALL'
+                                ? 'ALL RECIPES'
+                                : categoryName
+                        }}
+                    </span>
+                    <span v-else> OH, NO 😶 </span>
+                </h2>
+                <h2
+                    class="recipecards__title"
+                    v-if="$route.name === 'bookmarks'"
+                >
+                    <span>BOOKMARKS</span>
+                </h2>
+                <h2
+                    class="recipecards__title"
+                    v-if="$route.name === 'smoothies'"
+                >
+                    <span>SMOOTHIES</span>
+                </h2>
 
-            <section class="recipecards__wrapper" ref="recipecards__wrapper">
-                <template v-for="activeRecipe in paginatedRecipes">
-                    <RecipeCard
-                        :recipe="activeRecipe"
-                        :key="activeRecipe.id"
-                        :category="categoryName"
-                    />
-                </template>
-            </section>
+                <section
+                    class="recipecards__wrapper"
+                    ref="recipecards__wrapper"
+                >
+                    <template v-for="activeRecipe in paginatedRecipes">
+                        <RecipeCard
+                            :recipe="activeRecipe"
+                            :key="activeRecipe.id"
+                            :category="categoryName"
+                        />
+                    </template>
+                </section>
 
-            <Pagination />
+                <Pagination />
 
-            <!-- <template>
+                <!-- <template>
                 <TransitionGroup
                     appear
                     name="page"
@@ -58,13 +72,18 @@
 
                 <Pagination />
             </template> -->
+            </section>
+        </transition>
 
+        <transition name="recipecards">
             <Notify
-                :recipeNotifyText="recipeNotifyText"
-                v-if="!activeRecipes[0]"
+                :notifyText="notifyText"
+                v-if="
+                    (err402 && !isWaiting) || (!activeRecipes[0] && !isWaiting)
+                "
             />
-        </section>
-    </transition>
+        </transition>
+    </div>
 </template>
 
 <script>
@@ -73,8 +92,8 @@ export default {
         categoryName() {
             return this.$store.state.recipes.categoryName
         },
-        recipeNotifyText() {
-            return this.$store.state.recipes.recipeNotifyText
+        notifyText() {
+            return this.$store.state.recipes.notifyText
         },
         paginatedRecipes() {
             return this.$store.getters['pagination/getPaginatedRecipes']
@@ -87,6 +106,9 @@ export default {
         },
         isWaiting() {
             return this.$store.state.app.isWaiting
+        },
+        err402() {
+            return this.$store.state.recipes.err402
         },
     },
 }

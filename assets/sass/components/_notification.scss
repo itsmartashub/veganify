@@ -59,7 +59,7 @@
         }
 
         &--add {
-            --content-icon: '✅';
+            --content-icon: '✔️';
 
             background-image: linear-gradient(
                 var(--grd-deg),
@@ -69,8 +69,7 @@
 
             p::before {
                 @include device(tab) {
-                    color: hsl(var(--clr_accent));
-                    background-color: hsl(var(--clr_accent));
+                    background-color: hsl(var(--clr_white));
                     -webkit-background-clip: text;
                     background-clip: text;
                     -webkit-text-fill-color: transparent;

@@ -2,12 +2,17 @@
     --svg_size: 3.5rem;
     grid-area: nav;
     @extend %nav-sidebar-shared;
+
     @extend %d--flex;
     align-items: center;
     flex-direction: column;
     flex: 1;
     @extend %txt-center;
     padding: 4rem 0.5rem;
+
+    @include device(tab-landrot) {
+        padding: 2.2rem 1rem;
+    }
 
     svg {
         overflow: visible;
@@ -101,7 +106,18 @@
         }
         .logo__veganify {
             transition: transform 0.5s $outBack;
+
+            @include device(tab-landrot) {
+                display: none;
+            }
         }
+        // .logo__svg-g {
+        //     z-index: var(--z-nav-tooltip);
+        //     transform: translateZ(0);
+        //     // fill: hsl(var(--clr_white));
+        //     // stroke: hsl(var(--clr_white));
+        // }
+
         &:hover,
         &:focus {
             .logo__svg {
@@ -149,8 +165,16 @@
             display: flex;
             align-items: center;
             flex-direction: column;
-            p {
+
+            .logo__veganify {
                 display: none;
+            }
+
+            &:hover,
+            &:focus {
+                .logo__veganify {
+                    transform: none;
+                }
             }
         }
     }

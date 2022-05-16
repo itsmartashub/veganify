@@ -22,8 +22,11 @@
             position: relative;
             z-index: 1;
         }
-        @include device(tab) {
-            --recipeitem-header-height: 38vmax;
+        // @include device(tab) {
+        // --recipeitem-header-height: 38vmax;
+        // }
+        @include device(phone) {
+            --recipeitem-header-height: 50vmax;
         }
 
         &-mobilefigure {

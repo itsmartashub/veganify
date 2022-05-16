@@ -9,6 +9,7 @@
 .categories .hooper {
     min-height: 28rem;
     z-index: var(--z-hooper-cat);
+    @extend %scroll-smooth-iphone;
 
     @include device(phone-land) {
         padding: 0 2rem;
@@ -19,6 +20,7 @@
         justify-content: flex-start;
         align-content: center;
         padding: 4rem 0;
+        @extend %scroll-smooth-iphone;
     }
     &-slide {
         max-width: calc(6rem + var(--category-width));
@@ -59,6 +61,11 @@
             }
         }
     }
+    &-indicators {
+        .is-active {
+            background-color: hsl(var(--clr_accent)) !important;
+        }
+    }
     &-indicator {
         background-color: hsl(var(--clr_white));
         width: 1.65rem;
@@ -66,10 +73,19 @@
         margin: 0 3px;
         transition: background-color 0.5s;
 
-        &.is-active,
         &:hover,
-        &:focus {
+        &:focus,
+        &:active {
             background-color: hsl(var(--clr_accent));
+        }
+
+        @include device(tab) {
+            transition: none;
+
+            &:hover,
+            &:focus {
+                background-color: hsl(var(--clr_white));
+            }
         }
     }
 
@@ -156,7 +172,7 @@
     }
     &-indicator {
         background: hsl(var(--clr_white));
-        transition: background 0.3s, opacity 0.3s;
+        transition: background-color 0.3s, opacity 0.3s;
 
         &:hover,
         &:focus {
@@ -216,13 +232,27 @@
 }
 
 body.dark {
+    .hooper-indicators {
+        .is-active {
+            background-color: hsl(var(--clr_black));
+            opacity: 0.5;
+        }
+    }
     .hooper-indicator {
         background-color: hsl(var(--clr_white));
 
-        &.is-active,
         &:hover,
         &:focus {
             background-color: hsl(var(--clr_black));
+        }
+
+        @include device(tab) {
+            transition: none;
+
+            &:hover,
+            &:focus {
+                background-color: transparent;
+            }
         }
     }
 }

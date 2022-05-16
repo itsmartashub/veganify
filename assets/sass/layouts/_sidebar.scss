@@ -5,7 +5,7 @@
     justify-content: center;
     grid-gap: 2rem;
     padding: 5vh 2vw;
-    overflow-y: overlay;
+    overflow-y: scroll;
 
     @include device(laptop) {
         --radius-nav-sidebar: 7.8rem;

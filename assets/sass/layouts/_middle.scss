@@ -5,6 +5,8 @@
     display: grid;
     align-content: flex-start;
     grid-gap: 5vw;
+    scroll-behavior: smooth;
+    @extend %scroll-smooth-iphone;
 
     @include device(phone-land) {
         --padding-middle: 0;
@@ -12,5 +14,9 @@
 
     @include device(phone) {
         grid-gap: 10vw;
+    }
+
+    .scrollTo {
+        @extend %scroll-smooth-iphone;
     }
 }

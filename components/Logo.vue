@@ -23,7 +23,7 @@
                 <feComposite in="SourceGraphic" />
             </filter>
         </defs>
-        <g transform="translate(3.137 8.111)">
+        <g transform="translate(3.137 8.111)" class="logo__svg-g">
             <g
                 transform="matrix(1, 0, 0, 1, -3.14, -8.11)"
                 filter="url(#Subtraction_2)"

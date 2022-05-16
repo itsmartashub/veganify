@@ -26,11 +26,22 @@
             @content;
         } // 660/16
     }
+    @if $bp == tab-landrot {
+        @media only screen and (max-width: 56.25em) and (orientation: landscape) {
+            @content;
+        } // 500/16
+    }
     @if $bp == tab {
         @media only screen and (max-width: 56.25em) {
             @content;
         } // 900/16
     }
+
+    // @if $bp == tab-n-landpos {
+    //     @media only screen and (max-width: 56.25em) {
+    //         @content;
+    //     } // 900/16
+    // }
     @if $bp == tab-mid {
         @media only screen and (max-width: 65.625em) {
             @content;

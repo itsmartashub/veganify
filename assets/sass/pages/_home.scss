@@ -4,6 +4,7 @@
     width: 100%;
     overflow-y: scroll;
     scroll-behavior: smooth;
+    @extend %scroll-smooth-iphone;
     padding: var(--padding-home);
     @extend %d--grid;
     justify-content: center;
