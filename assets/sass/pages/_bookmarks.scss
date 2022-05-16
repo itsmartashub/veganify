@@ -3,40 +3,57 @@
 
     @include device(tab-to-phoneland) {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-    }
-}
-
-.nobookmarks {
-    grid-area: mid;
-    align-content: center;
-    place-items: center;
-    grid-gap: 5vh;
-    font-size: 2.5rem;
-    @extend %txt-center;
-
-    .icontainer--bggreen {
-        --icontainer_size: 10rem;
-        border-radius: var(--radius-search);
+        overflow: visible;
     }
 
-    svg {
-        width: calc(var(--icontainer_size) / 2);
+    .bookmarked {
+        align-self: flex-start;
     }
 
-    &__title {
-        @extend %txt-uppercase;
-        font-size: inherit;
-        @extend %fw-400;
-        margin-bottom: 2rem;
+    .middle {
+        @extend %pos-rel;
+        @extend %flex-center;
+        @extend %h-100;
     }
-    &__subtitle {
-        font-size: inherit;
-        @extend %fw-500;
+
+    .header {
+        margin-bottom: 5.5rem;
     }
-    &__title,
-    &__subtitle {
-        color: hsl(var(--clr_accent));
+
+    .nobookmarked {
+        @extend %d--grid;
+        align-self: center;
+        justify-items: center;
+        font-size: 2.5rem;
+        @extend %txt-center;
+        border: 1px solid blue;
+        align-self: center;
+        width: max-content;
+
+        .icontainer--bggreen {
+            --icontainer_size: 10rem;
+            border-radius: var(--radius-search);
+        }
+
+        svg {
+            width: calc(var(--icontainer_size) / 2);
+        }
+
+        &__title {
+            @extend %txt-uppercase;
+            font-size: inherit;
+            @extend %fw-400;
+            margin-bottom: 2rem;
+        }
+        &__subtitle {
+            font-size: inherit;
+            @extend %fw-500;
+        }
+        &__title,
+        &__subtitle {
+            color: hsl(var(--clr_accent));
+        }
     }
 }

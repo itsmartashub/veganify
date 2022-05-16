@@ -1,7 +1,7 @@
 <template>
     <div>
         <Nuxt />
-        <!-- <div class="bp"></div> -->
+        <div class="bp"></div>
         <!-- <NotificationList /> -->
     </div>
 </template>
