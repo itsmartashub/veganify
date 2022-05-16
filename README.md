@@ -1,18 +1,3 @@
 # Veganify is website for searching vegetarian recipes using spoonacular API
 
-## Build Setup
-
-```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
+![veganify-github-template-imgs](https://user-images.githubusercontent.com/44645238/168633083-e569dee7-4335-4fd0-8e95-c36d14917636.png)
