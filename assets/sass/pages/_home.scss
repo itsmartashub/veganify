@@ -24,6 +24,9 @@
         display: block;
         padding-right: var(--padding-home);
         padding-bottom: 22vh;
+
+        width: 100vw;
+        overflow-x: hidden;
     }
 
     @include device(phone) {
