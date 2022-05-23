@@ -2,22 +2,21 @@
     grid-area: mid;
 
     padding: 0 var(--padding-middle);
-    display: grid;
-    align-content: flex-start;
-    justify-content: center;
-    grid-gap: 5vw;
-    scroll-behavior: smooth;
-    @extend %scroll-smooth-iphone;
+    @extend %w-100;
+    // scroll-behavior: smooth;
+    // @extend %scroll-smooth-iphone;
 
-    @include device(phone-land) {
+    @include device(tab-to-phoneland) {
         --padding-middle: 0;
     }
 
-    @include device(phone) {
-        grid-gap: 10vw;
-    }
-
-    .scrollTo {
+    .scroll-to {
+        padding-top: 8rem;
         @extend %scroll-smooth-iphone;
+        @extend %w-100;
+
+        @include device(laptop) {
+            padding-top: 5rem;
+        }
     }
 }

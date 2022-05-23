@@ -37,11 +37,6 @@
         } // 900/16
     }
 
-    // @if $bp == tab-n-landpos {
-    //     @media only screen and (max-width: 56.25em) {
-    //         @content;
-    //     } // 900/16
-    // }
     @if $bp == tab-mid {
         @media only screen and (max-width: 65.625em) {
             @content;

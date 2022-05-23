@@ -4,10 +4,11 @@
     @extend %flex-center;
     flex-wrap: wrap-reverse;
     color: hsl(var(--clr_accent));
-    // align-self: flex-start;
+    margin-bottom: 4vw;
 
-    // margin-bottom: 5vw;
-
+    // @include device(laptop) {
+    //     margin-bottom: 2vw;
+    // }
     @include device(phone) {
         padding: 0 3rem;
     }
@@ -25,6 +26,7 @@
         flex: 1;
         min-width: 40rem;
         max-width: 60rem;
+        // width: 60rem;
 
         @extend %d--flex;
         align-items: center;

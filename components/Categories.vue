@@ -55,9 +55,7 @@ export default {
             categories: [
                 {
                     id: 1,
-                    svg: `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 34.621 23.391"><defs><linearGradient id="a" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="hsl(var(--clr_grd_1))"/><stop offset="1" stop-color="hsl(var(--clr_grd_2))"/></linearGradient><filter id="c" x="0" y="0" width="34.621" height="23.391" filterUnits="userSpaceOnUse"><feOffset dy="3" input="SourceAlpha"/><feGaussianBlur stdDeviation="2.5" result="d"/><feFlood flood-opacity="0.161"/><feComposite operator="in" in2="d"/><feComposite in="SourceGraphic"/></filter></defs><g transform="translate(7.5 0.287)"><path d="M19.411,16.44h0l-2.692.005L9.541,4.464,2.319,16.476,0,16.481,9.736,0l9.675,16.44Z" transform="matrix(-1, 0.017, -0.017, -1, 19.696, 16.478)" fill="url(#a)"/><g transform="matrix(1, 0, 0, 1, -7.5, -0.29)" filter="url(#c)"><path d="M19.483,8.053h-2.7L9.554,2.184,2.328,8.052H0L9.741,0l9.742,8.052Z" transform="translate(7.64 4.5) rotate(1)" fill="url(#a)"/></g></g></svg>`,
-
-                    // svg: `<svg viewBox="00140.1121.59" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="a" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="hsl(var(--clr_grd_1))"/><stop offset="1" stop-color="hsl(var(--clr_grd_2))"/></linearGradient><filter id="a"x="0"y="26.635" width="140.1" height="74.317" filterUnits="userSpaceOnUse"><feOffset dy="3" input="SourceAlpha"/><feGaussianBlur result="b" stdDeviation="2.5"/><feFlood flood-opacity=".161"/><feComposite in2="b" operator="in"/><feComposite in="SourceGraphic"/></filter></defs><gtransform="translate(3.1378.111)"><g transform="translate(-3.14-8.11)" filter="url(#a)"><path transform="translate(7.531.13)" d="M125.1,59.317h0l-17.348-.035L61.263,16.05,14.946,59.1,0,59.068,62.447,0l62.646,59.317Z" fill="url(#a)/></g><path transform="translate(129.46113.48)rotate(180)" d="M128.95,121.039h0l-17.886.073L63.537,32.9,15.407,121.521,0,121.587,64.89,0l64.06,121.036Z" fill="url(#a)/></g></svg>`,
+                    svg: `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14.994" height="12.738" viewBox="0 0 14.994 12.738"><defs><linearGradient id="a" x1="0.5" y1="0.424" x2="0.5" y2="0.835" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="hsl(var(--clr_grd_1))"/><stop offset="1" stop-color="hsl(var(--clr_grd_2))"/></linearGradient></defs><path d="M-313.583-244.049l-2.234,1.871-1.738,0,3.378-2.879L-318-251.574l2.08-.008,3.173,5.306,2.457-2.094,2.332,1.99,3.161-5.245,1.792-.007-3.729,6.3,3.729,3.181-2.017,0-2.4-2.013-3.126,5.278Zm3.186,1.709,1.73-2.87-1.764-1.478-1.71,1.432Zm7.387.185Z" transform="translate(318.003 251.631)" fill="url(#a)"/></svg>`,
 
                     name: 'ALL',
                     count: 5017,
@@ -96,7 +94,7 @@ export default {
 
             hooperSettings: {
                 itemsToShow: 2,
-                itemsToSlide: 3,
+                // itemsToSlide: 2,
                 // transition: 500,
                 centerMode: false,
                 infiniteScroll: false,
@@ -106,20 +104,18 @@ export default {
                 breakpoints: {
                     320: {
                         itemsToShow: 2,
-                        // itemsToSlide: 4,
                     },
                     360: {
                         // itemsToShow: 3,
+                        // itemsToShow: 2,
                     },
                     400: {
                         // itemsToShow: 2,
                     },
                     500: {
                         // itemsToShow: 2,
-                        centerMode: true,
                     },
                     600: {
-                        // itemsToShow: 5.2,
                         itemsToShow: 3,
                         itemsToSlide: 2,
                     },

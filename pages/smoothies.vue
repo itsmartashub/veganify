@@ -1,11 +1,11 @@
 <template>
-    <div class="smoothies" ref="smoothies">
+    <div class="smoothies">
         <Navigation />
 
         <main class="middle">
             <Header />
 
-            <div class="scrollTo" id="scroll-to">
+            <div class="scroll-to" id="scroll-to">
                 <WaitingPlaceholder />
                 <RecipeCards />
             </div>
@@ -14,8 +14,6 @@
         </main>
 
         <Sidebar :popularRecipes="popularSmoothies" />
-
-        <!-- <NotificationList /> -->
     </div>
 </template>
 

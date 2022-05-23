@@ -137,14 +137,14 @@
 }
 
 %nav-sidebar-shared {
-    height: var(--nav-sidebar-height);
-    background: var(--clr_grd_bg);
-    color: hsl(var(--clr_white));
-    @extend %box-shadow;
     @extend %pos-stck;
     top: 0;
     left: 0;
+    height: var(--nav-sidebar-height);
+    background: var(--clr_grd_bg);
+    color: hsl(var(--clr_white));
     border-radius: var(--radius-nav-sidebar);
+    @extend %box-shadow;
 }
 %will-change {
     will-change: transform, opacity;

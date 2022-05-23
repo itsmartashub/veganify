@@ -51,6 +51,10 @@ export default {
             if (this.$route.name === 'smoothies')
                 return 'Which smoothie do you want to drink?'
         },
+
+        errNoRequredItem() {
+            return this.$store.state.recipes.errNoRequredItem
+        },
     },
 
     methods: {
@@ -61,16 +65,11 @@ export default {
             this.$el.querySelector('.header__search').blur()
             this.$store.commit('pagination/SET_CURR_PAGE', 1)
 
+            this.$store.commit('recipes/SET_NO_REQUIRED_ITEM', false)
+
             this.searchInput = this.searchInput.replaceAll(/[$.]+/g, '')
 
             if (this.$route.name === 'smoothies') {
-                // this.$store.commit(
-                //     'recipes/SET_SEARCHED_TERM_AND_IS_SMOOTHIE',
-                //     {
-                //         searchedTerm: this.searchInput,
-                //         isSmoothie: true,
-                //     }
-                // )
                 await this.$store.dispatch('recipes/fetchSearchedRecipes', {
                     searchedTerm: this.searchInput,
                     isSmoothie: true,
@@ -86,11 +85,6 @@ export default {
 
             this.$store.commit('app/SET_HIDE_CATEGORIES', true)
 
-            // this.$store.commit('recipes/SET_SEARCHED_TERM_AND_IS_SMOOTHIE', {
-            //     searchedTerm: this.searchInput,
-            //     isSmoothie: false,
-            // })
-
             await this.$store.dispatch('recipes/fetchSearchedRecipes', {
                 searchedTerm: this.searchInput,
                 isSmoothie: false,
@@ -103,7 +97,7 @@ export default {
             })
 
             this.$store.commit('app/SET_SCROLL_INTO_VIEW', {
-                _selector: '.home .scrollTo',
+                _selector: '.home .scroll-to',
             })
         },
 

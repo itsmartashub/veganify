@@ -1,36 +1,29 @@
 .bookmarks {
     @extend .home;
 
-    @include device(tab-to-phoneland) {
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        overflow: visible;
-    }
-
     .bookmarked {
         align-self: flex-start;
-    }
-
-    .middle {
-        @extend %pos-rel;
-        @extend %flex-center;
-        @extend %h-100;
+        @extend %w-100;
     }
 
     .header {
-        margin-bottom: 5.5rem;
+        margin-bottom: 2rem;
     }
 
     .nobookmarked {
         @extend %d--grid;
         align-self: center;
         justify-items: center;
-        grid-gap: 2.5rem;
+        align-content: center;
+        grid-gap: 2.5rem 0;
         font-size: 2.5rem;
         @extend %txt-center;
-        align-self: center;
-        width: max-content;
+        @extend %h-100;
+
+        @include device(tab-to-phoneland) {
+            margin-top: 20vh;
+            width: 100vw;
+        }
 
         .icontainer--bggreen {
             --icontainer_size: 10rem;

@@ -6,7 +6,7 @@
             <section class="bookmarked" v-if="bookmarks[0]">
                 <Header />
 
-                <div class="scrollTo" id="scroll-to">
+                <div class="scroll-to" id="scroll-to">
                     <RecipeCards />
                 </div>
 

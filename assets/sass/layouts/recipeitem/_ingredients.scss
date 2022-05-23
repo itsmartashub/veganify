@@ -11,6 +11,14 @@
         box-shadow: var(--box_shadow_accent);
         border-radius: var(--radius-ingredients-card);
         line-height: 1.2;
+        margin-right: 2vw;
+
+        @include device(tab-mid) {
+            margin-right: 3vw;
+        }
+        @include device(phone-land) {
+            margin-right: 5vw;
+        }
 
         &--imgwrapper {
             --size: 4.5rem;

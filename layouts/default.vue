@@ -1,23 +1,19 @@
 <template>
     <div>
         <Nuxt />
-        <div class="bp"></div>
-        <!-- <NotificationList /> -->
+        <!-- <div class="bp"></div> -->
     </div>
 </template>
 <script>
 export default {
     watch: {
         $route() {
-            // console.log(this.$store.state.app.notifications.length)
             this.$store.commit('app/CLEAR_NOTIFICATIONS')
-            // console.log(this.$store.state.app.notifications.length)
+            this.$store.commit('recipes/SET_NO_REQUIRED_ITEM', false)
         },
     },
-    // mounted() {
-    //     if (process.client && window) {
-    //         window.history.scrollRestoration = 'auto'
-    //     }
-    // },
+    mounted() {
+        window.history.scrollRestoration = 'auto'
+    },
 }
 </script>
