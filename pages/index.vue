@@ -10,7 +10,7 @@
                 <!-- <Categories v-if="false" /> -->
             </transition>
 
-            <div class="scrollTo" id="scroll-to">
+            <div class="scroll-to" id="scroll-to">
                 <WaitingPlaceholder />
                 <RecipeCards :category="categoryName" />
             </div>

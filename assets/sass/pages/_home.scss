@@ -1,7 +1,7 @@
 .home {
     @extend %pos-rel;
     height: 100vh; //! mora da se odredi ova visina zbog nava i sidebara
-    width: 100%;
+    @extend %w-100;
     overflow-y: scroll;
     scroll-behavior: smooth;
     @extend %scroll-smooth-iphone;
@@ -9,7 +9,6 @@
     @extend %d--grid;
     justify-content: center;
     grid-auto-flow: column;
-
     grid-template-areas: 'nav mid side';
     grid-template-columns: minmax(0, max-content) minmax(0, 13fr) minmax(
             30rem,
@@ -18,37 +17,16 @@
 
     @include device(tab-land) {
         grid-template-areas: 'nav mid mid';
+        padding-right: 0;
     }
 
     @include device(tab-to-phoneland) {
-        // grid-template-areas:
-        //     'mid'
-        //     'nav';
-        // grid-template-columns: 1fr;
-
         display: block;
-        // grid-template-rows: 1fr 1fr;
+        padding-right: var(--padding-home);
+        padding-bottom: 22vh;
     }
 
-    // @include device(phone-port-land) {
-    //     grid-template-areas:
-    //         'mid'
-    //         'nav';
-    //     grid-template-columns: 1fr;
-    // }
-
-    // @include device(phone) {
-    //     // width: 100%;
-
-    // }
+    @include device(phone) {
+        padding-bottom: 28vh;
+    }
 }
-
-// @supports not (grid-template-areas: 'mid' 'nav') {
-//     @include device(tab-to-phoneland) {
-//         .home {
-//             display: flex;
-//             background-color: red;
-//         }
-//     }
-//     /* Isolated code for non-support of grid */
-// }

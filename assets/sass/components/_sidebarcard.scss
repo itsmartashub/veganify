@@ -1,8 +1,18 @@
 .sidebarcards {
-    @extend %d--grid;
-    justify-content: center;
-    align-content: space-around;
-    grid-gap: 1vmin;
+    // @extend %d--grid;
+    // justify-content: center;
+    // grid-gap: 5vh 0;
+
+    @extend %d--flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 3vh;
+
+    // & > * {
+    //     flex-grow: 0;
+    //     flex-shrink: 0;
+    //     flex-basis: 15rem;
+    // }
 
     @include device(tab-land) {
         display: none;
@@ -17,6 +27,7 @@
     @extend %pos-rel;
     width: 100%;
     min-height: 14rem;
+    // min-height: 14rem;
     // height: 15vh;
     padding: 2.5vh 1.6vw;
     @extend %d--grid;

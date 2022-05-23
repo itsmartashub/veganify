@@ -88,7 +88,7 @@ export default {
         }
     },
 
-    //! NE ZABORAVI OVO ZA PRODUCTION, PRE BUILDA. DA UGASIS DEVTOOLS
+    //! NE ZABORAVI OVO ZA PRODUCTION, PRE BUILDA. DA UGASIS DEVTOOLS (devtools: false,) !!!
     vue: {
         config: {
             productionTip: true,

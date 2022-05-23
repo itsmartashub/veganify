@@ -122,7 +122,7 @@
         <BtnThemeToggle />
     </aside>
 </template>
-]
+
 <script>
 export default {
     computed: {
@@ -140,6 +140,7 @@ export default {
         clickOnLink(linkName) {
             if (this.$route.name !== linkName) return
             this.$store.commit('pagination/SET_CURR_PAGE', 1)
+            this.$store.commit('recipes/SET_NO_REQUIRED_ITEM', false)
 
             if (linkName === 'index') {
                 this.$store.commit(

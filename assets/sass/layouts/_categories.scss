@@ -1,29 +1,19 @@
 .categories {
-    @extend %txt-center;
-    overflow-x: hidden;
-    overflow-y: visible;
-    padding: 2rem;
-
     color: hsl(var(--clr_white));
+    @extend %txt-center;
+    overflow: hidden;
+    padding: 2rem 0;
 
-    @include device(tab) {
-        grid-gap: 1rem;
-    }
-    @include device(phone) {
-        padding: 2rem 0;
-    }
+    // background-color: hsl(var(--clr_accent) / 0.1);
+    // border-radius: var(--radius-category);
 
-    // &__hooper-wrapper {
-    //     overflow: hidden;
-    //     width: 100%;
-    //     display: block;
-    //     margin: 0 auto;
-    // }
+    @include device(tab-to-phoneland) {
+        justify-self: center;
+        width: 100vw;
+    }
 
     &__title {
         @extend %fw-600;
-        // @extend %overflow-hidden;
-        // padding-top: 2rem;
         color: var(--clr_black_to_accent);
         margin-bottom: 4rem;
 
@@ -37,27 +27,25 @@
     }
 
     &__category {
-        // min-width: max-content;
-        // width: 100vw;
-        // max-width: 16rem;
         width: var(--category-width);
         height: var(--category-height);
         background: var(--clr_grd_bg);
         color: currentColor;
-        @extend %w-100;
         padding: 2.2rem 4rem;
-        display: flex;
+        @extend %flex-center;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         @extend %pos-rel;
         @extend %cursor;
         @extend %box-shadow;
         border-radius: var(--radius-category);
-        margin-right: 2rem;
 
         * + * {
             margin-top: 1.5rem;
+            // margin-left: 2rem;
+        }
+
+        @include device(tab-to-phoneland) {
+            margin-left: 2rem;
         }
 
         &--active,
@@ -72,7 +60,8 @@
                 }
             }
             .categories__name {
-                transform: translateY(-190%);
+                // transform: translateY(-190%);
+                transform: translateY(-5rem);
             }
             .categories__counter {
                 transform: translateY(-10%) scale(1);
@@ -102,6 +91,13 @@
         @extend %fw-500;
         letter-spacing: 1px;
         transition: transform 0.5s $outSmooth;
+
+        @include device(phone) {
+            font-size: 2rem;
+        }
+        @include device(phone-to-ant) {
+            font-size: 1.8rem;
+        }
     }
 
     &__counter {

@@ -1,5 +1,8 @@
 <template>
-    <div class="recipecards__notifysubtitle notify" v-html="notifyText"></div>
+    <section class="notify">
+        <h2 class="notify__title">OOOPSYFIED 😶</h2>
+        <div class="notify__content" v-html="notifyText"></div>
+    </section>
 </template>
 
 <script>

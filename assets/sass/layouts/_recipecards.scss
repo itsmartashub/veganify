@@ -1,38 +1,53 @@
 .recipecards {
+    --min-width-recipecard: 24.5rem;
+    --max-width-recipecard: 27rem;
     @extend %txt-center;
     @extend %pos-rel;
+    padding: 0 var(--padding-home);
 
-    @include device(tab-to-phoneland) {
-        padding-bottom: 20vh;
+    @include device(tab-landrot) {
+        --min-width-recipecard: 22rem;
+        --max-width-recipecard: 25rem;
     }
 
-    // margin-top: 5vw;
+    @include device(phone-land) {
+        --min-width-recipecard: 20rem;
+        --max-width-recipecard: 23rem;
+    }
+    @include device(phone) {
+        --min-width-recipecard: 18rem;
+        --max-width-recipecard: 20rem;
+    }
+    @include device(phone-to-ant) {
+        --min-width-recipecard: 20rem;
+        --max-width-recipecard: 22rem;
+    }
 
     &__wrapper {
-        // --min-width-recipecard: 22rem;
-
-        @extend %d--flex;
-        flex-wrap: wrap;
+        --gap-x: 5rem;
+        --gap-y: 5rem;
+        @extend %w-100;
+        @extend %d--grid;
+        // justify-content: space-evenly;
         justify-content: center;
-        margin-top: 5rem;
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(var(--min-width-recipecard), var(--max-width-recipecard))
+        );
+        gap: var(--gap-y) var(--gap-x);
 
-        // @include device(phone) {
-        //     display: grid;
-        //     grid-template-columns: repeat(
-        //         auto-fit,
-        //         minmax(
-        //             var(--min-width-recipecard, 21rem),
-        //             var(--max-width-recipecard, 1fr)
-        //         )
-        //     );
-        //     grid-gap: 2rem 4rem;
-        //     justify-content: space-evenly;
-        //     padding: 0 2rem;
-        // }
-        // @include device(phone-ant) {
-        //     --min-width-recipecard: 17rem;
-        //     --max-width-recipecard: 25rem;
-        // }
+        @include device(tab-mid) {
+            --gap-x: 5vw;
+            --gap-y: 6rem;
+        }
+
+        @include device(phone) {
+            --gap-x: 4vw;
+            --gap-y: 4.2rem;
+        }
+        @include device(phone-to-ant) {
+            --gap-x: 5vw;
+        }
     }
 
     &__title {
@@ -40,45 +55,39 @@
         @extend %fw-600;
         @extend %txt-uppercase;
         @extend %d--inline-block;
-        margin-top: 1rem;
+        // margin-top: 1rem;
+        margin-bottom: 10rem;
         letter-spacing: 1px;
         color: var(--clr_black_to_accent);
+
+        @include device(phone) {
+            margin-bottom: 8rem;
+        }
     }
 }
 
 .recipecard {
-    --min-width-recipecard: 24.5rem;
-    --max-width-recipecard: 27rem;
-
     will-change: transform, box-shadow;
-    @extend %box-shadow;
     @extend %cursor;
-    max-width: var(--max-width-recipecard);
-    flex: 1 1 var(--min-width-recipecard);
-    border-radius: var(--radius-recipecard);
-    padding: 2.2vmin;
-    margin: 2vw;
-    background: var(--clr_white_to_grd);
-
     @extend %d--flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 2.2rem;
+    background: var(--clr_white_to_grd);
+    border-radius: var(--radius-recipecard);
     box-shadow: 0 20px 5px -20px transparent;
     transform: translateY(0);
     transition: box-shadow 0.5s $inOutBack, transform 0.8s $outSmooth;
 
-    @include device(phone-land) {
-        --min-width-recipecard: 22rem;
+    @include device(tab-landrot) {
+        padding: 2rem;
     }
-    @include device(phone) {
-        --radius-recipecard: 5rem;
-        --min-width-recipecard: 20rem;
-        padding: 3vw;
-        margin-bottom: 3.5rem;
+    @include device(phone-land) {
+        --radius-recipecard: 4.3rem;
+        padding: 2.5vw;
     }
     @include device(phone-ant) {
         --radius-recipecard: 4.5rem;
-        padding: 1.5rem;
     }
 
     &:hover,

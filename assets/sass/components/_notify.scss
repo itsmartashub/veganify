@@ -1,116 +1,127 @@
 .notify {
-    @extend %pos-rel;
+    @extend %flex-center;
+    flex-direction: column;
     width: 80%;
     margin: 0 auto;
-    margin-bottom: 35vh;
-    padding: 7rem 6.5rem;
-    font-size: 1.9rem;
-    @extend %fw-500;
-    line-height: 1.5;
-    background: var(--clr_grd_bg);
-    color: hsl(var(--clr_white));
-    @extend %d--flex;
-    flex-direction: column;
-    border-radius: var(--radius-notify);
-
-    * + * {
-        // svi childovi osim prvog
-        margin-top: 2.2rem;
-    }
+    // margin-bottom: 35vh;
 
     @include device(tab) {
         width: 90%;
     }
-    @include device(phone) {
-        padding: 5rem;
+
+    &__title {
+        @extend .recipecards__title;
+        margin-bottom: 5rem !important;
     }
 
-    &:hover,
-    &:focus {
-        &::before {
-            transform: translate3d(0, 20%, 0) rotate(180deg);
+    &__content {
+        @extend %pos-rel;
+        margin: 0 auto;
+        padding: 7rem 6.5rem;
+        font-size: 1.9rem;
+        @extend %fw-500;
+        line-height: 1.5;
+        background: var(--clr_grd_bg);
+        color: hsl(var(--clr_white));
+        @extend %d--flex;
+        flex-direction: column;
+        border-radius: var(--radius-notify);
+
+        * + * {
+            // svi childovi osim prvog
+            margin-top: 2.2rem;
         }
-    }
-
-    &::before {
-        @extend %pos-abs;
-        content: '⚠️';
-        bottom: -20%;
-        right: 0%;
-        width: fit-content;
-        font-size: 10rem;
-        transition: 0.7s transform $inOutBack;
-        z-index: 1;
-
-        // @include device(tab) {
-        //     background-color: hsl(var(--clr_accent));
-        //     -webkit-background-clip: text;
-        //     background-clip: text;
-        //     -webkit-text-fill-color: transparent;
-        // }
 
         @include device(phone) {
-            font-size: 8rem;
-        }
-    }
-
-    p {
-        --bullet_size: 1rem;
-        text-align: left;
-        @extend %pos-rel;
-        margin-left: 3rem;
-        transition: 0.5s $outBack transform;
-
-        &::before {
-            @extend %after;
-            width: var(--bullet_size);
-            height: var(--bullet_size);
-            border-radius: var(--radius-circle);
-            background: currentColor;
-            opacity: 0.7;
-            top: 50%;
-            left: 0;
-            z-index: 20;
-            transform: translate(-3rem, -50%) scale(0);
-            transition: 0.5s $outBack transform;
+            padding: 5rem;
+            * + * {
+                // svi childovi osim prvog
+                margin-top: 2.8rem;
+            }
         }
 
         &:hover,
         &:focus {
-            transform: translateX(1rem);
             &::before {
-                transform: translate(-3rem, -50%) scale(1);
+                transform: translate3d(0, 30%, 0) rotate(180deg);
             }
         }
 
-        @include device(phone) {
-            margin-left: 0;
-            &::before {
+        &::before {
+            @extend %pos-abs;
+            content: '⚠️';
+            bottom: 0%;
+            right: 0%;
+            width: fit-content;
+            font-size: 10rem;
+            z-index: 1;
+            line-height: 1;
+            transform: translate3d(0, 30%, 0) rotate(0deg);
+            transition: 0.7s transform $inOutBack;
+
+            @include device(tab) {
                 display: none;
             }
         }
-    }
 
-    a {
-        @extend %pos-rel;
-        @extend %fw-700;
-        color: currentColor;
+        p {
+            --bullet_size: 1rem;
+            text-align: left;
+            @extend %pos-rel;
+            margin-left: 3rem;
+            transition: 0.5s $outBack transform;
 
-        &::after {
-            @extend %after;
-            top: 110%;
-            left: 0;
-            background: currentColor;
-            height: 3px;
-            border-radius: 2rem;
-            opacity: 0.8;
-            transform-origin: 100% 50%;
-            transition: 0.3s transform $outSmooth;
+            &::before {
+                @extend %after;
+                width: var(--bullet_size);
+                height: var(--bullet_size);
+                border-radius: var(--radius-circle);
+                background: currentColor;
+                opacity: 0.7;
+                top: 50%;
+                left: 0;
+                z-index: 20;
+                transform: translate(-3rem, -50%) scale(0);
+                transition: 0.5s $outBack transform;
+            }
+
+            &:hover,
+            &:focus {
+                transform: translateX(1rem);
+                &::before {
+                    transform: translate(-3rem, -50%) scale(1);
+                }
+            }
+
+            @include device(phone) {
+                margin-left: 0;
+                &::before {
+                    display: none;
+                }
+            }
         }
 
-        &:hover::after,
-        &:focus::after {
-            transform: scaleX(0);
+        a {
+            @extend %pos-rel;
+            @extend %fw-700;
+            color: currentColor;
+
+            &::after {
+                @extend %after;
+                top: 110%;
+                left: 0;
+                background: currentColor;
+                height: 3px;
+                border-radius: 2rem;
+                opacity: 0.8;
+                transform-origin: 100% 50%;
+                transition: 0.3s transform $outSmooth;
+            }
+
+            &:hover::after,
+            &:focus::after {
+                transform: scaleX(0);
+            }
         }
     }
 }

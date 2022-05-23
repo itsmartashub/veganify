@@ -5,7 +5,7 @@
                 class="recipecards"
                 ref="recipecards"
                 id="recipecards"
-                v-if="!isWaiting && !err402"
+                v-if="!isWaiting && !err402 && !errNoRequredItem"
             >
                 <h2
                     class="recipecards__title"
@@ -23,7 +23,6 @@
                                 : categoryName
                         }}
                     </span>
-                    <span v-else> OH, NO 😶 </span>
                 </h2>
                 <h2
                     class="recipecards__title"
@@ -40,7 +39,7 @@
 
                 <section
                     class="recipecards__wrapper"
-                    ref="recipecards__wrapper"
+                    v-if="!isWaiting && !err402 && !errNoRequredItem"
                 >
                     <template v-for="activeRecipe in paginatedRecipes">
                         <RecipeCard
@@ -109,6 +108,9 @@ export default {
         },
         err402() {
             return this.$store.state.recipes.err402
+        },
+        errNoRequredItem() {
+            return this.$store.state.recipes.errNoRequredItem
         },
     },
 }

@@ -157,28 +157,28 @@ export default {
     data() {
         return {
             hooperSettings: {
-                itemsToShow: 2.5,
-                // centerMode: true,
+                itemsToShow: 2,
                 infiniteScroll: true,
+                trimWhiteSpace: true,
                 breakpoints: {
-                    //   360: {
-                    //     itemsToShow: 3.5,
-                    //   },
-                    //   700: {
-                    //     itemsToShow: 5,
-                    //   },
-                    //   760: {
-                    //     itemsToShow: 3,
-                    //   },
-                    1050: {
-                        itemsToShow: 4,
+                    500: {
+                        itemsToShow: 2.2,
                     },
-                    1200: {
+                    600: {
                         itemsToShow: 3,
                     },
-                    //   1400: {
-                    //     itemsToShow: 3,
-                    //   },
+                    800: {
+                        itemsToShow: 3.2,
+                    },
+                    1050: {
+                        itemsToShow: 2.2,
+                    },
+                    1200: {
+                        itemsToShow: 2.2,
+                    },
+                    1920: {
+                        itemsToShow: 2.5,
+                    },
                 },
             },
         }
