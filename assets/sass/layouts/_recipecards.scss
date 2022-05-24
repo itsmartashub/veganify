@@ -1,6 +1,9 @@
 .recipecards {
-    --min-width-recipecard: 24.5rem;
-    --max-width-recipecard: 27rem;
+    // --min-width-recipecard: 24.5rem;
+    // --max-width-recipecard: 27rem;
+
+    --min-width-recipecard: 23.5rem;
+    --max-width-recipecard: 26.5rem;
     @extend %txt-center;
     @extend %pos-rel;
     padding: 0 var(--padding-home);
@@ -20,7 +23,15 @@
     }
     @include device(phone-to-ant) {
         --min-width-recipecard: 20rem;
-        --max-width-recipecard: 22rem;
+        --max-width-recipecard: 21rem;
+    }
+    @include device(phone-ant) {
+        --min-width-recipecard: 18rem;
+        --max-width-recipecard: 19rem;
+    }
+    @include device(big) {
+        --min-width-recipecard: 23rem;
+        --max-width-recipecard: 25rem;
     }
 
     &__wrapper {
@@ -28,7 +39,6 @@
         --gap-y: 5rem;
         @extend %w-100;
         @extend %d--grid;
-        // justify-content: space-evenly;
         justify-content: center;
         grid-template-columns: repeat(
             auto-fit,
@@ -78,17 +88,6 @@
     box-shadow: 0 20px 5px -20px transparent;
     transform: translateY(0);
     transition: box-shadow 0.5s $inOutBack, transform 0.8s $outSmooth;
-
-    @include device(tab-landrot) {
-        padding: 2rem;
-    }
-    @include device(phone-land) {
-        --radius-recipecard: 4.3rem;
-        padding: 2.5vw;
-    }
-    @include device(phone-ant) {
-        --radius-recipecard: 4.5rem;
-    }
 
     &:hover,
     &:focus {
@@ -170,6 +169,29 @@
         }
     }
 
+    @include device(tab-landrot) {
+        padding: 2rem;
+    }
+    @include device(phone-land) {
+        --radius-recipecard: 4.3rem;
+        padding: 2.5vw;
+    }
+    @include device(phone) {
+        position: relative;
+
+        &:hover,
+        &:focus {
+            box-shadow: none;
+
+            .recipecard__category {
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+    @include device(phone-ant) {
+        --radius-recipecard: 4.5rem;
+    }
+
     &__figure {
         @extend %overflow-hidden;
         @extend %pos-rel;
@@ -200,6 +222,9 @@
             black 100%
         ); //! navodno za border-radius i overflow: hidden za iOS
 
+        @include device(phone) {
+            margin-bottom: 0.5rem;
+        }
         &--bg-none {
             background-image: none;
         }
@@ -309,6 +334,24 @@
                 transition: none;
             }
         }
+        @include device(phone) {
+            position: absolute;
+            top: 11.5rem;
+            left: 8rem;
+            z-index: 100;
+            transform: translate(-50%, -50%);
+            backdrop-filter: blur(5px);
+
+            &::after {
+                opacity: 0.85;
+            }
+        }
+        @include device(phone-to-ant) {
+            top: 12.5rem;
+        }
+        @include device(phone-ant) {
+            top: 11rem;
+        }
     }
     &__title {
         @extend %fw-600;
@@ -321,6 +364,9 @@
         @include device(tab) {
             transition: none;
             transform: translateY(1rem);
+        }
+
+        @include device(phone) {
         }
     }
 
