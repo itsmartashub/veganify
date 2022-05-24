@@ -29,7 +29,7 @@ export default {
                 title: 'Veganify | Smoothies',
                 description:
                     'Here are all the best vegan smoothie recipes to try: creamy and full of flavor! These plant based purees are ideal for breakfast and snacks.',
-                image: 'https://veganify.vercel.app/veganify.png',
+                image: 'https://veganify.vercel.app/veganify-og.png',
             },
         }
     },

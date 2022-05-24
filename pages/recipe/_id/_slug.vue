@@ -50,7 +50,7 @@ export default {
                         ''
                     ) ||
                     `This is a vegetarian recipe about ${this.recipeItem?.title}.`,
-                image: 'https://veganify.vercel.app/veganify.png',
+                image: 'https://veganify.vercel.app/veganify-og.png',
             },
             isMountedBtn: false,
             isMountedFigure: false,

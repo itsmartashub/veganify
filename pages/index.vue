@@ -34,7 +34,7 @@ export default {
             seo: {
                 title: 'Veganify | Home',
                 description: `Vegetarian recipes for anyone planning on trying plant-based! Whether it's breakfast, lunch, dinner or snacks - we've got you!`,
-                image: 'https://veganify.vercel.app/veganify.png',
+                image: 'https://veganify.vercel.app/veganify-og.png',
             },
             isMounted: false,
         }
