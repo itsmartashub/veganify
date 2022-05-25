@@ -66,6 +66,7 @@ export default {
                     'This is a Veganify webpage with your vegetarian-friendly bookmarked recipes',
                 image: 'https://veganify.vercel.app/veganify-og.png',
             },
+            isMounted: false,
         }
     },
 
@@ -77,17 +78,13 @@ export default {
 
     created() {
         if (process.client) {
-            // this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
-            // this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.bookmarks)
             this.$store.commit('pagination/SET_CURR_PAGE', 1)
         }
     },
     mounted() {
-        // if (process.client) {
         this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
         this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.bookmarks)
-        // this.$store.commit('pagination/SET_CURR_PAGE', 1)
-        // }
+        this.$nextTick(() => (this.isMounted = true))
     },
 }
 </script>

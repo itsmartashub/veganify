@@ -118,9 +118,9 @@
 
     @include device(tab-landrot) {
         padding: 2.2rem 1rem;
-        position: fixed;
-        top: var(--padding-home);
-        left: var(--padding-home);
+        // position: fixed;
+        // top: var(--padding-home);
+        // left: var(--padding-home);
         // position: -webkit-sticky;
         // position: sticky;
 
@@ -136,12 +136,9 @@
         --nav-height: 11rem;
         position: fixed;
         left: 50%;
-        // top: calc(100% - var(--nav-height));
-        // top: calc(100vh - calc(2 * var(--nav-height)));
         top: unset;
         bottom: 2%;
-        // transform: translate(-50%, -0%);
-        transform: translate(-50%, 0%);
+        transform: translate3d(-50%, 0, 0);
         height: var(--nav-height);
         width: calc(100% - 3 * var(--padding-home));
         padding: 0 5vw;

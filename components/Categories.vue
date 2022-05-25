@@ -27,26 +27,19 @@
                 </button>
             </Slide>
 
-            <!-- <hooper-navigation slot="hooper-addons"></hooper-navigation> -->
             <hooper-pagination slot="hooper-addons"></hooper-pagination>
         </Hooper>
     </section>
 </template>
 
 <script>
-import {
-    Slide,
-    Hooper,
-    Navigation as HooperNavigation,
-    Pagination as HooperPagination,
-} from 'hooper'
+import { Slide, Hooper, Pagination as HooperPagination } from 'hooper'
 import 'hooper/dist/hooper.css'
 
 export default {
     components: {
         Slide,
         Hooper,
-        HooperNavigation,
         HooperPagination,
     },
     data() {

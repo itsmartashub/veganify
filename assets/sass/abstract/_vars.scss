@@ -44,19 +44,13 @@
     // INDEX
     --z-nav: 900;
     --z-nav-tooltip: 910;
-    --z-hooper-cat: 700;
+    --z-hooper-cat: -1;
     --z-search: 100;
     --z-preloader: 1000;
 
-    // @include device(laptop) {
-    //     --hooper-ingr-bottom: 3rem;
-    // }
     @include device(phone) {
         --box-shadow-alpha-spread: 6px;
     }
-
-    // color: #00e6a8;
-    // color: #02caca;
 }
 
 body,
