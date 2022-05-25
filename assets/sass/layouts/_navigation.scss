@@ -9,6 +9,7 @@
     flex: 1;
     @extend %txt-center;
     padding: 4rem 0.5rem;
+    z-index: var(--z-nav-tooltip);
 
     svg {
         overflow: visible;
@@ -138,7 +139,7 @@
         left: 50%;
         top: unset;
         bottom: 2%;
-        transform: translate3d(-50%, 0, 0);
+        transform: translate(-50%, 0);
         height: var(--nav-height);
         width: calc(100% - 3 * var(--padding-home));
         padding: 0 5vw;

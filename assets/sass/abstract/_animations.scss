@@ -20,13 +20,14 @@
 }
 .nav {
     &-enter-active {
+        --delay: 0.2s;
         @extend %will-change;
         backface-visibility: hidden;
-        transition: transform 1s $outCirc, opacity 0.6s $outSmooth;
-        transition-delay: 0.2s;
+        transition: transform 1s $outCirc var(--delay),
+            opacity 0.6s $outSmooth var(--delay);
 
         @include device(tab-to-phoneland) {
-            transition-delay: 1.2s;
+            --delay: 1.2s;
         }
     }
     &-enter {
@@ -34,7 +35,7 @@
         transform: translate3d(-100%, 0, 0);
 
         @include device(tab-to-phoneland) {
-            transform: translate3d(-50%, 120%, 0);
+            transform: translate3d(-50%, 140%, 0) !important;
         }
     }
     &-enter-to {
@@ -48,10 +49,11 @@
 }
 .sidebar {
     &-enter-active {
+        --delay: 0.2s;
         @extend %will-change;
         backface-visibility: hidden;
-        transition: transform 1s $outCirc, opacity 0.6s $outSmooth;
-        transition-delay: 0.2s;
+        transition: transform 1s $outCirc var(--delay),
+            opacity 0.6s $outSmooth var(--delay);
 
         @include device(tab-land) {
             transition: none;
