@@ -31,26 +31,34 @@ export const state = () => ({
         <p>No recipes found for your query! 😶 </p>
         <p>Please try something else 🍽️</p>`,
     randomTrivia: '',
-    // apikArr: [
-    //     process.env.API_SECRET_DEFAULT,
-    //     process.env.API_SECRET_RESERVE_1,
-    //     process.env.API_SECRET_RESERVE_2,
-    //     process.env.API_SECRET_RESERVE_3,
-    //     process.env.API_SECRET_RESERVE_4,
-    //     process.env.API_SECRET_RESERVE_5_SISSY,
-    //     process.env.API_SECRET_RESERVE_6_SISSY,
-    //     process.env.API_SECRET_RESERVE_7_SISSY,
-    //     process.env.API_SECRET_RESERVE_8_SISSY,
-    //     process.env.API_SECRET_RESERVE_9_SISSY,
-    //     process.env.API_SECRET_RESERVE_10_SISSY,
-    //     process.env.API_SECRET_RESERVE_11_SISSY,
-    //     process.env.API_SECRET_RESERVE_12_SISSY,
-    //     process.env.API_SECRET_RESERVE_13_SISSY,
-    //     process.env.API_SECRET_RESERVE_14_SISSY,
-    // ],
+    apiks: [
+        process.env.APIK_DEFAULT,
+        process.env.APIK_1,
+        process.env.APIK_2,
+        process.env.APIK_3,
+        process.env.APIK_4,
+        process.env.APIK_5,
+        process.env.APIK_6,
+        process.env.APIK_7,
+        process.env.APIK_8,
+        process.env.APIK_9,
+        process.env.APIK_10,
+        process.env.APIK_11,
+        process.env.APIK_12,
+        process.env.APIK_13,
+        process.env.APIK_14,
 
-    // searched_term: '',
-    // searched_is_smoothie: false,
+        process.env.APIK_15,
+        process.env.APIK_16,
+        process.env.APIK_17,
+        process.env.APIK_18,
+        process.env.APIK_19,
+        process.env.APIK_20,
+        process.env.APIK_21,
+        process.env.APIK_22,
+        process.env.APIK_23,
+        process.env.APIK_24,
+    ],
 })
 
 export const actions = {
@@ -155,127 +163,144 @@ export const actions = {
     },
 
     async fetchAllInOnce({ commit, dispatch, state }) {
-        commit('SET_APIK', process.env.API_SECRET_DEFAULT)
+        commit('SET_APIK', process.env.APIK_DEFAULT)
 
         await dispatch('promiseAllFn')
 
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--1')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_1
-            )
-            // console.log('end--1')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--2')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_2
-            )
-            // console.log('end--2')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--3')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_3
-            )
-            // console.log('end--3')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--3')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_4
-            )
-            // console.log('end--3')
+        let api_keys = state.apiks
+        let api_keys_length = api_keys.length
+
+        for (let i = 0; i < api_keys_length; i++) {
+            if (state.apiErrMsg === 'Request failed with status code 402') {
+                // console.log(`start--${i + 1}`)
+                await dispatch('ifErr402AllRecipes', api_keys[i])
+                // console.log(`end--${i + 1}`)
+
+                if (state.apiErrMsg === '') {
+                    // console.log("state.apiErrMsg === ''")
+                    commit('SET_402', false)
+                    break
+                }
+            }
         }
 
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--5')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_5_SISSY
-            )
-            // console.log('end--5')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--6')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_6_SISSY
-            )
-            // console.log('end--6')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--7')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_7_SISSY
-            )
-            // console.log('end--7')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--8')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_8_SISSY
-            )
-            // console.log('end--8')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--9')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_9_SISSY
-            )
-            // console.log('end--9')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--10')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_10_SISSY
-            )
-            // console.log('end--10')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--11')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_11_SISSY
-            )
-            // console.log('end--11')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--12')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_12_SISSY
-            )
-            // console.log('end--12')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--13')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_13_SISSY
-            )
-            // console.log('end--13')
-        }
-        if (state.apiErrMsg === 'Request failed with status code 402') {
-            // console.log('start--14')
-            await dispatch(
-                'ifErr402AllRecipes',
-                process.env.API_SECRET_RESERVE_14_SISSY
-            )
-            // console.log('end--14')
-        }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--1')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_1
+        //     )
+        //     console.log('end--1')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--2')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_2
+        //     )
+        //     console.log('end--2')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--3')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_3
+        //     )
+        //     console.log('end--3')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--3')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_4
+        //     )
+        //     console.log('end--3')
+        // }
 
-        if (state.apiErrMsg === '') {
-            commit('SET_402', false)
-        }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--5')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_5_SISSY
+        //     )
+        //     console.log('end--5')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--6')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_6_SISSY
+        //     )
+        //     console.log('end--6')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--7')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_7_SISSY
+        //     )
+        //     console.log('end--7')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--8')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_8_SISSY
+        //     )
+        //     console.log('end--8')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--9')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_9_SISSY
+        //     )
+        //     console.log('end--9')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--10')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_10_SISSY
+        //     )
+        //     console.log('end--10')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--11')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_11_SISSY
+        //     )
+        //     console.log('end--11')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--12')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_12_SISSY
+        //     )
+        //     console.log('end--12')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--13')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_13_SISSY
+        //     )
+        //     console.log('end--13')
+        // }
+        // if (state.apiErrMsg === 'Request failed with status code 402') {
+        //     console.log('start--14')
+        //     await dispatch(
+        //         'ifErr402AllRecipes',
+        //         process.env.API_SECRET_RESERVE_14_SISSY
+        //     )
+        //     console.log('end--14')
+        // }
+
+        // if (state.apiErrMsg === '') {
+        //     commit('SET_402', false)
+        // }
     },
 
     async ifErr402AllRecipes({ state, commit, dispatch }, newApik) {
