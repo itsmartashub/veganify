@@ -21,7 +21,11 @@
     }
 
     @include device(tab-to-phoneland) {
-        display: block;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 100vh;
+        height: 100%;
         padding-right: var(--padding-home);
         padding-bottom: 22vh;
     }

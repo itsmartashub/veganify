@@ -1,9 +1,6 @@
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head({ context }) {
-        // console.log('HEAD NUXT')
-        // console.log(context.store.state.app.theme)
-
         return {
             title: 'Veganify',
             htmlAttrs: {
@@ -137,7 +134,7 @@ export default {
     ],
 
     sitemap: {
-        // hostname: process.env.BASE_URL || 'https://localhost:3000',
+        hostname: process.env.BASE_URL || 'https://localhost:3000',
         path: '/sitemap.xml',
         cacheTime: 1000 * 60 * 60 * 2,
         trailingSlash: true,

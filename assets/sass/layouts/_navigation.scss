@@ -9,10 +9,7 @@
     flex: 1;
     @extend %txt-center;
     padding: 4rem 0.5rem;
-
-    @include device(tab-landrot) {
-        padding: 2.2rem 1rem;
-    }
+    z-index: var(--z-nav-tooltip);
 
     svg {
         overflow: visible;
@@ -21,6 +18,8 @@
         stroke: hsl(var(--clr_white));
         height: var(--svg_size);
         width: auto;
+
+        // outline: 1px solid orangered;
     }
 
     &__links {
@@ -37,6 +36,7 @@
         @extend %pos-rel;
 
         svg {
+            stroke-width: 1.4px;
             transition: 0.3s transform $outBack;
         }
 
@@ -44,22 +44,20 @@
             svg {
                 stroke: none;
             }
-
-            &::before {
-                --translate: translate(-100%, 20px);
-            }
         }
 
         &::before {
-            --translate: translate(-50%, 13px);
-            --size: 0.6rem;
+            --translate-x: -50%;
+            --translate-y: 1.3rem;
+            --translate: translate(var(--translate-x), var(--translate-y));
+            --circle-size: 0.6rem;
             content: '';
             @extend %pos-abs;
             bottom: 0;
             left: 50%;
             display: inline-block;
-            width: var(--size);
-            height: var(--size);
+            width: var(--circle-size);
+            height: var(--circle-size);
             background-color: hsl(var(--clr_white));
             border-radius: var(--radius-circle);
             transform: var(--translate) scale(0);
@@ -106,17 +104,7 @@
         }
         .logo__veganify {
             transition: transform 0.5s $outBack;
-
-            @include device(tab-landrot) {
-                display: none;
-            }
         }
-        // .logo__svg-g {
-        //     z-index: var(--z-nav-tooltip);
-        //     transform: translateZ(0);
-        //     // fill: hsl(var(--clr_white));
-        //     // stroke: hsl(var(--clr_white));
-        // }
 
         &:hover,
         &:focus {
@@ -129,23 +117,41 @@
         }
     }
 
+    @include device(tab-landrot) {
+        padding: 2.2rem 1rem;
+        // position: fixed;
+        // top: var(--padding-home);
+        // left: var(--padding-home);
+        // position: -webkit-sticky;
+        // position: sticky;
+
+        &__link::before {
+            --translate-y: 10px;
+        }
+        &__logowrapper .logo__veganify {
+            display: none;
+        }
+    }
+
     @include device(tab-to-phoneland) {
+        --nav-height: 11rem;
         position: fixed;
         left: 50%;
-        top: 100%;
-        transform: translate(-50%, -110%);
+        top: unset;
+        bottom: 2%;
+        transform: translate(-50%, 0);
+        height: var(--nav-height);
+        width: calc(100% - 3 * var(--padding-home));
+        padding: 0 5vw;
         flex-direction: row;
-        align-items: center;
         justify-content: center;
-        width: 90%;
-        height: max-content;
-        padding: 4.5vmin 5vw;
         box-shadow: 0px 0px 20px 0px var(--clr_recipeitem_right_bg);
         z-index: var(--z-nav);
 
         &__links {
             grid-auto-flow: column;
             grid-gap: 10vw;
+            flex: 1;
         }
 
         &__link {
@@ -180,28 +186,24 @@
     }
 
     @include device(phone) {
-        padding: 1.2rem 5vw;
-        width: calc(100% - 4 * var(--padding-home));
+        --nav-height: 9.5rem;
+
+        &__link::before {
+            --translate-y: 10px;
+        }
     }
     @include device(phone-to-ant) {
-        padding: 3rem 5vw;
+        &__link::before {
+            --translate-y: 1rem;
+        }
     }
 
     @include device(phone-ant) {
+        --nav-height: 9rem;
         --svg_size: 3rem;
-        padding: 1.2rem 1.5rem;
 
         .themetoggle {
             --svg_size: 3rem;
-        }
-
-        &__link {
-            &::before {
-                --translate: translate(-50%, 6px);
-            }
-            &:nth-of-type(2)::before {
-                --translate: translate(-100%, 9px);
-            }
         }
     }
 }
@@ -215,4 +217,17 @@
     &:focus::before {
         transform: var(--translate) scale(0);
     }
+
+    // @include device(tab-to-phoneland) {
+    //     opacity: 1;
+
+    //     &::before {
+    //         display: none;
+    //     }
+
+    //     &:hover::before,
+    //     &:focus::before {
+    //         transform: none;
+    //     }
+    // }
 }

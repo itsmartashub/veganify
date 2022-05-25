@@ -1,4 +1,5 @@
 <template>
+    <!-- //! BEZ  v-if="isMounted" u .home nema animacije prilikom prvog dolazska na index i kad se vracamo iz recipeitem u index-->
     <div class="home" v-if="isMounted">
         <Navigation />
 
@@ -34,7 +35,7 @@ export default {
             seo: {
                 title: 'Veganify | Home',
                 description: `Vegetarian recipes for anyone planning on trying plant-based! Whether it's breakfast, lunch, dinner or snacks - we've got you!`,
-                image: 'https://veganify.vercel.app/veganify.png',
+                image: 'https://veganify.vercel.app/veganify-og.png',
             },
             isMounted: false,
         }
@@ -59,22 +60,11 @@ export default {
     },
     created() {
         this.$store.commit('recipes/SET_ACTIVE_RECIPES', this.recipeItems)
-        // this.$store.commit('pagination/SET_CURR_PAGE', 1)
         this.$store.commit('app/SET_HIDE_CATEGORIES', false)
-
-        // console.log(this.$store.state.app.notifications.length)
-        // this.$store.commit('app/CLEAR_NOTIFICATIONS')
-        // console.log(this.$store.state.app.notifications.length)
-
-        // if (process.client) {
-        //     this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
-        //     this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL')
-        // }
     },
 
     mounted() {
         this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
-        // this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL')
         this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL')
 
         this.$nextTick(() => (this.isMounted = true))

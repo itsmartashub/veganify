@@ -17,14 +17,10 @@
         }
         @include device(tab-mid) {
             --recipeitem-header-height: 40vmax;
-            // padding: 0;
             margin-bottom: 0;
             position: relative;
             z-index: 1;
         }
-        // @include device(tab) {
-        // --recipeitem-header-height: 38vmax;
-        // }
         @include device(phone) {
             --recipeitem-header-height: 50vmax;
         }
@@ -86,7 +82,7 @@
             &:hover,
             &:focus {
                 letter-spacing: initial;
-                .icontainer {
+                .icontainer--bggreen {
                     transform: translateX(-10%);
                 }
             }
@@ -95,6 +91,16 @@
                 height: var(--height-btns-tab-mid);
                 background: var(--clr_recipeitem_bg);
                 color: hsl(var(--clr_white));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-top: 0;
+                padding-bottom: 0;
+                grid-gap: 0;
+
+                span {
+                    margin-left: 1.5rem;
+                }
 
                 .icontainer--bggreen {
                     background: hsl(var(--clr_white));
@@ -106,6 +112,7 @@
                 span {
                     display: none;
                 }
+
                 .icontainer--bggreen {
                     height: var(--height-btns-tab-mid);
                     width: var(--height-btns-tab-mid);

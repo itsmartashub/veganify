@@ -48,15 +48,9 @@
     --z-search: 100;
     --z-preloader: 1000;
 
-    // @include device(laptop) {
-    //     --hooper-ingr-bottom: 3rem;
-    // }
     @include device(phone) {
         --box-shadow-alpha-spread: 6px;
     }
-
-    // color: #00e6a8;
-    // color: #02caca;
 }
 
 body,
