@@ -160,117 +160,117 @@ export const actions = {
         await dispatch('promiseAllFn')
 
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--1')
+            // console.log('start--1')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_1
             )
-            console.log('end--1')
+            // console.log('end--1')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--2')
+            // console.log('start--2')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_2
             )
-            console.log('end--2')
+            // console.log('end--2')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--3')
+            // console.log('start--3')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_3
             )
-            console.log('end--3')
+            // console.log('end--3')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--3')
+            // console.log('start--3')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_4
             )
-            console.log('end--3')
+            // console.log('end--3')
         }
 
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--5')
+            // console.log('start--5')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_5_SISSY
             )
-            console.log('end--5')
+            // console.log('end--5')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--6')
+            // console.log('start--6')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_6_SISSY
             )
-            console.log('end--6')
+            // console.log('end--6')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--7')
+            // console.log('start--7')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_7_SISSY
             )
-            console.log('end--7')
+            // console.log('end--7')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--8')
+            // console.log('start--8')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_8_SISSY
             )
-            console.log('end--8')
+            // console.log('end--8')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--9')
+            // console.log('start--9')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_9_SISSY
             )
-            console.log('end--9')
+            // console.log('end--9')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--10')
+            // console.log('start--10')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_10_SISSY
             )
-            console.log('end--10')
+            // console.log('end--10')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--11')
+            // console.log('start--11')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_11_SISSY
             )
-            console.log('end--11')
+            // console.log('end--11')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--12')
+            // console.log('start--12')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_12_SISSY
             )
-            console.log('end--12')
+            // console.log('end--12')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--13')
+            // console.log('start--13')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_13_SISSY
             )
-            console.log('end--13')
+            // console.log('end--13')
         }
         if (state.apiErrMsg === 'Request failed with status code 402') {
-            console.log('start--14')
+            // console.log('start--14')
             await dispatch(
                 'ifErr402AllRecipes',
                 process.env.API_SECRET_RESERVE_14_SISSY
             )
-            console.log('end--14')
+            // console.log('end--14')
         }
 
         if (state.apiErrMsg === '') {
