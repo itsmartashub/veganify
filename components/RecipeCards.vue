@@ -51,26 +51,6 @@
                 </section>
 
                 <Pagination />
-
-                <!-- <template>
-                <TransitionGroup
-                    appear
-                    name="page"
-                    mode="out-in"
-                    tag="section"
-                    class="recipecards__wrapper"
-                >
-                    <template v-for="activeRecipe in paginatedRecipes">
-                        <RecipeCard
-                            :recipe="activeRecipe"
-                            :key="activeRecipe.id"
-                            :category="categoryName"
-                        />
-                    </template>
-                </TransitionGroup>
-
-                <Pagination />
-            </template> -->
             </section>
         </transition>
 

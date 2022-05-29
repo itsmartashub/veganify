@@ -77,12 +77,13 @@
 }
 
 .recipecard {
+    --padding-recipecard: 2.2rem;
     will-change: transform, box-shadow;
     @extend %cursor;
     @extend %d--flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 2.2rem;
+    padding: var(--padding-recipecard);
     background: var(--clr_white_to_grd);
     border-radius: var(--radius-recipecard);
     box-shadow: 0 20px 5px -20px transparent;
@@ -170,11 +171,11 @@
     }
 
     @include device(tab-landrot) {
-        padding: 2rem;
+        --padding-recipecard: 2rem;
     }
     @include device(phone-land) {
         --radius-recipecard: 4.3rem;
-        padding: 2.5vw;
+        --padding-recipecard: 2.5vw;
     }
     @include device(phone) {
         position: relative;
@@ -199,18 +200,11 @@
         max-height: 64%;
         border-radius: calc(var(--radius-recipecard) - 0.8rem);
         margin-bottom: 1rem;
-        // background-color: #d9d9d9;
-        // background-color: hsl(var(--clr_grd_2));
         background-image: linear-gradient(
             to left,
             hsl(180, 98%, 40%),
             hsl(var(--clr_accent))
         );
-        // background-image: linear-gradient(
-        //     to left,
-        //     hsl(var(--clr_accent)),
-        //     hsl(180, 98%, 40%)
-        // );
         -webkit-backface-visibility: hidden;
         -moz-backface-visibility: hidden;
         backface-visibility: hidden;
@@ -228,9 +222,6 @@
         &--bg-none {
             background-image: none;
         }
-
-        // -webkit-transform: translate3d(0, 0, 0);
-        // -moz-transform: translate3d(0, 0, 0);
 
         &::after {
             // TODO za dark mode potamniti slike
@@ -259,12 +250,6 @@
         height: 15rem;
         @extend %w-100;
         border-radius: inherit;
-        // background-image: linear-gradient(
-        //     to right,
-        //     hsl(var(--clr_accent) / var(--gradient_opacity)) 0%,
-        //     hsl(180, 98%, 40%) 30%,
-        //     hsl(var(--clr_accent) / var(--gradient_opacity)) 100%
-        // );
         background-image: linear-gradient(
             to right,
             hsl(180 98% 40% / var(--gradient_opacity)) 0%,
@@ -273,14 +258,7 @@
         );
         background-size: 45rem 15rem;
         background-repeat: no-repeat;
-
         animation: skeletonShimmer 1s linear infinite;
-        // background-size: 100% 15rem;
-        // background-image: linear-gradient(
-        //     90deg,
-        //     hsl(var(--clr_grd_1) / var(--gradient_opacity)),
-        //     hsl(var(--clr_grd_2) / var(--gradient_opacity))
-        // );
         z-index: 3;
 
         &--animation-none {
@@ -337,7 +315,7 @@
         @include device(phone) {
             position: absolute;
             top: 11.5rem;
-            left: 8rem;
+            left: calc(var(--padding-recipecard) + 6.5rem);
             z-index: 100;
             transform: translate(-50%, -50%);
             backdrop-filter: blur(5px);
@@ -348,6 +326,7 @@
         }
         @include device(phone-to-ant) {
             top: 12.5rem;
+            // left: 7rem;
         }
         @include device(phone-ant) {
             top: 11rem;

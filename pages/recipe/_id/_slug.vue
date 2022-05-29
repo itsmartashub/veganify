@@ -39,6 +39,7 @@ export default {
     layout: 'recipeitem',
     middleware: ['redirect'],
     mixins: [SEO],
+    scrollToTop: true,
 
     data() {
         return {

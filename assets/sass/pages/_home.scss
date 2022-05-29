@@ -3,8 +3,6 @@
     height: 100vh; //! mora da se odredi ova visina zbog nava i sidebara
     @extend %w-100;
     overflow-y: scroll;
-    scroll-behavior: smooth;
-    @extend %scroll-smooth-iphone;
     padding: var(--padding-home);
     @extend %d--grid;
     justify-content: center;
@@ -26,11 +24,17 @@
         flex-direction: column;
         min-height: 100vh;
         height: 100%;
-        padding-right: var(--padding-home);
-        padding-bottom: 22vh;
+        // padding-right: var(--padding-home);
+
+        padding: 0 var(--padding-home);
+        padding-bottom: calc(2 * var(--nav-x-height));
+
+        // padding-bottom: 22vh;
+
+        // background-color: darkslategrey;
     }
 
-    @include device(phone) {
-        padding-bottom: 28vh;
-    }
+    // @include device(phone) {
+    //     padding-bottom: 28vh;
+    // }
 }

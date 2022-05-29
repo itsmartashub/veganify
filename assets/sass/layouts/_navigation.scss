@@ -134,13 +134,13 @@
     }
 
     @include device(tab-to-phoneland) {
-        --nav-height: 11rem;
+        --nav-x-height: 11rem;
         position: fixed;
         left: 50%;
         top: unset;
         bottom: 2%;
         transform: translate(-50%, 0);
-        height: var(--nav-height);
+        height: var(--nav-x-height);
         width: calc(100% - 3 * var(--padding-home));
         padding: 0 5vw;
         flex-direction: row;
@@ -186,7 +186,7 @@
     }
 
     @include device(phone) {
-        --nav-height: 9.5rem;
+        --nav-x-height: 9.5rem;
 
         &__link::before {
             --translate-y: 10px;
@@ -199,7 +199,7 @@
     }
 
     @include device(phone-ant) {
-        --nav-height: 9rem;
+        --nav-x-height: 9rem;
         --svg_size: 3rem;
 
         .themetoggle {

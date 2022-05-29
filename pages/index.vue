@@ -1,14 +1,15 @@
 <template>
     <!-- //! BEZ  v-if="isMounted" u .home nema animacije prilikom prvog dolazska na index i kad se vracamo iz recipeitem u index-->
-    <div class="home" v-if="isMounted">
+    <!-- <div class="home" v-if="isMounted"> -->
+    <div class="home">
         <Navigation />
 
         <main class="middle">
             <Header />
 
             <transition name="waiting">
-                <Categories v-if="isMounted && !err402 && !hideCategories" />
-                <!-- <Categories v-if="false" /> -->
+                <!-- <Categories v-if="isMounted && !err402 && !hideCategories" /> -->
+                <Categories v-if="!err402 && !hideCategories" />
             </transition>
 
             <div class="scroll-to" id="scroll-to">
@@ -37,7 +38,7 @@ export default {
                 description: `Vegetarian recipes for anyone planning on trying plant-based! Whether it's breakfast, lunch, dinner or snacks - we've got you!`,
                 image: 'https://veganify.vercel.app/veganify-og.png',
             },
-            isMounted: false,
+            // isMounted: false,
         }
     },
 
@@ -67,7 +68,7 @@ export default {
         this.$store.dispatch('bookmarks/setBookmarkRecipesArray')
         this.$store.commit('recipes/SET_CATEGORY_NAME', 'ALL')
 
-        this.$nextTick(() => (this.isMounted = true))
+        // this.$nextTick(() => (this.isMounted = true))
     },
 }
 </script>

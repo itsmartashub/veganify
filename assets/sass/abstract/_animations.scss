@@ -93,32 +93,33 @@
     &-enter,
     &-leave-to {
         @extend %opacity-0;
-        transform: translateY(10rem);
+        transform: translate3d(0, 10rem, 0);
     }
     &-enter-to,
     &-leave {
         @extend %opacity-1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
-.recipecard {
-    &-enter-active {
-        transition: transform 0.8s $outBack, opacity 0.8s ease;
-    }
-    &-enter,
-    &-leave-to {
-        opacity: 0;
-        transform: scale(0.7) translate3d(0, 100%, 0);
-    }
-    &-enter-to {
-        opacity: 1;
-        transform: scale(1) translate3d(0, 0%, 0);
-    }
-    &-leave-active {
-        transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-}
+// .recipecard {
+//     &-enter-active {
+//         transition: transform 0.8s $outBack, opacity 0.8s ease;
+//         transition-delay: 1.5s;
+//     }
+//     &-enter,
+//     &-leave-to {
+//         opacity: 0;
+//         transform: scale(0.7) translate3d(0, 100%, 0) rotate(40deg);
+//     }
+//     &-enter-to {
+//         opacity: 1;
+//         transform: scale(1) translate3d(0, 0%, 0) rotate(0deg);
+//     }
+//     &-leave-active {
+//         transition: transform 0.5s ease, opacity 0.5s ease;
+//     }
+// }
 
 .fadeIn {
     &-enter-active,
@@ -171,21 +172,6 @@
     &-leave {
         @extend %transform-3d-0;
     }
-    // &-enter-active,
-    // &-leave-active {
-    //     transition: transform 0.4s $outQuart, opacity 0.4s $outQuart;
-    // }
-
-    // &-enter,
-    // &-leave-to {
-    //     transform: translate3d(0, -100%, 0);
-    //     opacity: 0;
-    // }
-    // &-enter-to,
-    // &-leave {
-    //     opacity: 1;
-    //     @extend %transform-3d-0;
-    // }
 }
 
 .slideFromLeft {
