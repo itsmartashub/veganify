@@ -60,23 +60,23 @@ export default {
                     sizes: '192x192',
                     href: '/favicon-192x192.png',
                 },
-                {
-                    rel: 'preconnect',
-                    href: 'https://fonts.googleapis.com',
-                },
-                {
-                    rel: 'preconnect',
-                    href: 'https://fonts.gstatic.com/',
-                    crossorigin: true,
-                },
-                {
-                    rel: 'dns-prefetch',
-                    href: '//fonts.googleapis.com',
-                },
-                {
-                    rel: 'stylesheet',
-                    href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap',
-                },
+                // {
+                //     rel: 'preconnect',
+                //     href: 'https://fonts.googleapis.com',
+                // },
+                // {
+                //     rel: 'preconnect',
+                //     href: 'https://fonts.gstatic.com/',
+                //     crossorigin: true,
+                // },
+                // {
+                //     rel: 'dns-prefetch',
+                //     href: '//fonts.googleapis.com',
+                // },
+                // {
+                //     rel: 'stylesheet',
+                //     href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap',
+                // },
             ],
 
             bodyAttrs: {
@@ -110,15 +110,27 @@ export default {
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 
+    buildModules: ['@nuxtjs/google-fonts'],
+
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
         // With options
+        // '@nuxtjs/google-fonts',
         ['cookie-universal-nuxt', { alias: 'cookiz' }],
         '@nuxtjs/robots', //! mora biti posl item
         '@nuxtjs/sitemap', //! mora biti posl item
     ],
+
+    googleFonts: {
+        Poppins: [300, 400, 500, 600, 700],
+        display: 'swap',
+        prefetch: true,
+        preconnect: true,
+        preload: true,
+        useStylesheet: false,
+    },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
