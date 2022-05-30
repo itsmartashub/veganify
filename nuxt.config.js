@@ -13,13 +13,13 @@ export default {
                     'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
             },
             {
-                hid: 'theme-color',
+                hid: 'theme-color-light',
                 name: 'theme-color',
                 media: '(prefers-color-scheme: light)',
                 content: '#0ed8a5',
             },
             {
-                hid: 'theme-color',
+                hid: 'theme-color-dark',
                 name: 'theme-color',
                 media: '(prefers-color-scheme: dark)',
                 content: '#0ed8a5',
@@ -29,6 +29,7 @@ export default {
                 name: 'author',
                 content: 'Bires Marta, marta.dev.bires@gmail.com',
             },
+            { name: 'format-detection', content: 'telephone=no' },
             {
                 hid: 'keywords',
                 name: 'keywords',
