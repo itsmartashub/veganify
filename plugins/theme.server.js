@@ -1,5 +1,6 @@
-export default function ({ $cookiz, store, app, req }) {
-    let theme = $cookiz?.get('theme') || 'light'
+// export default function ({ $cookiz, store, app, req, $options }) {
+export default function (ctx) {
+    let theme = ctx.$cookiz?.get('theme') || 'light'
     // let theme = $cookiz?.get('theme')
 
     // let supportDarkMode =
@@ -8,7 +9,8 @@ export default function ({ $cookiz, store, app, req }) {
     // if (!theme && supportDarkMode) store.commit('app/SET_THEME', 'dark')
     // if (theme) store.commit('app/SET_THEME', theme)
 
-    store.commit('app/SET_THEME', theme)
+    ctx.store.commit('app/SET_THEME', theme)
+    // console.log(ctx)
 
     // store.dispatch('app/setThemeBodyAttr')
 }

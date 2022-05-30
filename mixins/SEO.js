@@ -57,6 +57,10 @@ export default {
                     content: '@awa_it_',
                 },
             ],
+
+            bodyAttrs: {
+                class: this.$store.state.app.theme,
+            },
         }
 
         return head
