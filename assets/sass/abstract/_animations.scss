@@ -27,7 +27,7 @@
             opacity 0.6s $outSmooth var(--delay);
 
         @include device(tab-to-phoneland) {
-            --delay: 1.2s;
+            --delay: 1s;
         }
     }
     &-enter {

@@ -42,7 +42,7 @@
                     v-if="!isWaiting && !err402 && !errNoRequredItem"
                 >
                     <template v-for="activeRecipe in paginatedRecipes">
-                        <RecipeCard
+                        <LazyRecipeCard
                             :recipe="activeRecipe"
                             :key="activeRecipe.id"
                             :category="categoryName"
@@ -50,7 +50,7 @@
                     </template>
                 </section>
 
-                <Pagination />
+                <LazyPagination />
             </section>
         </transition>
 

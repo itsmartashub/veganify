@@ -6,11 +6,11 @@
             <Header />
 
             <div class="scroll-to" id="scroll-to">
-                <WaitingPlaceholder />
-                <RecipeCards />
+                <LazyWaitingPlaceholder />
+                <LazyRecipeCards />
             </div>
 
-            <NotificationList />
+            <LazyNotificationList />
         </main>
 
         <Sidebar :popularRecipes="popularSmoothies" />
