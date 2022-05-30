@@ -7,10 +7,10 @@
                 <Header />
 
                 <div class="scroll-to" id="scroll-to">
-                    <RecipeCards />
+                    <LazyRecipeCards />
                 </div>
 
-                <NotificationList />
+                <LazyNotificationList />
             </section>
 
             <transition name="page">

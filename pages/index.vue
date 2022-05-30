@@ -9,15 +9,15 @@
 
             <transition name="waiting">
                 <!-- <Categories v-if="isMounted && !err402 && !hideCategories" /> -->
-                <Categories v-if="!err402 && !hideCategories" />
+                <LazyCategories v-if="!err402 && !hideCategories" />
             </transition>
 
             <div class="scroll-to" id="scroll-to">
-                <WaitingPlaceholder />
+                <LazyWaitingPlaceholder />
                 <RecipeCards :category="categoryName" />
             </div>
 
-            <NotificationList />
+            <LazyNotificationList />
         </main>
 
         <Sidebar />

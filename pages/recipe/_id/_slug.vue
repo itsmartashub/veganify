@@ -17,17 +17,17 @@
 
             <div class="recipeitem__header-top">
                 <transition name="slideFromLeft">
-                    <BtnBack v-if="isMountedBtn" />
+                    <LazyBtnBack v-if="isMountedBtn" />
                 </transition>
 
                 <transition name="slideRotateFromRight">
-                    <BtnThemeToggle v-if="isMountedBtn" />
+                    <LazyBtnThemeToggle v-if="isMountedBtn" />
                 </transition>
             </div>
         </header>
 
         <transition name="page">
-            <RecipeitemRecipe />
+            <LazyRecipeitemRecipe />
         </transition>
     </div>
 </template>
