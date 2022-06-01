@@ -117,21 +117,22 @@ export default {
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
-        postcss: {
-            // plugins: {
-            //     // Disable `postcss-url`
-            //     'postcss-url': false,
-            //     // Add some plugins
-            //     'postcss-nested': {},
-            //     'postcss-responsive-type': {},
-            //     'postcss-hexrgba': {},
-            // },
-            preset: {
-                autoprefixer: {
-                    grid: true,
-                },
-            },
-        },
+        // analyze: true,
+        // postcss: {
+        //     // plugins: {
+        //     //     // Disable `postcss-url`
+        //     //     'postcss-url': false,
+        //     //     // Add some plugins
+        //     //     'postcss-nested': {},
+        //     //     'postcss-responsive-type': {},
+        //     //     'postcss-hexrgba': {},
+        //     // },
+        //     preset: {
+        //         autoprefixer: {
+        //             grid: true,
+        //         },
+        //     },
+        // },
     },
 
     robots: [

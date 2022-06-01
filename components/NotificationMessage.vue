@@ -1,9 +1,9 @@
 <template>
-    <li class="notification" :class="className">
+    <div class="notification" :class="className">
         <p>
             {{ notification.message }}
         </p>
-    </li>
+    </div>
 </template>
 
 <script>

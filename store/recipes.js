@@ -1,3 +1,5 @@
+// import refactorRecipes from '~/utils/refactorRecipes'
+
 export const state = () => ({
     apik: '',
     recipeNum: 60,
@@ -47,7 +49,6 @@ export const state = () => ({
         process.env.APIK_12,
         process.env.APIK_13,
         process.env.APIK_14,
-
         process.env.APIK_15,
         process.env.APIK_16,
         process.env.APIK_17,
@@ -117,7 +118,7 @@ export const actions = {
         }
     },
 
-    async promiseAllFn({ state, commit, dispatch }, apik) {
+    async promiseAllFn({ state, commit, dispatch }) {
         let endpoints = [
             // [0] All Recipes
             `recipes/complexSearch?apiKey=${state.apik}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`,
@@ -135,25 +136,76 @@ export const actions = {
                 `recipes/complexSearch?apiKey=${state.apik}&query=${cat.name}&diet=vegetarian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&addRecipeNutrition=true&ignorePantry=true&sortDirection=asc&number=${state.recipeNum}`
             )
         })
+
+        const refactorRecipes = (arrRecipes) =>
+            arrRecipes.map((recipe) => {
+                return {
+                    id: recipe.id,
+                    title: recipe.title,
+                    image: recipe.image,
+                    readyInMinutes: recipe.readyInMinutes,
+                    servings: recipe.servings,
+                    glutenFree: recipe.glutenFree,
+                    analyzedInstructions: recipe.analyzedInstructions,
+                    summary: recipe.summary,
+
+                    nutrition: recipe.nutrition ?? null,
+                    extendedIngredients: recipe.extendedIngredients ?? null,
+                }
+            })
         //! sa this.$axios.$get se dohvate podaci (data), a sa this.$axios.get (bez dollar sign ovo get) se dohvati response
         try {
             const response = await Promise.all(
                 endpoints.map((endpoint) => this.$axios.get(endpoint))
             )
 
-            commit('SET_RECIPES', response[0].data.results)
-            commit('SET_ACTIVE_RECIPES', response[0].data.results)
-            commit('SET_SMOOTHIES', response[1].data.results)
-            commit('SET_RANDOM_TRIVIA', response[2].data.text)
+            let refactored_recipes = refactorRecipes(response[0].data.results)
+            let refactored_smoothies = refactorRecipes(response[1].data.results)
+
+            //? OVO NECE DA RADI KAD PROSLEDIM U ITEMS, ALI KAD PROSLEDIM CITAVU F-JU, ONDA HOCE, WTF
+            // let salad = refactorRecipes(response[3].data.results)
+            // let soup = refactorRecipes(response[4].data.results)
+            // let pasta = refactorRecipes(response[5].data.results)
+            // let pizza = refactorRecipes(response[6].data.results)
+            // let burger = refactorRecipes(response[7].data.results)
+
+            // commit('SET_CATEGORIES', [
+            //     { name: 'salad', items: salad },
+            //     { name: 'soup', items: soup },
+            //     { name: 'pasta', items: pasta },
+            //     { name: 'pizza', items: pizza },
+            //     { name: 'burger', items: burger },
+            // ])
+
+            commit('SET_RECIPES', refactored_recipes)
+            // //TODO: ovo mozda nije dobro ako rifresujemo neku drugu page a ne index, jer je recimo active recipes za bookmarks nece biti ovo, ili smoothies
+            commit('SET_ACTIVE_RECIPES', refactored_recipes)
+            commit('SET_SMOOTHIES', refactored_smoothies)
 
             commit('SET_CATEGORIES', [
-                { name: 'salad', items: response[3].data.results },
-                { name: 'soup', items: response[4].data.results },
-                { name: 'pasta', items: response[5].data.results },
-                { name: 'pizza', items: response[6].data.results },
-                { name: 'burger', items: response[7].data.results },
+                {
+                    name: 'salad',
+                    items: refactorRecipes(response[3].data.results),
+                },
+                {
+                    name: 'soup',
+                    items: refactorRecipes(response[4].data.results),
+                },
+                {
+                    name: 'pasta',
+                    items: refactorRecipes(response[5].data.results),
+                },
+                {
+                    name: 'pizza',
+                    items: refactorRecipes(response[6].data.results),
+                },
+                {
+                    name: 'burger',
+                    items: refactorRecipes(response[7].data.results),
+                },
             ])
 
+            commit('SET_RANDOM_TRIVIA', response[2].data.text)
             commit('SET_POPULAR_RECIPES')
 
             dispatch('mergeRecipes')
@@ -183,124 +235,6 @@ export const actions = {
                 }
             }
         }
-
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--1')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_1
-        //     )
-        //     console.log('end--1')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--2')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_2
-        //     )
-        //     console.log('end--2')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--3')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_3
-        //     )
-        //     console.log('end--3')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--3')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_4
-        //     )
-        //     console.log('end--3')
-        // }
-
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--5')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_5_SISSY
-        //     )
-        //     console.log('end--5')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--6')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_6_SISSY
-        //     )
-        //     console.log('end--6')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--7')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_7_SISSY
-        //     )
-        //     console.log('end--7')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--8')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_8_SISSY
-        //     )
-        //     console.log('end--8')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--9')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_9_SISSY
-        //     )
-        //     console.log('end--9')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--10')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_10_SISSY
-        //     )
-        //     console.log('end--10')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--11')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_11_SISSY
-        //     )
-        //     console.log('end--11')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--12')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_12_SISSY
-        //     )
-        //     console.log('end--12')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--13')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_13_SISSY
-        //     )
-        //     console.log('end--13')
-        // }
-        // if (state.apiErrMsg === 'Request failed with status code 402') {
-        //     console.log('start--14')
-        //     await dispatch(
-        //         'ifErr402AllRecipes',
-        //         process.env.API_SECRET_RESERVE_14_SISSY
-        //     )
-        //     console.log('end--14')
-        // }
-
-        // if (state.apiErrMsg === '') {
-        //     commit('SET_402', false)
-        // }
     },
 
     async ifErr402AllRecipes({ state, commit, dispatch }, newApik) {

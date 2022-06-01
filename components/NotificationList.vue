@@ -1,5 +1,5 @@
 <template>
-    <ul class="notifications">
+    <div class="notifications">
         <transition-group name="notification">
             <NotificationMessage
                 v-for="notification in notifications"
@@ -7,7 +7,7 @@
                 :notification="notification"
             />
         </transition-group>
-    </ul>
+    </div>
 </template>
 
 <script>
