@@ -1,6 +1,6 @@
 # Nuxt.js Learning Project (2022)
 > [!IMPORTANT]
-> The first loading is painfully slow because Veganify uses integrates `20` separate `Spoonacular API` keys for the same service to avoid hitting usage caps. Yes, it’s as clunky as it sounds. This was a necessary workaround at the time and isn't optimized. <br>
+> The first loading is painfully slow because Veganify integrates `20` separate `Spoonacular API` keys for the same service to avoid hitting usage caps. Yes, it’s as clunky as it sounds. This was a necessary workaround at the time and isn't optimized. <br>
 > Performance was not a priority since the sole purpose of this project was **learning** and **experimentation**. And that being said, there's no plans for speed improvement.
 
 ## Veganify
