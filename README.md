@@ -8,10 +8,6 @@ Veganify is a web application to discover and save vegetarian dishes and smoothi
 Previously designed in **Adobe Xd**, Veganify is built using the **Nuxt.js** framework. </br>
 This is my first experience with **Nuxt**, **SSR**, and the incredible **Vercel** deploying platform.
 
-This project was my first encounter with Nuxt.js, back in 2022. It was a fun yet challenging experiment to explore the framework and learn the basics of building a Nuxt.js application.
+This project is a snapshot of my learning journey in 2022. While it’s not practical or performant, it represents an important milestone for me as a developer. It was a fun yet challenging experiment to explore the framework and learn the basics of building a Nuxt.js application. I hope it inspires others to keep experimenting and learning, no matter how messy the first steps may be. 
 
 ![veganify-github-template-imgs](https://user-images.githubusercontent.com/44645238/168633083-e569dee7-4335-4fd0-8e95-c36d14917636.png)
-
-
-## Closing Thoughts
-This project is a snapshot of my learning journey in 2022. While it’s not practical or performant, it represents an important milestone for me as a developer. I hope it inspires others to keep experimenting and learning, no matter how messy the first steps may be.
